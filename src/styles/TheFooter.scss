@@ -1,0 +1,19 @@
+@import '../styles/common/colors.scss';
+@import '../styles/common/fonts.scss';
+
+footer {
+  border: 3px solid red;
+  width: 100vw;
+  height: 180px;
+  background-color: #fcfcfc;
+
+  .container {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+
+    .logo {
+      font-family: 'Poiret One';
+      font-size: $font-logo-size;
+    }
+  }
+}
