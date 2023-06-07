@@ -3,7 +3,8 @@
 // 설명 : 각 요소에 적용될 공통 폰트 SCSS를 한곳에 모아서 관리함
 ********************************************************************/ 
 
-// 폰트 리스트 (Font List)
+/// ******* 폰트 리스트 (Font List) ******* ///
+// Pretendard
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -11,20 +12,14 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Poiret One';
-  src: url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-  font-weight: 400;
-  font-style: normal;
-}
+// Poiret One (Logo)
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
-@font-face {
-  font-family: 'Markazi Text', serif;
-  src: url('https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap');
-  font-weight: 400;
-  font-style: normal;
-}
+// Markazi Text
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&display=swap');
 
+
+/// ******* 변수 리스트 (Variables) ******* ///
 // Logo (대표 로고 관련 폰트/사이즈)
 $font-logo: 'Poiret One';
 $font-logo-size: 32px;
