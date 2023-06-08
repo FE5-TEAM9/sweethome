@@ -1,0 +1,65 @@
+@import "../styles/common/fonts.scss";
+* {
+  margin: 0;
+  padding: 0;
+}
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  border-bottom: solid 1px;
+  border-color: rgba(175, 168, 168, 0.5);
+  > :nth-child(1) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-left: 70px;
+  }
+  > :nth-child(2) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    right: 500px;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      list-style: none;
+    }
+  }
+  > :nth-child(3) {
+    position: relative;
+    height: 70px;
+    right: 100px;
+    > * {
+      position: relative;
+      bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 6px 0;
+    }
+    > .user {
+      gap: 20px;
+    }
+    > .icons {
+      gap: 30px;
+    }
+  }
+}
+span {
+  font-size: 10px;
+}
+.mypage,
+.shoppingbag {
+  font-size: 20px;
+}
+.search {
+  font-size: 30px;
+}
