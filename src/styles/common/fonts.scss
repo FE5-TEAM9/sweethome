@@ -1,41 +1,40 @@
 /******************************************************************* 
 // 위치 : src/styles/common/fonts.scss
 // 설명 : 각 요소에 적용될 공통 폰트 SCSS를 한곳에 모아서 관리함
-********************************************************************/ 
+********************************************************************/
 
 /// ******* 폰트 리스트 (Font List) ******* ///
 // Pretendard
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 // Poiret One (Logo)
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 
 // Markazi Text
-@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&display=swap");
 
 /// ******* 변수 리스트 (Variables) ******* ///
 // Logo (대표 로고 관련 폰트/사이즈)
-$font-logo: 'Poiret One';
+$font-logo: "Poiret One";
 $font-logo-size: 32px;
 
 // Navbar (네비게이션 바 관련 폰트/사이즈)
-$font-nav: 'Pretendard-Regular';
+$font-nav: "Pretendard-Regular";
 $font-nav-size: 24px;
 $font-nav-weight: 100;
 
 // Login, Logout, Sign-In (로그인, 로그아웃, 회원가입 관련 폰트/사이즈)
 // login으로 통일하겠습니다.
-$font-login: 'Markazi Text', serif;
+$font-login: "Markazi Text", serif;
 $font-login-size: 16px;
-$font-login-wieght: 400;
-
+$font-login-weight: 400;
 
 // Button (버튼 관련 폰트/사이즈)
-$font-btn: 'Pretendard-Regular';
+$font-btn: "Pretendard-Regular";
 $font-btn-size: 16px;
