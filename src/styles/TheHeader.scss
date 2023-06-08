@@ -1,4 +1,5 @@
 @import "../styles/common/fonts.scss";
+@import "../styles/common/colors.scss";
 * {
   margin: 0;
   padding: 0;
@@ -18,23 +19,34 @@ header {
     align-items: center;
     height: 50px;
     margin-left: 70px;
+    font-family: $font-logo;
+    font-size: $font-logo-size;
+  }
+  > :nth-child(1):hover {
+    cursor: pointer;
   }
   > :nth-child(2) {
-    position: relative;
+    position: absolute;
+    left:30%;
     display: flex;
     align-items: center;
     height: 50px;
-    right: 500px;
-
+    right: 400px;
+    font-family: $font-nav;
+    font-size: $font-nav-size;
+    font-weight: $font-nav-weight;
     ul {
       display: flex;
       justify-content: center;
       gap: 50px;
       list-style: none;
+      > li:hover {
+        cursor: pointer;
+      }
     }
   }
   > :nth-child(3) {
-    position: relative;
+    position: absolute;
     height: 70px;
     right: 100px;
     > * {
@@ -47,19 +59,31 @@ header {
     }
     > .user {
       gap: 20px;
+      > span {
+        font-family: $font-login;
+        font-size: $font-login-size;
+        font-weight: $font-login-weight;
+      }
+      > span:hover {
+        cursor: pointer;
+      }
     }
     > .icons {
       gap: 30px;
     }
   }
 }
-span {
-  font-size: 10px;
-}
 .mypage,
 .shoppingbag {
   font-size: 20px;
 }
+.mypage,
+.shoppingbag:hover {
+  cursor: pointer;
+}
 .search {
   font-size: 30px;
+}
+.search {
+  cursor: pointer;
 }
