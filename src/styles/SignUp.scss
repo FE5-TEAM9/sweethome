@@ -1,0 +1,74 @@
+@import './common/colors.scss';
+@import './common/fonts.scss';
+
+section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: 'Pretendard-Regular';
+  font-size: 16px;
+
+  .sign-up-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    
+    .title.sign-up-title{
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .input {
+    width: 400px;
+    height: 28px;
+    border: 1px solid #d5d5d5;
+    color: $font-color;
+    font-size: 14px;
+    outline: none;
+    background: none;
+    margin-bottom: 20px;
+    BORDER-BOTTOM: $base-color-gray 1px solid;
+    BORDER-LEFT: medium none;
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+
+    &::placeholder {
+      color: $font-color;
+    }
+  }
+  .agree-container {
+    margin: 20px 0;
+    width: 400px;
+    height: 100%;
+    
+    font-size: 12px;
+    label.agree-check {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+
+    }
+    .agreement-text-box{
+      display: flex;
+      justify-content: center;
+      width: 380px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: $base-color-gray;
+
+      .agreement-text{   
+      width: 90%;
+      }
+    }
+
+  }
+  .sign-up-btn {
+    width: 430px;
+    height: 50px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: $base-color-black;
+    color: $base-color-white;
+  }
+}
