@@ -1,9 +1,14 @@
 @import "../styles/common/fonts.scss";
 @import "../styles/common/colors.scss";
+
 * {
   margin: 0;
   padding: 0;
 }
+a {
+  text-decoration: none;
+}
+
 header {
   position: relative;
   display: flex;
@@ -35,7 +40,7 @@ header {
     font-family: $font-nav;
     font-size: $font-nav-size;
     font-weight: $font-nav-weight;
-    ul {
+    ul{
       display: flex;
       justify-content: center;
       gap: 50px;
