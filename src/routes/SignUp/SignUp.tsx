@@ -1,6 +1,13 @@
+import { useState } from 'react'
+import { signUp } from '~/api/requests'
+
 import styles from '~/styles/SignUp.module.scss'
 
 const SignUp = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [displayName, setDisplayName] = useState("")
+
   return (
     <>
       <section className={styles.container}>
