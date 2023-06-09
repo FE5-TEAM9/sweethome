@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import "~/styles/TheHeader.scss";
@@ -10,29 +10,43 @@ const TheHeader = () => {
       <div>
         <ul>
           <li>
-            <Link to="/about">ABOUT</Link>
+            <NavLink to="/about">
+              ABOUT
+            </NavLink>
           </li>
           <li>
-            SHOP
+            <NavLink to="/shop">
+              SHOP
+            </NavLink>
           </li>
           <li>
-            BOARD
+            <NavLink to="/board">
+              BOARD
+            </NavLink>
           </li>
         </ul>
       </div>
       <div>
         <div className="user">
           <span>
-            Login
+            <NavLink to="/login">
+              Login
+            </NavLink>
           </span>
           <span>|</span>
           <span>
-            Sign-Up
+            <NavLink to="/signup">
+              Sign-Up
+            </NavLink>
           </span>
         </div>
         <div className="icons">
-          <FaUserAlt className="mypage" />
-          <FaShoppingBag className="shoppingbag" />
+          <NavLink to="/mypage">
+            <FaUserAlt className="mypage" />
+          </NavLink>
+          <NavLink to="/cart">
+            <FaShoppingBag className="shoppingbag" />
+          </NavLink>
           <AiOutlineSearch className="search" />
         </div>
       </div>

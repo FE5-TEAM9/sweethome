@@ -1,22 +1,23 @@
-@import '~/styles/common/colors.scss';
-@import '~/styles/common/fonts.scss';
+@import './common/colors.scss';
+@import './common/fonts.scss';
 
 section {
   width: 100vw;
-  height: 100vh;
+  height: 700px;
   display: flex;
   justify-content: center;
-  font-family: 'Pretendard-Regular';
-  font-size: 16px;
-
-  .sign-up-wrapper {
+  align-items: center;
+  .wrapper {
     width: 80%;
     display: flex;
     justify-content: center;
     
-    .title.sign-up-title{
+    .title {
       display: flex;
       justify-content: center;
+      margin-bottom: 60px;
+      font-size: 24px;
+      font-weight: 700;
     }
   }
   .input {
@@ -37,19 +38,19 @@ section {
       color: $font-color;
     }
   }
-  .agree-container {
+  .agree {
     margin: 20px 0;
     width: 400px;
     height: 100%;
     
     font-size: 12px;
-    label.agree-check {
+    .checkBox {
       display: flex;
       gap: 10px;
       font-size: 14px;
-
+      margin-bottom: 10px;
     }
-    .agreement-text-box{
+    .agreeContainer {
       display: flex;
       justify-content: center;
       width: 380px;
@@ -57,18 +58,19 @@ section {
       border-radius: 10px;
       background-color: $base-color-gray;
 
-      .agreement-text{   
+      .agreeText{   
       width: 90%;
       }
     }
 
   }
-  .sign-up-btn {
+  .btn {
     width: 430px;
     height: 50px;
     border-radius: 10px;
     border-style: none;
     background-color: $base-color-black;
     color: $base-color-white;
+    cursor: pointer;
   }
 }
