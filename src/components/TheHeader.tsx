@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import "~/styles/TheHeader.scss";
@@ -10,7 +9,7 @@ const TheHeader = () => {
       <div>
         <ul>
           <li>
-            <Link to="/about">ABOUT</Link>
+            ABOUT
           </li>
           <li>
             SHOP
