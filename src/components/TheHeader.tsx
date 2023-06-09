@@ -1,22 +1,34 @@
-import "~/styles/TheHeader.scss";
+import { Link } from "react-router-dom"
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
+import "~/styles/TheHeader.scss";
+
 const TheHeader = () => {
   return (
     <header>
       <div>SWEET HOME</div>
       <div>
         <ul>
-          <li>ABOUT</li>
-          <li>SHOP</li>
-          <li>BOARD</li>
+          <li>
+            <Link to="/about">ABOUT</Link>
+          </li>
+          <li>
+            SHOP
+          </li>
+          <li>
+            BOARD
+          </li>
         </ul>
       </div>
       <div>
         <div className="user">
-          <span>Login</span>
+          <span>
+            Login
+          </span>
           <span>|</span>
-          <span>Sign-In</span>
+          <span>
+            Sign-Up
+          </span>
         </div>
         <div className="icons">
           <FaUserAlt className="mypage" />
