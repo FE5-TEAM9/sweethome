@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, FormEvent } from 'react';
 import { signUp } from '~/api/requests';
 import styles from '~/styles/SignUp.module.scss';
 
@@ -10,9 +11,11 @@ const SignUp = () => {
   const [isAgree, setIsAgree] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const onEmailHandler = (e) => {
+  const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement> ) => {
     setEmail(e.target.value);
+    console.log(e.target.value)
   }
+  console.log(email)
   const onDisplayNameHandler = (e) => {
     setDisplayName(e.target.value);
   }
