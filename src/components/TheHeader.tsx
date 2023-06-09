@@ -1,16 +1,23 @@
 import { NavLink } from 'react-router-dom'
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
-import "~/styles/TheHeader.scss";
+import styles from "~/styles/TheHeader.module.scss";
 
 const TheHeader = () => {
   return (
     <header>
-      <div>SWEET HOME</div>
       <div>
-        <ul>
+        <NavLink to="/">
+          SWEET HOME
+        </NavLink>
+      </div>
+      <div>
+        <ul className={styles.ul}>
           <li>
-            <NavLink to="/about">
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? styles.active : '')}
+            >
               ABOUT
             </NavLink>
           </li>
