@@ -1,74 +1,74 @@
-import '../styles/SignUp.scss'
+import styles from '~/styles/SignUp.module.scss'
 
 const SignUp = () => {
   return (
     <>
-    <section className="sign-up-container">
-      <div className="sign-up-wrapper">
-       <div className='sign-up-inner'>
-       <div className="title sign-up-title">
+    <section className={styles.container}>
+      <div className={styles.wrapper}>
+       <div className={styles.inner}>
+       <div className={styles.title}>
           <h2>회원가입</h2>
         </div>
         <form>
-          <div className='info-list'>
+          <div className={styles.infoList}>
             <label
                 htmlFor="email"
-                className='label label-email'
+                className={styles.label}
               >
               <input 
                 type="email"
                 id="email"
-                className='input input-email'
+                className={styles.input}
                 placeholder='이메일'
               />
             </label>
           </div>
-          <div className='info-list'>
+          <div className={styles.infoList}>
             <label
                 htmlFor="name"
-                className='label label-name'
+                className={styles.label}
               >
               <input 
                 type="name"
                 id="name"
-                className='input input-name'
+                className={styles.input}
                 placeholder='이름'
               />
             </label>
           </div>
-          <div className='info-list'>
+          <div className={styles.infoList}>
             <label
                 htmlFor="password"
-                className='label label-password'
+                className={styles.label}
               >
               <input 
                 type="password"
                 id="password"
-                className='input input-password'
+                className={styles.input}
                 placeholder='비밀번호'
               />
             </label>
           </div>
-          <div className='info-list'>
+          <div className={styles.infoList}>
             <label
                 htmlFor="password-check"
-                className='label label-password-checkl'
+                className={styles.label}
               >
               <input 
                 type="password-check"
                 id="password-check"
-                className='input input-password-check'
+                className={styles.input}
                 placeholder='비밀번호 확인'
               />
             </label>
           </div>
-          <div className='agree-container'>
-            <label className='agree-check'>
+          <div className={styles.agree}>
+            <label className={styles.checkBox}>
               <input type='checkbox' />
               <p>이용약관 및 개인정보수집, 쇼핑정보 수신에 모두 동의합니다.</p>
             </label>
-            <div className='agreement-text-box'>
-              <div className='agreement-text'>
+            <div className={styles.agreeContainer}>
+              <div className={styles.agreeText}>
                 <p>1. 개인정보의 수집항목 및 수집 방법</p>
                 <p>
                   통계청 나라통계 사이트에서는 기본적인 회원 서비스 제공을 위한
@@ -80,7 +80,7 @@ const SignUp = () => {
               </div>
             </div>
           </div>
-          <button className="btn sign-up-btn">회원가입</button>
+          <button className={styles.btn}>회원가입</button>
         </form>
        </div>
       </div>

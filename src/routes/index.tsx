@@ -1,7 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import Home from './Home'
-import About from './About'
-import SignUp from './SignUp'
+import Home from '~/routes/Home/Home'
+import About from '~/routes/About/About'
+import Shop from '~/routes/Shop/Shop'
+import ShopDetail from '~/routes/Shop/ShopDetail'
+import Board from '~/routes/Board/Board'
+import Login from '~/routes/Login/Login'
+import SignUp from '~/routes/SignUp/SignUp'
 
 export default createBrowserRouter([
   {
@@ -13,7 +17,23 @@ export default createBrowserRouter([
     element: <About />
   },
   {
-    path: '/sign-up',
+    path: '/shop',
+    element: <Shop />
+  },
+  {
+    path: '/shop/:productId',
+    element: <ShopDetail />
+  },
+  {
+    path: '/board',
+    element: <Board />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/signup',
     element: <SignUp />
   },
 ])
