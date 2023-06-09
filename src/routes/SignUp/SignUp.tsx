@@ -1,13 +1,57 @@
-import { useState } from 'react'
-import { signUp } from '~/api/requests'
-
-import styles from '~/styles/SignUp.module.scss'
+import { useState } from 'react';
+import { signUp } from '~/api/requests';
+import styles from '~/styles/SignUp.module.scss';
 
 const SignUp = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [displayName, setDisplayName] = useState("")
+  const [email, setEmail] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isAgree, setIsAgree] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const onEmailHandler = (e) => {
+    setEmail(e.target.value);
+  }
+  const onDisplayNameHandler = (e) => {
+    setDisplayName(e.target.value);
+  }
+  const onPasswordHandler = (e) => {
+    setPassword(e.target.value);
+  }
+  const onConfirmHandler = (e) => {
+    setConfirmPassword(e.target.value);
+  }
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      return alert ('비밀번호가 일치하지 않습니다.')
+    }
+    if (!isAgree) {
+      return alert('이용약관 및 개인정보수집에 동의해 주세요!')
+    }
+
+    let body = {
+      email: email,
+      displayName: displayName,
+      password: password,
+    }
+
+    try {
+      setIsLoading(true);
+      isAgree && await signUp(body);
+      setIsLoading(false);
+    } catch (error) {
+      console.log('SignUp Error', error)
+    }
+  }
+
+  const onAgreeHandler = (e) => {
+    setIsAgree(!isAgree)
+  }
+    
+ 
   return (
     <>
       <section className={styles.container}>
@@ -22,7 +66,9 @@ const SignUp = () => {
                   htmlFor="email"
                   className={styles.label}
                 >
-                  <input 
+                  <input
+                    value={email}
+                    onChange={onEmailHandler}
                     type="email"
                     id="email"
                     className={styles.input}
@@ -32,12 +78,14 @@ const SignUp = () => {
               </div>
               <div className={styles.infoList}>
                 <label
-                  htmlFor="name"
+                  htmlFor="displayName"
                   className={styles.label}
                 >
-                  <input 
-                    type="name"
-                    id="name"
+                  <input
+                    value={displayName}
+                    onChange={onDisplayNameHandler}
+                    type="displayName"
+                    id="displayName"
                     className={styles.input}
                     placeholder='이름'
                   />
@@ -48,7 +96,9 @@ const SignUp = () => {
                   htmlFor="password"
                   className={styles.label}
                 >
-                  <input 
+                  <input
+                    value={password}
+                    onChange={onPasswordHandler}
                     type="password"
                     id="password"
                     className={styles.input}
@@ -61,8 +111,10 @@ const SignUp = () => {
                   htmlFor="password-check"
                   className={styles.label}
                 >
-                  <input 
-                    type="password-check"
+                  <input
+                    value={confirmPassword}
+                    onChange={onConfirmHandler} 
+                    type="password"
                     id="password-check"
                     className={styles.input}
                     placeholder='비밀번호 확인'
@@ -71,7 +123,11 @@ const SignUp = () => {
               </div>
               <div className={styles.agree}>
                 <label className={styles.checkBox}>
-                  <input type='checkbox' />
+                  <input
+                    type='checkbox'
+                    onClick={onAgreeHandler}
+                    checked={isAgree}
+                  />
                   <p>이용약관 및 개인정보수집, 쇼핑정보 수신에 모두 동의합니다.</p>
                 </label>
                 <div className={styles.agreeContainer}>
@@ -87,7 +143,13 @@ const SignUp = () => {
                   </div>
                 </div>
               </div>
-              <button className={styles.btn}>회원가입</button>
+              <button
+                onClick={onSubmitHandler} 
+                className={styles.btn}
+                disabled={isLoading ? true : false}
+                >
+                회원가입
+              </button>
             </form>
           </div>
         </div>

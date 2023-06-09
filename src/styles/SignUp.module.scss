@@ -3,9 +3,10 @@
 
 section {
   width: 100vw;
-  height: 100vh;
+  height: 700px;
   display: flex;
   justify-content: center;
+  align-items: center;
   .wrapper {
     width: 80%;
     display: flex;
@@ -14,6 +15,9 @@ section {
     .title {
       display: flex;
       justify-content: center;
+      margin-bottom: 60px;
+      font-size: 24px;
+      font-weight: 700;
     }
   }
   .input {
@@ -44,7 +48,7 @@ section {
       display: flex;
       gap: 10px;
       font-size: 14px;
-
+      margin-bottom: 10px;
     }
     .agreeContainer {
       display: flex;
@@ -67,5 +71,6 @@ section {
     border-style: none;
     background-color: $base-color-black;
     color: $base-color-white;
+    cursor: pointer;
   }
 }
