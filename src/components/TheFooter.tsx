@@ -1,16 +1,16 @@
-import '../styles/TheFooter.scss';
+import styles from '~/styles/TheFooter.module.scss';
 
 const TheFooter = () => {
   return (
     <>
       <footer>
-        <div className="container">
+        <div className={styles.container}>
           <ul>
-            <li className="logo">
+            <li className={styles.logo}>
               <h1>SWEET HOME</h1>
             </li>
 
-            <li className="company">
+            <li className={styles.company}>
               <div>
                 <h2>(주)집 가구싶어(SweetHome)</h2>
                 <span>상호명: 집 가구싶어(SweetHome)</span>
@@ -19,7 +19,7 @@ const TheFooter = () => {
               </div>
             </li>
 
-            <li className="bank">
+            <li className={styles.bank}>
               <div>
                 <h2>BANK ACCOUNT</h2>
                 <span>국민 562101-01-020304</span>
@@ -28,7 +28,7 @@ const TheFooter = () => {
               </div>
             </li>
 
-            <li className="customer">
+            <li className={styles.customer}>
               <div>
                 <h2>CUSTOMER CENTER</h2>
                 <span>평일: 10:00 AM ~ 18:00 PM</span>
@@ -38,7 +38,7 @@ const TheFooter = () => {
               </div>
             </li>
             
-            <li className="tel">
+            <li className={styles.tel}>
               <div>
                 <h2>Tel. 1234-5678</h2>
               </div>
