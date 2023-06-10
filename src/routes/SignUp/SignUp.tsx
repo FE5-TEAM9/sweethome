@@ -1,5 +1,5 @@
 
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 import { signUp } from '~/api/requests';
 import styles from '~/styles/SignUp.module.scss';
 
@@ -13,20 +13,23 @@ const SignUp = () => {
 
   const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement> ) => {
     setEmail(e.target.value);
-    console.log(e.target.value)
   }
-  console.log(email)
-  const onDisplayNameHandler = (e) => {
+
+  const onDisplayNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplayName(e.target.value);
   }
-  const onPasswordHandler = (e) => {
+  const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   }
-  const onConfirmHandler = (e) => {
+  const onConfirmHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(e.target.value);
   }
 
-  const onSubmitHandler = async (e) => {
+  const onAgreeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked){setIsAgree(!isAgree)}
+  }
+
+  const onSubmitHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       return alert ('비밀번호가 일치하지 않습니다.')
@@ -50,9 +53,7 @@ const SignUp = () => {
     }
   }
 
-  const onAgreeHandler = (e) => {
-    setIsAgree(!isAgree)
-  }
+
     
  
   return (
@@ -128,7 +129,7 @@ const SignUp = () => {
                 <label className={styles.checkBox}>
                   <input
                     type='checkbox'
-                    onClick={onAgreeHandler}
+                    onChange={onAgreeHandler}
                     checked={isAgree}
                   />
                   <p>이용약관 및 개인정보수집, 쇼핑정보 수신에 모두 동의합니다.</p>
