@@ -1,0 +1,27 @@
+@import '~/styles/common/colors.scss';
+@import '~/styles/common/fonts.scss';
+
+.container {
+  display: flex;
+
+  .nav {
+    width: 200px;
+    height: 700px;
+    border-right: 1px solid $base-color-gray;
+
+    .category {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      
+      li {
+        cursor: pointer;
+      }
+      li:nth-child(1) {
+        margin-top: 15px;
+      }
+    }
+  }
+}
