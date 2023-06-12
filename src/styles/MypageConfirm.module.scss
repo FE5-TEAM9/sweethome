@@ -1,0 +1,60 @@
+@import './common/colors.scss';
+@import './common/fonts.scss';
+
+// 공통
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.btn {
+  width: 430px;
+  height: 50px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: $base-color-black;
+  color: $base-color-white;
+  cursor: pointer;
+}
+
+// 개인 정보 수정 - PW 확인창
+.myPageConfirm {
+ 
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    // height: 100vh;
+
+    .form {
+      margin: 60px 0;
+      display: flex;
+      justify-content: center;
+      
+      .PWContaniner {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 420px;
+        height: 28px;
+        margin-bottom: 20px;
+        padding: 5px 0;
+        border-bottom: 1px solid #000;
+
+        p {
+          font-weight: 700;
+        }
+
+        input {
+          width: 420px;
+          height: 23px;
+          border: none;
+          outline: none;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

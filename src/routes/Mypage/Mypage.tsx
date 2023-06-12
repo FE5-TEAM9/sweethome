@@ -1,9 +1,16 @@
-import styles from '~/styles/Mypage.module.scss'
+import AccountList from "~/components/MyPage/Account/AccountList"
+import MyInfo from "~/components/MyPage/MyInfo/MyInfo"
+
 
 const Mypage = () => {
+
+
   return (
     <>
-      <div>Mypage</div>
+
+    <MyInfo/>
+    <hr />  
+    <AccountList/>
     </>
   )
 }
