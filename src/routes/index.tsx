@@ -10,7 +10,6 @@ import Cart from '~/routes/Cart/Cart'
 import Login from '~/routes/Login/Login'
 import SignUp from '~/routes/SignUp/SignUp'
 import Admin from '~/routes/Admin/Admin'
-import Dashboard from '~/routes/Admin/Dashboard'
 
 export default createBrowserRouter([
   {
@@ -55,13 +54,7 @@ export default createBrowserRouter([
       },
       {
         path: '/admin',
-        element: <Admin />,
-        children: [
-          {
-            path: '/admin/dashboard',
-            element: <Dashboard />
-          }
-        ]
+        element: <Admin />
       }
     ]
   }
