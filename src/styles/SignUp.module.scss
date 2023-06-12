@@ -15,13 +15,13 @@ section {
     .title {
       display: flex;
       justify-content: center;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
       font-size: 24px;
       font-weight: 700;
     }
   }
   .input {
-    width: 400px;
+    width: 420px;
     height: 28px;
     border: 1px solid #d5d5d5;
     color: $font-color;
@@ -29,10 +29,10 @@ section {
     outline: none;
     background: none;
     margin-bottom: 20px;
-    BORDER-BOTTOM: $base-color-gray 1px solid;
-    BORDER-LEFT: medium none;
-    BORDER-RIGHT: medium none;
-    BORDER-TOP: medium none;
+    border-bottom: $base-color-gray 1px solid;
+    border-left: none;
+    border-right: none;
+    border-top: none;
 
     &::placeholder {
       color: $font-color;
@@ -53,7 +53,7 @@ section {
     .agreeContainer {
       display: flex;
       justify-content: center;
-      width: 380px;
+      width: 430px;
       padding: 20px;
       border-radius: 10px;
       background-color: $base-color-gray;
