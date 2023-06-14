@@ -16,7 +16,7 @@ const AdminProduct = () => {
   const [productPrice, setProductPrice] = useState(0);
   const [productDesc, setProductDesc] = useState("");
   const [productTag, setProductTag] = useState("");
-  const [productThumb, setProductThumb] = useState(null);
+  const [productThumb, setProductThumb] = useState([]);
   const [productPhoto, setProductPhoto] = useState(null);
   const [productSoldOut, setProductSoldOut] = useState(false);
   const [productDiscountRate, setProductDiscountRate] = useState(0);
@@ -50,7 +50,7 @@ const AdminProduct = () => {
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setProductThumb(reader.result || null); // 파일의 컨텐츠
+        setProductThumb(reader.result); // 파일의 컨텐츠
         resolve();
       };
     });

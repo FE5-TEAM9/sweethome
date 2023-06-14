@@ -55,7 +55,7 @@ const addProducts = async (body: AddProductsBody) => {
         'content-type': 'application/json',
         'apikey': 'KDT5_nREmPe9B',
         'username': 'KDT5_Team9',
-        'masterKey': true
+        'masterKey': 'true'
       },
       body: JSON.stringify(body)
     }
