@@ -7,7 +7,6 @@ const Mypage = () => {
 
   return (
     <>
-
     <MyInfo/>
     <hr />  
     <AccountList/>

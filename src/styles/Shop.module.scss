@@ -1,0 +1,36 @@
+@import './common/colors.scss';
+@import './common/fonts.scss';
+
+.shop {
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  .menuWrap {
+    margin: 50px;
+    .menu {
+      display: flex;
+      gap: 10px;
+      input {
+        gap: 10px;
+        width: 130px;
+        height: 50px;
+        border: 1px solid $base-color-taupe;
+        border-radius: 38px;
+        background-color: $base-color-lightgray;
+        cursor: pointer;
+        .active {
+          background-color: $base-color-gray;
+        }
+      }
+    }
+  }
+  .productListWrap{
+    .productList {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+    }
+  }
+}
