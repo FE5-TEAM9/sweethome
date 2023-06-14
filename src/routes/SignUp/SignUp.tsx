@@ -70,7 +70,7 @@ const SignUp = () => {
                   <input
                     value={email}
                     onChange={onEmailHandler}
-                    type="email"
+                    type="text"
                     id="email"
                     className={styles.input}
                     placeholder="이메일"
@@ -84,7 +84,7 @@ const SignUp = () => {
                   <input
                     value={displayName}
                     onChange={onDisplayNameHandler}
-                    type="displayName"
+                    type="text"
                     id="displayName"
                     className={styles.input}
                     placeholder="이름"
