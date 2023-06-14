@@ -16,8 +16,8 @@ const AdminProduct = () => {
   const [productPrice, setProductPrice] = useState(0);
   const [productDesc, setProductDesc] = useState("");
   const [productTag, setProductTag] = useState("");
-  const [productThumb, setProductThumb] = useState([]);
-  const [productPhoto, setProductPhoto] = useState(null);
+  const [productThumb, setProductThumb]: any = useState(null);
+  const [productPhoto, setProductPhoto]: any = useState(null);
   const [productSoldOut, setProductSoldOut] = useState(false);
   const [productDiscountRate, setProductDiscountRate] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,20 +43,20 @@ const AdminProduct = () => {
     }
   };
 
-  const thumbBase64Handler = (e) => {
+  const thumbBase64Handler = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setProductThumb(reader.result); // 파일의 컨텐츠
+        setProductThumb(reader.result || null); // 파일의 컨텐츠
         resolve();
       };
     });
   };
 
-  const photoBase64Handler = (e) => {
+  const photoBase64Handler = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
