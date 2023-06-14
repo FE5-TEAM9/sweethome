@@ -19,9 +19,12 @@
 }
 
 // 계좌 관리
-.account {
+.accountList {
   margin: 50px 0;
   height: 50%;
+.accountListContainer {  
+  display: flex;
+  justify-content: center;
 .noAccount {
   display: flex;
   justify-content: center;
@@ -40,5 +43,6 @@
 .btn {
   background-color: $base-color-black;
   color: $base-color-white;
+}
 }
 }

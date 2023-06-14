@@ -9,9 +9,9 @@ const [showModal, setShowModal] = useState(false)
   return (
     <>
     {showModal && (<AccountModal/>)}
-      <section className={styles.account}>
-        <div className={styles.container}>
-          <div className={styles.wrapper}>
+      <section className={styles.accountList}>
+        <div className={styles.accountListContainer}>
+          <div className={styles.accountListWrapper}>
             <div className={styles.title}>
               <h2>계좌 관리</h2>
             </div>
@@ -22,13 +22,14 @@ const [showModal, setShowModal] = useState(false)
                 <p>계좌 번호를 등록해 주세요!</p>
               </div>
             </div>
-          </div>
+          
           <button
             className={styles.btn}
             onClick={()=>setShowModal(!showModal)}
             >
             계좌 연결
           </button>
+          </div>
         </div>
       </section>
     </>

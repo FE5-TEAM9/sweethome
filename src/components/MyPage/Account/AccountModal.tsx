@@ -10,7 +10,7 @@ const AccountModal = () => {
       </div>
         <div className={styles.paymentContainer}>
           <ul>
-          {banklist.map((bank, index) =>{
+          {banklist.map((bank) =>{
            return (
             <li key={bank.code}>
               <button type='button' className={styles.bankBtn}>{bank.name}</button>
@@ -23,7 +23,7 @@ const AccountModal = () => {
           <div className={styles.info}>
             <label htmlFor='bankAccount' className={styles.label}>
               <span>계좌 번호</span>
-              <input type='text' id='bankAccount'/>
+              <input type='text' id='bankAccount' autoFocus/>
             </label>
           </div>
           <div className={styles.info}>
@@ -32,16 +32,17 @@ const AccountModal = () => {
               <input type='text' id='phoneNumber'/>
             </label>
           </div>
-          </div>
           <div>
-            <label htmlFor='checkBox' className={styles.checkBox}> 
+            <label htmlFor='checkBox' className={`${styles.agreementCheck} ${styles.info}`}> 
               <input type='checkbox' id='checkBox'/>
               <p>위 약관에 동의합니다.</p>
             </label>
           </div>
+          </div>
+
           <div className={styles.btnWrap}>
             <button className={styles.btn}>취소</button>
-            <button className={`${styles.btn} ${styles.registration}`}>등록</button>
+            <button className={`${styles.btn} ${styles.registrationBtn}`}>등록</button>
           </div>
       </form>
     </section>
