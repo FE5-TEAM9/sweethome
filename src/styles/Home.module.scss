@@ -1,0 +1,27 @@
+@import "../styles/common/colors.scss";
+@import "../styles/common/fonts.scss";
+
+.main {
+  position: relative;
+  width: 100vw;
+  height: 700px; // px을 몇으로 해야할까요
+  .slider {
+    position: relative;
+  }
+  .notice {
+    display: flex;
+    gap: 85px;
+    border: solid 1px;
+    border-color: #745959;
+    width: 100vw;
+    height: 76px;
+    margin: 25px 0;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    .title {
+      font-weight: bold;
+      margin-left: 80px;
+    }
+  }
+}
