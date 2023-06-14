@@ -1,0 +1,18 @@
+  // width: 1288px;
+  // height: 578px;
+
+.slider {
+  width: 1288px;
+  height: 578px;
+  .slides {
+    width: 1288px;
+    height: 578px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .images {
+      width: 1288px;
+      height: 578px;
+    }
+  }
+}

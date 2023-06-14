@@ -4,7 +4,10 @@
 .main {
   position: relative;
   width: 100vw;
-  height: 600px;
+  height: 700px; // px을 몇으로 해야할까요
+  .slider {
+    position: relative;
+  }
   .notice {
     display: flex;
     gap: 85px;
