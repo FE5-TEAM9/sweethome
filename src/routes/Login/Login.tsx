@@ -1,52 +1,22 @@
 import styles from "~/styles/Login.module.scss";
 import { useState } from "react";
+import { signIn } from "~/api/requests";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const headers = {
-    "content-type": "application/json",
-    apikey: "KDT5_nREmPe9B",
-    username: "KDT5_Team9"
+  let body = {
+    email: email,
+    password: password
   };
-  async function signIn(event: React.FormEvent) {
-    event.preventDefault();
-    const res = await fetch(
-      "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          email,
-          password
-        })
-      }
-    );
-    const json = await res.json();
-    console.log(json);
-    localStorage.setItem("token", json.accessToken);
-  }
-  async function signOut() {
-    const res = await fetch(
-      "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout",
-      {
-        method: "POST",
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-      }
-    );
-    const json = await res.json();
-    console.log(json);
-  }
+
   return (
     <>
       <section className={styles.login}>
         <h2 className={styles.login__title}>로그인</h2>
         <div className={styles.login__form}>
-          <form onSubmit={signIn}>
+          <form onSubmit={e => signIn(e, body)}>
             <div className={styles.input__id}>
               <span>ID</span>
               <input
