@@ -19,7 +19,7 @@ const MyInfo = () => {
               <p>이메일</p>
               <input
 
-                type="email"
+                type="text"
                 id="email"
                 className={styles.input}
               />
@@ -33,7 +33,7 @@ const MyInfo = () => {
               <p>이름</p>
               <input
 
-                type="displayName"
+                type="text"
                 id="displayName"
                 className={styles.input}
               />
