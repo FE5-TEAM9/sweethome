@@ -62,8 +62,8 @@ const logOut = async () => {
   console.log(json);
 };
 
-// Add-Products 상품등록
-interface AddProductsBody {
+// Add-Product 상품등록
+interface AddProductBody {
   title: string;
   price: number;
   description: string;
@@ -73,7 +73,7 @@ interface AddProductsBody {
   discountRate?: number;
 }
 
-const addProducts = async (body: AddProductsBody) => {
+const addProduct = async (body: AddProductBody) => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products",
     {
@@ -92,4 +92,55 @@ const addProducts = async (body: AddProductsBody) => {
   return data;
 };
 
-export { signUp, logIn, logOut, addProducts };
+// 상품 조회
+type ResponseValue = Product[] // 관리하는 모든 제품의 목록
+
+interface Product {
+  id: string
+  title: string
+  price: number
+  description: string
+  tags: string[]
+  thumbnail: string | null
+  isSoldOut: boolean
+  discountRate: number
+}
+
+const getAllProducts = async () => {
+  const res = await fetch(
+    'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
+    {
+      method: "GET",
+      headers: {
+        'content-type': 'application/json',
+        'apikey': 'KDT5_nREmPe9B',
+        'username': 'KDT5_Team9',
+        'masterKey': 'true'
+      }
+    })
+  const data = await res.json()
+  console.log(data)
+  return data
+}
+
+// 상품 삭제
+const deleteProduct = async (id: string) => {
+  try {
+    await fetch(
+      `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          'content-type': 'application/json',
+          'apikey': 'KDT5_nREmPe9B',
+          'username': 'KDT5_Team9',
+          'masterKey': 'true'
+        }
+      })
+  } catch (error) {
+    console.log ('상품 삭제 error', error)
+  }
+
+}
+
+export { signUp, logIn, logOut, addProduct, getAllProducts, deleteProduct };
