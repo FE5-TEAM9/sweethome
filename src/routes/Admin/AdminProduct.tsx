@@ -1,8 +1,29 @@
-import { useState } from "react";
-import { addProducts } from "~/api/requests";
+import { useState, useEffect } from "react";
+import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
 import styles from "~/styles/AdminProduct.module.scss";
+import { TiDeleteOutline } from 'react-icons/ti'
+import { BsPencilSquare } from 'react-icons/bs'
 
 const AdminProduct = () => {
+  const [allProducts, setAllProducts] = useState([]);
+  const [productTitle, setProductTitle] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
+  const [productDesc, setProductDesc] = useState("");
+  const [productTag, setProductTag] = useState("");
+  const [productThumb, setProductThumb]: any = useState(null);
+  const [productPhoto, setProductPhoto]: any = useState(null);
+  const [productSoldOut, setProductSoldOut] = useState(false);
+  const [productDiscountRate, setProductDiscountRate] = useState(0);
+  const [productNum, setProductNum] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState([]);
+  const [isChecked, setIsChecked] = useState(false)
+  
+  useEffect(()=> {
+    getAllProductsHandler();
+  }, [search])
+  
   const tableHead = [
     "NO",
     "상품태그",
@@ -12,17 +33,18 @@ const AdminProduct = () => {
     "품절여부",
   ];
 
-  const [productTitle, setProductTitle] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-  const [productDesc, setProductDesc] = useState("");
-  const [productTag, setProductTag] = useState("");
-  const [productThumb, setProductThumb]: any = useState(null);
-  const [productPhoto, setProductPhoto]: any = useState(null);
-  const [productSoldOut, setProductSoldOut] = useState(false);
-  const [productDiscountRate, setProductDiscountRate] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  // 상품 목록 조회
+  const getAllProductsHandler = async () => {
+    try {
+      const res = await getAllProducts();
+      console.log(res);
+      setAllProducts(res);
+    } catch (error) {
+      console.log("상품 출력", error)
+    }
+  }
 
-  
+  // 상품 등록
   const addProductHandler = async () => {
     const body = {
       title: productTitle,
@@ -32,17 +54,20 @@ const AdminProduct = () => {
       thumbnailBase64: productThumb,
       photoBase64: productPhoto,
       discountRate: productDiscountRate,
+      isSoldOut: productSoldOut
     };
 
     try {
       setIsLoading(true);
-      await addProducts(body);
+      await addProduct(body);
+      setSearch(allProducts);
       setIsLoading(false);
     } catch (error) {
       console.log("addProduct error", error);
     }
   };
 
+  // 썸네일 base64 인코딩
   const thumbBase64Handler = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -56,6 +81,7 @@ const AdminProduct = () => {
     });
   };
 
+  // 상세사진 base64 인코딩
   const photoBase64Handler = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -63,16 +89,35 @@ const AdminProduct = () => {
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setProductThumb(reader.result || null); // 파일의 컨텐츠
+        setProductPhoto(reader.result || null); // 파일의 컨텐츠
         resolve();
       };
     });
   };
 
+  // 품절 여부
+  const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setIsChecked(!isChecked)
+    }
+  }
+
+  // 상품 삭제
+  const deleteProductHandler = async (id: any) => {
+    try {
+      const res = await deleteProduct(id);
+      console.log(res);
+      const updateProduct = allProducts.filter((product)=> product.id !== id);
+      setAllProducts(updateProduct);
+      setSearch(allProducts)
+    } catch (error) {
+      console.log('상품 삭제', error)
+    }
+  }
+
   // 할인율 계산
   // const priceBeforeDiscount = (productPrice) => {
   //   return productPrice * 100 / (100 - productDiscount)
-
   // }
 
   return (
@@ -139,7 +184,8 @@ const AdminProduct = () => {
                     type="file"
                     id="productThumbnail"
                     className={styles.input}
-                    onChange={e => photoBase64Handler(e)}
+                    onChange={(e) => thumbBase64Handler(e)}
+                    accept="image/*"
                   />
                 </label>
               </div>
@@ -150,7 +196,8 @@ const AdminProduct = () => {
                     type="file"
                     id="productPhoto"
                     className={styles.input}
-                    onChange={e => thumbBase64Handler(e)}
+                    onChange={(e) => photoBase64Handler(e)}
+                    accept="image/*"
                   />
                 </label>
               </div>
@@ -165,6 +212,18 @@ const AdminProduct = () => {
                     onChange={(e) =>
                       setProductDiscountRate(e.target.valueAsNumber)
                     }
+                  />
+                </label>
+              </div>
+              <div className={styles.infoList}>
+                <label htmlFor="productIsSoldOut" className={styles.label}>
+                  <p>품절 여부</p>
+                  <input
+                    type="checkbox"
+                    id="productIsSoldOut"
+                    className={styles.input}
+                    checked={isChecked}
+                    onChange={(e) => checkboxHandler(e)}
                   />
                 </label>
               </div>
@@ -193,7 +252,23 @@ const AdminProduct = () => {
                         ))}
                       </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                      {allProducts.map((product, i) => (
+                        <tr key={product.id}>
+                          <td>{i + 1}</td>
+                          <td>{product.tags}</td>
+                          <td>{product.title}</td>
+                          <td>{product.price}</td>
+                          <td>{product.discountRate}</td>
+                          <td>{product.isSoldOut}</td>
+                          <BsPencilSquare />
+                          <TiDeleteOutline
+                            className={styles.deleteBtn}
+                            onClick={()=>deleteProductHandler(product.id)}
+                          />
+                        </tr>
+                      ))}
+                    </tbody>
                   </table>
                 </div>
               </div>
