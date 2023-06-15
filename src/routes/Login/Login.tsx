@@ -1,6 +1,6 @@
 import styles from "~/styles/Login.module.scss";
 import { useState } from "react";
-import { signIn } from "~/api/requests";
+import { logIn } from "~/api/requests";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const Login = () => {
         <div className={styles.wrapper}>
           <div className={styles.form}>
             <h2>로그인</h2>
-            <form onSubmit={e => signIn(e, body)}>
+            <form onSubmit={e => logIn(e, body)}>
               <div className={styles.id}>
                 <span>ID</span>
                 <input
