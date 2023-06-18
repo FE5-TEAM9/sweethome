@@ -1,0 +1,23 @@
+@import '~/styles/common/colors.scss';
+@import '~/styles/common/fonts.scss';
+
+.adminUser {
+  
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      margin-bottom: 20px;
+      
+      h2 {
+        font-family: $font-main;
+        font-size: $font-main-size;
+        font-style: bold;
+      }
+    }
+  }
+}

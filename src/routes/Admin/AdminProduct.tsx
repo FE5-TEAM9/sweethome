@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
-import styles from "~/styles/AdminProduct.module.scss";
 import { TiDeleteOutline } from 'react-icons/ti'
 import { BsPencilSquare } from 'react-icons/bs'
+import styles from "~/styles/AdminProduct.module.scss";
 
 const AdminProduct = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -129,7 +129,7 @@ const AdminProduct = () => {
               <h2>상품 등록</h2>
             </div>
             <form>
-              <div className={styles.infoList}>
+              <div className={styles.productName}>
                 <label htmlFor="productTitle" className={styles.label}>
                   <p>상품명</p>
                   <input

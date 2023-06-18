@@ -1,2 +1,36 @@
 @import '~/styles/common/colors.scss';
 @import '~/styles/common/fonts.scss';
+
+.adminProduct {
+  font-family: "Pretendard-Regular";
+
+  .addProductContainer {
+
+    .addProduct {
+
+      .title{
+        h2 {
+          font-family: $font-main;
+          font-size: $font-main-size;
+          font-style: bold;
+        }
+      }
+
+      form {
+        .productName {
+
+          .lable {
+            p {
+              font-size: 20px;
+            }
+            .input {
+
+            }
+          }
+        }
+        
+        
+      }
+    }
+  }
+}

@@ -62,6 +62,24 @@ const logOut = async () => {
   console.log(json);
 };
 
+// Users 사용자 목록
+const users = async () => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/users",
+    {
+      method: "GET",
+      headers: {
+        ...headers,
+        masterKey: "true"
+      }
+    }
+  )
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
+
 // Add-Product 상품등록
 interface AddProductBody {
   title: string;
@@ -143,4 +161,8 @@ const deleteProduct = async (id: string) => {
 
 }
 
-export { signUp, logIn, logOut, addProduct, getAllProducts, deleteProduct };
+export { 
+  signUp, logIn, logOut,
+  users,
+  addProduct, getAllProducts, deleteProduct
+};
