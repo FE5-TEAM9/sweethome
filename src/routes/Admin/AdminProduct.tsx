@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
 import { TiDeleteOutline } from 'react-icons/ti'
 import { BsPencilSquare } from 'react-icons/bs'
-import styles from "~/styles/AdminProduct.module.scss";
+import styles from "~/styles/Admin/AdminProduct.module.scss";
 
 const AdminProduct = () => {
   const [allProducts, setAllProducts] = useState([]);

@@ -1,4 +1,4 @@
-import styles from '~/styles/Board.module.scss'
+import styles from '~/styles/Board/Board.module.scss'
 
 const All = () => {
   return (

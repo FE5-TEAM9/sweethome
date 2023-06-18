@@ -1,4 +1,4 @@
-import styles from '~/styles/MyInfo.module.scss'
+import styles from '~/styles/Mypage/MyInfo.module.scss'
 
 const MyInfo = () => {
 

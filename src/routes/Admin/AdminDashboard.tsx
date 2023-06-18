@@ -1,4 +1,4 @@
-import styles from '~/styles/AdminDashBoard.module.scss'
+import styles from '~/styles/Admin/AdminDashBoard.module.scss'
 
 const AdminDashboard = () => {
   return (

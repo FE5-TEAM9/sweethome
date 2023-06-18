@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { users } from "~/api/requests";
-import styles from "~/styles/AdminUser.module.scss";
+import styles from "~/styles/Admin/AdminUser.module.scss";
 
 const AdminUser = () => {
   const [allUsers, setAllUsers] = useState([]);

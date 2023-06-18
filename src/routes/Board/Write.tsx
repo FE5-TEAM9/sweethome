@@ -1,4 +1,4 @@
-import styles from '~/styles/Write.module.scss'
+import styles from '~/styles/Board/Write.module.scss'
 
 const Write = () => {
   return (

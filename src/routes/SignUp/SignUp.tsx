@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { signUp } from "~/api/requests";
-import styles from "~/styles/SignUp.module.scss";
+import styles from "~/styles/Signup/SignUp.module.scss";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");

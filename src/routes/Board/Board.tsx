@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import styles from '~/styles/Board.module.scss'
+import styles from '~/styles/Board/Board.module.scss'
 import All from "./All";
 import Question from "./Question";
 import Review from "./Review";

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '~/styles/AccountList.module.scss'
+import styles from '~/styles/Mypage/AccountList.module.scss'
 import Account from './Account'
 import AccountModal from './AccountModal'
 
