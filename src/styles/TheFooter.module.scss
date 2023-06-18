@@ -1,7 +1,7 @@
 @import '../styles/common/colors.scss';
 @import '../styles/common/fonts.scss';
 
-*{
+* {
   margin: 0; 
   padding: 0;
   color: $font-color;
@@ -9,21 +9,28 @@
 }
 
 footer {
-  // border: 3px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 150px;
   background-color: $base-color-lightgray;
 
   .container {
-    position: relative;
-    top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1440px;
 
     ul {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
 
       .logo {
         width: 200px;
+        margin-right: 100px;
 
         h1 {
           font-family: $font-logo;
@@ -33,9 +40,8 @@ footer {
   
       .company,
       .bank,
-      .customer,
-      .tel {
-        margin-right: 30px;
+      .customer {
+        margin-right: 100px;
 
         div {
           display: flex;
@@ -54,8 +60,20 @@ footer {
       }
 
       .tel {
-        h2 {
-          font-size: 20px;
+        div {
+          display: flex;
+          flex-direction: column;
+          font-size: 12px;
+  
+          h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+          }
+
+          span {
+            line-height: 1.6em;
+          }
         }
       }
     }

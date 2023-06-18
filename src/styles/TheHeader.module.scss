@@ -10,85 +10,97 @@ a {
 }
 
 header {
-  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100px;
-  border-bottom: solid 1px;
-  border-color: rgba(175, 168, 168, 0.5);
-  > :nth-child(1) {
+  border-bottom: solid .8px $base-color-gray;
+
+  .container {
     position: relative;
     display: flex;
-    align-items: center;
-    height: 50px;
-    margin-left: 70px;
-    font-family: $font-logo;
-    font-size: $font-logo-size;
-  }
-  > :nth-child(1):hover {
-    cursor: pointer;
-  }
-  > :nth-child(2) {
-    position: absolute;
-    left:30%;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    right: 400px;
-    font-family: $font-nav;
-    font-size: $font-nav-size;
-    font-weight: $font-nav-weight;
-    ul{
+    width: 90%;
+    max-width: 1440px;
+
+    .logo {
       display: flex;
-      justify-content: center;
-      gap: 50px;
-      list-style: none;
-      > li:hover {
-        cursor: pointer;
+      align-items: center;
+      height: 50px;
+      margin-left: 70px;
+      margin-right: 70px;
+      font-family: $font-logo;
+      font-size: $font-logo-size;
+    }
+    
+    .navbar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 50px;
+      right: 400px;
+      font-family: $font-nav;
+      font-size: $font-nav-size;
+      font-weight: $font-nav-weight;
+  
+      ul {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        list-style: none;
+  
+        .menu {
+          font-family: $font-nav;
+          font-size: $font-nav-size;
+          font-weight: 100;
+        }
+
+        .active {
+          text-decoration: underline;
+        }
       }
     }
-  }
-  > :nth-child(3) {
-    position: absolute;
-    height: 70px;
-    right: 100px;
-    > * {
-      position: relative;
-      bottom: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 6px 0;
-    }
-    > .user {
-      gap: 20px;
-      > span {
+  
+    .subNav {
+      position: absolute;
+      right: 0px;
+      height: 70px;
+      margin-right: 70px;
+  
+      .user {
         font-family: $font-login;
         font-size: $font-login-size;
         font-weight: $font-login-weight;
+        margin-bottom: 12px;
+
+        .userSignUp {
+          margin-left: 20px;
+
+          &::before {
+            content: "|";
+            margin-right: 20px;
+          }
+        }
       }
-      > span:hover {
-        cursor: pointer;
+  
+      .icons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+
+        .mypage,
+        .shoppingbag {
+          font-size: 20px;
+        }
+        .search {
+          font-size: 30px;
+        }
+
+        .search {
+          cursor: pointer;
+        }
       }
-    }
-    > .icons {
-      gap: 30px;
     }
   }
 }
-.mypage,
-.shoppingbag {
-  font-size: 20px;
-}
-.mypage,
-.shoppingbag:hover {
-  cursor: pointer;
-}
-.search {
-  font-size: 30px;
-}
-.search {
-  cursor: pointer;
-}
+
