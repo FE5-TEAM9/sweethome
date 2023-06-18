@@ -1,5 +1,5 @@
-import styles from '~/styles/Shop.module.scss'
 import ProductItem from '~/components/Shop/ProductItem';
+import styles from '~/styles/Shop/Shop.module.scss'
 
 const Shop = () => {
   const products = [

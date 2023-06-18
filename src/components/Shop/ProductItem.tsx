@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from "~/styles/ProductItem.module.scss";
+import styles from "~/styles/Shop/ProductItem.module.scss";
 import img1 from '~/assets/products/bedroom1.jpeg'
 
 const ProductItem = () => {

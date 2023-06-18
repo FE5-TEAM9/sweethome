@@ -1,5 +1,5 @@
-import styles from '~/styles/Cart.module.scss'
 import { NavLink } from 'react-router-dom'
+import styles from '~/styles/Cart/Cart.module.scss'
 
 const Cart = () => {
   return (

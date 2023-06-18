@@ -1,4 +1,4 @@
-import styles from '~/styles/ShopDetail.module.scss'
+import styles from '~/styles/Shop/ShopDetail.module.scss'
 
 const ShopDetail = () => {
   return (

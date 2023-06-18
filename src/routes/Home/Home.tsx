@@ -1,5 +1,6 @@
-import styles from "~/styles/Home.module.scss";
 import { Slider } from "~/utils/slider.tsx";
+import styles from "~/styles/Home/Home.module.scss";
+
 const Home = () => {
   return (
     <>

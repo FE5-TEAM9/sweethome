@@ -1,4 +1,4 @@
-import styles from '~/styles/MyPageConfirm.module.scss'
+import styles from '~/styles/Mypage/MyPageConfirm.module.scss'
 
 const MyPageConfirm = () => {
   return (

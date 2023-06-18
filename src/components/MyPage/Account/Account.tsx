@@ -1,4 +1,4 @@
-import styles from '~/styles/Account.module.scss'
+import styles from '~/styles/Mypage/Account.module.scss'
 import { TiDeleteOutline } from 'react-icons/ti'
 
 const Account = () => {

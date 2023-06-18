@@ -1,4 +1,4 @@
-import styles from '~/styles/AccountModal.module.scss';
+import styles from '~/styles/Mypage/AccountModal.module.scss';
 
 
 const AccountModal = () => {

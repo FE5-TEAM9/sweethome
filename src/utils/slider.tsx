@@ -1,10 +1,10 @@
-import styles from "~/styles/Slider.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import main1 from "/public/assets/main/main1.jpeg";
 import main2 from "/public/assets/main/main2.jpeg";
 import main3 from "/public/assets/main/main3.jpeg";
+import styles from "~/styles/utils/Slider.module.scss";
 
 export const Slider = ({}) => {
   return (

@@ -3,7 +3,7 @@ import AdminDashboard from '~/routes/Admin/AdminDashboard'
 import AdminUser from '~/routes/Admin/AdminUser'
 import AdminProduct from '~/routes/Admin/AdminProduct'
 import AdminOrder from '~/routes/Admin/AdminOrder'
-import styles from '~/styles/Admin.module.scss';
+import styles from '~/styles/Admin/Admin.module.scss';
 
 const Admin = () => {
   const [category, setCategory] = useState("대시보드");

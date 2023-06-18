@@ -1,6 +1,6 @@
-import styles from "~/styles/Login.module.scss";
 import { useState } from "react";
 import { logIn } from "~/api/requests";
+import styles from "~/styles/Login/Login.module.scss";
 
 const Login = () => {
   const [email, setEmail] = useState("");
