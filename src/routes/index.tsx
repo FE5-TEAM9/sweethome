@@ -56,6 +56,7 @@ export default createBrowserRouter([
         path: '/admin',
         element: <Admin />
       }
+      
     ]
   }
 ])
