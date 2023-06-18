@@ -5,16 +5,27 @@
   display: flex;
 
   .nav {
+    display: flex;
+    justify-content: center;
     width: 200px;
     height: 700px;
     border-right: 1px solid $base-color-gray;
 
     .category {
+      position: relative;
+      top: 10px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 20px;
+      // width: 150px;
+      height: 30px;
+      text-align: center;
+
+      // -webkit-appearance: none;
+      // -moz-appearance: none;
+      // appearance: none;
       
       li {
         cursor: pointer;
