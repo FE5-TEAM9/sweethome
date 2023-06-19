@@ -2,7 +2,9 @@
 @import '../common/fonts.scss';
 
 .adminUser {
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .container {
     display: flex;
@@ -12,7 +14,7 @@
 
     .title {
       margin-bottom: 20px;
-      
+
       h2 {
         font-family: $font-main;
         font-size: $font-main-size;
