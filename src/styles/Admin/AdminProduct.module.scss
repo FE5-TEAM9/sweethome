@@ -6,7 +6,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
 
   .addProductContainer {
     display: flex;
@@ -19,10 +18,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-bottom: 30px;
 
       .title{
-        margin-bottom: 30px;
+        margin: 50px 0 50px;
         
         h2 {
           font-family: $font-main;
@@ -52,6 +50,7 @@
             .input {
               width: 430px;
               height: 30px;
+              padding-left: 10px;
               margin-bottom: 20px;
               border: 1px solid $base-color-gray;
               border-radius: 10px;
@@ -90,12 +89,26 @@
           }
         }
 
+        .btn {
+          width: 430px;
+          height: 50px;
+          border-style: none;
+          border-radius: 10px;
+          background-color: $base-color-gray;
+          color: $base-color-black;
+          cursor: pointer;
+        }
       }
     }
 
     .adminProductList {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 1000px;
+
       .title{
-        margin-bottom: 30px;
+        margin: 50px 0 50px;
         
         p {
           font-family: $font-main;
@@ -103,17 +116,46 @@
           font-weight: bold;
         }
       }
-    }
 
-    .btn {
-      width: 430px;
-      height: 50px;
-      border-style: none;
-      border-radius: 10px;
-      background-color: $base-color-gray;
-      color: $base-color-black;
-      cursor: pointer;
-    }
+      .allProduct {
+        .wrapper {
+          table {
+            thead {
+              font-family: "Pretendard";
 
+              tr {
+                th {
+                  padding: 10px 20px 10px;
+                  border: 1px solid red;
+                  font-weight: 500;
+                }
+              }
+            }
+
+            tbody {
+              tr {
+                text-align: center;
+
+                td {
+                  border: 1px solid red;
+                }
+
+                .icon {
+                  .modifyBtn {
+                    font-size: 24px;
+                    margin-right: 10px;
+                  }
+                  .deleteBtn {
+                    font-size: 24px;
+                  }
+                }
+                
+              }
+            }
+          }
+        }
+      }
+
+    }
   }
 }

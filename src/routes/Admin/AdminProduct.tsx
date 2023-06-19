@@ -99,6 +99,8 @@ const AdminProduct = () => {
   const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setIsChecked(!isChecked)
+    } else {
+      setIsChecked(!isChecked)
     }
   }
 
@@ -241,36 +243,38 @@ const AdminProduct = () => {
             <div className={styles.title}>
               <p>모든 상품 조회</p>
             </div>
-            <div className={styles.adminProduct}>
+            <div className={styles.allProduct}>
               <div className={styles.wrapper} key="index">
-                <div className={styles.inner}>
-                  <table>
-                    <thead>
-                      <tr>
-                        {tableHead.map((item) => (
-                          <th key={item}>{item}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {allProducts.map((product, i) => (
-                        <tr key={product.id}>
-                          <td>{i + 1}</td>
-                          <td>{product.tags}</td>
-                          <td>{product.title}</td>
-                          <td>{product.price}</td>
-                          <td>{product.discountRate}</td>
-                          <td>{product.isSoldOut}</td>
-                          <BsPencilSquare />
+                <table>
+                  <thead>
+                    <tr>
+                      {tableHead.map((item) => (
+                        <th key={item}>{item}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allProducts.map((product, i) => (
+                      <tr key={product.id}>
+                        <td>{i + 1}</td>
+                        <td>{product.tags}</td>
+                        <td>{product.title}</td>
+                        <td>{product.price}</td>
+                        <td>{product.discountRate}</td>
+                        <td>{product.isSoldOut}</td>
+                        <div className={styles.icon}>
+                          <BsPencilSquare
+                            className={styles.modifyBtn}
+                          />
                           <TiDeleteOutline
                             className={styles.deleteBtn}
                             onClick={()=>deleteProductHandler(product.id)}
                           />
-                        </tr>
-                      ))}
-                    </tbody>
+                        </div>
+                      </tr>
+                    ))}
+                  </tbody>
                   </table>
-                </div>
               </div>
             </div>
           </div>
