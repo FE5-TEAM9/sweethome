@@ -129,7 +129,7 @@ const AdminProduct = () => {
               <h2>상품 등록</h2>
             </div>
             <form>
-              <div className={styles.productName}>
+              <div className={styles.productTitle}>
                 <label htmlFor="productTitle" className={styles.label}>
                   <p>상품명</p>
                   <input
@@ -141,7 +141,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productPrice}>
                 <label htmlFor="productPrice" className={styles.label}>
                   <p>상품 가격</p>
                   <input
@@ -153,7 +153,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productDescription}>
                 <label htmlFor="productDescription" className={styles.label}>
                   <p>상품 설명</p>
                   <input
@@ -165,7 +165,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productTag}>
                 <label htmlFor="productTag" className={styles.label}>
                   <p>상품 태그</p>
                   <input
@@ -177,7 +177,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productThumbnail}>
                 <label htmlFor="productThumbnail" className={styles.label}>
                   <p>썸네일 사진</p>
                   <input
@@ -189,7 +189,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productPhoto}>
                 <label htmlFor="productPhoto" className={styles.label}>
                   <p>상세 사진</p>
                   <input
@@ -201,7 +201,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productDiscount}>
                 <label htmlFor="productDiscount" className={styles.label}>
                   <p>할인율</p>
                   <input
@@ -215,9 +215,9 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productIsSoldOut}>
                 <label htmlFor="productIsSoldOut" className={styles.label}>
-                  <p>품절 여부</p>
+                  <span>품절 여부</span>
                   <input
                     type="checkbox"
                     id="productIsSoldOut"

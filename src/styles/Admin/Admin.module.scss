@@ -19,7 +19,6 @@
       justify-content: center;
       align-items: center;
       gap: 20px;
-      // width: 150px;
       height: 30px;
       text-align: center;
 
@@ -34,5 +33,14 @@
         margin-top: 15px;
       }
     }
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    max-width: 1240px;
   }
 }

@@ -2,32 +2,118 @@
 @import '../common/fonts.scss';
 
 .adminProduct {
-  font-family: "Pretendard-Regular";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 
   .addProductContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .addProduct {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
 
       .title{
+        margin-bottom: 30px;
+        
         h2 {
           font-family: $font-main;
           font-size: $font-main-size;
-          font-style: bold;
+          font-weight: bold;
         }
       }
 
       form {
-        .productName {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-          .lable {
+        .productTitle,
+        .productPrice,
+        .productDescription,
+        .productTag,
+        .productDiscount {
+          .label {
             p {
-              font-size: 20px;
+              font-family: "Pretendard-Regular";
+              font-size: 16px;
+              font-weight: 500;
+              margin-bottom: 4px;
+            }
+            .input {
+              width: 430px;
+              height: 30px;
+              margin-bottom: 20px;
+              border: 1px solid $base-color-gray;
+              border-radius: 10px;
+              outline: none;
+              background: none;
+              color: $font-color;
             }
           }
         }
-        
-        
+
+        .productThumbnail,
+        .productPhoto {
+          p {
+            font-family: "Pretendard-Regular";
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+          }
+          .input {
+            width: 420px;
+            height: 28px;
+            margin-bottom: 20px;
+            outline: none;
+            background: none;
+            color: $font-color;
+          }
+          
+        }
+
+        .productIsSoldOut {
+          span {
+            margin-right: 6px;
+          }
+          .input {
+            margin-bottom: 20px;
+          }
+        }
+
       }
     }
+
+    .adminProductList {
+      .title{
+        margin-bottom: 30px;
+        
+        p {
+          font-family: $font-main;
+          font-size: $font-main-size;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .btn {
+      width: 430px;
+      height: 50px;
+      border-style: none;
+      border-radius: 10px;
+      background-color: $base-color-gray;
+      color: $base-color-black;
+      cursor: pointer;
+    }
+
   }
 }
