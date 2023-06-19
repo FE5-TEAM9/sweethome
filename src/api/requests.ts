@@ -46,6 +46,7 @@ const logIn = async (event: React.FormEvent, body: User) => {
   localStorage.setItem("token", json.accessToken);
 };
 
+
 // Log-Out 로그아웃
 const logOut = async () => {
   const res = await fetch(
@@ -60,6 +61,23 @@ const logOut = async () => {
   );
   const json = await res.json();
   console.log(json);
+};
+
+// 로그인 인증
+const authenticate = async () => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me",
+    {
+      method: "POST",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    }
+  );
+  const json = await res.json();
+  console.log('로그인 인증 API',json);
+  return json;
 };
 
 // Users 사용자 목록
@@ -162,7 +180,7 @@ const deleteProduct = async (id: string) => {
 }
 
 export { 
-  signUp, logIn, logOut,
+  signUp, logIn, logOut, authenticate,
   users,
   addProduct, getAllProducts, deleteProduct
 };
