@@ -2,32 +2,160 @@
 @import '../common/fonts.scss';
 
 .adminProduct {
-  font-family: "Pretendard-Regular";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .addProductContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .addProduct {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       .title{
+        margin: 50px 0 50px;
+        
         h2 {
           font-family: $font-main;
           font-size: $font-main-size;
-          font-style: bold;
+          font-weight: bold;
         }
       }
 
       form {
-        .productName {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-          .lable {
+        .productTitle,
+        .productPrice,
+        .productDescription,
+        .productTag,
+        .productDiscount {
+          .label {
             p {
-              font-size: 20px;
+              font-family: "Pretendard-Regular";
+              font-size: 16px;
+              font-weight: 500;
+              margin-bottom: 4px;
+            }
+            .input {
+              width: 430px;
+              height: 30px;
+              padding-left: 10px;
+              margin-bottom: 20px;
+              border: 1px solid $base-color-gray;
+              border-radius: 10px;
+              outline: none;
+              background: none;
+              color: $font-color;
             }
           }
         }
-        
-        
+
+        .productThumbnail,
+        .productPhoto {
+          p {
+            font-family: "Pretendard-Regular";
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+          }
+          .input {
+            width: 420px;
+            height: 28px;
+            margin-bottom: 20px;
+            outline: none;
+            background: none;
+            color: $font-color;
+          }
+          
+        }
+
+        .productIsSoldOut {
+          span {
+            margin-right: 6px;
+          }
+          .input {
+            margin-bottom: 20px;
+          }
+        }
+
+        .btn {
+          width: 430px;
+          height: 50px;
+          border-style: none;
+          border-radius: 10px;
+          background-color: $base-color-gray;
+          color: $base-color-black;
+          cursor: pointer;
+        }
       }
+    }
+
+    .adminProductList {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 1000px;
+
+      .title{
+        margin: 50px 0 50px;
+        
+        p {
+          font-family: $font-main;
+          font-size: $font-main-size;
+          font-weight: bold;
+        }
+      }
+
+      .allProduct {
+        .wrapper {
+          table {
+            thead {
+              font-family: "Pretendard";
+
+              tr {
+                th {
+                  padding: 10px 20px 10px;
+                  border: 1px solid red;
+                  font-weight: 500;
+                }
+              }
+            }
+
+            tbody {
+              tr {
+                text-align: center;
+
+                td {
+                  border: 1px solid red;
+                }
+
+                .icon {
+                  .modifyBtn {
+                    font-size: 24px;
+                    margin-right: 10px;
+                  }
+                  .deleteBtn {
+                    font-size: 24px;
+                  }
+                }
+                
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 }

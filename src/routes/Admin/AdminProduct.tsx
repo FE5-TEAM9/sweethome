@@ -99,6 +99,8 @@ const AdminProduct = () => {
   const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setIsChecked(!isChecked)
+    } else {
+      setIsChecked(!isChecked)
     }
   }
 
@@ -129,7 +131,7 @@ const AdminProduct = () => {
               <h2>상품 등록</h2>
             </div>
             <form>
-              <div className={styles.productName}>
+              <div className={styles.productTitle}>
                 <label htmlFor="productTitle" className={styles.label}>
                   <p>상품명</p>
                   <input
@@ -141,7 +143,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productPrice}>
                 <label htmlFor="productPrice" className={styles.label}>
                   <p>상품 가격</p>
                   <input
@@ -153,7 +155,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productDescription}>
                 <label htmlFor="productDescription" className={styles.label}>
                   <p>상품 설명</p>
                   <input
@@ -165,7 +167,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productTag}>
                 <label htmlFor="productTag" className={styles.label}>
                   <p>상품 태그</p>
                   <input
@@ -177,7 +179,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productThumbnail}>
                 <label htmlFor="productThumbnail" className={styles.label}>
                   <p>썸네일 사진</p>
                   <input
@@ -189,7 +191,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productPhoto}>
                 <label htmlFor="productPhoto" className={styles.label}>
                   <p>상세 사진</p>
                   <input
@@ -201,7 +203,7 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productDiscount}>
                 <label htmlFor="productDiscount" className={styles.label}>
                   <p>할인율</p>
                   <input
@@ -215,9 +217,9 @@ const AdminProduct = () => {
                   />
                 </label>
               </div>
-              <div className={styles.infoList}>
+              <div className={styles.productIsSoldOut}>
                 <label htmlFor="productIsSoldOut" className={styles.label}>
-                  <p>품절 여부</p>
+                  <span>품절 여부</span>
                   <input
                     type="checkbox"
                     id="productIsSoldOut"
@@ -241,36 +243,38 @@ const AdminProduct = () => {
             <div className={styles.title}>
               <p>모든 상품 조회</p>
             </div>
-            <div className={styles.adminProduct}>
+            <div className={styles.allProduct}>
               <div className={styles.wrapper} key="index">
-                <div className={styles.inner}>
-                  <table>
-                    <thead>
-                      <tr>
-                        {tableHead.map((item) => (
-                          <th key={item}>{item}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {allProducts.map((product, i) => (
-                        <tr key={product.id}>
-                          <td>{i + 1}</td>
-                          <td>{product.tags}</td>
-                          <td>{product.title}</td>
-                          <td>{product.price}</td>
-                          <td>{product.discountRate}</td>
-                          <td>{product.isSoldOut}</td>
-                          <BsPencilSquare />
+                <table>
+                  <thead>
+                    <tr>
+                      {tableHead.map((item) => (
+                        <th key={item}>{item}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allProducts.map((product, i) => (
+                      <tr key={product.id}>
+                        <td>{i + 1}</td>
+                        <td>{product.tags}</td>
+                        <td>{product.title}</td>
+                        <td>{product.price}</td>
+                        <td>{product.discountRate}</td>
+                        <td>{product.isSoldOut}</td>
+                        <div className={styles.icon}>
+                          <BsPencilSquare
+                            className={styles.modifyBtn}
+                          />
                           <TiDeleteOutline
                             className={styles.deleteBtn}
                             onClick={()=>deleteProductHandler(product.id)}
                           />
-                        </tr>
-                      ))}
-                    </tbody>
+                        </div>
+                      </tr>
+                    ))}
+                  </tbody>
                   </table>
-                </div>
               </div>
             </div>
           </div>
