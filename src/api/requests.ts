@@ -31,8 +31,8 @@ const signUp = async (body: SignUpBody) => {
 };
 
 // Log-In 로그인
-const logIn = async (event: React.FormEvent, body: User) => {
-  event.preventDefault();
+const logIn = async ( body: User) => {
+
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
     {
@@ -44,6 +44,7 @@ const logIn = async (event: React.FormEvent, body: User) => {
   const json = await res.json();
   console.log(json);
   localStorage.setItem("token", json.accessToken);
+  return json;
 };
 
 
@@ -60,7 +61,7 @@ const logOut = async () => {
     }
   );
   const json = await res.json();
-  console.log(json);
+  console.log('로그아웃 API',json);
 };
 
 // 로그인 인증

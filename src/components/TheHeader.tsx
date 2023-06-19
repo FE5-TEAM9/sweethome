@@ -2,8 +2,20 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import styles from "~/styles/TheHeader.module.scss";
+import { logOut } from "~/api/requests"
 
 const TheHeader = () => {
+
+  const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    try {
+      const res = await logOut();
+      console.log('로그아웃 정보',res);
+
+    } catch (err) {
+      console.log('로그아웃 오류', err)
+    }
+  }
   return (
     <header>
       <div className={styles.container}>
@@ -39,6 +51,12 @@ const TheHeader = () => {
         </div>
         <div className={styles.subNav}>
           <div className={styles.user}>
+            <div className={styles.userLogin}>
+              <button 
+                type="button"
+                onClick={logOutHandler}
+                >LogOut</button>
+            </div>
             <span className={styles.userLogin}>
               <NavLink to="/login">Login</NavLink>
             </span>

@@ -6,10 +6,23 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  let body = {
-    email: email,
-    password: password
-  };
+
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+
+    let body = {
+      email: email,
+      password: password
+    };
+
+    try {
+      const res = await logIn(body);
+      console.log('로그인 정보', res);
+    } catch (err) {
+      console.log('로그인 오류', err);
+    }
+  }
 
   return (
     <>
@@ -17,7 +30,7 @@ const Login = () => {
         <div className={styles.wrapper}>
           <div className={styles.form}>
             <h2>로그인</h2>
-            <form onSubmit={e => logIn(e, body)}>
+            <form onSubmit={loginHandler}>
               <div className={styles.id}>
                 <span>ID</span>
                 <input
