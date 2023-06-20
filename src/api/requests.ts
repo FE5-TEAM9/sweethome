@@ -40,10 +40,14 @@ const logIn = async ( body: User) => {
       body: JSON.stringify(body)
     }
   );
-  const json = await res.json();
-  console.log(json);
-  localStorage.setItem("token", json.accessToken);
-  return json;
+  
+  console.log('로그인 상태',res.status)
+  if ( res.status === 200 ) {
+    const json = await res.json();
+    localStorage.setItem("token", json.accessToken);
+    return json;
+  } else return false
+
 };
 
 
