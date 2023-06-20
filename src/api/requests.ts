@@ -180,7 +180,6 @@ const deleteProduct = async (id: string) => {
 }
 
 // 개인 정보 수정
-
 interface EditInfoBody {
   displayName?: string 
   profileImgBase64?: string 
@@ -206,9 +205,92 @@ const editInfo = async (body: EditInfoBody) => {
 
 };
 
+//선택 가능한 은행 목록 조회
+const getBankList = async () => {
+  const res = await fetch(
+    'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks',
+    {
+      method: "GET",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+  const data = await res.json()
+  console.log(data)
+  return data
+}
+
+//계좌 목록 및 잔액 조회
+const getAccountList = async () => {
+  const res = await fetch(
+    'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+    {
+      method: "GET",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+  const data = await res.json()
+  console.log(data)
+  return data
+}
+
+// 계좌 연결
+interface linkAccountBody {
+  bankCode: string 
+  accountNumber: string 
+  phoneNumber: string
+  signature: boolean 
+}
+
+const linkAccount = async (body: linkAccountBody) => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
+    {
+      method: "POST",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(body)
+    }
+  );
+  const data = await res.json();
+  console.log('개인정보수정 API',data);
+  return data;
+};
+
+// 계좌 해지
+interface DeleteAccountBody {
+  accountId: string 
+  signature: boolean
+}
+
+const deleteAccount = async (body: DeleteAccountBody) => {
+  try {
+    await fetch(
+      `https://asia-northeast3-heropy-api.cloudfunctions.net/api/account `,
+      {
+        method: "DELETE",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(body),
+      })
+  } catch (error) {
+    console.log ('상품 삭제 error', error)
+  }
+
+}
+
+
 export { 
   signUp, logIn, logOut, authenticate,
   users,
   addProduct, getAllProducts, deleteProduct,
-  editInfo
+  editInfo,
+  getBankList, getAccountList, linkAccount, deleteAccount,
 };
