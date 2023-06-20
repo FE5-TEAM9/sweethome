@@ -193,7 +193,7 @@ const editInfo = async (body: EditInfoBody) => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user",
     {
-      method: "POST",
+      method: "PUT",
       headers: {
         ...headers,
         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -201,8 +201,10 @@ const editInfo = async (body: EditInfoBody) => {
       body: JSON.stringify(body)
     }
   );
-  const json = await res.json();
-  console.log('로그아웃 API',json);
+  const data = await res.json();
+  console.log('개인정보수정 API',data);
+  return data;
+
 };
 
 export { 

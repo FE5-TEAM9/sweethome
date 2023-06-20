@@ -1,5 +1,8 @@
 import styles from '~/styles/Mypage/MyInfo.module.scss'
 import { useForm } from 'react-hook-form'
+import { editInfo } from '~/api/requests'
+import { useOutletContext } from 'react-router-dom'
+import { off } from 'process'
 
 
 interface RequestBody {
@@ -11,16 +14,15 @@ interface RequestBody {
 
 
 const MyInfo = () => {
+  const [userInfo] = useOutletContext();
 
   const { 
     register, 
     handleSubmit,
-    watch, 
     formState: { errors, isSubmitting},
     reset 
   } = useForm({ 
       mode: 'onChange',
-      // resolver: yupResolver(schema)
     });
 
     const userPassword = {
@@ -34,6 +36,27 @@ const MyInfo = () => {
       }
     }
 
+    const ChangePWHandeler = async({oldPassword, newPassword}) => {
+      if (oldPassword <= 8 || newPassword <= 8) return alert('비밀번호는 8자이상 입력해주세요.')
+      const body = {
+        oldPassword,
+        newPassword
+      }
+
+      try {       
+          const res = await editInfo(body)
+          if (res.status === undefined) return alert('기존 비밀번호가 틀렸습니다.')
+          else {
+            console.log('개인정보수정', res)
+            alert('비밀번호가 변경되었습니다.')
+            reset();
+        }
+
+      } catch (error) {
+        console.log('개인정보수정 오류', error)
+      }
+      
+    } 
 
 
   return (
@@ -43,7 +66,7 @@ const MyInfo = () => {
         <div className={styles.title}>
           <h2>개인 정보 수정</h2>
         </div>
-        <form>
+        <form onSubmit={handleSubmit(ChangePWHandeler)}>
           <div className={styles.infoList}>
             <label
               className={styles.label}
@@ -52,6 +75,8 @@ const MyInfo = () => {
               <input
                 type="text"
                 className={styles.input}
+                placeholder={userInfo.email}
+                disabled
               />
             </label>
           </div>
@@ -63,6 +88,8 @@ const MyInfo = () => {
               <input
                 type="text"
                 className={styles.input}
+                placeholder={userInfo.displayName}
+                disabled
               />
             </label>
           </div>
@@ -74,6 +101,7 @@ const MyInfo = () => {
               <input
                 type="password"
                 className={styles.input}
+                maxLength={16}
                 {...register("oldPassword",userPassword)}
               />
               {errors?.oldPassword && (<span>{errors.oldPassword.message}</span> )}
@@ -87,6 +115,7 @@ const MyInfo = () => {
               <input
                 type="password"
                 className={styles.input}
+                maxLength={16}
                 {...register("newPassword", userPassword)}
               />
               {errors?.newPassword && (<span>{errors.newPassword.message}</span> )}
@@ -96,6 +125,7 @@ const MyInfo = () => {
           <button
             type='submit'
             className={styles.btn}
+            disabled={isSubmitting}
             >
             변경
           </button>
