@@ -42,22 +42,14 @@ const MyInfo = () => {
         oldPassword,
         newPassword
       }
-
       try {       
           const res = await editInfo(body)
-          if (res.status === undefined) return alert('기존 비밀번호가 틀렸습니다.')
-          else {
             console.log('개인정보수정', res)
             alert('비밀번호가 변경되었습니다.')
-            reset();
-        }
-
       } catch (error) {
         console.log('개인정보수정 오류', error)
       }
-      
     } 
-
 
   return (
     <section className={styles.info}>
