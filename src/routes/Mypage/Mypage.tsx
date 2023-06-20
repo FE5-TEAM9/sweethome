@@ -6,20 +6,19 @@ import MyInfo from "~/routes/Mypage/MyInfo"
 import AccountList from "~/routes/Mypage/AccountList"
 import { useOutletContext } from 'react-router-dom'
 
+
 const MyPage = () => {
 const [userInfo] = useOutletContext();
 const navigate = useNavigate();
-const [email, setEmail] = useState(userInfo.email);
 const [password, setPassword] = useState('')
 const [passwordConfirm, setPasswordConfirm] = useState(false);
 
-
-useEffect(() => {
-  if (!localStorage.getItem('token')){
-    alert('잘못된 접근입니다.')
-    navigate('/');
-  }
-},[])
+// useEffect(()=>{
+//   if (!localStorage.getItem('token')) {
+//     alert('잘못된 접근입니다.');
+//     navigate('/');
+//   }
+// },[])
 
 const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
   setPassword(e.target.value);
@@ -28,12 +27,22 @@ const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
   const body = {
-    email,
+    email: userInfo.email,
     password,
   };
-  const res = await logIn(body);
-    console.log('로그인 성공입니다.', res)
-    setPasswordConfirm(true);
+
+  try {
+    
+    const res = await logIn(body);
+    if (res) {
+      console.log('비밀번호 재확인 성공', res)
+      setPasswordConfirm(true);
+    } else {
+      alert('비밀번호가 일치하지 않습니다.')
+    }
+  } catch (error) {
+    console.log('비밀번호 재확인 실패')
+  }
   
 };
 
@@ -47,11 +56,6 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
           <p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인해 주세요!</p>
           <form className={styles.form} onSubmit={handleSubmitPasswordConfirm}>
             <div className={styles.formWrap}>
-              <input 
-                type='hidden' 
-                value={email} 
-                onChange={e=>setEmail(e.target.value)}
-                />
               <div className={styles.PWContaniner}>
                 <p>PW</p>
                 <input 
