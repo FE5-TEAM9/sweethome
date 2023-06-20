@@ -180,8 +180,34 @@ const deleteProduct = async (id: string) => {
 
 }
 
+// 개인 정보 수정
+
+interface EditInfoBody {
+  displayName?: string 
+  profileImgBase64?: string 
+  oldPassword?: string 
+  newPassword?: string 
+}
+
+const editInfo = async (body: EditInfoBody) => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user",
+    {
+      method: "POST",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(body)
+    }
+  );
+  const json = await res.json();
+  console.log('로그아웃 API',json);
+};
+
 export { 
   signUp, logIn, logOut, authenticate,
   users,
-  addProduct, getAllProducts, deleteProduct
+  addProduct, getAllProducts, deleteProduct,
+  editInfo
 };
