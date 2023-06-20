@@ -32,7 +32,6 @@ const signUp = async (body: SignUpBody) => {
 
 // Log-In 로그인
 const logIn = async ( body: User) => {
-
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
     {
