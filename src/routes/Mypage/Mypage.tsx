@@ -47,14 +47,18 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
           <p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인해 주세요!</p>
           <form className={styles.form} onSubmit={handleSubmitPasswordConfirm}>
             <div className={styles.formWrap}>
-              <input type='text' value={email} onChange={e=>setEmail(e.target.value)}/>
+              <input 
+                type='hidden' 
+                value={email} 
+                onChange={e=>setEmail(e.target.value)}
+                />
               <div className={styles.PWContaniner}>
                 <p>PW</p>
                 <input 
                   type="password"
                   name="password"
                   value={password}
-                   onChange={onPasswordHandler}
+                  onChange={onPasswordHandler}
                   className={styles.passwordInput} 
                   autoFocus
                   />
