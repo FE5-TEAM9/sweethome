@@ -131,19 +131,6 @@ const addProduct = async (body: AddProductBody) => {
 };
 
 // 상품 조회
-type ResponseValue = Product[]; // 관리하는 모든 제품의 목록
-
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  tags: string[];
-  thumbnail: string | null;
-  isSoldOut: boolean;
-  discountRate: number;
-}
-
 const getAllProducts = async () => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products",

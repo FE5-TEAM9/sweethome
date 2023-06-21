@@ -117,11 +117,6 @@ const AdminProduct = () => {
     }
   }
 
-  // 할인율 계산
-  // const priceBeforeDiscount = (productPrice) => {
-  //   return productPrice * 100 / (100 - productDiscount)
-  // }
-
   return (
     <>
       <section className={styles.adminProduct}>
