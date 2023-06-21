@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { logIn } from "~/api/requests";
 import styles from "~/styles/Login/Login.module.scss";
+import { useSelector, useDispatch } from "react-redux";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.info);
 
-
-
-  const loginHandler = async (e) => {
+  const loginHandler = async (e: any) => {
     e.preventDefault();
 
     let body = {
@@ -18,11 +19,13 @@ const Login = () => {
 
     try {
       const res = await logIn(body);
-      console.log('로그인 정보', res);
+      console.log("로그인 정보", res);
+      dispatch({ type: "RETURN", account: res });
+      console.log("user", user.user);
     } catch (err) {
-      console.log('로그인 오류', err);
+      console.log("로그인 오류", err);
     }
-  }
+  };
 
   return (
     <>
@@ -69,5 +72,4 @@ const Login = () => {
     </>
   );
 };
-
 export default Login;

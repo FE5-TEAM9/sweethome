@@ -31,6 +31,7 @@ const signUp = async (body: SignUpBody) => {
 };
 
 // Log-In 로그인
+
 const logIn = async ( body: User) => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
@@ -50,7 +51,6 @@ const logIn = async ( body: User) => {
 
 };
 
-
 // Log-Out 로그아웃
 const logOut = async () => {
   const res = await fetch(
@@ -64,7 +64,7 @@ const logOut = async () => {
     }
   );
   const json = await res.json();
-  console.log('로그아웃 API',json);
+  console.log("로그아웃 API", json);
 };
 
 // 로그인 인증
@@ -80,7 +80,7 @@ const authenticate = async () => {
     }
   );
   const json = await res.json();
-  console.log('로그인 인증 API',json);
+  console.log("로그인 인증 API", json);
   return json;
 };
 
@@ -95,12 +95,11 @@ const users = async () => {
         masterKey: "true"
       }
     }
-  )
+  );
   const data = await res.json();
   console.log(data);
   return data;
-}
-
+};
 
 // Add-Product 상품등록
 interface AddProductBody {
@@ -133,35 +132,36 @@ const addProduct = async (body: AddProductBody) => {
 };
 
 // 상품 조회
-type ResponseValue = Product[] // 관리하는 모든 제품의 목록
+type ResponseValue = Product[]; // 관리하는 모든 제품의 목록
 
 interface Product {
-  id: string
-  title: string
-  price: number
-  description: string
-  tags: string[]
-  thumbnail: string | null
-  isSoldOut: boolean
-  discountRate: number
+  id: string;
+  title: string;
+  price: number;
+  description: string;
+  tags: string[];
+  thumbnail: string | null;
+  isSoldOut: boolean;
+  discountRate: number;
 }
 
 const getAllProducts = async () => {
   const res = await fetch(
-    'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products",
     {
       method: "GET",
       headers: {
-        'content-type': 'application/json',
-        'apikey': 'KDT5_nREmPe9B',
-        'username': 'KDT5_Team9',
-        'masterKey': 'true'
+        "content-type": "application/json",
+        apikey: "KDT5_nREmPe9B",
+        username: "KDT5_Team9",
+        masterKey: "true"
       }
-    })
-  const data = await res.json()
-  console.log(data)
-  return data
-}
+    }
+  );
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
 
 // 상품 삭제
 const deleteProduct = async (id: string) => {
@@ -171,16 +171,17 @@ const deleteProduct = async (id: string) => {
       {
         method: "DELETE",
         headers: {
-          'content-type': 'application/json',
-          'apikey': 'KDT5_nREmPe9B',
-          'username': 'KDT5_Team9',
-          'masterKey': 'true'
+          "content-type": "application/json",
+          apikey: "KDT5_nREmPe9B",
+          username: "KDT5_Team9",
+          masterKey: "true"
         }
-      })
+      }
+    );
   } catch (error) {
-    console.log ('상품 삭제 error', error)
+    console.log("상품 삭제 error", error);
   }
-
+};
 }
 
 // 개인 정보 수정
