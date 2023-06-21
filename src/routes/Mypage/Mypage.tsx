@@ -11,7 +11,7 @@ const MyPage = () => {
 const [userInfo] = useOutletContext();
 const navigate = useNavigate();
 const [password, setPassword] = useState('')
-const [passwordConfirm, setPasswordConfirm] = useState(false);
+const [passwordConfirm, setPasswordConfirm] = useState(true);
 
 // useEffect(()=>{
 //   if (!localStorage.getItem('token')) {

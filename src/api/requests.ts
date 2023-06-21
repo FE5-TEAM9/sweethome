@@ -203,10 +203,11 @@ const editInfo = async (body: EditInfoBody) => {
       body: JSON.stringify(body)
     }
   );
-  const data = await res.json();
-  console.log('개인정보수정 API',data);
-  return data;
-
+  if (res.status === 200) {
+    const data = await res.json();
+    console.log('개인정보수정 API',data);
+    return data;
+  } else return false;
 };
 
 //선택 가능한 은행 목록 조회
