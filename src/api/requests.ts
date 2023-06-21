@@ -32,7 +32,7 @@ const signUp = async (body: SignUpBody) => {
 
 // Log-In 로그인
 
-const logIn = async ( body: User) => {
+const logIn = async (body: User) => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
     {
@@ -41,14 +41,13 @@ const logIn = async ( body: User) => {
       body: JSON.stringify(body)
     }
   );
-  
-  console.log('로그인 상태',res.status)
-  if ( res.status === 200 ) {
+
+  console.log("로그인 상태", res.status);
+  if (res.status === 200) {
     const json = await res.json();
     localStorage.setItem("token", json.accessToken);
     return json;
-  } else return false
-
+  } else return false;
 };
 
 // Log-Out 로그아웃
@@ -182,14 +181,13 @@ const deleteProduct = async (id: string) => {
     console.log("상품 삭제 error", error);
   }
 };
-}
 
 // 개인 정보 수정
 interface EditInfoBody {
-  displayName?: string 
-  profileImgBase64?: string 
-  oldPassword?: string 
-  newPassword?: string 
+  displayName?: string;
+  profileImgBase64?: string;
+  oldPassword?: string;
+  newPassword?: string;
 }
 
 const editInfo = async (body: EditInfoBody) => {
@@ -206,7 +204,7 @@ const editInfo = async (body: EditInfoBody) => {
   );
   if (res.status === 200) {
     const data = await res.json();
-    console.log('개인정보수정 API',data);
+    console.log("개인정보수정 API", data);
     return data;
   } else return false;
 };
@@ -214,41 +212,43 @@ const editInfo = async (body: EditInfoBody) => {
 //선택 가능한 은행 목록 조회
 const getBankList = async () => {
   const res = await fetch(
-    'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks',
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks",
     {
       method: "GET",
       headers: {
         ...headers,
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
-    })
-  const data = await res.json()
-  console.log(data)
-  return data
-}
+    }
+  );
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
 
 //계좌 목록 및 잔액 조회
 const getAccountList = async () => {
   const res = await fetch(
-    'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
     {
       method: "GET",
       headers: {
         ...headers,
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
-    })
-  const data = await res.json()
-  console.log(data)
-  return data
-}
+    }
+  );
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
 
 // 계좌 연결
 interface linkAccountBody {
-  bankCode: string 
-  accountNumber: string 
-  phoneNumber: string
-  signature: boolean 
+  bankCode: string;
+  accountNumber: string;
+  phoneNumber: string;
+  signature: boolean;
 }
 
 const linkAccount = async (body: linkAccountBody) => {
@@ -264,14 +264,14 @@ const linkAccount = async (body: linkAccountBody) => {
     }
   );
   const data = await res.json();
-  console.log('개인정보수정 API',data);
+  console.log("개인정보수정 API", data);
   return data;
 };
 
 // 계좌 해지
 interface DeleteAccountBody {
-  accountId: string 
-  signature: boolean
+  accountId: string;
+  signature: boolean;
 }
 
 const deleteAccount = async (body: DeleteAccountBody) => {
@@ -284,19 +284,26 @@ const deleteAccount = async (body: DeleteAccountBody) => {
           ...headers,
           Authorization: `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify(body),
-      })
+        body: JSON.stringify(body)
+      }
+    );
   } catch (error) {
-    console.log ('상품 삭제 error', error)
+    console.log("상품 삭제 error", error);
   }
+};
 
-}
-
-
-export { 
-  signUp, logIn, logOut, authenticate,
+export {
+  signUp,
+  logIn,
+  logOut,
+  authenticate,
   users,
-  addProduct, getAllProducts, deleteProduct,
+  addProduct,
+  getAllProducts,
+  deleteProduct,
   editInfo,
-  getBankList, getAccountList, linkAccount, deleteAccount,
+  getBankList,
+  getAccountList,
+  linkAccount,
+  deleteAccount
 };
