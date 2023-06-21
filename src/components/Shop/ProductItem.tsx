@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom'
 import styles from "~/styles/Shop/ProductItem.module.scss";
 
 const ProductItem = ({ product }) => {
@@ -28,7 +27,8 @@ const ProductItem = ({ product }) => {
           <p className={styles.priceThrough}>
             { product.discountRate
               ? product.price
-              : ""}
+              : ""
+            }
           </p>
         </div>
     </li>

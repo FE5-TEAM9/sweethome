@@ -7,15 +7,15 @@ import styles from '~/styles/Shop/Shop.module.scss'
 const Shop = () => {
   type ResponseValue = GetProduct[]
 
-  interface GetProduct { // 제품 정보
-    id: string // 제품 ID
-    title: string // 제품 이름
-    price: number // 제품 가격
-    description: string // 제품 설명(최대 100자)
-    tags: string[] // 제품 태그
-    thumbnail: string | null // 제품 썸네일 이미지(URL)
-    isSoldOut: boolean // 제품 매진 여부
-    discountRate: number // 제품 할인율
+  interface GetProduct {
+    id: string
+    title: string
+    price: number
+    description: string
+    tags: string[]
+    thumbnail: string | null
+    isSoldOut: boolean
+    discountRate: number
   }
 
   const [allProducts, setAllProducts] = useState<ResponseValue>([]);
@@ -30,7 +30,7 @@ const Shop = () => {
       setAllProducts(res);
       console.log('전체 상품 정보', res);
     } catch (error) {
-      console.log('상품 불러오기 실패');
+      console.log('상품 불러오기 실패', error);
     }
   }
   // const category = [ "All", "FURNITURE", "KITCHEN", "BEDROOM" ];
