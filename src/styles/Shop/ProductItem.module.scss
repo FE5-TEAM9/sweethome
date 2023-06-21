@@ -2,6 +2,10 @@
 @import '../common/fonts.scss';
 
 .productContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 285px;
   height: 350px;
   margin: 10px;
@@ -15,25 +19,25 @@
   .productPhotoBox {
     width: 285px;
     height: 280px;
+    margin-bottom: 14px;
+
     img {
       width: 285px;
       height: 280px;
     }
   }
   .productInfo {
-    a {
+    text-align: center;
+    margin-bottom: 6px;
+    
+    .productName {
       display: block;
-      padding: 10px;
-      text-align: center;
-      .productName {
-        display: block;
-        font-size: 20px;
-        font-weight: 700;
-      }
-      p {
-        margin-top: 5px;
-        font-size: 12px;
-      }
+      font-size: 20px;
+      font-weight: 700;
+    }
+    p {
+      margin-top: 5px;
+      font-size: 14px;
     }
   }
   .productPriceBox {
