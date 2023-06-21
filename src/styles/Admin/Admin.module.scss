@@ -34,16 +34,20 @@
       }
     }
   }
-
-  .contents {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 1000px;
-    max-width: 1240px;
-    min-height: 600px;
-    margin: 50px 0 50px;
-    overflow: auto;
+  .contentsWrapper{
+    width: calc(100% - 200px);
+    display:flex;
+    justify-content:center;
+    .contents {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 1000px;
+      max-width: 1240px;
+      min-height: 600px;
+      margin: 50px 0 50px;
+      overflow: auto;
+    }
   }
 }

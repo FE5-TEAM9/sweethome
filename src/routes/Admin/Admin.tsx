@@ -40,16 +40,18 @@ const Admin = () => {
             }
           </select>
         </nav>
-        <div className={styles.contents}>
-          {
-            category === "대시보드" 
-              ? <AdminDashboard />
-              : category === "사용자 관리" 
-                ? <AdminUser />
-                : category === "상품 관리"
-                  ? <AdminProduct />
-                  : <AdminOrder />
-          }
+        <div className={styles.contentsWrapper}>
+          <div className={styles.contents}>
+            {
+              category === "대시보드" 
+                ? <AdminDashboard />
+                : category === "사용자 관리" 
+                  ? <AdminUser />
+                  : category === "상품 관리"
+                    ? <AdminProduct />
+                    : <AdminOrder />
+            }
+          </div>
         </div>
       </div>
     </>
