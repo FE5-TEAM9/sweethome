@@ -13,13 +13,42 @@
     align-items: center;
 
     .title {
-      margin-bottom: 20px;
+      margin-bottom: 50px;
 
       h2 {
         font-family: $font-main;
         font-size: $font-main-size;
-        font-style: bold;
+        font-weight: bold;
       }
     }
+
+    .wrapper {
+      table {
+        font-family: "Pretendard";
+        font-size: 14px;
+
+        thead {
+          tr {
+            th {
+              padding: 10px 20px 10px;
+              border: 1px solid $base-color-gray;
+              font-weight: 500;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            td {
+              padding: 10px 20px 10px;
+              border: 1px solid $base-color-gray;
+              font-weight: 300;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
   }
 }
