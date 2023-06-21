@@ -33,7 +33,7 @@
   form {
     padding: 30px;
     max-width: 700px;
-    max-height: 600px;
+    max-height: 900px;
     border-radius: 10px;
     background-color: #fff;
   
@@ -42,8 +42,10 @@
 
       ul {
         display: flex;
+
         .bankBtn {
-          padding: 10px;
+          flex-shrink: 0;
+          padding: 5px;
           margin: 0 5px;
           height: 50px;
           border-radius: 10px;
@@ -59,17 +61,20 @@
     }
 
     .infoWrap {
-      margin: 10px;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .info {
-        margin: 20px;
+        margin: 20px 0;
         
         label {
           border-bottom: 1px solid $base-color-gray;
           font-size: 14px;
           padding: 5px;
           input {
-            text-indent: 10px;
-            width: 310px;
+            text-align: center;
+            width: 300px;
             height: 23px;
             border: none;
             outline: none;
