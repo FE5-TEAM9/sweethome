@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getAllProducts } from '~/api/requests';
 import ProductItem from '~/components/Shop/ProductItem';
 import styles from '~/styles/Shop/Shop.module.scss'
@@ -72,7 +73,11 @@ const Shop = () => {
         </div>
         <div className={styles.productListWrap}>
           <ul className={styles.productList}>
-            {allProducts.map((product)=>{return(<ProductItem product={product}/>)})}
+            {allProducts.map((product)=> (
+              <Link to={product.id}>
+                <ProductItem product={product} />
+              </Link>
+            ))}
           </ul>
         </div>
       </section>

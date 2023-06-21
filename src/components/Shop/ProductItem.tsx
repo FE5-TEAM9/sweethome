@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import styles from "~/styles/Shop/ProductItem.module.scss";
 
 const ProductItem = ({ product }) => {
@@ -11,20 +11,25 @@ const ProductItem = ({ product }) => {
   return (
     <li className={styles.productContainer}>
         <div className={styles.productPhotoBox}>
-          <Link to="#">
-            <img src={product.thumbnail} />
-          </Link>
+          <img src={product.thumbnail} />
         </div>
         <div className={styles.productInfo}>
-          <Link to="#">
-            <strong className={styles.productName}>{product.title}</strong>
-            <p>{product.description}</p>
-          </Link>
+          <strong className={styles.productName}>{product.title}</strong>
+          <p>{product.description}</p>
         </div>
         <div className={styles.productPriceBox}>
-          <p className={styles.priceDiscount}>{product.discountRate}</p>
+          <p className={styles.priceDiscount}>
+            { product.discountRate
+                ? `${product.discountRate}%`
+                : ""
+            }
+          </p>
           <strong className={styles.productPrice}>{discountPrice(product.price, product.discountRate)}</strong>
-          <p className={styles.priceThrough}>{product.price}</p>
+          <p className={styles.priceThrough}>
+            { product.discountRate
+              ? product.price
+              : ""}
+          </p>
         </div>
     </li>
   );
