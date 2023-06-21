@@ -32,7 +32,7 @@ const AdminUser = () => {
           <div className={styles.title}>
             <h2>사용자 관리</h2>
           </div>
-          <div>
+          <div className={styles.wrapper}>
             <table>
               <thead>
                 <tr>

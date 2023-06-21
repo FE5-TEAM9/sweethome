@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "Pretendard";
 
   .addProductContainer {
     display: flex;
@@ -20,7 +21,7 @@
       align-items: center;
 
       .title{
-        margin: 50px 0 50px;
+        margin-bottom: 50px;
         
         h2 {
           font-family: $font-main;
@@ -57,6 +58,9 @@
               outline: none;
               background: none;
               color: $font-color;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none;
             }
           }
         }
@@ -120,6 +124,8 @@
       .allProduct {
         .wrapper {
           table {
+            text-align: center;
+            
             thead {
               font-family: "Pretendard";
 
