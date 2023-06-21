@@ -1,25 +1,30 @@
 import { Link } from 'react-router-dom'
 import styles from "~/styles/Shop/ProductItem.module.scss";
-import img1 from '~/assets/products/bedroom1.jpeg'
 
-const ProductItem = () => {
+const ProductItem = ({ product }) => {
+
+  // 할인가격 계산
+  const discountPrice = (productPrice: number, productDiscount: number) => {
+    return productPrice * ((100 - productDiscount) / 100)
+  }
+
   return (
     <li className={styles.productContainer}>
         <div className={styles.productPhotoBox}>
           <Link to="#">
-            <img src={img1} />
+            <img src={product.thumbnail} />
           </Link>
         </div>
         <div className={styles.productInfo}>
           <Link to="#">
-            <strong className={styles.productName}>상품이름</strong>
-            <p>더닷 감정으로 풀어낸 소품</p>
+            <strong className={styles.productName}>{product.title}</strong>
+            <p>{product.description}</p>
           </Link>
         </div>
         <div className={styles.productPriceBox}>
-          <p className={styles.priceDiscount}>5%</p>
-          <strong className={styles.productPrice}>₩54,150</strong>
-          <p className={styles.priceThrough}>₩57,000</p>
+          <p className={styles.priceDiscount}>{product.discountRate}</p>
+          <strong className={styles.productPrice}>{discountPrice(product.price, product.discountRate)}</strong>
+          <p className={styles.priceThrough}>{product.price}</p>
         </div>
     </li>
   );
