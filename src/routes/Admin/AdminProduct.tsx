@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
 import { TiDeleteOutline } from 'react-icons/ti'
 import { BsPencilSquare } from 'react-icons/bs'
@@ -7,13 +7,13 @@ import styles from "~/styles/Admin/AdminProduct.module.scss";
 const AdminProduct = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [productTitle, setProductTitle] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
+  const [productPrice, setProductPrice] = useState(null);
   const [productDesc, setProductDesc] = useState("");
   const [productTag, setProductTag] = useState("");
   const [productThumb, setProductThumb]: any = useState(null);
   const [productPhoto, setProductPhoto]: any = useState(null);
   const [productSoldOut, setProductSoldOut] = useState(false);
-  const [productDiscountRate, setProductDiscountRate] = useState(0);
+  const [productDiscountRate, setProductDiscountRate] = useState(null);
   const [productNum, setProductNum] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +30,7 @@ const AdminProduct = () => {
     "상품이름",
     "상품가격",
     "할인율",
-    "품절여부",
+    "품절여부"
   ];
 
   // 상품 목록 조회
