@@ -1,0 +1,16 @@
+@import '../common/colors.scss';
+@import '../common/fonts.scss';
+
+.product {
+  display: flex;
+  
+  .productImg {
+    img {
+      width: 600px;
+    }
+  }
+
+  .productInfo {
+
+  }
+}

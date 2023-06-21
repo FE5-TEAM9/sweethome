@@ -20,6 +20,7 @@ const Shop = () => {
 
   const [allProducts, setAllProducts] = useState<ResponseValue>([]);
   const [originalProducts, setOriginalProducts] = useState();
+  const [click, setClick] = useState(false);
 
   useEffect(() => {
     spreadAllProducts();
@@ -40,24 +41,25 @@ const Shop = () => {
   }
 
   const categorys = [ "ALL", "FURNITURE", "KITCHEN", "BEDROOM" ];
-  const [click, setClick] = useState(false);
-
-
-  const clickHandler = (e: React.MouseEvent<HTMLInputElement>) => {
-    setClick(!click)
-  }
-
   const categoryHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target.value === "ALL") {
       setAllProducts(originalProducts)
+      // clickHandler()
     } else if (e.target.value === "FURNITURE") {
       setAllProducts(originalProducts.filter(product => product.tags === "furniture"))
+      // clickHandler()
     } else if (e.target.value === "KITCHEN") {
       setAllProducts(originalProducts.filter(product => product.tags === "kitchen"))
+      // clickHandler()
     } else if (e.target.value === "BEDROOM") {
       setAllProducts(originalProducts.filter(product => product.tags === "bedroom"))
+      // clickHandler()
     }
   }
+
+  // const clickHandler = () => {
+  //   setClick(!click);
+  // }
 
   return (
     <>
@@ -66,32 +68,20 @@ const Shop = () => {
           <ul className={styles.menu}>
             <li>
               {categorys.map(category => (
-                <input type='button' value={category} onClick={categoryHandler} />
+                <input
+                  type='button'
+                  value={category}
+                  onClick={categoryHandler}
+                  // className={click ? styles.active : ''}
+                />
               ))}
             </li>
-            {/* <li>
-              <input type='button' value="All" />
-            </li>
-            <li>
-              <input
-                type='button'
-                value="FURNITURE"
-                onClick={categoryHandler} />
-            </li>
-            <li>
-              <input type='button' value="KITCHEN" />
-            </li>
-            <li>
-              <input type='button' value="BEDROOM" />
-            </li> */}
           </ul>
         </div>
         <div className={styles.productListWrap}>
           <ul className={styles.productList}>
             {allProducts.map((product)=> (
-              <Link to={product.id}>
-                <ProductItem product={product} />
-              </Link>
+              <ProductItem product={product} />
             ))}
           </ul>
         </div>

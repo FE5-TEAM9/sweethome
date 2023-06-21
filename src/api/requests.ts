@@ -130,7 +130,7 @@ const addProduct = async (body: AddProductBody) => {
   return data;
 };
 
-// 상품 조회
+// Get-All-Products 전체 상품 조회
 const getAllProducts = async () => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products",
@@ -146,6 +146,20 @@ const getAllProducts = async () => {
   console.log(data);
   return data;
 };
+
+// Get-Product 단일 상품 조회
+const getProduct = async (id: string) => {
+  const res = await fetch(
+    `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${id}`,
+    {
+      method: "GET",
+      headers
+    }
+  )
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
 
 // Edit-Product 상품 수정
 interface EditProductBody {
@@ -177,7 +191,7 @@ const editProduct = async (body: EditProductBody, id: string) => {
 }
 
 
-// 상품 삭제
+// Delete-Product 상품 삭제
 const deleteProduct = async (id: string) => {
   try {
     await fetch(
@@ -313,6 +327,7 @@ export {
   users,
   addProduct,
   getAllProducts,
+  getProduct,
   editProduct,
   deleteProduct,
   editInfo,
