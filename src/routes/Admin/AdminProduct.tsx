@@ -1,28 +1,49 @@
 import { useState, useEffect, useMemo } from "react";
-import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
+import { addProduct, getAllProducts, editProduct, deleteProduct } from "~/api/requests";
 import { TiDeleteOutline } from 'react-icons/ti'
 import { BsPencilSquare } from 'react-icons/bs'
 import styles from "~/styles/Admin/AdminProduct.module.scss";
+import TheModal from "~/components/TheModal"
 
 const AdminProduct = () => {
-  const [allProducts, setAllProducts] = useState([]);
+  type AllProduct = Product[] // 관리하는 모든 제품의 목록
+
+  interface Product {
+    id: string
+    title: string
+    price: number
+    description: string
+    tags: string[]
+    thumbnail: string | null
+    isSoldOut: boolean
+    discountRate: number
+  }
+  interface PhotoConvert {
+    productThumb: string | undefined;
+    productPhoto: string | undefined;
+  }
+
+  const [allProducts, setAllProducts] = useState<AllProduct>([]);
   const [productTitle, setProductTitle] = useState("");
   const [productPrice, setProductPrice] = useState(null);
   const [productDesc, setProductDesc] = useState("");
   const [productTag, setProductTag] = useState("");
-  const [productThumb, setProductThumb]: any = useState(null);
-  const [productPhoto, setProductPhoto]: any = useState(null);
+  const [productThumb, setProductThumb] = useState<PhotoConvert | null>(null);
+  const [productPhoto, setProductPhoto] = useState<PhotoConvert | null>(null);
   const [productSoldOut, setProductSoldOut] = useState(false);
   const [productDiscountRate, setProductDiscountRate] = useState(null);
-  const [productNum, setProductNum] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [search, setSearch] = useState([]);
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(false);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const showModal = () => {
+    setModalOpen(true)
+  }
   
   useEffect(()=> {
     getAllProductsHandler();
-  }, [search])
+  }, [allProducts])
   
   const tableHead = [
     "NO",
@@ -60,7 +81,6 @@ const AdminProduct = () => {
     try {
       setIsLoading(true);
       await addProduct(body);
-      setSearch(allProducts);
       setIsLoading(false);
     } catch (error) {
       console.log("addProduct error", error);
@@ -111,7 +131,6 @@ const AdminProduct = () => {
       console.log(res);
       const updateProduct = allProducts.filter((product)=> product.id !== id);
       setAllProducts(updateProduct);
-      setSearch(allProducts)
     } catch (error) {
       console.log('상품 삭제', error)
     }
@@ -260,10 +279,12 @@ const AdminProduct = () => {
                         <div className={styles.icon}>
                           <BsPencilSquare
                             className={styles.modifyBtn}
+                            onClick={showModal}
                           />
+                          {modalOpen && <TheModal id={<p>Named content</p>} setModalOpen={setModalOpen} />}
                           <TiDeleteOutline
                             className={styles.deleteBtn}
-                            onClick={()=>deleteProductHandler(product.id)}
+                            onClick={() => deleteProductHandler(product.id)}
                           />
                         </div>
                       </tr>

@@ -137,10 +137,8 @@ const getAllProducts = async () => {
     {
       method: "GET",
       headers: {
-        "content-type": "application/json",
-        apikey: "KDT5_nREmPe9B",
-        username: "KDT5_Team9",
-        masterKey: "true"
+        ...headers,
+        "masterKey": "true"
       }
     }
   );
@@ -148,6 +146,36 @@ const getAllProducts = async () => {
   console.log(data);
   return data;
 };
+
+// Edit-Product 상품 수정
+interface EditProductBody {
+  title?: string
+  price?: number
+  description?: string
+  tags?: string[]
+  thumbnailBase64?: string
+  photoBase64?: string
+  isSoldOut?: boolean
+  discountRate?: number
+}
+
+const editProduct = async (body: EditProductBody, id: string) => {
+  const res = await fetch(
+    `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        ...headers,
+        "masterKey": "true"
+      },
+      body: JSON.stringify(body)
+    }
+  )
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
 
 // 상품 삭제
 const deleteProduct = async (id: string) => {
@@ -157,9 +185,7 @@ const deleteProduct = async (id: string) => {
       {
         method: "DELETE",
         headers: {
-          "content-type": "application/json",
-          apikey: "KDT5_nREmPe9B",
-          username: "KDT5_Team9",
+          ...headers,
           masterKey: "true"
         }
       }
@@ -287,6 +313,7 @@ export {
   users,
   addProduct,
   getAllProducts,
+  editProduct,
   deleteProduct,
   editInfo,
   getBankList,
