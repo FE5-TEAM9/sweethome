@@ -2,7 +2,7 @@ import styles from '~/styles/Mypage/AccountModal.module.scss';
 import { useState } from 'react';
 import { linkAccount } from '~/api/requests'
 
-const AccountModal = ({ bankList, onFormCancel }) => {
+const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setShowModal }) => {
   const [bankCode, setBankCode] = useState('')
   const [accountNumber, setAccountNumber] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -41,6 +41,8 @@ const AccountModal = ({ bankList, onFormCancel }) => {
     }
     const res = await linkAccount(body);
     console.log('계좌 연결 정보', res);
+    setShowModal(!showModal);
+    setWatch(!watch)
   }
 
   return (

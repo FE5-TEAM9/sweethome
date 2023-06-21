@@ -3,21 +3,19 @@ import { TiDeleteOutline } from 'react-icons/ti'
 import { deleteAccount } from '~/api/requests'
 import { useState } from 'react'
 
-const Account = ({ item }) => {
+const Account = ({ item, watch, setWatch }) => {
   const [deletItem, setDeleteItem ] = useState('');
   
   // 계좌 해지
-const deleteAcountHandler = async (e) => {
-  e.preventDefault();
-  setDeleteItem(item.accoutId)
- 
+const deleteAcountHandler = async (id) => {
   const body ={
-    accountId: deletItem,
+    accountId: id,
     signature: true
   }
   try {
     const res = await deleteAccount(body);
-    console.log('계좌 삭제'.res)
+    console.log('계좌 삭제',res)
+    setWatch(!watch)
   } catch (error) {
     alert('계좌 해지 실패하였습니다.')
   }
@@ -31,7 +29,7 @@ const deleteAcountHandler = async (e) => {
           <p>{item.accountNumber}</p>
           <span>{`잔액: ${item.balance}`}</span>
         </div>
-        <TiDeleteOutline className={styles.deleteBtn} onClick={deleteAcountHandler} />
+        <TiDeleteOutline className={styles.deleteBtn} onClick={()=>deleteAcountHandler(item.id)} />
       </div>
     </div>
   )

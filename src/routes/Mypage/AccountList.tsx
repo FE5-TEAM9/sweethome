@@ -8,13 +8,12 @@ const AccountList = () => {
 const [showModal, setShowModal] = useState(false)
 const [bankList, setBankList] = useState([])
 const [accountList, setAccountList] = useState([])
-
-
+const [watch, setWatch] = useState(false)
 
 useEffect(() => {
   checkBankList();
   checkAccountList();
-},[])
+},[watch])
 
 // 모달창 취소 Handler
 const onFormCancel = () => {
@@ -48,7 +47,16 @@ const checkAccountList = async () => {
 
   return (
     <>
-    {showModal && (<AccountModal bankList={bankList} onFormCancel={onFormCancel}/>)}
+    {showModal && (<AccountModal 
+      bankList={bankList} 
+      onFormCancel={onFormCancel} 
+      watch={watch}
+      setWatch={setWatch}
+      showModal={showModal}
+      setShowModal={setShowModal}
+      />
+
+      )}
       <section className={styles.accountList}>
         <div className={styles.accountListContainer}>
           <div className={styles.accountListWrapper}>
@@ -56,7 +64,13 @@ const checkAccountList = async () => {
               <h2>계좌 관리</h2>
             </div>
             {Array.isArray(accountList.accounts)
-            ? (accountList.accounts.map((item)=> {return (<Account item={item} />)}))
+            ? (accountList.accounts.map((item)=> {
+                return (
+                  <Account 
+                    item={item} 
+                    watch={watch}
+                    setWatch={setWatch}
+                    />)}))
             : (
               <div className={styles.noAccount}>
                 <div className={styles.textWrap}>
