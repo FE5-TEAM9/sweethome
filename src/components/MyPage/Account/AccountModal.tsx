@@ -43,20 +43,18 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
         <div className={styles.title}>
           <h4>계좌 연결</h4>
         </div>
-        <div className={styles.paymentContainer}>
-          <ul>
+          <ul className={styles.paymentContainer}>
           {banklist.map((bank, idx) => (
-            <li key={bank.code}>
-              <button 
-                type='button' 
-                className={styles.bankBtn}
-                onClick={()=>setBankCode(bank.code)}
-                >{bank.name}</button>
+            <li 
+              key={bank.code}
+              onClick={()=>setBankCode(bank.code)}
+              >
+              <img src={`/public/assets/bank/bank${bank.code}.svg`} />
+              <p>{bank.name}</p>
             </li>
             )
           )}
           </ul>
-        </div>
         <div className={styles.infoWrap}>
             <label className={styles.label}>
               <span>은행 코드</span>
