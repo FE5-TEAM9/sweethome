@@ -8,6 +8,11 @@ const ProductItem = ({ product }) => {
     return productPrice * ((100 - productDiscount) / 100)
   }
 
+  // 금액 단위 표시
+  const convertPrice = (price: number) => {
+    return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <Link to={product.id}>
       <li className={styles.productContainer}>
@@ -16,7 +21,7 @@ const ProductItem = ({ product }) => {
         </div>
         <div className={styles.productInfo}>
           <strong className={styles.productName}>{product.title}</strong>
-          <p>{product.description}</p>
+          {/* <p>{product.description}</p> */}
         </div>
         <div className={styles.productPriceBox}>
           <p className={styles.priceDiscount}>
@@ -26,11 +31,11 @@ const ProductItem = ({ product }) => {
             }
           </p>
           <strong className={styles.productPrice}>
-            {discountPrice(product.price, product.discountRate)}
+            ₩{convertPrice(discountPrice(product.price, product.discountRate))}
           </strong>
           <p className={styles.priceThrough}>
             { product.discountRate
-              ? product.price
+              ? `₩${convertPrice(product.price)}`
               : ""
             }
           </p>

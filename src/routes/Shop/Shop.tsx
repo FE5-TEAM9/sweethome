@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { getAllProducts } from '~/api/requests';
 import ProductItem from '~/components/Shop/ProductItem';
 import styles from '~/styles/Shop/Shop.module.scss'
@@ -40,7 +39,10 @@ const Shop = () => {
     }
   }
 
+  // 상품 카테고리
   const categorys = [ "ALL", "FURNITURE", "KITCHEN", "BEDROOM" ];
+
+  // 상품 카테고리별 필터 기능
   const categoryHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target.value === "ALL") {
       setAllProducts(originalProducts)
@@ -72,11 +74,15 @@ const Shop = () => {
                   type='button'
                   value={category}
                   onClick={categoryHandler}
-                  // className={click ? styles.active : ''}
+                  className={click ? styles.active : ''}
                 />
               ))}
             </li>
           </ul>
+          {/* <ul>
+            <li>가격 높은 순</li>
+            <li>가격 낮은 순</li>
+          </ul> */}
         </div>
         <div className={styles.productListWrap}>
           <ul className={styles.productList}>
