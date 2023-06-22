@@ -3,14 +3,103 @@
 
 .product {
   display: flex;
-  
+  justify-content: center;
+  position: relative;
+  // left: -100px;
+  width: 100vw;
+  margin: 50px 0 50px;
+  font-family: "Pretendard";
+
   .productImg {
+    margin-right: 100px;
+
     img {
       width: 600px;
     }
   }
 
   .productInfo {
+    color: $font-color;
 
+    .productText {
+      .tags {
+        margin-bottom: 30px;
+        font-family: "Markazi Text", serif;
+        font-size: 18px;
+      }
+      .title {
+        margin-bottom: 14px;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .discountPrice {
+        margin-bottom: 6px;
+        font-size: 22px;
+        font-weight: 400;
+      }
+      .price {
+        margin-bottom: 18px;
+
+        .originalPrice {
+          margin-right: 6px;
+          font-size: 18px;
+          text-decoration: line-through;
+        }
+        .discountRate {
+          font-size: 20px;
+          color: $point-color-red;
+        }
+      }
+      .description {
+        margin-bottom: 20px;
+      }
+
+    }
+
+    .productCount {
+      margin-bottom: 20px;
+
+      .countBox {
+        margin-bottom: 20px;
+
+        .plusBtn {
+          width: 30px;
+          height: 30px;
+        }
+        .minusBtn {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .countPrice {
+        p {
+          margin-bottom: 6px;
+        }
+        span {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .buttons {
+      .btn {
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        border-style: none;
+        cursor: pointer;
+      }
+
+      .buy {
+        margin-right: 8px;
+        background-color: $point-color-pink;
+        color: $base-color-black;
+      }
+      .cart {
+        background-color: $base-color-gray;
+        color: $base-color-black;
+      }
+    }
+    
   }
 }

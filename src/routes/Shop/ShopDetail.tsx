@@ -4,26 +4,7 @@ import { useParams } from 'react-router-dom';
 import styles from '~/styles/Shop/ShopDetail.module.scss'
 
 const ShopDetail = () => {
-  // interface GetProductValue {
-  //   id: string
-  //   title: string
-  //   price: number
-  //   description: string
-  //   tags: string[]
-  //   thumbnail: string | null
-  //   photo: string | null
-  //   isSoldOut: boolean
-  //   reservations: Reservation[]
-  //   discountRate: number
-  // }
   
-  // interface Reservation {
-  //   start: string // 예약 시작 시간
-  //   end: string // 예약 종료 시간
-  //   isCanceled: boolean // 예약 취소 여부
-  //   isExpired: boolean // 예약 만료 여부
-  // }
-
   const { id } = useParams();
   console.log(`현재 페이지의 파라미터는 ${id} 입니다.`)
 
@@ -37,15 +18,18 @@ const ShopDetail = () => {
   // 단일 상품 조회
   const getProductHandler = async (id: string) => {
     try {
-      const res = await getProduct("6YAglrU9l7yWmqGdvtCQ");
-      console.log(res);
+      const res = await getProduct("wtDJ1EsIyRwI38ToD8Fi");
+      console.log("단일 상품 조회", res);
       setProduct(res);
     } catch(error) {
       console.log("단일 상품 조회 실패", error)
     }
   }
   
-
+  // 할인가격 계산
+  const discountPrice = (productPrice: number, productDiscount: number) => {
+    return productPrice * ((100 - productDiscount) / 100)
+  }
 
   return (
     <>
@@ -54,25 +38,51 @@ const ShopDetail = () => {
           <img src={product.photo} alt={product.title} />
         </div>
         <div className={styles.productInfo}>
-          <div>
-            <p>{product.tags}</p>
-            <h2>{product.title}</h2>
-            <p>{product.price}원</p>
-          </div>
-          <div>
-            <div>
-              <input type="button" value="-" onClick={() => setCount(count - 1)} />
-              {count}
-              <input type="button" value="+" onClick={() => setCount(count + 1)} />
+          <div className={styles.productText}>
+            <p className={styles.tags}>{product.tags}</p>
+            <h2 className={styles.title}>{product.title}</h2>
+            <p className={styles.discountPrice}>{discountPrice(product.price, product.discountRate)}원</p>
+            <div className={styles.price}>
+              <span className={styles.originalPrice}>{product.price}원</span>
+              <span className={styles.discountRate}>
+                { product.discountRate
+                  ? `${product.discountRate}%`
+                  : ""
+                }
+              </span>
             </div>
-            <div>
+            <p className={styles.description}>{product.description}</p>
+          </div>
+          <div className={styles.productCount}>
+            <div className={styles.countBox}>
+              <input
+                type="button"
+                value="-"
+                className={styles.plusBtn}
+                onClick={() => setCount(count - 1)}
+              />
+              <span>{count}</span>
+              <input
+                type="button"
+                value="+"
+                className={styles.minusBtn}
+                onClick={() => setCount(count + 1)}
+              />
+            </div>
+            <div className={styles.countPrice}>
               <p>총 금액</p>
-              {product.price * count}
+              <span>
+                {product.discountRate !== 0
+                    ? discountPrice(product.price, product.discountRate) * count
+                    : product.price * count
+                }
+                원
+              </span>
             </div>
           </div>
           <div className={styles.buttons}>
-            <input type="button" value="BUY NOW" className={styles.btn} />
-            <input type="button" value="CART" className={styles.btn} />
+            <input type="button" value="BUY NOW" className={`${styles.btn} ${styles.buy}`} />
+            <input type="button" value="CART" className={`${styles.btn} ${styles.cart}`} />
           </div>
         </div>
       </section>
