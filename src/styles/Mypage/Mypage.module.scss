@@ -18,14 +18,17 @@
   color: $base-color-white;
   cursor: pointer;
 }
+.mypage {
+  min-height: calc(100vh - (100px + 150px));
+}
 
 // 개인 정보 수정 - PW 확인창
 .myPageConfirm {
- 
   .wrapper {
     display: flex;
     justify-content: center;
-    // height: 100vh;
+    align-items: center;
+    min-height: calc(100vh - (100px + 150px));
 
     .form {
       margin: 60px 0;
