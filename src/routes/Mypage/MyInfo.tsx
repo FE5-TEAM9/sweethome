@@ -44,8 +44,14 @@ const MyInfo = () => {
       }
       try {       
           const res = await editInfo(body)
+          if (res) {
             console.log('개인정보수정', res)
             alert('비밀번호가 변경되었습니다.')
+            reset();
+          } else {
+            alert('비밀번호를 다시 입력해 주세요.')
+            reset();
+          }
       } catch (error) {
         console.log('개인정보수정 오류', error)
       }
