@@ -9,6 +9,7 @@
   width: 285px;
   height: 350px;
   margin: 10px;
+  font-family: "Pretendard";
 
   strong {
     font-weight: 700;
@@ -33,7 +34,7 @@
     .productName {
       display: block;
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 500;
     }
     p {
       margin-top: 5px;
@@ -47,12 +48,13 @@
     gap: 5px;
  
     .priceDiscount {
+      font-weight: 400;
       color: $point-color-red;
     }
     .priceThrough {
       text-decoration: line-through;
       font-size: 14px;
-      color: $base-color-black;
+      color: gray;
     }
   }
  
