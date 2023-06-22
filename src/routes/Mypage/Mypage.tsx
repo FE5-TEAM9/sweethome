@@ -11,9 +11,10 @@ const MyPage = () => {
 const [userInfo] = useOutletContext();
 const navigate = useNavigate();
 const [password, setPassword] = useState('')
-const [passwordConfirm, setPasswordConfirm] = useState(true);
+const [passwordConfirm, setPasswordConfirm] = useState(false);
 
 // useEffect(()=>{
+//   localStorage.getItem('token')
 //   if (!localStorage.getItem('token')) {
 //     alert('잘못된 접근입니다.');
 //     navigate('/');
@@ -32,7 +33,6 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
   };
 
   try {
-    
     const res = await logIn(body);
     if (res) {
       console.log('비밀번호 재확인 성공', res)

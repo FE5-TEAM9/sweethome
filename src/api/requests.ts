@@ -78,9 +78,11 @@ const authenticate = async () => {
       }
     }
   );
-  const json = await res.json();
-  console.log("로그인 인증 API", json);
-  return json;
+    if (res.status === 200) {
+      const json = await res.json();
+      console.log("로그인 인증 API", json);
+      return json;
+    } else return false;
 };
 
 // Users 사용자 목록
