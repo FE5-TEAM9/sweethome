@@ -9,7 +9,7 @@ const ProductItem = ({ product }) => {
   }
 
   return (
-    <Link to={`/shop/${product.id}`}>
+    <Link to={product.id}>
       <li className={styles.productContainer}>
         <div className={styles.productPhotoBox}>
           <img src={product.thumbnail} />
