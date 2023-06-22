@@ -29,7 +29,7 @@ export default createBrowserRouter([
         element: <Shop />
       },
       {
-        path: '/shop/:productId',
+        path: '/shop/:id',
         element: <ShopDetail />
       },
       {
