@@ -2,8 +2,8 @@
 @import '../common/fonts.scss';
 
 .title {
-  // display: flex;
-  // justify-content: center;
+  display: flex;
+  justify-content: center;
   margin-bottom: 40px;
   font-size: 24px;
   font-weight: 700;
@@ -30,6 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   form {
     padding: 30px;
     max-width: 700px;
@@ -57,7 +58,6 @@
     }
     .agreementCheck {
       display: flex;
-      gap: 10px;
     }
 
     .infoWrap {
@@ -65,13 +65,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      .info {
-        margin: 20px 0;
-        
+
         label {
           border-bottom: 1px solid $base-color-gray;
           font-size: 14px;
           padding: 5px;
+          margin: 10px 0;
           input {
             text-align: center;
             width: 300px;
@@ -81,7 +80,14 @@
             font-size: 14px;
           }
         }
-      }
+        .agreementCheck {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          label {
+            border: none;
+          }
+        }
     }
     .btnWrap {
       display: flex;

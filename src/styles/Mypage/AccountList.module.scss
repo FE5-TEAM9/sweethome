@@ -20,9 +20,10 @@
 .accountList {
   margin: 50px 0;
   height: 50%;
-.accountListContainer {  
   display: flex;
   justify-content: center;
+
+
 .noAccount {
   display: flex;
   justify-content: center;
@@ -42,5 +43,5 @@
   background-color: $base-color-black;
   color: $base-color-white;
 }
-}
+
 }

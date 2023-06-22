@@ -8,14 +8,6 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
   const [phoneNumber, setPhoneNumber] = useState('')
   const [isChecked, setIsChecked] = useState(true);
 
-  // const onChangeHandler = (e) => {
-  //   const [name, value] = e.target
-  //   setInputs({
-  //     ...inputs,
-  //     [name]: value
-  //   })
-  // }
-
   const bankCodeHandle = (e) => {
     e.preventDefault();
     setBankCode(e.target.value);
@@ -48,9 +40,9 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
   return (
     <section className={styles.accountModal}>
       <form>
-      <div className={styles.title}>
-        <h4>계좌 연결</h4>
-      </div>
+        <div className={styles.title}>
+          <h4>계좌 연결</h4>
+        </div>
         <div className={styles.paymentContainer}>
           <ul>
           {banklist.map((bank, idx) => (
@@ -61,13 +53,12 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                 onClick={()=>setBankCode(bank.code)}
                 >{bank.name}</button>
             </li>
-           )
+            )
           )}
           </ul>
         </div>
-          <div className={styles.infoWrap}>
-          <div className={styles.info}>
-          <label className={styles.label}>
+        <div className={styles.infoWrap}>
+            <label className={styles.label}>
               <span>은행 코드</span>
               <input 
                 type='text'
@@ -77,8 +68,6 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                 placeholder='은행을 선택해 주세요.'
                 autoFocus/>
             </label>
-          </div>
-          <div className={styles.info}>
             <label className={styles.label}>
               <span>계좌 번호</span>
               <input 
@@ -89,8 +78,6 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
               placeholder='계좌번호를 입력해 주세요.'
               />
             </label>
-          </div>
-          <div className={styles.info}>
             <label>
               <span>전화 번호</span>
               <input 
@@ -101,19 +88,17 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                 placeholder='전화번호를 입력해 주세요.'
                 />
             </label>
-          </div>
-          <div>
-            <label className={`${styles.agreementCheck} ${styles.info}`}> 
+            <div className={styles.agreementCheck}>
+              <label htmlFor='signature'></label> 
               <input 
                 type='checkbox'
+                id='signature'
                 name='signature'
                 checked={true}
                 />
               <p>위 약관에 동의합니다.</p>
-            </label>
+            </div>
           </div>
-          </div>
-
           <div className={styles.btnWrap}>
             <button 
               className={styles.btn}

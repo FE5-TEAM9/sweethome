@@ -24,12 +24,12 @@
 
 // 개인 정보 수정 - PW 확인창
 .myPageConfirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - (100px + 150px));
+  
   .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - (100px + 150px));
-
     .form {
       margin: 60px 0;
       display: flex;

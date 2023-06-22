@@ -43,8 +43,6 @@ const checkAccountList = async () => {
   }
 }
 
-
-
   return (
     <>
     {showModal && (<AccountModal 
@@ -55,11 +53,9 @@ const checkAccountList = async () => {
       showModal={showModal}
       setShowModal={setShowModal}
       />
-
       )}
       <section className={styles.accountList}>
         <div className={styles.accountListContainer}>
-          <div className={styles.accountListWrapper}>
             <div className={styles.title}>
               <h2>계좌 관리</h2>
             </div>
@@ -78,11 +74,7 @@ const checkAccountList = async () => {
                   <p>계좌 번호를 등록해 주세요!</p>
                 </div>
               </div>
-            )
-            }
-            
-
-          
+            )}        
           <button
             className={styles.btn}
             onClick={()=>setShowModal(!showModal)}
@@ -90,11 +82,8 @@ const checkAccountList = async () => {
             계좌 연결
           </button>
           </div>
-        </div>
       </section>
     </>
-
-    
   )
 }
 
