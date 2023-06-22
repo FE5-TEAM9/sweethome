@@ -6,7 +6,6 @@ import styles from '~/styles/Shop/ShopDetail.module.scss'
 const ShopDetail = () => {
   
   const { id } = useParams();
-  console.log(`현재 페이지의 파라미터는 ${id} 입니다.`)
 
   const [product, setProduct] = useState({});
   const [count, setCount] = useState(1);
@@ -18,7 +17,7 @@ const ShopDetail = () => {
   // 단일 상품 조회
   const getProductHandler = async (id: string) => {
     try {
-      const res = await getProduct("wtDJ1EsIyRwI38ToD8Fi");
+      const res = await getProduct(id);
       console.log("단일 상품 조회", res);
       setProduct(res);
     } catch(error) {
