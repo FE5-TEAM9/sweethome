@@ -72,6 +72,7 @@ const MyInfo = () => {
               type="text"
               className={styles.input}
               placeholder={userInfo.email}
+              autoComplete='off'
               disabled
             />
           </label>
@@ -85,7 +86,7 @@ const MyInfo = () => {
               type="text"
               className={styles.input}
               placeholder={userInfo.displayName}
-              autoComplete="username"
+              autoComplete="off"
               disabled
             />
           </label>
