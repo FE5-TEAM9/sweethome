@@ -1,12 +1,12 @@
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "~/styles/Cart/CartList.module.scss";
 
 const CartList = () => {
-  const cart = useSelector(state => state.cart);
-  const myCart = [...cart]
+  const cart = useSelector((state: any) => state.cart);
+  const selectedCart = useSelector((state: any) => state.selectedCart);
+  const myCart = [...cart];
+  const mySelectedCart = [...selectedCart];
   const dispatch = useDispatch();
-  console.log(cart);
 
   // 할인가격 계산
   const discountPrice = (productPrice: number, productDiscount: number) => {
@@ -19,13 +19,28 @@ const CartList = () => {
   };
 
   // 장바구니 삭제
-  const deleteCartItemHandler = (i: number) => {
-    myCart.splice(i, 1)
-    dispatch({ type: "RETURN_CART", items: myCart});
+  const deleteCartItemHandler = (i: number, item: any) => {
+    myCart.splice(i, 1);
+
+    dispatch({ type: "RETURN_CART", items: myCart });
+    dispatch({
+      type: "DELETE_SELECTED_CART",
+      items: mySelectedCart.filter(obj => obj.id !== item.id)
+    });
     return cart;
   };
-  useEffect(() => {}, [cart]);
-  console.log(cart);
+  const checkedCartItemHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    item: any
+  ) => {
+    e.target.checked
+      ? dispatch({ type: "CHECKED_SELECTED_CART", items: item })
+      : dispatch({
+          type: "DELETE_SELECTED_CART",
+          items: mySelectedCart.filter(obj => obj.id !== item.id)
+        });
+  };
+  console.log("selectedcart", selectedCart);
   return (
     <div className={styles.cartList}>
       <ul className={styles.container}>
@@ -36,6 +51,7 @@ const CartList = () => {
             <input
               type="checkbox"
               className={styles.checkbox}
+              onChange={e => checkedCartItemHandler(e, item)}
             />
             <div className={styles.itemImg}>
               <img
@@ -72,7 +88,7 @@ const CartList = () => {
             <input
               type="button"
               value="삭제"
-              onClick={() => deleteCartItemHandler(i)}
+              onClick={() => deleteCartItemHandler(i, item)}
             />
           </li>
         ))}
