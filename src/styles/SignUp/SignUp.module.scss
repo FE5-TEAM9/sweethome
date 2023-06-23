@@ -7,11 +7,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  .wrapper {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    
+
+
     .title {
       display: flex;
       justify-content: center;
@@ -19,7 +16,7 @@
       font-size: 24px;
       font-weight: 700;
     }
-  }
+  
   .input {
     width: 420px;
     height: 28px;

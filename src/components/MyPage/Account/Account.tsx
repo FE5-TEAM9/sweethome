@@ -29,7 +29,7 @@ const Account = ({ item, watch, setWatch }) => {
   return (
     <div className={styles.account} >
       <div className={styles.wrapper} >
-        <div className={styles.inner}>
+        <div className={styles.account_details}>
           <h4>{item.bankName}</h4>
           <p>{item.accountNumber}</p>
           <span>{`잔액: ${convertPrice(item.balance)}원`}</span>

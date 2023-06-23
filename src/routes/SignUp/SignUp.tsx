@@ -57,12 +57,10 @@ const SignUp = () => {
   return (
     <>
       <section className={styles.container}>
-        <div className={styles.wrapper}>
-          <div className={styles.inner}>
+          <form>
             <div className={styles.title}>
               <h2>회원가입</h2>
             </div>
-            <form>
               <div className={styles.infoList}>
                 <label
                   htmlFor="email"
@@ -151,8 +149,6 @@ const SignUp = () => {
                 회원가입
               </button>
             </form>
-          </div>
-        </div>
       </section>
     </>
   );

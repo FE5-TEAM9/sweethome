@@ -59,78 +59,77 @@ const MyInfo = () => {
 
   return (
     <section className={styles.info}>
-    <div className={styles.wrapper}>
-      <div className={styles.inner}>
+      <form onSubmit={handleSubmit(ChangePWHandeler)}>
         <div className={styles.title}>
           <h2>개인 정보 수정</h2>
         </div>
-        <form onSubmit={handleSubmit(ChangePWHandeler)}>
           <div className={styles.infoList}>
-            <label
-              className={styles.label}
-            >
-              <p>이메일</p>
-              <input
-                type="text"
-                className={styles.input}
-                placeholder={userInfo.email}
-                disabled
-              />
-            </label>
-          </div>
-          <div className={styles.infoList}>
-            <label
-              className={styles.label}
-            >
-              <p>이름</p>
-              <input
-                type="text"
-                className={styles.input}
-                placeholder={userInfo.displayName}
-                disabled
-              />
-            </label>
-          </div>
-          <div className={styles.infoList}>
-            <label
-              className={styles.label}
-            >
-             <p>기존 비밀번호</p>
-              <input
-                type="password"
-                className={styles.input}
-                maxLength={16}
-                {...register("oldPassword",userPassword)}
-              />
-              {errors?.oldPassword && (<span>{errors.oldPassword.message}</span> )}
-            </label>
-          </div>
-          <div className={styles.infoList}>
-            <label
-              className={styles.label}
-            >
-              <p>변경 비밀번호</p>
-              <input
-                type="password"
-                className={styles.input}
-                maxLength={16}
-                {...register("newPassword", userPassword)}
-              />
-              {errors?.newPassword && (<span>{errors.newPassword.message}</span> )}
-            </label>
-          </div>
-
-          <button
-            type='submit'
-            className={styles.btn}
-            disabled={isSubmitting}
-            >
-            변경
-          </button>
-        </form>
-      </div>
-    </div> 
-</section>
+          <label
+            className={styles.label}
+          >
+            <p>이메일</p>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder={userInfo.email}
+              autoComplete='off'
+              disabled
+            />
+          </label>
+        </div>
+        <div className={styles.infoList}>
+          <label
+            className={styles.label}
+          >
+            <p>이름</p>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder={userInfo.displayName}
+              autoComplete="off"
+              disabled
+            />
+          </label>
+        </div>
+        <div className={styles.infoList}>
+          <label
+            className={styles.label}
+          >
+          <p>기존 비밀번호</p>
+            <input
+              type="password"
+              className={styles.input}
+              maxLength={16}
+              autoComplete="current-password"
+              {...register("oldPassword",userPassword)}
+            />
+            {errors?.oldPassword && (<span>{errors.oldPassword.message}</span> )}
+          </label>
+        </div>
+        <div className={styles.infoList}>
+          <label
+            className={styles.label}
+          >
+            <p>변경 비밀번호</p>
+            <input
+              type="password"
+              className={styles.input}
+              maxLength={16}
+              autoComplete="new-password"
+              {...register("newPassword", userPassword)}
+            />
+            {errors?.newPassword && (<span>{errors.newPassword.message}</span> )}
+          </label>
+        </div>
+        <button
+          type='submit'
+          className={styles.btn}
+          disabled={isSubmitting}
+          >
+          변경
+        </button>
+      </form>
+    </section>
   )
 }
 

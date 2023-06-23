@@ -49,10 +49,9 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
   return !passwordConfirm ? (
     <section className={styles.myPageConfirm}>
       <div className={styles.wrapper}>
-        <div className={styles.inner}>
-          <div className={styles.title}>
+        <div className={styles.title}>
           <h2>개인 정보 수정</h2>
-          </div>
+        </div>
           <p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인해 주세요!</p>
           <form className={styles.form} onSubmit={handleSubmitPasswordConfirm}>
             <div className={styles.formWrap}>
@@ -69,8 +68,7 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
               </div>         
               <button type="submit" className={styles.btn}>확인</button>    
             </div>
-          </form>    
-        </div>
+          </form>
       </div>
     </section>
   ) : (
