@@ -36,11 +36,13 @@
       }
       .itemPrice {
         display: flex;
+        flex-direction: column;
+        
         .discountPrice {
-          text-decoration: line-through;
+          
         }
         .originalPrice {
-          
+          text-decoration: line-through;
         }
       }
     }
