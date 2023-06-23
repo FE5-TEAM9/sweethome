@@ -7,4 +7,4 @@ const cart = (state = [], action: any) => {
   }
 };
 
-export default cart
+export default cart;

@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getAllProducts } from '~/api/requests';
 import ProductItem from '~/components/Shop/ProductItem';
 import styles from '~/styles/Shop/Shop.module.scss'
+import { useDispatch } from 'react-redux';
 
 const Shop = () => {
   type ResponseValue = GetProduct[]
@@ -20,6 +22,7 @@ const Shop = () => {
   const [allProducts, setAllProducts] = useState<ResponseValue>([]);
   const [originalProducts, setOriginalProducts] = useState();
   const [click, setClick] = useState(false);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     spreadAllProducts();

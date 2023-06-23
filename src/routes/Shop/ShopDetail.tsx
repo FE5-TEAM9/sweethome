@@ -1,44 +1,43 @@
-import { getProduct } from '~/api/requests';
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import styles from '~/styles/Shop/ShopDetail.module.scss';
+import { getProduct } from "~/api/requests";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import styles from "~/styles/Shop/ShopDetail.module.scss";
 
 const ShopDetail = () => {
   interface GetProductValue {
-    id: string
-    title: string
-    price: number
-    description: string
-    tags: string[]
-    thumbnail: string | null
-    photo: string | null
-    isSoldOut: boolean
-    reservations: Reservation[]
-    discountRate: number
+    id: string;
+    title: string;
+    price: number;
+    description: string;
+    tags: string[];
+    thumbnail: string | null;
+    photo: string | null;
+    isSoldOut: boolean;
+    reservations: Reservation[];
+    discountRate: number;
   }
-  
+
   interface Reservation {
-    start: string // 예약 시작 시간
-    end: string // 예약 종료 시간
-    isCanceled: boolean // 예약 취소 여부
-    isExpired: boolean // 예약 만료 여부
+    start: string; // 예약 시작 시간
+    end: string; // 예약 종료 시간
+    isCanceled: boolean; // 예약 취소 여부
+    isExpired: boolean; // 예약 만료 여부
   }
-  
+
   const { id } = useParams();
   const navigate = useNavigate();
-  
-  const globalCart = useSelector(state => state.cart)
-  const dispatch = useDispatch()
+
+  const globalCart = useSelector(state => state.cart);
+  const dispatch = useDispatch();
 
   const [product, setProduct] = useState<GetProductValue>({});
   const [count, setCount] = useState(1);
   const [cart, setCart] = useState([]);
-  
 
   useEffect(() => {
     getProductHandler(id);
-  }, [])
+  }, []);
 
   // 단일 상품 조회
   const getProductHandler = async (id: string) => {
@@ -46,15 +45,15 @@ const ShopDetail = () => {
       const res = await getProduct(id);
       console.log("단일 상품 조회", res);
       setProduct(res);
-    } catch(error) {
-      console.log("단일 상품 조회 실패", error)
+    } catch (error) {
+      console.log("단일 상품 조회 실패", error);
     }
-  }
-  
+  };
+
   // 할인가격 계산
   const discountPrice = (productPrice: number, productDiscount: number) => {
-    return productPrice * ((100 - productDiscount) / 100)
-  }
+    return productPrice * ((100 - productDiscount) / 100);
+  };
 
   // 상품 수량 계산
   const productCountHandler = (type: String) => {
@@ -64,12 +63,12 @@ const ShopDetail = () => {
       if (count === 1) return;
       setCount(count - 1);
     }
-  }
+  };
 
   // 금액 단위 표시
   const convertPrice = (price: number) => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  };
 
   // 장바구니 중복 처리
   const cartDuplicationHandler = (id: string, quantity: number) => {
@@ -86,10 +85,18 @@ const ShopDetail = () => {
       photo: product.photo,
       isSoldOut: product.isSoldOut,
       reservations: product.reservations,
-      discountRate: product.discountRate
-    }
-    dispatch({type:"RETURN_CART", items: [...globalCart.slice(0, idx), cartItem, ...globalCart.slice(idx + 1)]})
-  }
+      discountRate: product.discountRate,
+      isChecked: false
+    };
+    dispatch({
+      type: "RETURN_CART",
+      items: [
+        ...globalCart.slice(0, idx),
+        cartItem,
+        ...globalCart.slice(idx + 1)
+      ]
+    });
+  };
 
   // 장바구니 핸들러
   const cartHandler = () => {
@@ -104,39 +111,42 @@ const ShopDetail = () => {
       photo: product.photo,
       isSoldOut: product.isSoldOut,
       reservations: product.reservations,
-      discountRate: product.discountRate
-    }
-    const found = globalCart.find(el => el.id === cartItem.id)
+      discountRate: product.discountRate,
+      isChecked: false
+    };
+    const found = globalCart.find(el => el.id === cartItem.id);
     if (found) {
-      cartDuplicationHandler(cartItem.id, found.quantity + count)
+      cartDuplicationHandler(cartItem.id, found.quantity + count);
     } else {
-      dispatch({type:"RETURN_CART", items:[...globalCart, cartItem]})
+      dispatch({ type: "RETURN_CART", items: [...globalCart, cartItem] });
     }
     confirm("장바구니를 확인하시겠습니까?");
-  }
-  console.log(globalCart)
-  // console.log(cart)
-  
+  };
+  console.log("globalCart", globalCart);
+
   return (
     <>
       <section className={styles.product}>
         <div className={styles.productImg}>
-          <img src={product.photo} alt={product.title} />
+          <img
+            src={product.photo}
+            alt={product.title}
+          />
         </div>
         <div className={styles.productInfo}>
           <div className={styles.productText}>
             <p className={styles.tags}>{product.tags}</p>
             <h2 className={styles.title}>{product.title}</h2>
             <p className={styles.discountPrice}>
-              {convertPrice(discountPrice(product.price, product.discountRate))}원
+              {convertPrice(discountPrice(product.price, product.discountRate))}
+              원
             </p>
             <div className={styles.price}>
-              <span className={styles.originalPrice}>{convertPrice(product.price)}원</span>
+              <span className={styles.originalPrice}>
+                {convertPrice(product.price)}원
+              </span>
               <span className={styles.discountRate}>
-                { product.discountRate
-                  ? `${product.discountRate}%`
-                  : ""
-                }
+                {product.discountRate ? `${product.discountRate}%` : ""}
               </span>
             </div>
             <p className={styles.description}>{product.description}</p>
@@ -161,9 +171,10 @@ const ShopDetail = () => {
               <p>총 금액</p>
               <span>
                 {product.discountRate !== 0
-                    ? convertPrice(discountPrice(product.price, product.discountRate) * count)
-                    : product.price * count
-                }
+                  ? convertPrice(
+                      discountPrice(product.price, product.discountRate) * count
+                    )
+                  : product.price * count}
                 원
               </span>
             </div>
@@ -186,7 +197,7 @@ const ShopDetail = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default ShopDetail;
