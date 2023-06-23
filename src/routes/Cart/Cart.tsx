@@ -1,12 +1,15 @@
 import { useState } from "react";
 import CartList from "~/components/Cart/CartList";
 import styles from "~/styles/Cart/Cart.module.scss";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-
+  const navigate = useNavigate();
+  const select = useSelector((state: any) => state.selectedCart);
   return (
     <>
       <section className={styles.cart}>
@@ -16,7 +19,7 @@ const Cart = () => {
           </div>
           <div className={styles.list_nav}>
             <div className={styles.list_nav_container}>
-              <input type="checkbox"/>
+              <input type="checkbox" />
               <div>상품 정보</div>
               <div>수량</div>
               <div>가격</div>
@@ -44,11 +47,13 @@ const Cart = () => {
               type="button"
               value="선택 상품 주문"
               className={`${styles.btn} ${styles.btn_selected}`}
+              onClick={() => navigate("/buy")}
             />
             <input
               type="button"
               value="전체 상품 주문"
               className={`${styles.btn} ${styles.btn_selectedAll}`}
+              onClick={() => navigate("/buy", { state: { select } })}
             />
           </div>
         </div>
