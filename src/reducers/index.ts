@@ -3,6 +3,7 @@ import { persistReducer } from "redux-persist";
 import info from "./info";
 import cart from "./cart";
 import logout from "./logout";
+import selectedCart from "./selectedCart";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   info,
   cart,
-  logout
+  logout,
+  selectedCart,
 });
 export default persistReducer(persistConfig, rootReducer);
