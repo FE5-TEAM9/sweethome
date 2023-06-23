@@ -78,11 +78,11 @@ const authenticate = async () => {
       }
     }
   );
-    if (res.status === 200) {
-      const json = await res.json();
-      console.log("로그인 인증 API", json);
-      return json;
-    } else return false;
+  if (res.status === 200) {
+    const json = await res.json();
+    console.log("로그인 인증 API", json);
+    return json;
+  } else return false;
 };
 
 // Users 사용자 목록
@@ -140,13 +140,14 @@ const getAllProducts = async () => {
       method: "GET",
       headers: {
         ...headers,
-        "masterKey": "true"
+        masterKey: "true"
       }
     }
   );
   const data = await res.json();
+
   console.log(data);
-  return data;
+  return data.map((data: any) => ({ ...data, isChecked: false }));
 };
 
 // Get-Product 단일 상품 조회
@@ -157,22 +158,22 @@ const getProduct = async (id: string) => {
       method: "GET",
       headers
     }
-  )
+  );
   const data = await res.json();
   console.log(data);
   return data;
-}
+};
 
 // Edit-Product 상품 수정
 interface EditProductBody {
-  title?: string
-  price?: number
-  description?: string
-  tags?: string[]
-  thumbnailBase64?: string
-  photoBase64?: string
-  isSoldOut?: boolean
-  discountRate?: number
+  title?: string;
+  price?: number;
+  description?: string;
+  tags?: string[];
+  thumbnailBase64?: string;
+  photoBase64?: string;
+  isSoldOut?: boolean;
+  discountRate?: number;
 }
 
 const editProduct = async (body: EditProductBody, id: string) => {
@@ -182,16 +183,15 @@ const editProduct = async (body: EditProductBody, id: string) => {
       method: "PUT",
       headers: {
         ...headers,
-        "masterKey": "true"
+        masterKey: "true"
       },
       body: JSON.stringify(body)
     }
-  )
+  );
   const data = await res.json();
   console.log(data);
   return data;
-}
-
+};
 
 // Delete-Product 상품 삭제
 const deleteProduct = async (id: string) => {
@@ -293,9 +293,9 @@ const linkAccount = async (body: linkAccountBody) => {
     }
   );
   if (res.status === 200) {
-  const data = await res.json();
-  console.log("개인정보수정 API", data);
-  return data;
+    const data = await res.json();
+    console.log("개인정보수정 API", data);
+    return data;
   } else return false;
 };
 
