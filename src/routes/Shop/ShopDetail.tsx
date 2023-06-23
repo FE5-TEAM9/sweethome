@@ -77,6 +77,7 @@ const ShopDetail = () => {
     const idx = globalCart.indexOf(found);
     const cartItem = {
       id: product.id,
+      title: product.title,
       price: product.price,
       quantity: quantity,
       description: product.description,
@@ -94,6 +95,7 @@ const ShopDetail = () => {
   const cartHandler = () => {
     const cartItem = {
       id: product.id,
+      title: product.title,
       price: product.price,
       quantity: count,
       description: product.description,
@@ -110,6 +112,7 @@ const ShopDetail = () => {
     } else {
       dispatch({type:"RETURN_CART", items:[...globalCart, cartItem]})
     }
+    confirm("장바구니를 확인하시겠습니까?");
   }
   console.log(globalCart)
   // console.log(cart)

@@ -83,8 +83,7 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
             </label>
             <label>
               <span>계좌 번호</span>
-              {bankList[bankIDX].digits.map((item, i) => {
-                return (
+              {bankList[bankIDX].digits.map((item, i) => (
                   <input
                     key={i} 
                     type='text'
@@ -94,11 +93,11 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                     maxLength={item}
                     />
                 )
-              })}
+              )}
             </label>
             <label>
               <span>전화 번호</span>
-              {[3, 4, 4].map((num, i) => { return (
+              {[3, 4, 4].map((num, i) => (
               <input
                 key={i} 
                 type='text' 
@@ -107,7 +106,7 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                 placeholder={`${num}자리`} 
                 maxLength={num} 
                 />
-                )})}
+                ))}
             </label>
           </div>
           <div className={styles.agreementCheck}>
