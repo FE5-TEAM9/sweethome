@@ -1,5 +1,5 @@
 import styles from '~/styles/Mypage/Account.module.scss'
-import { TiDeleteOutline } from 'react-icons/ti'
+import { SlClose } from 'react-icons/sl'
 import { deleteAccount } from '~/api/requests'
 import { useState } from 'react'
 
@@ -34,7 +34,7 @@ const Account = ({ item, watch, setWatch }) => {
           <p>{item.accountNumber}</p>
           <span>{`잔액: ${convertPrice(item.balance)}원`}</span>
         </div>
-        <TiDeleteOutline className={styles.deleteBtn} onClick={()=>deleteAcountHandler(item.id)} />
+        <SlClose className={styles.deleteBtn} onClick={()=>deleteAcountHandler(item.id)} />
       </div>
     </div>
   )

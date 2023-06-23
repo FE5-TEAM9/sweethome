@@ -1,0 +1,51 @@
+@import "../common/colors.scss";
+@import "../common/fonts.scss";
+
+.cartList {
+
+  .container {
+    margin: 40px 0 40px;
+    width: 100%;
+
+    .cartItem {
+      display: grid;
+      grid-template-columns: 0.5fr 1fr 2fr 0.5fr repeat(3, 1fr);
+      align-items: center;
+      margin: 16px 0 16px;
+      gap: 36px;
+      text-align: center;
+
+      .checkbox {
+
+      }
+      .itemImg {
+        img {
+          width: 100px;
+          height: auto;
+        }
+      }
+      .itemTitle {
+        span {
+
+        }
+      }
+      .itemQuantity {
+        span {
+
+        }
+      }
+      .itemPrice {
+        display: flex;
+        .discountPrice {
+          text-decoration: line-through;
+        }
+        .originalPrice {
+          
+        }
+      }
+    }
+  }
+
+
+
+}
