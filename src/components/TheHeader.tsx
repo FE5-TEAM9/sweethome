@@ -2,20 +2,22 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import styles from "~/styles/TheHeader.module.scss";
-import { logOut } from "~/api/requests"
+import { logOut } from "~/api/requests";
+import { useSelector, useDispatch } from "react-redux";
 
 const TheHeader = () => {
-
+  const logout = useSelector((state: any) => state.logout);
+  const dispatch = useDispatch();
   const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+    e.preventDefault();
+    dispatch({ type: "LOGOUT", state: true });
     try {
       const res = await logOut();
-      console.log('로그아웃 정보',res);
-
+      console.log("로그아웃 정보", res);
     } catch (err) {
-      console.log('로그아웃 오류', err)
+      console.log("로그아웃 오류", err);
     }
-  }
+  };
   return (
     <header>
       <div className={styles.container}>
@@ -51,15 +53,17 @@ const TheHeader = () => {
         </div>
         <div className={styles.subNav}>
           <div className={styles.user}>
-            <div className={styles.userLogin}>
-              <button 
-                type="button"
-                onClick={logOutHandler}
-                >LogOut</button>
-            </div>
-            <span className={styles.userLogin}>
-              <NavLink to="/login">Login</NavLink>
-            </span>
+            {logout ? (
+              <span className={styles.userLogin}>
+                <NavLink to="/login">Login</NavLink>
+              </span>
+            ) : (
+              <span
+                className={styles.userLogin}
+                onClick={logOutHandler}>
+                Logout
+              </span>
+            )}
             <span className={styles.userSignUp}>
               <NavLink to="/signup">Sign-Up</NavLink>
             </span>

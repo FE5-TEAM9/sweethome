@@ -1,5 +1,5 @@
-@import './common/colors.scss';
-@import './common/fonts.scss';
+@import "./common/colors.scss";
+@import "./common/fonts.scss";
 
 * {
   margin: 0;
@@ -15,7 +15,7 @@ header {
   align-items: center;
   width: 100vw;
   height: 100px;
-  border-bottom: solid .8px $base-color-gray;
+  border-bottom: solid 0.8px $base-color-gray;
 
   .container {
     position: relative;
@@ -32,7 +32,7 @@ header {
       font-family: $font-logo;
       font-size: $font-logo-size;
     }
-    
+
     .navbar {
       display: flex;
       flex-direction: row;
@@ -42,13 +42,13 @@ header {
       font-family: $font-nav;
       font-size: $font-nav-size;
       font-weight: $font-nav-weight;
-  
+
       ul {
         display: flex;
         justify-content: center;
         gap: 50px;
         list-style: none;
-  
+
         .menu {
           font-family: $font-nav;
           font-size: $font-nav-size;
@@ -60,19 +60,21 @@ header {
         }
       }
     }
-  
+
     .subNav {
       position: absolute;
       right: 0px;
       height: 70px;
       margin-right: 70px;
-  
+
       .user {
         font-family: $font-login;
         font-size: $font-login-size;
         font-weight: $font-login-weight;
         margin-bottom: 12px;
-
+        .userLogin {
+          cursor: pointer;
+        }
         .userSignUp {
           margin-left: 20px;
 
@@ -82,7 +84,7 @@ header {
           }
         }
       }
-  
+
       .icons {
         display: flex;
         justify-content: center;
@@ -103,4 +105,3 @@ header {
     }
   }
 }
-
