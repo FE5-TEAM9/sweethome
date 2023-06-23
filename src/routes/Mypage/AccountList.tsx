@@ -59,10 +59,11 @@ const checkAccountList = async () => {
             <div className={styles.title}>
               <h2>계좌 관리</h2>
             </div>
-            {accountList.accounts.length
-            ? (accountList.accounts.map((item)=> {
+            {accountList?.accounts.length > 0
+            ? (accountList.accounts.map((item, i)=> {
                 return (
-                  <Account 
+                  <Account
+                    key={i} 
                     item={item} 
                     watch={watch}
                     setWatch={setWatch}
