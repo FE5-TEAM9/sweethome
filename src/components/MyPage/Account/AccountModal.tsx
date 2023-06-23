@@ -90,6 +90,7 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                     type='text'
                     name={`input${i}`}
                     onChange={accountOnChangeHandler} 
+                    placeholder={`${item}자리`}
                     maxLength={item}
                     />
                 )
@@ -102,7 +103,8 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                 key={i} 
                 type='text' 
                 name={`phone${i}`} 
-                onChange={accountOnChangeHandler} 
+                onChange={accountOnChangeHandler}
+                placeholder={`${num}자리`} 
                 maxLength={num} 
                 />
                 )})}

@@ -12,7 +12,6 @@ interface RequestBody {
   newPassword?: string // 새로운 비밀번호
 }
 
-
 const MyInfo = () => {
   const [userInfo] = useOutletContext();
 
