@@ -10,7 +10,6 @@ const Login = () => {
   const user = useSelector((state: any) => state.info);
 
   const loginHandler = async (e: any) => {
-    dispatch({type:"LOGOUT",state:false})
     e.preventDefault();
 
     let body = {
@@ -21,6 +20,14 @@ const Login = () => {
     try {
       const res = await logIn(body);
       console.log("로그인 정보", res);
+      switch (res) {
+        case false:
+          dispatch({ type: "LOGOUT", state: false });
+          break;
+        default:
+          dispatch({ type: "LOGOUT", state: true });
+          break;
+      }
       dispatch({ type: "RETURN", account: res });
       console.log("user", user.user);
     } catch (err) {
