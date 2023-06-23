@@ -85,7 +85,8 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
               <span>계좌 번호</span>
               {bankList[bankIDX].digits.map((item, i) => {
                 return (
-                  <input 
+                  <input
+                    key={i} 
                     type='text'
                     name={`input${i}`}
                     onChange={accountOnChangeHandler} 
@@ -97,7 +98,8 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
             <label>
               <span>전화 번호</span>
               {[3, 4, 4].map((num, i) => { return (
-              <input 
+              <input
+                key={i} 
                 type='text' 
                 name={`phone${i}`} 
                 onChange={accountOnChangeHandler} 
