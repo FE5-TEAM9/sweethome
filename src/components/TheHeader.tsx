@@ -61,13 +61,15 @@ const TheHeader = () => {
                 Logout
               </span>
             ) : (
-              <span className={styles.userLogin}>
-                <NavLink to="/login">Login</NavLink>
-              </span>
+              <div>
+                <span className={styles.userLogin}>
+                  <NavLink to="/login">Login</NavLink>
+                </span>
+                <span className={styles.userSignUp}>
+                  <NavLink to="/signup">Sign-Up</NavLink>
+                </span>
+              </div>
             )}
-            <span className={styles.userSignUp}>
-              <NavLink to="/signup">Sign-Up</NavLink>
-            </span>
           </div>
           <div className={styles.icons}>
             <NavLink to="/mypage">
