@@ -6,13 +6,22 @@ const Cart = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-  
+
   return (
     <>
       <section className={styles.cart}>
         <div className={styles.container}>
           <div className={styles.title}>
             <h2>장바구니</h2>
+          </div>
+          <div className={styles.list_nav}>
+            <div className={styles.list_nav_container}>
+              <input type="checkbox"/>
+              <div>상품 정보</div>
+              <div>수량</div>
+              <div>가격</div>
+              <div>총 금액</div>
+            </div>
           </div>
           <div className={styles.list_container}>
             <CartList />
