@@ -72,7 +72,7 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
           )}
           </ul>
           { bankCode ? null : <p className={styles.guide}>은행을 선택해 주세요.</p>}
-        <div className={styles.infoWrap}>
+         <div className={styles.infoWrap}>
             <label>
               <span>은행 코드</span>
               <input 
@@ -105,7 +105,6 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                 />
                 )})}
             </label>
-
           </div>
           <div className={styles.agreementCheck}>
               <label htmlFor='signature'></label> 

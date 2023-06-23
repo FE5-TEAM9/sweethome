@@ -59,7 +59,7 @@ const checkAccountList = async () => {
             <div className={styles.title}>
               <h2>계좌 관리</h2>
             </div>
-            {Array.isArray(accountList.accounts)
+            {accountList.accounts.length
             ? (accountList.accounts.map((item)=> {
                 return (
                   <Account 
