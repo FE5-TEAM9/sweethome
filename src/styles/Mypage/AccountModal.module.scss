@@ -71,7 +71,8 @@
       font-size: 12px;
     }
     .infoWrap {
-      margin: 30px 0 10px 0;
+      margin: 30px 0 10px 50px;
+      width: 400px;
 
       label {
           display: flex;
@@ -84,7 +85,7 @@
             border-top: none;
             border-left: none;
             border-right: none;
-            border-bottom: 1px solid $base-color-gray;
+            border-bottom: 1px solid $base-color-black;
             outline-color: $point-color-mint;
           }
         }
