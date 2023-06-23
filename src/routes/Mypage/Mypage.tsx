@@ -75,9 +75,10 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
     </section>
   ) : (
     <>
-      <MyInfo/>
-        <hr />  
-      <AccountList/>
+      <div className={styles.mypage}>
+        <MyInfo/>
+        <AccountList/>
+      </div>
     </>
 
   );
