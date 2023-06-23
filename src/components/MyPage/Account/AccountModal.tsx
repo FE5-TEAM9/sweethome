@@ -2,34 +2,42 @@ import styles from '~/styles/Mypage/AccountModal.module.scss';
 import { useState } from 'react';
 import { linkAccount } from '~/api/requests'
 
+
 const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setShowModal }) => {
   const [bankCode, setBankCode] = useState('')
   const [isAgree, setIsAgree] = useState(false)
   const [bankIDX, setBankIDX] = useState(0)
-  const [bankDetails, setBankDetails] = useState({
-    bankCode: '',
-    accountNumber: '',
-    phoneNumber: ''
+  const [accuontInput, setAccuontInput] = useState({
+    input0: '',
+    input1: '',
+    input2: '',
+    input3: '',
+    sumAccountNum: function() {
+      return this.input0 + this.input1 + this.input2 + this.input3;
+    },
+    phone0: '',
+    phone1: '',
+    phone2: '',
+    sumPhoneNum: function() {
+      return this.phone0 + this.phone1 + this.phone2;
+    }
   })
 
-  const {accountNumber, phoneNumber} = bankDetails;
-
-  const onChangeHandler = (e) => {
-      const { value, name } = e.target;
-
-      setBankDetails({
-        ...bankDetails,
-        [name]: value
-      })
-  }
+  const accountOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setAccuontInput({
+      ...accuontInput,
+      [name]: value
+    })
+}
 
   // 계좌 등록
-  const enrollAccount = async (e) => {
+  const enrollAccount = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const body = {
       bankCode,
-      accountNumber,
-      phoneNumber,
+      accountNumber: accuontInput.sumAccountNum(),
+      phoneNumber: accuontInput.sumPhoneNum(),
       signature: isAgree,
     }
     const res = await linkAccount(body);
@@ -60,45 +68,43 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
             )
           )}
           </ul>
+          { bankCode ? null : <p className={styles.guide}>은행을 선택해 주세요.</p>}
         <div className={styles.infoWrap}>
-            <label className={styles.label}>
+            <label>
               <span>은행 코드</span>
               <input 
                 type='text'
                 name='bankCode'  
                 defaultValue={bankCode}
-                placeholder='은행을 선택해 주세요.'
                 autoFocus/>
             </label>
-            <label className={styles.label}>
+            <label>
               <span>계좌 번호</span>
-              <input 
-              type='text'
-              name='accountNumber'
-              value={accountNumber}
-              onChange={onChangeHandler}
-              placeholder='계좌번호를 입력해 주세요.'
-              />
-            </label>
-            <div className={styles.accountNumber}>
-              {bankList[bankIDX].digits.map((item) => {
+              {bankList[bankIDX].digits.map((item, i) => {
                 return (
-                  <input type='text' maxLength={item} />
+                  <input 
+                    type='text'
+                    name={`input${i}`}
+                    onChange={accountOnChangeHandler} 
+                    maxLength={item}
+                    />
                 )
               })}
-            </div>
-
+            </label>
             <label>
               <span>전화 번호</span>
+              {[3, 4, 4].map((num, i) => { return (
               <input 
-                type='text'
-                name='phoneNumber'
-                value={phoneNumber}
-                onChange={onChangeHandler}
-                placeholder='전화번호를 입력해 주세요.'
+                type='text' 
+                name={`phone${i}`} 
+                onChange={accountOnChangeHandler} 
+                maxLength={num} 
                 />
+                )})}
             </label>
-            <div className={styles.agreementCheck}>
+
+          </div>
+          <div className={styles.agreementCheck}>
               <label htmlFor='signature'></label> 
               <input 
                 type='checkbox'
@@ -108,7 +114,6 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
                 />
               <p>위 약관에 동의합니다.</p>
             </div>
-          </div>
           <div className={styles.btnWrap}>
             <button 
               className={styles.btn}
