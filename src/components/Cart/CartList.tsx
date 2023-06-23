@@ -1,37 +1,47 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import styles from '~/styles/Cart/CartList.module.scss';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import styles from "~/styles/Cart/CartList.module.scss";
 
 const CartList = () => {
-  const cart = useSelector(state => (state.cart));
-  const dispatch = useDispatch()
+  const cart = useSelector(state => state.cart);
+  const myCart = [...cart]
+  const dispatch = useDispatch();
   console.log(cart);
 
   // 할인가격 계산
   const discountPrice = (productPrice: number, productDiscount: number) => {
-    return productPrice * ((100 - productDiscount) / 100)
-  }
+    return productPrice * ((100 - productDiscount) / 100);
+  };
 
   // 금액 단위 표시
   const convertPrice = (price: number) => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  };
 
   // 장바구니 삭제
   const deleteCartItemHandler = (i: number) => {
-    cart.splice(i, 1);
-    dispatch({type:"RETURN_CART",items:cart})
-    return cart
-  }
-console.log(cart)
+    myCart.splice(i, 1)
+    dispatch({ type: "RETURN_CART", items: myCart});
+    return cart;
+  };
+  useEffect(() => {}, [cart]);
+  console.log(cart);
   return (
     <div className={styles.cartList}>
       <ul className={styles.container}>
-        {cart.map((item, i: number) => (
-          <li className={styles.cartItem} key={i}>
-            <input type="checkbox" className={styles.checkbox} />
+        {myCart.map((item, i: number) => (
+          <li
+            className={styles.cartItem}
+            key={i}>
+            <input
+              type="checkbox"
+              className={styles.checkbox}
+            />
             <div className={styles.itemImg}>
-              <img src={item.photo} alt={item.title} />
+              <img
+                src={item.photo}
+                alt={item.title}
+              />
             </div>
             <div className={styles.itemTitle}>
               <span>{item.title}</span>
@@ -42,9 +52,10 @@ console.log(cart)
             <div className={styles.itemPrice}>
               <span className={styles.discountPrice}>
                 {item.discountRate
-                  ? `${convertPrice(discountPrice(item.price, item.discountRate))}원`
-                  : ""
-                }
+                  ? `${convertPrice(
+                      discountPrice(item.price, item.discountRate)
+                    )}원`
+                  : ""}
               </span>
               <span className={styles.originalPrice}>
                 {convertPrice(item.price)}원
@@ -52,21 +63,22 @@ console.log(cart)
             </div>
             <div>
               {item.discountRate
-                ? convertPrice(discountPrice(item.price, item.discountRate) * item.quantity)
-                : convertPrice(item.price * item.quantity)
-              }원
+                ? convertPrice(
+                    discountPrice(item.price, item.discountRate) * item.quantity
+                  )
+                : convertPrice(item.price * item.quantity)}
+              원
             </div>
             <input
               type="button"
               value="삭제"
-              onClick={(e)=>deleteCartItemHandler(e,i)}
+              onClick={() => deleteCartItemHandler(i)}
             />
           </li>
         ))}
       </ul>
-
     </div>
-  )
-}
+  );
+};
 
-export default CartList
+export default CartList;
