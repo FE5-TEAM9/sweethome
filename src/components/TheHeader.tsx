@@ -10,7 +10,8 @@ const TheHeader = () => {
   const dispatch = useDispatch();
   const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch({ type: "LOGOUT", state: true });
+    dispatch({ type: "LOGOUT", state: false });
+    dispatch({ type: "RETURN", account: {} });
     try {
       const res = await logOut();
       console.log("로그아웃 정보", res);
@@ -54,14 +55,14 @@ const TheHeader = () => {
         <div className={styles.subNav}>
           <div className={styles.user}>
             {logout ? (
-              <span className={styles.userLogin}>
-                <NavLink to="/login">Login</NavLink>
-              </span>
-            ) : (
               <span
                 className={styles.userLogin}
                 onClick={logOutHandler}>
                 Logout
+              </span>
+            ) : (
+              <span className={styles.userLogin}>
+                <NavLink to="/login">Login</NavLink>
               </span>
             )}
             <span className={styles.userSignUp}>

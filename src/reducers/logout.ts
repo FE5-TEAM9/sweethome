@@ -1,4 +1,4 @@
-const logout = (state = false, action: any) => {
+const logout = (state = true, action: any) => {
   switch (action.type) {
     case "LOGOUT":
       return action.state;
