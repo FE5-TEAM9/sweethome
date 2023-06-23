@@ -10,6 +10,7 @@ const Login = () => {
   const user = useSelector((state: any) => state.info);
 
   const loginHandler = async (e: any) => {
+    dispatch({type:"LOGOUT",state:false})
     e.preventDefault();
 
     let body = {
