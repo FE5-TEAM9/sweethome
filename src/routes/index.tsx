@@ -1,61 +1,66 @@
-import { createBrowserRouter } from 'react-router-dom'
-import App from '~/App'
-import Home from '~/routes/Home/Home'
-import About from '~/routes/About/About'
-import Shop from '~/routes/Shop/Shop'
-import ShopDetail from '~/routes/Shop/ShopDetail'
-import Board from '~/routes/Board/Board'
-import Mypage from '~/routes/Mypage/Mypage'
-import Cart from '~/routes/Cart/Cart'
-import Login from '~/routes/Login/Login'
-import SignUp from '~/routes/SignUp/SignUp'
-import Admin from '~/routes/Admin/Admin'
+import { createBrowserRouter } from "react-router-dom";
+import App from "~/App";
+import Home from "~/routes/Home/Home";
+import About from "~/routes/About/About";
+import Shop from "~/routes/Shop/Shop";
+import ShopDetail from "~/routes/Shop/ShopDetail";
+import Board from "~/routes/Board/Board";
+import Mypage from "~/routes/Mypage/Mypage";
+import Cart from "~/routes/Cart/Cart";
+import Login from "~/routes/Login/Login";
+import SignUp from "~/routes/SignUp/SignUp";
+import Admin from "~/routes/Admin/Admin";
+import Buy from "~/routes/Buy/Buy";
 
 export default createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />
       },
       {
-        path: '/about',
+        path: "/about",
         element: <About />
       },
       {
-        path: '/shop',
+        path: "/shop",
         element: <Shop />
       },
       {
-        path: '/shop/:id',
+        path: "/shop/:id",
         element: <ShopDetail />
       },
       {
-        path: '/board',
+        path: "/board",
         element: <Board />
       },
       {
-        path: '/mypage',
+        path: "/mypage",
         element: <Mypage />
       },
       {
-        path: '/cart',
+        path: "/cart",
         element: <Cart />
       },
       {
-        path: '/login',
+        path: "/login",
         element: <Login />
       },
       {
-        path: '/signup',
+        path: "/signup",
         element: <SignUp />
       },
       {
-        path: '/admin',
+        path: "/admin",
         element: <Admin />
+      },
+      {
+        path: "/buy",
+        element: <Buy />
       }
     ]
   }
-])
+]);
