@@ -98,6 +98,7 @@ const MyInfo = () => {
               type="password"
               className={styles.input}
               maxLength={16}
+              autoComplete="off"
               {...register("oldPassword",userPassword)}
             />
             {errors?.oldPassword && (<span>{errors.oldPassword.message}</span> )}
@@ -112,6 +113,7 @@ const MyInfo = () => {
               type="password"
               className={styles.input}
               maxLength={16}
+              autoComplete="off"
               {...register("newPassword", userPassword)}
             />
             {errors?.newPassword && (<span>{errors.newPassword.message}</span> )}
