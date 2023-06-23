@@ -292,9 +292,11 @@ const linkAccount = async (body: linkAccountBody) => {
       body: JSON.stringify(body)
     }
   );
+  if (res.status === 200) {
   const data = await res.json();
   console.log("개인정보수정 API", data);
   return data;
+  } else return false;
 };
 
 // 계좌 해지

@@ -41,10 +41,13 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
       signature: isAgree,
     }
     const res = await linkAccount(body);
+    if (res) {
       console.log('계좌 연결 정보', res);
       alert('계좌가 연결되었습니다.');
       setShowModal(!showModal);
       setWatch(!watch)
+    } else alert('계좌 정보를 다시 확인해 주세요.')
+  
   }
 
   return (
