@@ -2,6 +2,7 @@ import { useLocation } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import styles from "~/styles/Buy/Buy.module.scss";
+
 const Buy = () => {
   const dispatch = useDispatch();
 
@@ -26,6 +27,7 @@ const Buy = () => {
     });
     return cart;
   };
+
   const checkedCartItemHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     item: any
@@ -37,7 +39,9 @@ const Buy = () => {
           items: mySelectedCart.filter(obj => obj.id !== item.id)
         });
   };
+
   const location = useLocation();
+  
   return (
     <>
       <div>This is Buy Page</div>

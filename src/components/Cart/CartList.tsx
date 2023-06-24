@@ -1,6 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
-import styles from "~/styles/Cart/CartList.module.scss";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { TfiClose } from "react-icons/tfi"
+import styles from "~/styles/Cart/CartList.module.scss";
+
+
 const CartList = () => {
   const cart = useSelector((state: any) => state.cart);
   const selectedCart = useSelector((state: any) => state.selectedCart);
@@ -44,6 +48,7 @@ const CartList = () => {
     dispatch({ type: "REFRESH" });
   }, []);
   console.log("selectedcart", selectedCart);
+
   return (
     <div className={styles.cartList}>
       <ul className={styles.container}>
@@ -56,12 +61,15 @@ const CartList = () => {
               className={styles.checkbox}
               onChange={e => checkedCartItemHandler(e, item)}
             />
-            <div className={styles.itemImg}>
-              <img
-                src={item.photo}
-                alt={item.title}
-              />
-            </div>
+            <Link to={`/shop/${item.id}`}>
+              <div className={styles.itemImg}>
+                <img
+                  src={item.photo}
+                  alt={item.title}
+                />
+              </div>
+            </Link>
+            
             <div className={styles.itemTitle}>
               <span>{item.title}</span>
             </div>
@@ -72,7 +80,7 @@ const CartList = () => {
               <span className={styles.discountPrice}>
                 {item.discountRate
                   ? `${convertPrice(
-                      discountPrice(item.price, item.discountRate)
+                      item.discountPrice
                     )}원`
                   : ""}
               </span>
@@ -80,19 +88,17 @@ const CartList = () => {
                 {convertPrice(item.price)}원
               </span>
             </div>
-            <div>
+            <div className={styles.totalPrice}>
               {item.discountRate
                 ? convertPrice(
-                    discountPrice(item.price, item.discountRate) * item.quantity
+                    item.discountPrice * item.quantity
                   )
                 : convertPrice(item.price * item.quantity)}
               원
             </div>
-            <input
-              type="button"
-              value="삭제"
-              onClick={() => deleteCartItemHandler(i, item)}
-            />
+            <div className={styles.deleteBtn}>
+              <TfiClose onClick={() => deleteCartItemHandler(i, item)} />
+            </div>
           </li>
         ))}
       </ul>

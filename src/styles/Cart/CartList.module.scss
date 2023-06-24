@@ -4,15 +4,19 @@
 .cartList {
 
   .container {
-    margin: 40px 0 40px;
     width: 100%;
+    
 
     .cartItem {
       display: grid;
-      grid-template-columns: 0.5fr 1fr 2fr 0.5fr repeat(3, 1fr);
+      grid-template-columns: 0.5fr 1fr 2fr 0.5fr repeat(2, 1fr) 0.5fr;
       align-items: center;
-      margin: 16px 0 16px;
-      gap: 36px;
+      min-width: 1000px;
+      max-width: 1440px;
+      padding: 20px 0 20px;
+      margin-bottom: 20px;
+      border: 1px solid $base-color-gray;
+      border-radius: 10px;
       text-align: center;
 
       .checkbox {
@@ -44,6 +48,22 @@
         .originalPrice {
           text-decoration: line-through;
         }
+      }
+      .deleteBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        svg {
+          path {
+            padding: 20px;
+            &:hover {
+              color: $point-color-red;
+            }
+          }
+        }
+        
       }
     }
   }
