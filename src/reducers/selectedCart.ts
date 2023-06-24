@@ -6,8 +6,10 @@ const selectedCart = (state = [], action: any) => {
       return action.items.isChecked ? [...state, action.items] : [...state];
     case "DELETE_SELECTED_CART":
       return action.items;
+    case "REFRESH":
+        return []
     default:
-      return state;
+      return state
   }
 };
 

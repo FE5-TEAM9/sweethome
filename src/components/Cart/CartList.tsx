@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import styles from "~/styles/Cart/CartList.module.scss";
-
+import { useEffect } from "react";
 const CartList = () => {
   const cart = useSelector((state: any) => state.cart);
   const selectedCart = useSelector((state: any) => state.selectedCart);
@@ -40,6 +40,9 @@ const CartList = () => {
           items: mySelectedCart.filter(obj => obj.id !== item.id)
         });
   };
+  useEffect(() => {
+    dispatch({ type: "REFRESH" });
+  }, []);
   console.log("selectedcart", selectedCart);
   return (
     <div className={styles.cartList}>
