@@ -10,6 +10,7 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
   const select = useSelector((state: any) => state.selectedCart);
+  const cart = useSelector((state: any) => state.cart);
   return (
     <>
       <section className={styles.cart}>
@@ -47,13 +48,13 @@ const Cart = () => {
               type="button"
               value="선택 상품 주문"
               className={`${styles.btn} ${styles.btn_selected}`}
-              onClick={() => navigate("/buy")}
+              onClick={() => navigate("/buy", { state: select })}
             />
             <input
               type="button"
               value="전체 상품 주문"
               className={`${styles.btn} ${styles.btn_selectedAll}`}
-              onClick={() => navigate("/buy", { state: { select } })}
+              onClick={() => navigate("/buy", { state: cart })}
             />
           </div>
         </div>
