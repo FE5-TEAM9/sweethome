@@ -64,6 +64,7 @@ const logOut = async () => {
   );
   const json = await res.json();
   console.log("로그아웃 API", json);
+  window.localStorage.clear();
 };
 
 // 로그인 인증

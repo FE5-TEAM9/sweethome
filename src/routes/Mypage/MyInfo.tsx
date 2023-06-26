@@ -1,19 +1,18 @@
 import styles from '~/styles/Mypage/MyInfo.module.scss'
 import { useForm } from 'react-hook-form'
 import { editInfo } from '~/api/requests'
-import { useOutletContext } from 'react-router-dom'
-import { off } from 'process'
-
+import { useSelector } from 'react-redux'
 
 interface RequestBody {
-  displayName?: string // 새로운 표시 이름
-  profileImgBase64?: string // 사용자 프로필 이미지(base64) - jpg, jpeg, webp, png, gif, svg
-  oldPassword?: string // 기존 비밀번호
-  newPassword?: string // 새로운 비밀번호
+  displayName?: string
+  profileImgBase64?: string
+  oldPassword?: string
+  newPassword?: string
 }
 
 const MyInfo = () => {
-  const [userInfo] = useOutletContext();
+  const user = useSelector(state => state.user)
+  console.log(user)
 
   const { 
     register, 
@@ -35,7 +34,7 @@ const MyInfo = () => {
       }
     }
 
-    const ChangePWHandeler = async({oldPassword, newPassword}) => {
+    const ChangePWHandeler = async({ oldPassword, newPassword }) => {
       if (oldPassword <= 8 || newPassword <= 8) return alert('비밀번호는 8자이상 입력해주세요.')
       const body = {
         oldPassword,
@@ -70,7 +69,7 @@ const MyInfo = () => {
             <input
               type="text"
               className={styles.input}
-              placeholder={userInfo.email}
+              placeholder={user.email}
               autoComplete='off'
               disabled
             />
@@ -84,7 +83,7 @@ const MyInfo = () => {
             <input
               type="text"
               className={styles.input}
-              placeholder={userInfo.displayName}
+              placeholder={user.displayName}
               autoComplete="off"
               disabled
             />

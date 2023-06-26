@@ -4,22 +4,23 @@ import { useEffect, useState } from 'react';
 import { logIn } from '~/api/requests'
 import MyInfo from "~/routes/Mypage/MyInfo"
 import AccountList from "~/routes/Mypage/AccountList"
-import { useOutletContext } from 'react-router-dom'
-
+import { useSelector } from 'react-redux';
 
 const MyPage = () => {
-const [userInfo] = useOutletContext();
+const user = useSelector(state => state.user)
 const navigate = useNavigate();
 const [password, setPassword] = useState('')
 const [passwordConfirm, setPasswordConfirm] = useState(false);
 
-// useEffect(()=>{
-//   localStorage.getItem('token')
-//   if (!localStorage.getItem('token')) {
-//     alert('잘못된 접근입니다.');
-//     navigate('/');
-//   }
-// },[])
+console.log(user)
+
+useEffect(() => {
+  localStorage.getItem('token')
+  if (!localStorage.getItem('token')) {
+    alert('잘못된 접근입니다.');
+    navigate('/login');
+  }
+},[])
 
 const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
   setPassword(e.target.value);
@@ -28,7 +29,7 @@ const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
   const body = {
-    email: userInfo.email,
+    email: user.email,
     password,
   };
 
@@ -74,7 +75,7 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
   ) : (
     <>
       <div className={styles.mypage}>
-        <MyInfo/>
+        <MyInfo />
         <AccountList/>
       </div>
     </>
