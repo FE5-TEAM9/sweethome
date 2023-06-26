@@ -3,12 +3,15 @@ import styles from '~/styles/Mypage/AccountList.module.scss'
 import Account from '../../components/MyPage/Account/Account'
 import AccountModal from '../../components/MyPage/Account/AccountModal'
 import { getBankList, getAccountList, linkAccount, deleteAccount } from '~/api/requests'
+import { useSelector, useDispatch } from 'react-redux'
 
 const AccountList = () => {
 const [showModal, setShowModal] = useState(false)
 const [bankList, setBankList] = useState([])
 const [accountList, setAccountList] = useState([])
 const [watch, setWatch] = useState(false)
+const account = useSelector(state => state.accountList)
+const dispatch = useDispatch();
 
 useEffect(() => {
   checkBankList();
@@ -20,7 +23,7 @@ const onFormCancel = () => {
   setShowModal(false);
 }
 
-//선택 가능한 은행 목록 조회
+// 선택 가능한 은행 목록 조회
 const checkBankList = async () => {
   try {
     const res = await getBankList();
@@ -32,11 +35,12 @@ const checkBankList = async () => {
   }
 }
 
-//등록된 계좌 조회
+// 등록된 계좌 조회
 const checkAccountList = async () => {
   try {
     const res = await getAccountList();
     setAccountList(res);
+    dispatch({ type: "GET_ACCOUNT_LIST", accountList: res })
     console.log('등록된 계좌 정보',res);
   } catch (error) {
     alert('계좌 정보 불러오는 데 실패하였습니다.')
