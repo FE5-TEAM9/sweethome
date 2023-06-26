@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from '~/styles/Mypage/AccountList.module.scss'
-import Account from '../../components/MyPage/Account/Account'
-import AccountModal from '../../components/MyPage/Account/AccountModal'
+import Account from '~/components/MyPage/Account/Account'
+import AccountModal from '~/components/MyPage/Account/AccountModal'
 import { getBankList, getAccountList, linkAccount, deleteAccount } from '~/api/requests'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -40,7 +40,7 @@ const checkAccountList = async () => {
   try {
     const res = await getAccountList();
     setAccountList(res);
-    dispatch({ type: "GET_ACCOUNT_LIST", accountList: res })
+    dispatch({ type: "GET_ACCOUNT_LIST", accountList: res });
     console.log('등록된 계좌 정보',res);
   } catch (error) {
     alert('계좌 정보 불러오는 데 실패하였습니다.')

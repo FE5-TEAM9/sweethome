@@ -1,26 +1,33 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
-import { useState } from "react";
-import { buyProduct } from '~/api/requests';
+import { useEffect, useState, useCallback, useMemo } from "react";
+import { buyProduct, getAccountList } from "~/api/requests";
 import styles from "~/styles/Buy/Buy.module.scss";
 
 const Buy = () => {
   const user = useSelector((state) => state.user);
-  const accountList = useSelector((state) => state.account);
-
-
   const [accountChecked, setAccountChecked] = useState(true);
   const [bankChecked, setBankChecked] = useState(false);
-  const [accountId, setAccountId] = useState('');
-
+  const [accountId, setAccountId] = useState("");
+  const [accountList, setAccountList] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // 할인가격 계산
-  // const discountPrice = (productPrice: number, productDicount: number) => {
-  //   return productPrice * ((100 - productDiscount) / 100);
-  // };
+  useEffect(() => {
+    getAccountData();
+  }, []);
+
+  const getAccountData = async () => {
+    try {
+      const res = await getAccountList();
+      console.log(res);
+      setAccountList(res);
+    } catch (err) {
+      alert("계좌정보 실패하였습니다.");
+    }
+  };
 
   // 금액 단위 표시
   const convertPrice = (price: number) => {
@@ -34,49 +41,70 @@ const Buy = () => {
   };
 
   const location = useLocation();
+  // dispatch({ type:"GET_BUYITEM", payload: location.state })
+  // const buy = useSelector((state:any)=>state.buyItem)
   const order = [...location.state];
   console.log(order);
 
-  const totalQuantity = order.reduce((acc, cur) => acc += cur.quantity, 0)
-  const totalProductPrice = order.reduce((acc, cur) => acc += cur.discountPrice, 0)
+  const totalQuantity = order.reduce((acc, cur) => (acc += cur.quantity), 0);
+  const totalProductPrice = order.reduce(
+    (acc, cur) => (acc += cur.discountPrice * cur.quantity),
+    0
+  );
   const totalPrice = totalProductPrice + 3500;
 
   // 상품 거래 신청 핸들러
   interface orderApplyBody {
-    productId: string
-    accountId: string
+    productId: string;
+    accountId: string;
     reservation?: {
-      start: string
-      end: string
-    }
+      start: string;
+      end: string;
+    };
   }
-  
-  const orderApplyHandler = async(e: React.MouseEvent<HTMLInputElement>, order, accountId) => {
+
+  const orderApplyHandler = async (
+    e: React.MouseEvent<HTMLInputElement>,
+    order,
+    accountId
+  ) => {
     e.preventDefault();
     try {
-      order.map( async(item: any) => {
+      order.map(async (item: any) => {
         const body: orderApplyBody = {
           productId: item.id,
           accountId,
         };
-        let quantity = item.quantity
-        console.log("quantity", quantity)
+        await buyProduct(body);
+        console.log("결제할 상품 id", item.id);
+        let quantity = item.quantity;
+        console.log("quantity", quantity);
         if (quantity) {
-          while(quantity > 0) {
+          while (quantity > 0) {
             await buyProduct(body);
             quantity--;
           }
         }
-        console.log(accountId);
+        console.log("결제할 계좌", accountId);
       });
-    } catch (err) {
-      alert('결제 실패하였습니다.');
-    } finally {
-      // order.map((item: any) => {
-      //   dispatch({ type: "DELETE_ITEMS", items: item.id })
-      // })
+      if (confirm("결제가 완료되었습니다.\n주문 내역을 확인하시겠습니까?")) {
+        navigate("/mypage");
+      } else {
+        return;
+      }
+      order.map((item: any) => {
+        dispatch({ type: "GETBUYITEM", items: item.id });
+      });
+    } catch (error) {
+      console.log("결제 실패", error);
+      alert("상품 주문에 실패했습니다.");
     }
-  }
+  };
+
+  //
+  // const handler = {}
+
+  // }
 
   return (
     <>
@@ -120,10 +148,7 @@ const Buy = () => {
                         : `${convertPrice(item.price)}원`}
                     </span>
                     <span className={styles.originalPrice}>
-                      {item.discountRate
-                        ? `${convertPrice(item.price)}원`
-                        : ""
-                      }
+                      {item.discountRate ? `${convertPrice(item.price)}원` : ""}
                     </span>
                   </div>
                   <div className={styles.totalPrice}>
@@ -197,11 +222,11 @@ const Buy = () => {
               {accountChecked ? (
                 <div className={styles.account}>
                   {accountList.accounts?.map((account) => (
-                    <div 
-                      key={account.id} 
+                    <div
+                      key={account.id}
                       className={styles.account_info}
-                      onClick={()=> setAccountId(account.id)}
-                      >
+                      onClick={() => setAccountId(account.id)}
+                    >
                       <div>{account.bankName}</div>
                       <div>{account.accountNumber}</div>
                       <div>잔액: {convertPrice(account.balance)}원</div>
@@ -219,27 +244,16 @@ const Buy = () => {
           </div>
 
           <div className={styles.payment_details}>
-            <h4>결제 상세</h4>
+            <h4>최종 결제 금액</h4>
             <div className={styles.details_container}>
-              <strong>주문금액</strong>
-              <p>35,000원</p>
-              <div className={styles.plus}>
-                <FaPlus />
-              </div>
-              <strong>배송비</strong>
-              <p>3,500원</p>
-              <div className={styles.equal}>
-                <FaEquals />
-              </div>
-              <strong>결제금액</strong>
-              <p>35,000원</p>
+              <p>₩{convertPrice(totalPrice)}</p>
             </div>
           </div>
         </div>
         <div className={styles.payment_btn}>
-          <input 
-            type="button" 
-            value="결제하기" 
+          <input
+            type="button"
+            value="결제하기"
             className={styles.btn}
             onClick={(e) => orderApplyHandler(e, order, accountId)}
           />

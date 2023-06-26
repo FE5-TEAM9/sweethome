@@ -2,8 +2,10 @@ import styles from '~/styles/Mypage/Mypage.module.scss'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { logIn } from '~/api/requests'
+import SubNav from '~/components/common/SubNav';
 import MyInfo from "~/routes/Mypage/MyInfo"
 import AccountList from "~/routes/Mypage/AccountList"
+import Transactions from '~/routes/Mypage/Transactions';
 import { useSelector } from 'react-redux';
 
 const MyPage = () => {
@@ -12,7 +14,8 @@ const navigate = useNavigate();
 const [password, setPassword] = useState('')
 const [passwordConfirm, setPasswordConfirm] = useState(false);
 
-console.log(user)
+const subNav: string[]  = ["개인 정보 관리", "계좌 정보 관리", "주문 내역 관리"];
+const [category, setCategory] = useState('');
 
 useEffect(() => {
   localStorage.getItem('token')
@@ -75,8 +78,10 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
   ) : (
     <>
       <div className={styles.mypage}>
-        <MyInfo />
-        <AccountList/>
+        <SubNav subNav={subNav} setCategory={setCategory} />
+        {(category === "개인 정보 관리" || category === "" ) && <MyInfo />}
+        {category === "계좌 정보 관리" && <AccountList/>}
+        {category === "주문 내역 관리" && <Transactions />}
       </div>
     </>
 
