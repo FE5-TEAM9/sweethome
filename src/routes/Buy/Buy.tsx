@@ -3,12 +3,19 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
 import { useState } from "react";
+import { buyProduct } from '~/api/requests';
 import styles from "~/styles/Buy/Buy.module.scss";
 
 const Buy = () => {
+  const user = useSelector((state) => state.user);
   const accountList = useSelector((state) => state.account);
+
+
   const [accountChecked, setAccountChecked] = useState(true);
   const [bankChecked, setBankChecked] = useState(false);
+  const [accountId, setAccountId] = useState('');
+
+  const dispatch = useDispatch();
 
   // 할인가격 계산
   // const discountPrice = (productPrice: number, productDicount: number) => {
@@ -27,6 +34,49 @@ const Buy = () => {
   };
 
   const location = useLocation();
+  const order = [...location.state];
+  console.log(order);
+
+  const totalQuantity = order.reduce((acc, cur) => acc += cur.quantity, 0)
+  const totalProductPrice = order.reduce((acc, cur) => acc += cur.discountPrice, 0)
+  const totalPrice = totalProductPrice + 3500;
+
+  // 상품 거래 신청 핸들러
+  interface orderApplyBody {
+    productId: string
+    accountId: string
+    reservation?: {
+      start: string
+      end: string
+    }
+  }
+  
+  const orderApplyHandler = async(e: React.MouseEvent<HTMLInputElement>, order, accountId) => {
+    e.preventDefault();
+    try {
+      order.map( async(item: any) => {
+        const body: orderApplyBody = {
+          productId: item.id,
+          accountId,
+        };
+        let quantity = item.quantity
+        console.log("quantity", quantity)
+        if (quantity) {
+          while(quantity > 0) {
+            await buyProduct(body);
+            quantity--;
+          }
+        }
+        console.log(accountId);
+      });
+    } catch (err) {
+      alert('결제 실패하였습니다.');
+    } finally {
+      // order.map((item: any) => {
+      //   dispatch({ type: "DELETE_ITEMS", items: item.id })
+      // })
+    }
+  }
 
   return (
     <>
@@ -49,7 +99,7 @@ const Buy = () => {
 
           <div className={styles.buyList}>
             <ul className={styles.container}>
-              {location.state.map((item, i: number) => (
+              {order.map((item, i: number) => (
                 <li className={styles.cartItem} key={i}>
                   <Link to={`/shop/${item.id}`}>
                     <div className={styles.itemImg}>
@@ -67,10 +117,13 @@ const Buy = () => {
                     <span className={styles.discountPrice}>
                       {item.discountRate
                         ? `${convertPrice(item.discountPrice)}원`
-                        : ""}
+                        : `${convertPrice(item.price)}원`}
                     </span>
                     <span className={styles.originalPrice}>
-                      {convertPrice(item.price)}원
+                      {item.discountRate
+                        ? `${convertPrice(item.price)}원`
+                        : ""
+                      }
                     </span>
                   </div>
                   <div className={styles.totalPrice}>
@@ -86,8 +139,8 @@ const Buy = () => {
 
           <div className={styles.total_price}>
             <div className={styles.total_price_container}>
-              <strong>총 개의 상품</strong>
-              <span>₩{}</span>
+              <strong>총 {totalQuantity}개의 상품</strong>
+              <span>₩{convertPrice(totalProductPrice)}</span>
               <div className={styles.plus}>
                 <FaPlus />
               </div>
@@ -97,7 +150,7 @@ const Buy = () => {
                 <FaEquals />
               </div>
               <strong>합계</strong>
-              <span>₩{}</span>
+              <span>₩{convertPrice(totalPrice)}</span>
             </div>
           </div>
 
@@ -106,11 +159,11 @@ const Buy = () => {
             <div className={styles.customer_container}>
               <div className={styles.name}>
                 <span>주문자명:</span>
-                <span>홍길동</span>
+                <span>{user.displayName}</span>
               </div>
               <div className={styles.email}>
                 <span>이메일:</span>
-                <span>test@test.com</span>
+                <span>{user.email}</span>
               </div>
             </div>
           </div>
@@ -128,7 +181,7 @@ const Buy = () => {
                     checked={accountChecked}
                     onChange={() => radioBtnHandler()}
                   />
-                  가상 계좌
+                  &nbsp;가상 계좌
                 </label>
                 <label>
                   <input
@@ -138,16 +191,20 @@ const Buy = () => {
                     checked={bankChecked}
                     onChange={() => radioBtnHandler()}
                   />
-                  무통장 입금
+                  &nbsp;무통장 입금
                 </label>
               </div>
               {accountChecked ? (
                 <div className={styles.account}>
                   {accountList.accounts?.map((account) => (
-                    <div key={account.id} className={styles.account_info}>
+                    <div 
+                      key={account.id} 
+                      className={styles.account_info}
+                      onClick={()=> setAccountId(account.id)}
+                      >
                       <div>{account.bankName}</div>
                       <div>{account.accountNumber}</div>
-                      <div>잔액: {account.balance}</div>
+                      <div>잔액: {convertPrice(account.balance)}원</div>
                     </div>
                   ))}
                 </div>
@@ -180,7 +237,12 @@ const Buy = () => {
           </div>
         </div>
         <div className={styles.payment_btn}>
-          <input type="button" value="결제하기" className={styles.btn} />
+          <input 
+            type="button" 
+            value="결제하기" 
+            className={styles.btn}
+            onClick={(e) => orderApplyHandler(e, order, accountId)}
+          />
         </div>
       </div>
     </>
