@@ -5,12 +5,13 @@ import cart from "./cart";
 import logout from "./logout";
 import selectedCart from "./selectedCart";
 import account from "./account";
+import user from "./user"
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
   key: "root",
   storage,
-  whiteList: ["info", "cart", "logout", "selectedCart", "account"]
+  whiteList: ["info", "cart", "logout", "selectedCart", "account","user"]
 };
 
 const rootReducer = combineReducers({
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   cart,
   logout,
   selectedCart,
-  account
+  account,
+  user
 });
 
 export default persistReducer(persistConfig, rootReducer);

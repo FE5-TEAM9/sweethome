@@ -64,6 +64,7 @@ const logOut = async () => {
   );
   const json = await res.json();
   console.log("로그아웃 API", json);
+  window.localStorage.clear();
 };
 
 // 로그인 인증
@@ -324,20 +325,25 @@ const deleteAccount = async (body: DeleteAccountBody) => {
 };
 
 // 상품 거래 신청 (구매)
-const buyProduct = async () => {
+const buyProduct = async (body) => {
   try {
-    await fetch(
+    const res = await fetch(
       'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy',
       {
         method: 'POST',
         headers: {
           ...headers,
           Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
+        },
+        body: JSON.stringify(body)
       }
-    ) 
+    )
+    if (res.status === 200) {
+      console.log("결제 성공", res)
+    } else return res.status
+    
   } catch (error) {
-    console.log("구매 실패", error);
+    console.log("결제 실패", error);
   }
 }
 
@@ -356,5 +362,6 @@ export {
   getBankList,
   getAccountList,
   linkAccount,
-  deleteAccount
+  deleteAccount,
+  buyProduct
 };
