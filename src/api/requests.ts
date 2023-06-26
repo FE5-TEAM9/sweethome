@@ -11,6 +11,11 @@ interface User {
   password: string;
 }
 
+// Transactions Interface
+interface TransactionsBody {
+  detailId: string
+}
+
 // Sign-Up 회원가입
 interface SignUpBody extends User {
   displayName: string;
@@ -347,6 +352,83 @@ const buyProduct = async (body) => {
   }
 }
 
+// 상품 거래 취소
+const cancelTransaction = async (body: TransactionsBody) => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel",
+    {
+      method: "POST",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(body)
+    }
+  );
+  if (res.status === 200) {
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } else return res.status
+}
+
+// 상품 거래 확정
+const confirmedTransaction = async (body: TransactionsBody) => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok",
+    {
+      method: "POST",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(body)
+    }
+  );
+  console.log("여기", body);
+  if (res.status === 200) {
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } else return res.status
+}
+
+// 전체 거래 내역
+const getAllTransactions = async () => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details",
+    {
+      method: "GET",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    }
+  );
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
+
+// 단일 거래 내역
+const getTransaction = async (body: TransactionsBody) => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/detail",
+    {
+      method: "POST",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(body)
+    }
+  );
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
+
 export {
   signUp,
   logIn,
@@ -363,5 +445,9 @@ export {
   getAccountList,
   linkAccount,
   deleteAccount,
-  buyProduct
+  buyProduct,
+  cancelTransaction,
+  confirmedTransaction,
+  getAllTransactions,
+  getTransaction
 };

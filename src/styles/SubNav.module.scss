@@ -1,0 +1,27 @@
+@import './common/colors.scss';
+@import './common/fonts.scss';
+
+.subnav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border-bottom: 1px solid $base-color-gray;
+  background-color: $base-color-lightgray;
+  font-family: "Pretendard";
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    max-width: 1440px;
+    gap: 50px;
+
+    .category {
+      span {
+
+      }
+    }
+  }
+}
