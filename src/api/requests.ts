@@ -238,7 +238,7 @@ const editInfo = async (body: EditInfoBody) => {
   } else return false;
 };
 
-//선택 가능한 은행 목록 조회
+// 선택 가능한 은행 목록 조회
 const getBankList = async () => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks",
@@ -255,7 +255,7 @@ const getBankList = async () => {
   return data;
 };
 
-//계좌 목록 및 잔액 조회
+// 계좌 목록 및 잔액 조회
 const getAccountList = async () => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
@@ -322,6 +322,24 @@ const deleteAccount = async (body: DeleteAccountBody) => {
     console.log("상품 삭제 error", error);
   }
 };
+
+// 상품 거래 신청 (구매)
+const buyProduct = async () => {
+  try {
+    await fetch(
+      'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy',
+      {
+        method: 'POST',
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      }
+    ) 
+  } catch (error) {
+    console.log("구매 실패", error);
+  }
+}
 
 export {
   signUp,

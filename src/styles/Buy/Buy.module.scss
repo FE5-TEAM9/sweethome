@@ -1,45 +1,269 @@
 @import "../common/colors.scss";
 @import "../common/fonts.scss";
 
-.buyList {
+
+.buy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - (100px + 150px));
+  margin: 0 auto;
+  font-family: "Pretendard";
+  color: $font-color;
+
+h4 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 10px 10px;
+
+}
+
   .container {
-    margin: 40px 0 40px;
-    width: 100%;
+    min-width: 1000px;
+    max-width: 1440px;
+    margin: 20px 0;
 
-    .buyItem {
-      display: grid;
-      grid-template-columns: 0.5fr 1fr 2fr 0.5fr repeat(3, 1fr);
-      align-items: center;
-      margin: 16px 0 16px;
-      gap: 36px;
-      text-align: center;
+    .title {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
 
-      .checkbox {
+      h2 {
+        font-size: 24px;
+        font-weight: 700;
       }
-      .itemImg {
-        img {
-          width: 100px;
-          height: auto;
-        }
-      }
-      .itemTitle {
-        span {
-        }
-      }
-      .itemQuantity {
-        span {
-        }
-      }
-      .itemPrice {
-        display: flex;
-        flex-direction: column;
+    }
 
-        .discountPrice {
+    .list_nav {
+
+      .list_nav_container {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 1fr 2fr repeat(3, 1fr);
+        width: 100%;
+        height: 60px;
+        background-color: $base-color-lightgray;
+        border-radius: 10px;
+        font-family: "Pretendard";
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+
+    .buyList {
+      .container {
+        width: 100%;
         }
-        .originalPrice {
-          text-decoration: line-through;
+
+        .cartItem {
+          display: grid;
+          grid-template-columns: 1fr 2fr repeat(3, 1fr);
+          align-items: center;
+          min-width: 1000px;
+          max-width: 1440px;
+          padding: 20px 0 20px;
+          margin-bottom: 20px;
+          border: 1px solid $base-color-gray;
+          border-radius: 10px;
+          text-align: center;
+
+          .checkbox {
+          }
+          .itemImg {
+            img {
+              width: 100px;
+              height: auto;
+            }
+          }
+          .itemTitle {
+            span {
+            }
+          }
+          .itemQuantity {
+            span {
+            }
+          }
+          .itemPrice {
+            display: flex;
+            flex-direction: column;
+
+            .discountPrice {
+            }
+            .originalPrice {
+              text-decoration: line-through;
+            }
+          }
+          .totalPrice {
+
+          }
+
+          .deleteBtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            svg {
+              path {
+                padding: 20px;
+                &:hover {
+                  color: $point-color-red;
+                }
+              }
+            }
+          }
         }
       }
     }
+
+    .total_price {
+      background-color: $base-color-lightgray;
+      border-radius: 10px;
+      height: 100px;
+      margin-bottom: 30px;
+
+      .total_price_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 18px;
+        gap: 6px;
+
+        strong {
+          font-weight: 600;
+        }
+
+        .plus,
+        .equal {
+          svg {
+            path {
+              color: $point-color-mint;
+            }
+          }
+          margin: 0 8px 0;
+        }
+      }
+    }
+
+    .customer {
+      margin-bottom: 30px;
+
+      .customer_container {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        height: 60px;
+        border: 1px solid $base-color-gray;
+        border-radius: 10px;
+        font-family: "Pretendard";
+        font-weight: 600;
+        text-align: center;
+
+        .name {
+          span {
+            margin-left: 10px;
+          }
+        }
+        .email {
+          span {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    .credit {
+      margin-bottom: 30px;
+      .credit_container {
+        padding: 30px 70px;
+        border: 1px solid $base-color-gray;
+        border-radius: 10px;
+
+        .select {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          margin-bottom: 20px;
+          p {
+            font-weight: 600;
+          }
+          
+        }
+
+        .account {
+          
+          .account_info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+            align-items: center;
+            height: 50px;
+            border: 1px solid $base-color-gray;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            &:hover {
+              
+              border: 2px solid $point-color-mint;
+            }
+          }
+        }
+        .bank {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          height: 50px;
+          background-color: $base-color-lightgray;
+          border: 1px solid $base-color-gray;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    .payment_details {
+      .details_container {
+        display: flex;
+        justify-content: center;
+        border: 1px solid $base-color-gray;
+        border-radius: 10px;
+        padding: 30px;
+        font-size: 18px;
+        gap: 6px;
+
+        strong {
+          font-weight: 600;
+        }
+
+
+        .plus,
+        .equal {
+          svg {
+            path {
+              color: $point-color-mint;
+            }
+          }
+          margin: 0 8px 0;
+        }        
+      }
+    }
+    .payment_btn {
+      margin: 30px 0;
+
+      .btn {      
+        width: 430px;
+        height: 50px;
+        border-radius: 10px;
+        border-style: none;
+        color: $base-color-white;
+        background-color: $base-color-black;
+        cursor: pointer;
+      }
+    }
+
   }
-}
+
