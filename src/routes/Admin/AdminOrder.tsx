@@ -6,6 +6,8 @@ import { convertDate, sortDate, convertPrice } from "~/utils/convert"
 
 const AdminOrder = () => {
   const [allList, setAllList] = useState([]);
+  const [isCanceled, setIsCanceled] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() =>{
@@ -23,19 +25,28 @@ const AdminOrder = () => {
     }
   }
   
+  console.log('sort거래내역',allList)
   // 거래 완료/취소
-  const adminTransactionsHandler = async (e: React.MouseEvent<HTMLInputElement>, id, cancel, isdone) => {
+  const adminTransactionsHandler = async (e: React.MouseEvent<HTMLInputElement>, detailId) => {
     e.preventDefault();
-    const body = {
-      isCanCeled: cancel,
-      done: isdone
-    }
+    setIsLoading(true);
+
+    const id = e.currentTarget.id;
     try {
-      const res = await adminTransactions(id, body);
-      console.log('거래 완료/취소 성공', res);
+      if (id === 'canceled') {
+        const res = await adminTransactions(detailId, { isCanceled: !isCanceled });
+        setIsCanceled(!isCanceled)
+        console.log('구매취소 성공', res);
+      } else {
+        const res = await adminTransactions(detailId, { done: !isDone });
+        setIsDone(!isDone)
+        console.log('구매확정 성공', res);
+      }
+
     } catch (error) {
       console.log("거래 완료/취소 실패", error);
     }
+    setIsLoading(false);
       
   }
   
@@ -95,37 +106,28 @@ const AdminOrder = () => {
                     {list.done ? "O" : "X"}
                   </div>
                   <div className={styles.listBtn}>
-                    {list.done
+                    {list.isCanceled
                       ? null
                       : 
                       <input
                         type="button"
                         value="구매취소"
                         className={styles.cancleBtn}
-                        onClick={(e) => {
-                          adminTransactionsHandler(e, list.detailId, list.isCanCeled);
-                        }}
+                        id="canceled"
+                        onClick={(e)=>adminTransactionsHandler(e, list.detailId)}
                       />
                     }
-                    {list?.done 
+                    {list.done 
                       ? null
                       : 
                       <input
                         type="button"
                         value="구매확정"
                         className={styles.confirmBtn}
-                        onClick={(e) => adminTransactionsHandler(e, list.detailId);}
+                        id="done"
+                        onClick={(e)=>adminTransactionsHandler(e, list.detailId)}
                         disabled={list.done ? true : false}/>
                     }
-                    {/* <input
-                      type="button"
-                      value="상세정보"
-                      className={styles.confirmBtn}
-                      onClick={(e) => {
-                        console.log(list.detailId);
-                        showDetailsHandler(e, list.detailId);
-                      }}
-                    /> */}
                   </div>
                 </li>
               ))}
