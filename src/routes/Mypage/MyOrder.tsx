@@ -3,46 +3,95 @@ import {
   cancelTransaction,
   confirmedTransaction,
   getAllTransactions,
-  getTransaction
+  getTransaction,
 } from "~/api/requests";
 import { useEffect, useState } from "react";
-import { convertPrice } from "~/utils/convert";
+import { convertPrice, convertDate, sortDate } from "~/utils/convert";
 import MyOrderDetails from "./MyOrderDetails";
 import Loading from "~/components/common/Loading";
 
-
 const MyOrder = () => {
   const [allList, setAllList] = useState([]);
-  const [isDone, setIsDone] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  const [detailId, setDetailId] = useState("");
   const [orderDetails, setOrderDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [watch, setWatch] = useState(false);
+
+  const example = [...allList];
 
   useEffect(() => {
     allTransactions();
-  }, []);
+  }, [watch]);
 
   // 전체 내역
   const allTransactions = async () => {
     setIsLoading(true);
     try {
       const allRes = await getAllTransactions();
-      setAllList(allRes);
-      console.log(allRes);
+
+      setAllList(
+        allRes
+          .filter((res) => !res.isCanceled)
+          .sort((a, b) => sortDate(b.timePaid) - sortDate(a.timePaid))
+      );
+      console.log(allList);
     } catch (error) {
       console.log("전체 거래내역 조회 실패", Error);
     } finally {
       setIsLoading(false);
     }
-
   };
-  
-  // 단일 상품 상세
-  const showDetailsHandler = async (e: React.MouseEvent<HTMLInputElement>) => {
+
+  // 구매 취소
+  const cancelHandler = async (
+    e: React.MouseEvent<HTMLInputElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const body = { detailId: id };
+      const res = await cancelTransaction(body);
+      if (res) {
+        alert("구매 취소되었습니다.");
+        setWatch(!watch)
+        console.log("구매취소", res);
+      } else {
+        alert("구매 확정된 상품을 취소할 수 없습니다.");
+      }
+    } catch (error) {
+      console.log("구매취소 실패", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 구매 확정
+  const confirmHandler = async (
+    e: React.MouseEvent<HTMLInputElement>,
+    Id: string
+  ) => {
     e.preventDefault();
     try {
-      const body = { detailId };
+      const body = { detailId: Id };
+      const res = await confirmedTransaction(body);
+      if (res) {
+        setWatch(!watch)
+        console.log("구매확정", res);
+      }
+    } catch (error) {
+      console.log("구매확정 실패", error);
+    }
+  };
+
+  // 단일 상품 상세
+  const showDetailsHandler = async (
+    e: React.MouseEvent<HTMLInputElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    try {
+      const body = { detailId: id };
       const res = await getTransaction(body);
       setOrderDetails(res);
       console.log("단일상품상세 성공", res);
@@ -52,43 +101,9 @@ const MyOrder = () => {
     }
   };
 
-  // 구매 취소
-  const cancleHandler = async (e: React.MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      const body = { detailId };
-      const res = await cancelTransaction(body);
-      console.log("구매취소", res);
-      const updateTransaction = allList.filter(
-        item => item.detailId !== detailId
-      );
-      setAllList(updateTransaction);
-    } catch (error) {
-      console.log("구매취소 실패", error);
-    } finally {
-    setIsLoading(false);
-    }
-  };
-
-  // 구매 확정
-  const confirmHandler = async (e: React.MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    try {
-      const body = { detailId };
-      const res = await confirmedTransaction(body);
-      console.log("구매확정", res);
-      // const updateTransaction = allList
-      // setAllList(updateTransaction);
-    } catch (error) {
-      console.log("구매확정 실패", error);
-    }
-  };
-
   return (
     <>
-    {isLoading ? <Loading /> : null}
+      {isLoading ? <Loading /> : null}
       {showDetails ? (
         <MyOrderDetails
           setShowDetails={setShowDetails}
@@ -116,10 +131,7 @@ const MyOrder = () => {
           <div className={styles.content}>
             <ul className={styles.allList}>
               {allList.map((list, i) => (
-                <li
-                  className={styles.list}
-                  key={list.datailId}
-                  >
+                <li className={styles.list} key={list.datailId}>
                   <span>{i + 1}</span>
                   <div className={styles.listImg}>
                     <img
@@ -129,31 +141,42 @@ const MyOrder = () => {
                   </div>
                   <span>{list.product.title}</span>
                   <span>{convertPrice(list.product.price)}</span>
-                  <span>{list.timePaid}</span>
-                  <span>{isDone ? "O" : "X"}</span>
+                  <span>{convertDate(list.timePaid)}</span>
+                  <span>{list.done ? "O" : "X"}</span>
                   <div className={styles.listBtn}>
+                    {list.done
+                      ? null
+                      : 
+                      <input
+                        type="button"
+                        value="구매취소"
+                        className={styles.cancleBtn}
+                        onClick={(e) => {
+                          cancelHandler(e, list.detailId);
+                        }}
+                      />
+                    }
+                    {list.done 
+                      ? null
+                      : 
+                      <input
+                        type="button"
+                        value="구매확정"
+                        className={styles.confirmBtn}
+                        onClick={(e) => confirmHandler(e, list.detailId)}
+                        disabled={list.done ? true : false}
+                      />
+                    }
                     <input
                       type="button"
-                      value="구매취소"
-                      className={styles.cancleBtn}
-                      onClick={e => cancleHandler(e, list.detailId)}
-                    />
-                    <input
-                      type="button"
-                      value="구매확정"
+                      value="상세정보"
                       className={styles.confirmBtn}
-                      onClick={e => confirmHandler(e, list.detailId)}
-                    />
-                    <input
-                      type="button"
-                      value="상세내역보기"
-                      className={styles.confirmBtn}
-                      onClick={e => {
-                        console.log(list.detailId)
-                        setDetailId(list.detailId)
-                        showDetailsHandler(e, list.datailId)
+                      onClick={(e) => {
+                        console.log(list.detailId);
+                        showDetailsHandler(e, list.detailId);
                       }}
                     />
+                    
                   </div>
                 </li>
               ))}

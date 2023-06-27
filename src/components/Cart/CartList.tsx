@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { TfiClose } from "react-icons/tfi"
-import { convertPrice, discountPrice } from "~/utils/convert";
+import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Cart/CartList.module.scss";
 
 
@@ -71,23 +71,23 @@ const CartList = () => {
             </div>
             <div className={styles.itemPrice}>
               <span className={styles.discountPrice}>
-                {item.discountRate
-                  ? `${convertPrice(item.discountPrice)}원`
-                  : `${convertPrice(item.price)}원`
+                {item.discountRate !== 0
+                  ? `${convertPrice(item.price)}원`
+                  : `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원`
                 }
               </span>
               <span className={styles.originalPrice}>
-                {item.discountRate 
-                  ? `${convertPrice(item.discountPrice)}원` 
-                  : ''}
+                {item.discountRate !== 0
+                  ? `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원` 
+                  : ''
+                }
               </span>
             </div>
             <div className={styles.totalPrice}>
-              {item.discountRate
-                ? convertPrice(
-                    item.discountPrice * item.quantity
-                  )
-                : convertPrice(item.price * item.quantity)}
+              {item.discountRate !== 0
+                ? convertPrice(item.price * item.quantity)
+                : convertPrice(priceBeforeDiscount(item.price, item.discount) * item.quantity)
+              }
               원
             </div>
             <div className={styles.deleteBtn}>

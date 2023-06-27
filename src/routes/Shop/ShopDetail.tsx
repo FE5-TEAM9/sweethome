@@ -1,4 +1,5 @@
 import { getProduct } from "~/api/requests";
+import { priceBeforeDiscount, convertPrice } from "~/utils/convert";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -50,11 +51,6 @@ const ShopDetail = () => {
     }
   };
 
-  // 할인가격 계산
-  const discountPrice = (productPrice: number, productDiscount: number) => {
-    return productPrice * ((100 - productDiscount) / 100);
-  };
-
   // 상품 수량 계산
   const productCountHandler = (type: String) => {
     if (type === "plus") {
@@ -65,11 +61,6 @@ const ShopDetail = () => {
     }
   };
 
-  // 금액 단위 표시
-  const convertPrice = (price: number) => {
-    return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
-
   // 장바구니 중복 처리
   const cartDuplicationHandler = (id: string, quantity: number) => {
     const found = globalCart.filter(el => el.id === id)[0];
@@ -77,8 +68,8 @@ const ShopDetail = () => {
     const cartItem = {
       id: product.id,
       title: product.title,
-      price: product.price,
-      discountPrice: discountPrice(product.price, product.discountRate),
+      price: priceBeforeDiscount(product.price, product.discountRate),
+      discountPrice: product.price,
       quantity: quantity,
       description: product.description,
       tags: product.tags,
@@ -104,8 +95,8 @@ const ShopDetail = () => {
     const cartItem = {
       id: product.id,
       title: product.title,
-      price: product.price,
-      discountPrice: discountPrice(product.price, product.discountRate),
+      price: priceBeforeDiscount(product.price, product.discountRate),
+      discountPrice: product.price,
       quantity: count,
       description: product.description,
       tags: product.tags,
@@ -140,12 +131,12 @@ const ShopDetail = () => {
             <p className={styles.tags}>{product.tags}</p>
             <h2 className={styles.title}>{product.title}</h2>
             <p className={styles.discountPrice}>
-              {convertPrice(discountPrice(product.price, product.discountRate))}
+              {convertPrice(product.price)}
               원
             </p>
             <div className={styles.price}>
               <span className={styles.originalPrice}>
-                {convertPrice(product.price)}원
+                {convertPrice(priceBeforeDiscount(product.price, product.discountRate))}원
               </span>
               <span className={styles.discountRate}>
                 {product.discountRate ? `${product.discountRate}%` : ""}
@@ -173,10 +164,9 @@ const ShopDetail = () => {
               <p>총 금액</p>
               <span>
                 {product.discountRate !== 0
-                  ? convertPrice(
-                      discountPrice(product.price, product.discountRate) * count
-                    )
-                  : product.price * count}
+                  ? convertPrice(product.price * count)
+                  : convertPrice(priceBeforeDiscount(product.price, product.discountRate) * count)
+                }
                 원
               </span>
             </div>

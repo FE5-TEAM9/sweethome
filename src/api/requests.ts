@@ -385,12 +385,12 @@ const confirmedTransaction = async (body: TransactionsBody) => {
       body: JSON.stringify(body)
     }
   );
-  console.log("여기", body);
+
   if (res.status === 200) {
     const data = await res.json();
     console.log(data);
     return data;
-  } else return res.status
+  } else return false;
 }
 
 // 전체 거래 내역
@@ -405,9 +405,9 @@ const getAllTransactions = async () => {
       }
     }
   );
-  const data = await res.json();
-  console.log(data);
-  return data;
+    const data = await res.json();
+    console.log(data);
+    return data;
 };
 
 // 단일 거래 내역

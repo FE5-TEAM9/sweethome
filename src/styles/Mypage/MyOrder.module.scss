@@ -8,9 +8,6 @@
   min-height: calc(100vh - (100px + 150px));
 
   .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     min-width: 1000px;
     max-width: 1440px;
 
@@ -63,9 +60,20 @@
         .listBtn {
           display: flex;
           flex-direction: column;
+          gap: 4px;
+          font-family: "Pretendard";
+          
           .cancleBtn,
           .confirmBtn {
-            width: 60px;
+            width: 100px;
+            height: 26px;
+            border-radius: 10px;
+            border-style: none;
+            cursor: pointer;
+            background-color: $point-color-pink;
+            &:hover {
+              opacity: .8;
+            }
           }
         }
       }
