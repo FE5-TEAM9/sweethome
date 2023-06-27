@@ -24,40 +24,42 @@ const TheSearchBar = ({ search, onChange }) => {
   useEffect(() => {
     getAllProductsHandler();
   }, []);
-  
+
   return (
     <>
-      {isLoading ? <Loading /> : null}
-      <form className={styles.search}>
-        <input
-          type="text"
-          placeholder="제품을 검색해보세요."
-          className={styles.searchBar}
-          name="searchText"
-          value={search || ""}
-          onChange={onChange}
-        />
-      </form>
-      <div className={styles.searchForm}>
-        {allProducts.map((product, index) =>
-          search === "" ? (
-            <div key={index}></div>
-          ) : product.title
-              .replace(" ", "")
-              .toLocaleLowerCase()
-              .includes(search?.toLocaleLowerCase().replace(" ", "")) ? (
-            <div
-              key={index}
-              onClick={() => {
-                navigate(`/shop/${product.id}`, { replace: true });
-                navigate(0);
-              }}>
-              {product.title}
-            </div>
-          ) : (
-            <div key={index}></div>
-          )
-        )}
+      <div className={styles.searchContainer}>
+        {isLoading ? <Loading /> : null}
+        <form className={styles.search}>
+          <input
+            type="text"
+            placeholder="제품을 검색해보세요."
+            className={styles.searchBar}
+            name="searchText"
+            value={search || ""}
+            onChange={onChange}
+          />
+        </form>
+        <div className={styles.searchForm}>
+          {allProducts.map((product, index) =>
+            search === "" ? (
+              <div key={index}></div>
+            ) : product.title
+                .replace(" ", "")
+                .toLocaleLowerCase()
+                .includes(search?.toLocaleLowerCase().replace(" ", "")) ? (
+              <div
+                key={index}
+                onClick={() => {
+                  navigate(`/shop/${product.id}`, { replace: true });
+                  navigate(0);
+                }}>
+                {product.title}
+              </div>
+            ) : (
+              <div key={index}></div>
+            )
+          )}
+        </div>
       </div>
     </>
   );

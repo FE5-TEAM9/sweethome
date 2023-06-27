@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { TfiClose } from "react-icons/tfi"
+import { TfiClose } from "react-icons/tfi";
 import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Cart/CartList.module.scss";
-
 
 const CartList = () => {
   const cart = useSelector((state: any) => state.cart);
@@ -39,7 +38,7 @@ const CartList = () => {
   useEffect(() => {
     dispatch({ type: "REFRESH" });
   }, []);
-
+  
   console.log("selectedcart", selectedCart);
 
   return (
@@ -62,7 +61,7 @@ const CartList = () => {
                 />
               </div>
             </Link>
-            
+
             <div className={styles.itemTitle}>
               <span>{item.title}</span>
             </div>
@@ -73,21 +72,25 @@ const CartList = () => {
               <span className={styles.discountPrice}>
                 {item.discountRate !== 0
                   ? `${convertPrice(item.price)}원`
-                  : `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원`
-                }
+                  : `${convertPrice(
+                      priceBeforeDiscount(item.price, item.discountRate)
+                    )}원`}
               </span>
               <span className={styles.originalPrice}>
                 {item.discountRate !== 0
-                  ? `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원` 
-                  : ''
-                }
+                  ? `${convertPrice(
+                      priceBeforeDiscount(item.price, item.discountRate)
+                    )}원`
+                  : ""}
               </span>
             </div>
             <div className={styles.totalPrice}>
               {item.discountRate !== 0
                 ? convertPrice(item.price * item.quantity)
-                : convertPrice(priceBeforeDiscount(item.price, item.discount) * item.quantity)
-              }
+                : convertPrice(
+                    priceBeforeDiscount(item.price, item.discount) *
+                      item.quantity
+                  )}
               원
             </div>
             <div className={styles.deleteBtn}>

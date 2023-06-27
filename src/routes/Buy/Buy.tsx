@@ -2,20 +2,21 @@ import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { buyProduct, getAccountList } from "~/api/requests";
 import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Buy/Buy.module.scss";
 
 const Buy = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: any) => state.user);
   const [accountChecked, setAccountChecked] = useState(true);
   const [bankChecked, setBankChecked] = useState(false);
   const [accountId, setAccountId] = useState("");
   const [accountList, setAccountList] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cart = useSelector((state:any)=>state.cart)
+  const cart = useSelector((state: any) => state.cart);
+
 
   useEffect(() => {
     getAccountData();
@@ -48,7 +49,6 @@ const Buy = () => {
     (acc, cur) => (acc += cur.price * cur.quantity),
     0
   );
- 
 
   // 상품 거래 신청 핸들러
   interface orderApplyBody {
@@ -70,11 +70,9 @@ const Buy = () => {
       order.map(async (item: any) => {
         const body: orderApplyBody = {
           productId: item.id,
-          accountId,
+          accountId
         };
         await buyProduct(body);
-        console.log("결제할 상품 id", item.id);
-        console.log("결제할 계좌", accountId);
       });
       if (confirm("결제가 완료되었습니다.\n주문 내역을 확인하시겠습니까?")) {
         navigate("/mypage");
@@ -84,9 +82,13 @@ const Buy = () => {
       order.map((item: any) => {
         dispatch({ type: "GETBUYITEM", items: item.id });
       });
-      dispatch({ type: "RETURN_CART", items:order.filter((item:any)=>{
-        return cart.includes(item)
-      })});
+      dispatch({
+        type: "RETURN_CART",
+        items: cart.filter((item: any) => {
+          return !order.includes(item);
+        })
+      });
+
     } catch (error) {
       console.log("결제 실패", error);
       alert("상품 주문에 실패했습니다.");
@@ -115,10 +117,15 @@ const Buy = () => {
           <div className={styles.buyList}>
             <ul className={styles.container}>
               {order.map((item, i: number) => (
-                <li className={styles.cartItem} key={i}>
+                <li
+                  className={styles.cartItem}
+                  key={i}>
                   <Link to={`/shop/${item.id}`}>
                     <div className={styles.itemImg}>
-                      <img src={item.photo} alt={item.title} />
+                      <img
+                        src={item.photo}
+                        alt={item.title}
+                      />
                     </div>
                   </Link>
 
@@ -132,21 +139,25 @@ const Buy = () => {
                     <span className={styles.discountPrice}>
                       {item.discountRate !== 0
                         ? `${convertPrice(item.price)}원`
-                        : `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원`
-                      }
+                        : `${convertPrice(
+                            priceBeforeDiscount(item.price, item.discountRate)
+                          )}원`}
                     </span>
                     <span className={styles.originalPrice}>
-                      {item.discountRate !== 0 
-                        ? `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원` 
-                        : ""
-                      }
+                      {item.discountRate !== 0
+                        ? `${convertPrice(
+                            priceBeforeDiscount(item.price, item.discountRate)
+                          )}원`
+                        : ""}
                     </span>
                   </div>
                   <div className={styles.totalPrice}>
                     {item.discountRate !== 0
                       ? convertPrice(item.price * item.quantity)
-                      : convertPrice(priceBeforeDiscount(item.price, item.discountRate) * item.quantity)
-                    }
+                      : convertPrice(
+                          priceBeforeDiscount(item.price, item.discountRate) *
+                            item.quantity
+                        )}
                     원
                   </div>
                 </li>
@@ -213,12 +224,11 @@ const Buy = () => {
               </div>
               {accountChecked ? (
                 <div className={styles.account}>
-                  {accountList.accounts?.map((account) => (
+                  {accountList.accounts?.map(account => (
                     <div
                       key={account.id}
                       className={styles.account_info}
-                      onClick={() => setAccountId(account.id)}
-                    >
+                      onClick={() => setAccountId(account.id)}>
                       <div>{account.bankName}</div>
                       <div>{account.accountNumber}</div>
                       <div>잔액: {convertPrice(account.balance)}원</div>
@@ -247,7 +257,7 @@ const Buy = () => {
             type="button"
             value="결제하기"
             className={styles.btn}
-            onClick={(e) => orderApplyHandler(e, order, accountId)}
+            onClick={e => orderApplyHandler(e, order, accountId)}
           />
         </div>
       </div>
