@@ -27,10 +27,11 @@ footer {
     ul {
       display: flex;
       justify-content: space-evenly;
+      gap: 60px;
 
       .logo {
         width: 200px;
-        margin-right: 100px;
+        // margin-right: 100px;
 
         h1 {
           font-family: $font-logo;
@@ -41,7 +42,7 @@ footer {
       .company,
       .bank,
       .customer {
-        margin-right: 100px;
+        // margin-right: 100px;
 
         div {
           display: flex;
@@ -57,9 +58,6 @@ footer {
             line-height: 1.6em;
           }
         }
-      }
-      @media (max-width: 1200px) {
-        
       }
 
       .tel {
@@ -78,6 +76,9 @@ footer {
             line-height: 1.6em;
           }
         }
+      }
+      @media (min-width: 1300px) {
+        gap: 100px;
       }
     }
   }
