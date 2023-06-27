@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { logIn } from '~/api/requests'
 import SubNav from '~/components/common/SubNav';
 import MyInfo from "~/routes/Mypage/MyInfo"
-import AccountList from "~/routes/Mypage/AccountList"
-import Transactions from '~/routes/Mypage/Transactions';
+import AccountList from "~/routes/Mypage/MyBankAccount"
+import Transactions from '~/routes/Mypage/MyOrder';
 import { useSelector } from 'react-redux';
 
 const MyPage = () => {

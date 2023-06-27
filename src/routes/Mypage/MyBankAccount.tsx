@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import styles from '~/styles/Mypage/AccountList.module.scss'
-import Account from '~/components/MyPage/Account/Account'
-import AccountModal from '~/components/MyPage/Account/AccountModal'
+import styles from '~/styles/Mypage/MyBankAccount.module.scss'
+import Account from '~/components/MyPage/MyBankAccount/Account'
+import AccountModal from '~/components/MyPage/MyBankAccount/AccountModal'
 import { getBankList, getAccountList, linkAccount, deleteAccount } from '~/api/requests'
 import { useSelector, useDispatch } from 'react-redux'
 
-const AccountList = () => {
+const MyBankAccount = () => {
 const [showModal, setShowModal] = useState(false)
 const [bankList, setBankList] = useState([])
 const [accountList, setAccountList] = useState([])
@@ -91,4 +91,4 @@ const checkAccountList = async () => {
   )
 }
 
-export default AccountList
+export default MyBankAccount

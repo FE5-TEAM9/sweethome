@@ -2,7 +2,7 @@ import styles from '~/styles/Mypage/Account.module.scss'
 import { SlClose } from 'react-icons/sl'
 import { deleteAccount } from '~/api/requests'
 import { useState } from 'react'
-
+import { convertPrice } from '~/utils/convert'
 const Account = ({ item, watch, setWatch }) => {
   const [deletItem, setDeleteItem ] = useState('');
   
@@ -19,11 +19,6 @@ const Account = ({ item, watch, setWatch }) => {
     } catch (error) {
       alert('계좌 해지 실패하였습니다.')
     }
-  }
-
-  // 금액 단위 표시
-  const convertPrice = (price: number) => {
-    return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   return (

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { buyProduct, getAccountList } from "~/api/requests";
+import { convertPrice } from "~/utils/convert";
+
 import styles from "~/styles/Buy/Buy.module.scss";
 
 const Buy = () => {
@@ -27,11 +29,6 @@ const Buy = () => {
     } catch (err) {
       alert("계좌정보 실패하였습니다.");
     }
-  };
-
-  // 금액 단위 표시
-  const convertPrice = (price: number) => {
-    return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   // 라디오 버튼 핸들러
@@ -100,11 +97,6 @@ const Buy = () => {
       alert("상품 주문에 실패했습니다.");
     }
   };
-
-  //
-  // const handler = {}
-
-  // }
 
   return (
     <>

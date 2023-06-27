@@ -369,7 +369,7 @@ const cancelTransaction = async (body: TransactionsBody) => {
     const data = await res.json();
     console.log(data);
     return data;
-  } else return res.status
+  } else return false;
 }
 
 // 상품 거래 확정
