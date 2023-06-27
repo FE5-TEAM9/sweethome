@@ -4,6 +4,8 @@ import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import styles from "~/styles/TheHeader.module.scss";
 import { logOut } from "~/api/requests";
 import { useSelector, useDispatch } from "react-redux";
+import TheSearchBar from "~/components/common/TheSearchBar";
+import { useState } from "react";
 
 const TheHeader = () => {
   const logout = useSelector((state: any) => state.logout);
@@ -19,6 +21,7 @@ const TheHeader = () => {
       console.log("로그아웃 오류", err);
     }
   };
+  const [search, setSearch] = useState();
   return (
     <header>
       <div className={styles.container}>
@@ -78,7 +81,13 @@ const TheHeader = () => {
             <NavLink to="/cart">
               <FaShoppingBag className={styles.shoppingbag} />
             </NavLink>
-            <AiOutlineSearch className={styles.search} />
+            <div className={styles.search}>
+              <TheSearchBar
+                search={search}
+                onChange={(e: any) => setSearch(e.target.value)}
+              />
+              <AiOutlineSearch className={styles.searchIcon} />
+            </div>
           </div>
         </div>
       </div>
