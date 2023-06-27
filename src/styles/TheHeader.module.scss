@@ -75,6 +75,11 @@ header {
         .userLogin {
           cursor: pointer;
         }
+        .userLogout {
+          cursor:pointer;
+          margin-left:40px;
+
+        }
         .userSignUp {
           margin-left: 20px;
 
@@ -95,10 +100,7 @@ header {
           font-size: 20px;
         }
         .search {
-          font-size: 30px;
-        }
-
-        .search {
+          font-size: 20px;
           cursor: pointer;
         }
       }

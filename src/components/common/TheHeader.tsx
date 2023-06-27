@@ -56,7 +56,7 @@ const TheHeader = () => {
           <div className={styles.user}>
             {logout ? (
               <span
-                className={styles.userLogin}
+                className={styles.userLogout}
                 onClick={logOutHandler}>
                 Logout
               </span>
@@ -73,12 +73,12 @@ const TheHeader = () => {
           </div>
           <div className={styles.icons}>
             <NavLink to="/mypage">
-              <FaUserAlt className="mypage" />
+              <FaUserAlt className={styles.mypage} />
             </NavLink>
             <NavLink to="/cart">
-              <FaShoppingBag className="shoppingbag" />
+              <FaShoppingBag className={styles.shoppingbag} />
             </NavLink>
-            <AiOutlineSearch className="search" />
+            <AiOutlineSearch className={styles.search} />
           </div>
         </div>
       </div>
