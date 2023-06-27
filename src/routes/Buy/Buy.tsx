@@ -15,6 +15,7 @@ const Buy = () => {
   const [accountList, setAccountList] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const cart = useSelector((state:any)=>state.cart)
 
   useEffect(() => {
     getAccountData();
@@ -83,6 +84,9 @@ const Buy = () => {
       order.map((item: any) => {
         dispatch({ type: "GETBUYITEM", items: item.id });
       });
+      dispatch({ type: "RETURN_CART", items:order.filter((item:any)=>{
+        return cart.includes(item)
+      })});
     } catch (error) {
       console.log("결제 실패", error);
       alert("상품 주문에 실패했습니다.");

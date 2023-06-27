@@ -393,7 +393,7 @@ const confirmedTransaction = async (body: TransactionsBody) => {
   } else return false;
 }
 
-// 전체 거래 내역
+// 전체 거래 내역 (사용자)
 const getAllTransactions = async () => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details",
@@ -410,7 +410,7 @@ const getAllTransactions = async () => {
     return data;
 };
 
-// 단일 거래 내역
+// 단일 거래 내역 (사용자)
 const getTransaction = async (body: TransactionsBody) => {
   const res = await fetch(
     "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/detail",
@@ -427,6 +427,46 @@ const getTransaction = async (body: TransactionsBody) => {
   console.log(data);
   return data;
 }
+
+// 전체 거래 내역 (관리자)
+const adminAllTransactions = async () => {
+  const res = await fetch(
+    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all",
+    {
+      method: "GET",
+      headers: {
+        ...headers,
+        masterKey: "true"
+      }
+    }
+  );
+    const data = await res.json();
+    console.log(data);
+    return data;
+};
+
+// 거래 내역 관리 - 완료, 취소, 해제 (관리자)
+interface adminTransactionsBody {
+  isCanceled?: boolean
+  done?: boolean
+}
+
+const adminTransactions = async (id: string, body: adminTransactionsBody) => {
+  const res = await fetch(
+    `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        ...headers,
+        masterKey: "true"
+      },
+      body: JSON.stringify(body)
+    }
+  );
+    const data = await res.json();
+    console.log(data);
+    return data;
+};
 
 
 export {
@@ -449,5 +489,7 @@ export {
   cancelTransaction,
   confirmedTransaction,
   getAllTransactions,
-  getTransaction
+  getTransaction,
+  adminAllTransactions,
+  adminTransactions
 };
