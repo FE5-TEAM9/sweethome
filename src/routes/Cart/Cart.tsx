@@ -17,15 +17,12 @@ const Cart = () => {
   const cart = useSelector((state: any) => state.cart);
 
   const total = [...select];
- 
-  const totalQuantity = total.reduce((acc, cur) => acc += cur.quantity, 0)
-  const totalProductPrice = total.reduce((acc, cur) => acc += cur.price, 0)
+
+  const totalQuantity = total.reduce((acc, cur) => (acc += cur.quantity), 0);
+  const totalProductPrice = total.reduce((acc, cur) => (acc += cur.price), 0);
   const totalPrice = totalProductPrice;
+  useEffect(() => {}, [total]);
 
-  useEffect(() => {
-
-  }, [total])
-  
   return (
     <>
       <section className={styles.cart}>
@@ -45,11 +42,11 @@ const Cart = () => {
             </div>
           </div>
           <div className={styles.list_container}>
-            {
-              cart.length
-                ? <CartList />
-                : <p>장바구니에 담긴 상품이 없습니다.</p>
-            }
+            {cart.length ? (
+              <CartList />
+            ) : (
+              <p>장바구니에 담긴 상품이 없습니다.</p>
+            )}
           </div>
           <div className={styles.total_price}>
             <div className={styles.total_price_container}>
