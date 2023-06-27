@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import styles from "~/styles/SubNav.module.scss";
 
 const SubNav = ({ subNav, setCategory }) => {
@@ -10,16 +9,14 @@ const SubNav = ({ subNav, setCategory }) => {
       <div className={styles.subnav}>
         <div className={styles.container}>
           {subNav.map(category => (
-            <NavLink
-              to='#'
-              onClick={()=> {
-                setCategory(category)
-              }}
-              className={({ isActive }) =>
-              isActive ? styles.active : ""}
-            >
+            <div
+              className={styles.category}
+              onClick={()=> {setCategory(category)}}
+              >
+            <span>
               {category}
-            </NavLink>
+            </span>
+          </div>
           ))}
         </div>
       </div>

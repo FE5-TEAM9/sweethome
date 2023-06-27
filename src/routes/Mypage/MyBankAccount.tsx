@@ -4,6 +4,7 @@ import Account from '~/components/MyPage/MyBankAccount/Account'
 import AccountModal from '~/components/MyPage/MyBankAccount/AccountModal'
 import { getBankList, getAccountList, linkAccount, deleteAccount } from '~/api/requests'
 import { useSelector, useDispatch } from 'react-redux'
+import Loading from '~/components/common/Loading'
 
 const MyBankAccount = () => {
 const [showModal, setShowModal] = useState(false)
@@ -11,6 +12,7 @@ const [bankList, setBankList] = useState([])
 const [accountList, setAccountList] = useState([])
 const [watch, setWatch] = useState(false)
 const account = useSelector(state => state.accountList)
+const [isLoading, setIsLoading] = useState(false);
 const dispatch = useDispatch();
 
 useEffect(() => {
@@ -25,6 +27,7 @@ const onFormCancel = () => {
 
 // 선택 가능한 은행 목록 조회
 const checkBankList = async () => {
+  setIsLoading(true);
   try {
     const res = await getBankList();
     setBankList(res);
@@ -33,10 +36,12 @@ const checkBankList = async () => {
     console.log('은행 목록 오류', error);
     alert('은행 정보를 불러오는 데 실패하였습니다.');
   }
+  setIsLoading(false);
 }
 
 // 등록된 계좌 조회
 const checkAccountList = async () => {
+  setIsLoading(true);
   try {
     const res = await getAccountList();
     setAccountList(res);
@@ -45,10 +50,12 @@ const checkAccountList = async () => {
   } catch (error) {
     alert('계좌 정보 불러오는 데 실패하였습니다.')
   }
+  setIsLoading(false);
 }
 
   return (
     <>
+    {isLoading? <Loading/>: null}
     {showModal && (<AccountModal 
       bankList={bankList} 
       onFormCancel={onFormCancel} 

@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { addProduct, getAllProducts, editProduct, deleteProduct } from "~/api/requests";
+import { priceBeforeDiscount } from "~/utils/convert";
 import { TiDeleteOutline } from 'react-icons/ti'
 import { BsPencilSquare } from 'react-icons/bs'
 import styles from "~/styles/Admin/AdminProduct.module.scss";
-// import TheModal from "~/components/TheModal"
+import TheModal from "~/components/common/TheModal"
 
 const AdminProduct = () => {
   type AllProduct = Product[] // 관리하는 모든 제품의 목록
@@ -43,7 +44,7 @@ const AdminProduct = () => {
   
   useEffect(()=> {
     getAllProductsHandler();
-  }, [allProducts])
+  }, [])
   
   const tableHead = [
     "NO",

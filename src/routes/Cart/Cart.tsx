@@ -19,8 +19,8 @@ const Cart = () => {
   const total = [...select];
  
   const totalQuantity = total.reduce((acc, cur) => acc += cur.quantity, 0)
-  const totalProductPrice = total.reduce((acc, cur) => acc += cur.discountPrice, 0)
-  const totalPrice = totalProductPrice + 3500;
+  const totalProductPrice = total.reduce((acc, cur) => acc += cur.price, 0)
+  const totalPrice = totalProductPrice;
 
   useEffect(() => {
 
@@ -59,7 +59,7 @@ const Cart = () => {
                 <FaPlus />
               </div>
               <strong>배송비</strong>
-              <span>₩3,500</span>
+              <span>₩0</span>
               <div className={styles.equal}>
                 <FaEquals />
               </div>

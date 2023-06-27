@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { buyProduct, getAccountList } from "~/api/requests";
-import { convertPrice } from "~/utils/convert";
-
+import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Buy/Buy.module.scss";
 
 const Buy = () => {
@@ -44,11 +43,11 @@ const Buy = () => {
   console.log(order);
 
   const totalQuantity = order.reduce((acc, cur) => (acc += cur.quantity), 0);
-  const totalProductPrice = order.reduce(
-    (acc, cur) => (acc += cur.discountPrice * cur.quantity),
+  const totalPrice = order.reduce(
+    (acc, cur) => (acc += cur.price * cur.quantity),
     0
   );
-  const totalPrice = totalProductPrice + 3500;
+ 
 
   // 상품 거래 신청 핸들러
   interface orderApplyBody {
@@ -74,14 +73,6 @@ const Buy = () => {
         };
         await buyProduct(body);
         console.log("결제할 상품 id", item.id);
-        let quantity = item.quantity;
-        console.log("quantity", quantity);
-        if (quantity) {
-          while (quantity > 0) {
-            await buyProduct(body);
-            quantity--;
-          }
-        }
         console.log("결제할 계좌", accountId);
       });
       if (confirm("결제가 완료되었습니다.\n주문 내역을 확인하시겠습니까?")) {
@@ -135,18 +126,23 @@ const Buy = () => {
                   </div>
                   <div className={styles.itemPrice}>
                     <span className={styles.discountPrice}>
-                      {item.discountRate
-                        ? `${convertPrice(item.discountPrice)}원`
-                        : `${convertPrice(item.price)}원`}
+                      {item.discountRate !== 0
+                        ? `${convertPrice(item.price)}원`
+                        : `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원`
+                      }
                     </span>
                     <span className={styles.originalPrice}>
-                      {item.discountRate ? `${convertPrice(item.price)}원` : ""}
+                      {item.discountRate !== 0 
+                        ? `${convertPrice(priceBeforeDiscount(item.price, item.discountRate))}원` 
+                        : ""
+                      }
                     </span>
                   </div>
                   <div className={styles.totalPrice}>
-                    {item.discountRate
-                      ? convertPrice(item.discountPrice * item.quantity)
-                      : convertPrice(item.price * item.quantity)}
+                    {item.discountRate !== 0
+                      ? convertPrice(item.price * item.quantity)
+                      : convertPrice(priceBeforeDiscount(item.price, item.discountRate) * item.quantity)
+                    }
                     원
                   </div>
                 </li>
@@ -157,12 +153,12 @@ const Buy = () => {
           <div className={styles.total_price}>
             <div className={styles.total_price_container}>
               <strong>총 {totalQuantity}개의 상품</strong>
-              <span>₩{convertPrice(totalProductPrice)}</span>
+              <span>₩{convertPrice(totalPrice)}</span>
               <div className={styles.plus}>
                 <FaPlus />
               </div>
               <strong>배송비</strong>
-              <span>₩3,500</span>
+              <span>₩0</span>
               <div className={styles.equal}>
                 <FaEquals />
               </div>

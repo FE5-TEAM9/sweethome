@@ -1,6 +1,11 @@
-// 할인가격 계산
+// 할인 가격 계산
 const discountPrice = (productPrice: number, productDiscount: number) => {
   return productPrice * ((100 - productDiscount) / 100);
+};
+
+// 할인 전 가격 계산 
+const priceBeforeDiscount = (price, discountRate) => {
+  return price * 100 / (100 - discountRate)
 };
 
 // 금액 단위 표시
@@ -9,8 +14,8 @@ const convertPrice = (price: number) => {
 };
 
 // 날짜 형식 변경
-const convertDate = (target) => {
-  const date = new Date(target);
+const convertDate = (dateBody: string) => {
+  const date = new Date(dateBody);
   const year = String(date.getFullYear()).padStart(2, 0);
   const month = String(date.getMonth() + 1).padStart(2, 0);
   const today = String(date.getDate()).padStart(2, 0);
@@ -19,4 +24,12 @@ const convertDate = (target) => {
   return `${year}.${month}.${today} | ${hour}:${min}`;
 };
 
-export {discountPrice, convertPrice, convertDate };
+// 날짜 정렬
+const sortDate = (dateBody: string) => {
+  const date = new Date(dateBody);
+  const times = date.getTime();
+  return times;
+}
+  
+
+export { priceBeforeDiscount, discountPrice, convertPrice, convertDate, sortDate };
