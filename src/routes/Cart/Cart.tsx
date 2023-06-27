@@ -5,6 +5,7 @@ import { FaEquals, FaPlus } from "react-icons/fa";
 import CartList from "~/components/Cart/CartList";
 import styles from "~/styles/Cart/Cart.module.scss";
 import selectedCart from "~/reducers/selectedCart";
+import { convertPrice } from "~/utils/convert";
 
 const Cart = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -25,11 +26,6 @@ const Cart = () => {
 
   }, [total])
   
-  // 금액 단위 표시
-  const convertPrice = (price: number) => {
-    return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
-
   return (
     <>
       <section className={styles.cart}>
@@ -39,7 +35,7 @@ const Cart = () => {
           </div>
           <div className={styles.list_nav}>
             <div className={styles.list_nav_container}>
-              <input type="checkbox" />
+              <div></div>
               <div>상품 이미지</div>
               <div>상품명</div>
               <div>수량</div>

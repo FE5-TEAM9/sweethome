@@ -1,17 +1,25 @@
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "~/styles/SubNav.module.scss";
 
 const SubNav = ({ subNav, setCategory }) => {
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <>
       <div className={styles.subnav}>
         <div className={styles.container}>
           {subNav.map(category => (
-            <div 
-              className={styles.catagory}
-              onClick={()=> setCategory(category)}
-              >
-            <span>{category}</span>
-          </div>
+            <NavLink
+              to='#'
+              onClick={()=> {
+                setCategory(category)
+              }}
+              className={({ isActive }) =>
+              isActive ? styles.active : ""}
+            >
+              {category}
+            </NavLink>
           ))}
         </div>
       </div>
