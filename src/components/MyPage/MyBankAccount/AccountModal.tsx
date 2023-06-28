@@ -1,12 +1,13 @@
 import styles from '~/styles/Mypage/AccountModal.module.scss';
 import { useState } from 'react';
 import { linkAccount } from '~/api/requests'
-
+import Loading from '~/components/common/Loading';
 
 const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setShowModal }) => {
   const [bankCode, setBankCode] = useState('')
   const [isAgree, setIsAgree] = useState(false)
   const [bankIDX, setBankIDX] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
   const [accuontInput, setAccuontInput] = useState({
     input0: '',
     input1: '',
@@ -34,6 +35,7 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
   // 계좌 등록
   const enrollAccount = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const body = {
       bankCode,
       accountNumber: accuontInput.sumAccountNum(),
@@ -47,10 +49,12 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
       setShowModal(!showModal);
       setWatch(!watch)
     } else alert('계좌 정보를 다시 확인해 주세요.')
-  
+    setIsLoading(false);
   }
 
   return (
+    <>
+    {isLoading ? <Loading /> : null}
     <section className={styles.accountModal}>
       <form>
         <div className={styles.title}>
@@ -59,10 +63,10 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
           <ul className={styles.paymentContainer}>
           {bankList.map((bank, idx) => (
             <li 
-              key={bank.code}
+              key={bank.code}              
               onClick={()=>{
-                setBankIDX(idx);
-                setBankCode(bank.code);
+                  setBankIDX(idx);
+                  setBankCode(bank.code);
                }}
               >
               <img src={`/public/assets/bank/bank${bank.code}.svg`} />
@@ -127,10 +131,13 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
             <button 
               type='button'
               onClick={enrollAccount}
+              disabled={isLoading}
               className={`${styles.btn} ${styles.registrationBtn}`}>등록</button>
           </div>
       </form>
     </section>
+    </>
+
   )
 }
 
