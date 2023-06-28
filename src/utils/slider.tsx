@@ -1,5 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from "swiper";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  EffectCube,
+  Autoplay
+} from "swiper";
 import "swiper/swiper-bundle.min.css";
 import main1 from "/public/assets/Home/main1.jpeg";
 import main2 from "/public/assets/Home/main2.jpeg";
@@ -9,13 +16,18 @@ import styles from "~/styles/utils/Slider.module.scss";
 export const Slider = ({}) => {
   return (
     <Swiper
+      style={{
+        "--swiper-pagination-color": "#41D3BD",
+        "--swiper-navigation-color": "#41D3BD"
+      }}
       className={styles.slider}
-      modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
+      modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube, Autoplay]}
       spaceBetween={1288}
       slidesPerView={1}
       navigation
       pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}>
+      scrollbar={{ draggable: true }}
+      autoplay={{ delay: 2500 }}>
       <SwiperSlide className={styles.slides}>
         <img
           className={styles.images}
