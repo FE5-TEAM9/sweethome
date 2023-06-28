@@ -14,7 +14,7 @@ const navigate = useNavigate();
 const [password, setPassword] = useState('')
 const [passwordConfirm, setPasswordConfirm] = useState(false);
 
-const subNav: string[]  = ["개인 정보 관리", "계좌 정보 관리", "주문 내역 관리"];
+const subNav: string[]  = ["주문 내역 관리", "계좌 정보 관리", "개인 정보 관리"  ];
 const [category, setCategory] = useState('');
 
 useEffect(() => {
@@ -50,42 +50,43 @@ const handleSubmitPasswordConfirm = async (event: React.FormEvent<HTMLFormElemen
   
 };
 
-  return !passwordConfirm ? (
-    <section className={styles.myPageConfirm}>
-      <div className={styles.wrapper}>
-        <div className={styles.title}>
-          <h2>개인 정보 수정</h2>
-        </div>
-          <p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인해 주세요!</p>
-          <form className={styles.form} onSubmit={handleSubmitPasswordConfirm}>
-            <div className={styles.formWrap}>
-              <div className={styles.PWContaniner}>
-                <p>PW</p>
-                <input 
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={onPasswordHandler}
-                  className={styles.passwordInput} 
-                  autoFocus
-                  />
-              </div>         
-              <button type="submit" className={styles.btn}>확인</button>    
-            </div>
-          </form>
-      </div>
-    </section>
-  ) : (
-    <>
+return (
+      <>
       <div className={styles.mypage}>
         <SubNav subNav={subNav} setCategory={setCategory} />
-        {(category === "개인 정보 관리" || category === "" ) && <MyInfo />}
+        {(category === "주문 내역 관리" || category === "" ) && <Transactions />}
         {category === "계좌 정보 관리" && <AccountList/>}
-        {category === "주문 내역 관리" && <Transactions />}
+        {category === "개인 정보 관리"  && (!passwordConfirm?   
+        <section className={styles.myPageConfirm}>
+              <div className={styles.wrapper}>
+                <div className={styles.title}>
+                  <h2>개인 정보 수정</h2>
+                </div>
+                  <p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인해 주세요!</p>
+                  <form className={styles.form} onSubmit={handleSubmitPasswordConfirm}>
+                    <div className={styles.formWrap}>
+                      <div className={styles.PWContaniner}>
+                        <p>PW</p>
+                        <input 
+                          type="password"
+                          name="password"
+                          value={password}
+                          onChange={onPasswordHandler}
+                          className={styles.passwordInput} 
+                          autoFocus
+                          />
+                      </div>         
+                      <button type="submit" className={styles.btn}>확인</button>    
+                    </div>
+                  </form>
+              </div>
+            </section>         
+        : <MyInfo />)
+        }
       </div>
     </>
+)
 
-  );
 }
 
 export default MyPage
