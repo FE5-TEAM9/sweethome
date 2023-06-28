@@ -1,21 +1,21 @@
 // width: 1288px;
 // height: 578px;
 
-@import '../common/colors.scss';
-@import '../common/fonts.scss';
+@import "../common/colors.scss";
+@import "../common/fonts.scss";
 
 .slider {
-  width: 1288px;
-  height: 578px;
+  width: 1250px;
+  height: 800px;
   .slides {
-    width: 1288px;
-    height: 578px;
+    width: 1250px;
+    height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
     .images {
-      width: 1288px;
-      height: 578px;
+      width: 1250px;
+      height: 650px;
     }
   }
 }
