@@ -16,12 +16,14 @@ header {
   width: 100vw;
   height: 100px;
   border-bottom: solid 0.8px $base-color-gray;
+  padding-left: 40px;
 
   .container {
     position: relative;
     display: flex;
     width: 90%;
     max-width: 1440px;
+    min-width: 1250px;
 
     .logo {
       display: flex;
@@ -106,7 +108,7 @@ header {
           justify-content: center;
           align-items: center;
           .searchIcon {
-            margin-left:15px;
+            margin-left: 15px;
             font-size: 20px;
             cursor: pointer;
           }
