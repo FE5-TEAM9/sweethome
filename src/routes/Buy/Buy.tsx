@@ -17,7 +17,6 @@ const Buy = () => {
   const navigate = useNavigate();
   const cart = useSelector((state: any) => state.cart);
 
-
   useEffect(() => {
     getAccountData();
   }, []);
@@ -37,9 +36,8 @@ const Buy = () => {
     setAccountChecked(!accountChecked);
     setBankChecked(!bankChecked);
   };
-
-  const location = useLocation().state;
-  console.log("location", location.state)
+  const location = useLocation();
+  console.log("location", location.state);
   // dispatch({ type:"GET_BUYITEM", payload: location.state })
   // const buy = useSelector((state:any)=>state.buyItem)
   const order = [];
@@ -92,7 +90,6 @@ const Buy = () => {
           return !order.includes(item);
         })
       });
-
     } catch (error) {
       console.log("결제 실패", error);
       alert("상품 주문에 실패했습니다.");
