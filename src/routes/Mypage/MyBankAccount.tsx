@@ -2,63 +2,69 @@ import { useEffect, useState } from 'react'
 import styles from '~/styles/Mypage/MyBankAccount.module.scss'
 import Account from '~/components/MyPage/MyBankAccount/Account'
 import AccountModal from '~/components/MyPage/MyBankAccount/AccountModal'
-import { getBankList, getAccountList, linkAccount, deleteAccount } from '~/api/requests'
-import { useSelector, useDispatch } from 'react-redux'
+import { getBankList, getAccountList } from '~/api/requests'
+import { useDispatch } from 'react-redux'
 import Loading from '~/components/common/Loading'
 
 const MyBankAccount = () => {
-const [showModal, setShowModal] = useState(false)
-const [bankList, setBankList] = useState([])
-const [accountList, setAccountList] = useState([])
-const [watch, setWatch] = useState(false)
-const account = useSelector(state => state.accountList)
-const [isLoading, setIsLoading] = useState(false);
-const dispatch = useDispatch();
 
-useEffect(() => {
-  checkBankList();
-  checkAccountList();
-},[watch])
 
-// 모달창 취소 Handler
-const onFormCancel = () => {
-  setShowModal(false);
-}
-
-// 선택 가능한 은행 목록 조회
-const checkBankList = async () => {
-  setIsLoading(true);
-  try {
-    const res = await getBankList();
-    setBankList(res);
-    console.log(res);
-  } catch (error) {
-    console.log('은행 목록 오류', error);
-    alert('은행 정보를 불러오는 데 실패하였습니다.');
+  
+  interface Bank { 
+    id: string;
+    bankName: string;
+    bankCode: string;
+    accountNumber: string;
+    balance: number;
   }
-  setIsLoading(false);
-}
+  
+  const [showModal, setShowModal] = useState(false)
+  const [bankList, setBankList] = useState([])
+  const [accountList, setAccountList] = useState<Bank[]>([])
+  const [watch, setWatch] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
-// 등록된 계좌 조회
-const checkAccountList = async () => {
-  setIsLoading(true);
-  try {
-    const res = await getAccountList();
-    setAccountList(res);
-    dispatch({ type: "GET_ACCOUNT_LIST", accountList: res });
-    console.log('등록된 계좌 정보',res);
-  } catch (error) {
-    alert('계좌 정보 불러오는 데 실패하였습니다.')
+  useEffect(() => {
+    checkBankList();
+    checkAccountList();
+  },[watch])
+
+
+  // 선택 가능한 은행 목록 조회
+  const checkBankList = async () => {
+    setIsLoading(true);
+    try {
+      const res = await getBankList();
+      setBankList(res);
+      console.log(res);
+    } catch (error) {
+      console.log('은행 목록 오류', error);
+      alert('은행 정보를 불러오는 데 실패하였습니다.');
+    }
+    setIsLoading(false);
   }
-  setIsLoading(false);
-}
+
+  // 등록된 계좌 조회
+  const checkAccountList = async () => {
+    setIsLoading(true);
+    try {
+      const res = await getAccountList();
+      setAccountList(res.accounts);
+      dispatch({ type: "GET_ACCOUNT_LIST", accountList: res });
+      console.log('등록된 계좌 정보',res);
+    } catch (error) {
+      alert('계좌 정보 불러오는 데 실패하였습니다.')
+    }
+    setIsLoading(false);
+  }
 
   return (
     <>
     {isLoading? <Loading/>: null}
     {showModal && (<AccountModal 
       bankList={bankList} 
-      onFormCancel={onFormCancel} 
+      // onFormCancel={onFormCancel} 
       watch={watch}
       setWatch={setWatch}
       showModal={showModal}
@@ -70,8 +76,8 @@ const checkAccountList = async () => {
             <div className={styles.title}>
               <h2>계좌 관리</h2>
             </div>
-            {accountList.accounts?.length > 0
-            ? (accountList.accounts.map((item, i)=> (
+            {accountList.length > 0
+            ? (accountList.map((item, i: number)=> (
                   <Account
                     key={i} 
                     item={item} 

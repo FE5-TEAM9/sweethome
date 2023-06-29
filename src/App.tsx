@@ -17,10 +17,9 @@ const dispatch = useDispatch()
   const authenticateHandler = useCallback(async () => {
     try {
       const res = await authenticate()
-      console.log('로그인 인증', res)
       dispatch({ type: "RETURN_USER", payload: res })
     } catch (err) {
-      console.error('로그인 인증 오류', err)
+      console.log("로그인 인증 실패하였습니다.")
     }
   }, [location])
 

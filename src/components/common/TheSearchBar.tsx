@@ -1,21 +1,21 @@
-import { getAllProducts } from "~/api/requests";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllProducts } from "~/api/requests";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/TheSearchBar.module.scss";
 
-const TheSearchBar = ({ search, onChange }) => {
+const TheSearchBar = ({ search, onChange }: any) => {
   const [allProducts, setAllProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // 전체 상품 조회
   const getAllProductsHandler = async () => {
     setIsLoading(true);
     try {
       const res = await getAllProducts();
-      console.log(res);
       setAllProducts(res);
-    } catch (error) {
-      console.log("상품 출력", error);
+    } catch (error: any) {
+      alert(error.message);
     }
     setIsLoading(false);
   };
@@ -24,6 +24,17 @@ const TheSearchBar = ({ search, onChange }) => {
   useEffect(() => {
     getAllProductsHandler();
   }, []);
+
+  interface Product {
+    id: string;
+    title: string;
+    price: number;
+    description: string;
+    tags: string[];
+    thumbnail: string | null;
+    isSoldOut: boolean;
+    discountRate: number;
+  }
 
   return (
     <>
@@ -41,7 +52,7 @@ const TheSearchBar = ({ search, onChange }) => {
         </form>
         {}
         <div className={`${styles.searchForm} ${styles.none}`}>
-          {allProducts.map((product, index) =>
+          {allProducts.map((product:Product, index:number) =>
             search === "" ? (
               <div key={index}></div>
             ) : product.title
@@ -52,7 +63,6 @@ const TheSearchBar = ({ search, onChange }) => {
                 key={index}
                 onClick={() => {
                   navigate(`/shop/${product.id}`, { replace: true });
-                  // navigate(0);
                 }}>
                 {product.title}
               </div>
