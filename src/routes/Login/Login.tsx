@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { logIn } from "~/api/requests";
 import styles from "~/styles/Login/Login.module.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 

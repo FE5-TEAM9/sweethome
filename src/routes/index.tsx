@@ -4,7 +4,6 @@ import Home from "~/routes/Home/Home";
 import About from "~/routes/About/About";
 import Shop from "~/routes/Shop/Shop";
 import ShopDetail from "~/routes/Shop/ShopDetail";
-import Board from "~/routes/Board/Board";
 import Mypage from "~/routes/Mypage/Mypage";
 import Cart from "~/routes/Cart/Cart";
 import Login from "~/routes/Login/Login";
@@ -32,10 +31,6 @@ export default createBrowserRouter([
       {
         path: "/shop/:id",
         element: <ShopDetail />
-      },
-      {
-        path: "/board",
-        element: <Board />
       },
       {
         path: "/mypage",

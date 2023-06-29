@@ -14,6 +14,7 @@ interface Bank {
   accountNumber: string;
   balance: number;
 }
+
 const Buy = () => {
   const user = useSelector((state: any) => state.user);
   const [accountChecked, setAccountChecked] = useState(true);

@@ -15,10 +15,6 @@ import styles from "~/styles/utils/Slider.module.scss";
 export const Slider = ({}) => {
   return (
     <Swiper
-      style={{
-        "--swiper-pagination-color": "#41D3BD",
-        "--swiper-navigation-color": "#41D3BD"
-      }}
       className={styles.slider}
       modules={[Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay]}
       spaceBetween={1288}
@@ -28,7 +24,7 @@ export const Slider = ({}) => {
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
       effect={"fade"}
-      >
+    >
       <SwiperSlide className={styles.slides}>
         <img
           className={styles.images}
