@@ -8,8 +8,12 @@ import TheSearchBar from "~/components/common/TheSearchBar";
 import { useState } from "react";
 
 const TheHeader = () => {
+  const [search, setSearch] = useState();
+  const [searchIsClicked, setSearchIsClicked] = useState(false);
+
   const logout = useSelector((state: any) => state.logout);
   const dispatch = useDispatch();
+
   const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch({ type: "LOGOUT", state: false });
@@ -21,8 +25,6 @@ const TheHeader = () => {
       console.log("로그아웃 오류", err);
     }
   };
-  const [search, setSearch] = useState();
-  const [searchIsClicked, setSearchIsClicked] = useState(false);
 
   return (
     <header>
