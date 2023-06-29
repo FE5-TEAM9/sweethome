@@ -21,7 +21,7 @@ const ShopDetail = () => {
   }
 
   interface Reservation {
-    start: string; 
+    start: string;
     end: string; // 예약 종료 시간
     isCanceled: boolean; // 예약 취소 여부
     isExpired: boolean; // 예약 만료 여부
@@ -35,20 +35,19 @@ const ShopDetail = () => {
 
   const [product, setProduct] = useState<GetProductValue>({});
   const [count, setCount] = useState(1);
-  const [cart, setCart] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getProductHandler(id);
-  }, []);
-
+  }, [count]);
   // 단일 상품 조회
   const getProductHandler = async (id: string) => {
     setIsLoading(true);
     try {
       const res = await getProduct(id);
       console.log("단일 상품 조회", res);
+      res["quantity"] = count;
       setProduct(res);
     } catch (error) {
       console.log("단일 상품 조회 실패", error);
@@ -120,13 +119,10 @@ const ShopDetail = () => {
     }
     confirm("장바구니를 확인하시겠습니까?");
   };
-  console.log("globalCart", globalCart);
-  
-  const buyNowHandler = () => {
-    console.log('buynow', product)
-    navigate('/buy',{state:1})
-  }
 
+  const buyNowHandler = () => {
+    navigate("/buy", { state: [product] });
+  };
   return (
     <>
       {isLoading ? <Loading /> : null}
@@ -142,12 +138,14 @@ const ShopDetail = () => {
             <p className={styles.tags}>{product.tags}</p>
             <h2 className={styles.title}>{product.title}</h2>
             <p className={styles.discountPrice}>
-              {convertPrice(product.price)}
-              원
+              {convertPrice(product.price)}원
             </p>
             <div className={styles.price}>
               <span className={styles.originalPrice}>
-                {convertPrice(priceBeforeDiscount(product.price, product.discountRate))}원
+                {convertPrice(
+                  priceBeforeDiscount(product.price, product.discountRate)
+                )}
+                원
               </span>
               <span className={styles.discountRate}>
                 {product.discountRate ? `${product.discountRate}%` : ""}
@@ -176,8 +174,10 @@ const ShopDetail = () => {
               <span>
                 {product.discountRate !== 0
                   ? convertPrice(product.price * count)
-                  : convertPrice(priceBeforeDiscount(product.price, product.discountRate) * count)
-                }
+                  : convertPrice(
+                      priceBeforeDiscount(product.price, product.discountRate) *
+                        count
+                    )}
                 원
               </span>
             </div>
@@ -187,7 +187,7 @@ const ShopDetail = () => {
               type="button"
               value="BUY NOW"
               className={`${styles.btn} ${styles.buy}`}
-              onClick={() => buyNowHandler() }
+              onClick={() => buyNowHandler()}
             />
             <input
               type="button"
