@@ -38,11 +38,15 @@ const Buy = () => {
     setBankChecked(!bankChecked);
   };
 
-  const location = useLocation();
+  const location = useLocation().state;
+  console.log("location", location.state)
   // dispatch({ type:"GET_BUYITEM", payload: location.state })
   // const buy = useSelector((state:any)=>state.buyItem)
-  const order = [...location.state];
-  console.log(order);
+  const order = [];
+  order.push(location);
+
+  // order.push({...location.state})
+  console.log("화긴스", order);
 
   const totalQuantity = order.reduce((acc, cur) => (acc += cur.quantity), 0);
   const totalPrice = order.reduce(

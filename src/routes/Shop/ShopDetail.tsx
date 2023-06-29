@@ -73,7 +73,7 @@ const ShopDetail = () => {
     const cartItem = {
       id: product.id,
       title: product.title,
-      price: priceBeforeDiscount(product.price, product.discountRate),
+      price: product.price,
       discountPrice: product.price,
       quantity: quantity,
       description: product.description,
@@ -100,7 +100,7 @@ const ShopDetail = () => {
     const cartItem = {
       id: product.id,
       title: product.title,
-      price: priceBeforeDiscount(product.price, product.discountRate),
+      price: product.price,
       discountPrice: product.price,
       quantity: count,
       description: product.description,
@@ -124,7 +124,7 @@ const ShopDetail = () => {
   
   const buyNowHandler = () => {
     console.log('buynow', product)
-    navigate('/buy',{state:1})
+    navigate('/buy',{state:product})
   }
 
   return (

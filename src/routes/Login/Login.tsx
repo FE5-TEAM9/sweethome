@@ -27,6 +27,9 @@ const Login = () => {
         case false:
           dispatch({ type: "LOGOUT", state: false });
           break;
+        case (res[user][email] === "admin@sweethome.com"):
+          navigate("/admin")
+          break;
         default:
           dispatch({ type: "LOGOUT", state: true });
           break;
