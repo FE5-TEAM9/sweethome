@@ -76,10 +76,10 @@ const AdminOrder = () => {
           <div className={styles.content}>
             <ul className={styles.allList}>
               {allList.map((list, i) => (
-                <li 
+                <li
                   className={styles.list}              
                   key={list.detailId}>
-                  <p>{i + 1}</p>
+                  <p className={styles.num}>{i + 1}</p>
                   <div className={styles.id}>
                     {list.detailId.slice(0, 8)}
                   </div>
@@ -88,7 +88,7 @@ const AdminOrder = () => {
                     <p>{list.user.email}</p>
                   </div>
                   <div className={styles.bank}>
-                    <p>{list.account.backName}</p>
+                    <p>{list.account.bankName}</p>
                     <p>{list.account.accountNumber}</p>
                   </div>
                   <div className={styles.product}>
@@ -100,24 +100,24 @@ const AdminOrder = () => {
                     <p>{convertDate(list.timePaid)}</p>
                   </div>
                   <div className={styles.isCanceled}>
-                    <p>{list.isCanceled ? "O" : "X"}</p>
+                    <p>{list.isCanceled ? "✅" : "❌"}</p>
                   </div>
                   <div className={styles.isDone}>
-                    {list.done ? "O" : "X"}
+                    {list.done ? "✅" : "❌"}
                   </div>
                   <div className={styles.listBtn}>
-                    {list.isCanceled
-                      ? null
+                    {(list.isCanceled || list.done)
+                      ? "🏠"
                       : 
                       <input
                         type="button"
                         value="구매취소"
-                        className={styles.cancleBtn}
+                        className={styles.cancelBtn}
                         id="canceled"
                         onClick={(e)=>adminTransactionsHandler(e, list.detailId)}
                       />
                     }
-                    {list.done 
+                    {(list.done || list.isCanceled)
                       ? null
                       : 
                       <input

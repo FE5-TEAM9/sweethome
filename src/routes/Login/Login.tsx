@@ -2,12 +2,15 @@ import { useState } from "react";
 import { logIn } from "~/api/requests";
 import styles from "~/styles/Login/Login.module.scss";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.info);
+  const navigate = useNavigate();
 
   const loginHandler = async (e: any) => {
     e.preventDefault();
@@ -30,6 +33,7 @@ const Login = () => {
       }
       dispatch({ type: "RETURN", account: res });
       console.log("user", user.user);
+      navigate("/")
     } catch (err) {
       console.log("로그인 오류", err);
     }
@@ -55,6 +59,7 @@ const Login = () => {
                 <input
                   type="password"
                   value={password}
+                  placeholder="비밀번호를 입력하세요."
                   onChange={e => setPassword(e.target.value)}
                 />
               </div>
@@ -73,7 +78,11 @@ const Login = () => {
           <div className={styles.signup}>
             <p>아직 회원이 아니신가요?</p>
             <p>회원 가입을 하시면 다양하고 특별한 혜택을 누리세요</p>
-            <button className={styles.btn__signup}>회원가입</button>
+            <Link to="/signup">
+              <button type="button" className={styles.btn__signup}>
+                회원가입
+              </button>
+            </Link>
           </div>
         </div>
       </section>

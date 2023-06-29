@@ -150,7 +150,7 @@ const MyOrder = () => {
                       <input
                         type="button"
                         value="구매취소"
-                        className={styles.cancleBtn}
+                        className={styles.cancelBtn}
                         onClick={(e) => {
                           cancelHandler(e, list.detailId);
                         }}

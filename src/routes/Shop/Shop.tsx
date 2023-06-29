@@ -51,13 +51,13 @@ const Shop = () => {
       setAllProducts(originalProducts)
       // clickHandler()
     } else if (e.target.value === "FURNITURE") {
-      setAllProducts(originalProducts.filter(product => product.tags === "furniture"))
+      setAllProducts(originalProducts.filter(product => product.tags === "FURNITURE"))
       // clickHandler()
     } else if (e.target.value === "KITCHEN") {
-      setAllProducts(originalProducts.filter(product => product.tags === "kitchen"))
+      setAllProducts(originalProducts.filter(product => product.tags === "KITCHEN"))
       // clickHandler()
     } else if (e.target.value === "BEDROOM") {
-      setAllProducts(originalProducts.filter(product => product.tags === "bedroom"))
+      setAllProducts(originalProducts.filter(product => product.tags === "BEDROOM"))
       // clickHandler()
     }
   }

@@ -11,11 +11,13 @@ const SubNav = ({ subNav, setCategory }) => {
           {subNav.map(category => (
             <div
               className={styles.category}
-              onClick={()=> {setCategory(category)}}
-              >
-            <span>
-              {category}
-            </span>
+              onClick={()=> {
+                setCategory(category)}
+              }
+            >
+              <span className={styles.active}>
+                {category}
+              </span>
           </div>
           ))}
         </div>
