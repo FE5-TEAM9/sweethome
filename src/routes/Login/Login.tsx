@@ -23,20 +23,30 @@ const Login = () => {
     try {
       const res = await logIn(body);
       console.log("로그인 정보", res);
-      switch (res) {
-        case false:
-          dispatch({ type: "LOGOUT", state: false });
-          break;
-        case (res[user][email] === "admin@sweethome.com"):
-          navigate("/admin")
-          break;
-        default:
+      console.log("나와랏", res.user.email)
+      if (res) {
+        if (res.user.email === "admin@sweethome.com") {
+          navigate("/admin");
+          dispatch({ type: "RETURN", account: res });
           dispatch({ type: "LOGOUT", state: true });
-          break;
+        } else {
+          navigate("/")
+          dispatch({ type: "RETURN", account: res });
+          dispatch({ type: "LOGOUT", state: true });
+        }
+      } else {
+        dispatch({ type: "LOGOUT", state: false });
+        alert("로그인 실패하였습니다.")
       }
-      dispatch({ type: "RETURN", account: res });
-      console.log("user", user.user);
-      navigate("/")
+      // switch (res) {
+      //   case false:
+      //     dispatch({ type: "LOGOUT", state: false });
+      //     break;
+      //   default:
+      //     dispatch({ type: "LOGOUT", state: true });
+      //     break;
+      // }
+     
     } catch (err) {
       console.log("로그인 오류", err);
     }
@@ -68,7 +78,8 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className={styles.btn__login}>
+                className={styles.btn__login}
+              >
                 로그인
               </button>
             </form>
