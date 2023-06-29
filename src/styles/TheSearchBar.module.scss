@@ -18,7 +18,7 @@
       width: 180px;
       height: 28px;
       outline: none;
-      font-size: .8rem;
+      font-size: 0.8rem;
       padding: 4px;
       margin-right: 8px;
     }
@@ -32,11 +32,10 @@
     background-color: $base-color-lightgray;
     // z-index: 9;
     padding: 4px;
-    margin-right:10px;
+    margin-right: 10px;
     font-size: 14px;
     .none {
       display: none;
     }
   }
-  
 }
