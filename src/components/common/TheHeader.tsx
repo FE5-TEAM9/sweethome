@@ -20,10 +20,9 @@ const TheHeader = () => {
     dispatch({ type: "LOGOUT", state: false });
     dispatch({ type: "RETURN", account: {} });
     try {
-      const res = await logOut();
-      console.log("로그아웃 정보", res);
-    } catch (err) {
-      console.log("로그아웃 오류", err);
+      await logOut();
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 

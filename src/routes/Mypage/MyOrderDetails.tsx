@@ -1,8 +1,32 @@
-import styles from "~/styles/Mypage/MyOrderDetails.module.scss";
 import { TfiClose } from "react-icons/tfi"
 import { convertDate, convertPrice } from '~/utils/convert'
+import styles from "~/styles/Mypage/MyOrderDetails.module.scss";
 
-const MyOrderDetails = ({ setShowDetails, orderDetails }) => {
+interface DetailsProps {
+  setShowDetails: React.Dispatch<React.SetStateAction<boolean>>
+  orderDetails: TransactionDetail
+}
+interface TransactionDetail {
+  detailId: string
+  product: {
+    productId: string
+    title: string
+    price: number
+    description: string
+    tags: string[]
+    thumbnail: string
+    discountRate: number
+    photo: string
+  }
+  timePaid: string
+  done: boolean
+  account: {
+    bankName: string
+    accountNumber: string
+  }
+}
+
+const MyOrderDetails = ({ setShowDetails, orderDetails }: DetailsProps) => {
   return (
     <section className={styles.myOrderDetails}>
       <div className={styles.container}>

@@ -38,9 +38,7 @@ const CartList = () => {
   useEffect(() => {
     dispatch({ type: "REFRESH" });
   }, []);
-  
-  console.log("selectedcart", selectedCart);
-  console.log("카트", myCart);
+
   return (
     <div className={styles.cartList}>
       <ul className={styles.container}>

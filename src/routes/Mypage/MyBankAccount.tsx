@@ -7,9 +7,6 @@ import { useDispatch } from 'react-redux'
 import Loading from '~/components/common/Loading'
 
 const MyBankAccount = () => {
-
-
-  
   interface Bank { 
     id: string;
     bankName: string;
@@ -37,9 +34,7 @@ const MyBankAccount = () => {
     try {
       const res = await getBankList();
       setBankList(res);
-      console.log(res);
     } catch (error) {
-      console.log('은행 목록 오류', error);
       alert('은행 정보를 불러오는 데 실패하였습니다.');
     }
     setIsLoading(false);
@@ -52,7 +47,6 @@ const MyBankAccount = () => {
       const res = await getAccountList();
       setAccountList(res.accounts);
       dispatch({ type: "GET_ACCOUNT_LIST", accountList: res });
-      console.log('등록된 계좌 정보',res);
     } catch (error) {
       alert('계좌 정보 불러오는 데 실패하였습니다.')
     }

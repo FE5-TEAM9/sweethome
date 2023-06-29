@@ -1,42 +1,65 @@
-import styles from "~/styles/Mypage/MyOrder.module.scss";
+import { useEffect, useState } from "react";
 import {
   cancelTransaction,
   confirmedTransaction,
   getAllTransactions,
   getTransaction,
 } from "~/api/requests";
-import { useEffect, useState } from "react";
 import { convertPrice, convertDate, sortDate } from "~/utils/convert";
-import MyOrderDetails from "./MyOrderDetails";
+import MyOrderDetails from "~/routes/Mypage/MyOrderDetails";
 import Loading from "~/components/common/Loading";
+import styles from "~/styles/Mypage/MyOrder.module.scss";
+
+type AllTransactions = TransactionDetail[]
+
+interface TransactionDetail {
+  detailId: string
+  product: {
+    productId: string
+    title: string
+    price: number
+    description: string
+    tags: string[]
+    thumbnail: string
+    discountRate: number
+  }
+  reservation: Reservation | null
+  timePaid: string
+  isCanceled: boolean
+  done: boolean
+}
+
+interface Reservation {
+  start: string
+  end: string
+  isCanceled: boolean
+  isExpired: boolean
+}
+
 
 const MyOrder = () => {
-  const [allList, setAllList] = useState([]);
+  const [allList, setAllList] = useState<AllTransactions>([]);
   const [showDetails, setShowDetails] = useState(false);
-  const [orderDetails, setOrderDetails] = useState({});
+  const [orderDetails, setOrderDetails] = useState<any>({});
   const [isLoading, setIsLoading] = useState(false);
   const [watch, setWatch] = useState(false);
-
-  const example = [...allList];
 
   useEffect(() => {
     allTransactions();
   }, [watch]);
 
-  // 전체 내역
+  // 전체 거래 내역
   const allTransactions = async () => {
     setIsLoading(true);
     try {
       const allRes = await getAllTransactions();
-
       setAllList(
         allRes
-          .filter((res) => !res.isCanceled)
-          .sort((a, b) => sortDate(b.timePaid) - sortDate(a.timePaid))
+          .filter((res: TransactionDetail) => !res.isCanceled)
+          .sort((a: TransactionDetail, b: TransactionDetail) => sortDate(b.timePaid) - sortDate(a.timePaid))
       );
-      console.log(allList);
     } catch (error) {
-      console.log("전체 거래내역 조회 실패", Error);
+      alert("전체 거래 내역 조회 실패!")
     } finally {
       setIsLoading(false);
     }
@@ -53,14 +76,13 @@ const MyOrder = () => {
       const body = { detailId: id };
       const res = await cancelTransaction(body);
       if (res) {
-        alert("구매 취소되었습니다.");
         setWatch(!watch)
-        console.log("구매취소", res);
+        alert("구매 취소되었습니다.");
       } else {
         alert("구매 확정된 상품을 취소할 수 없습니다.");
       }
-    } catch (error) {
-      console.log("구매취소 실패", error);
+    } catch (error: any) {
+      alert(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -77,10 +99,10 @@ const MyOrder = () => {
       const res = await confirmedTransaction(body);
       if (res) {
         setWatch(!watch)
-        console.log("구매확정", res);
+        alert("구매 확정 완료!")
       }
-    } catch (error) {
-      console.log("구매확정 실패", error);
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 
@@ -94,10 +116,9 @@ const MyOrder = () => {
       const body = { detailId: id };
       const res = await getTransaction(body);
       setOrderDetails(res);
-      console.log("단일상품상세 성공", res);
       setShowDetails(true);
-    } catch (error) {
-      console.log("단일상품상세 실패", error);
+    } catch (error: any) {
+      alert(error.message)
     }
   };
 
@@ -130,7 +151,7 @@ const MyOrder = () => {
 
           <div className={styles.content}>
             <ul className={styles.allList}>
-              {allList.map((list, i) => (
+              {allList.map((list: any, i) => (
                 <li className={styles.list} key={list.datailId}>
                   <span>{i + 1}</span>
                   <div className={styles.listImg}>
@@ -142,7 +163,7 @@ const MyOrder = () => {
                   <span>{list.product.title}</span>
                   <span>{convertPrice(list.product.price)}</span>
                   <span>{convertDate(list.timePaid)}</span>
-                  <span>{list.done ? "O" : "X"}</span>
+                  <span>{list.done ? "✅" : "❌"}</span>
                   <div className={styles.listBtn}>
                     {list.done
                       ? null
@@ -172,7 +193,6 @@ const MyOrder = () => {
                       value="상세정보"
                       className={styles.confirmBtn}
                       onClick={(e) => {
-                        console.log(list.detailId);
                         showDetailsHandler(e, list.detailId);
                       }}
                     />

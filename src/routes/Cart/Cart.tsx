@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
+import { convertPrice } from "~/utils/convert";
 import CartList from "~/components/Cart/CartList";
 import styles from "~/styles/Cart/Cart.module.scss";
-import selectedCart from "~/reducers/selectedCart";
-import { convertPrice } from "~/utils/convert";
 
 const Cart = () => {
-  const [isAllChecked, setIsAllChecked] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-
   const navigate = useNavigate();
   const select = useSelector((state: any) => state.selectedCart);
   const cart = useSelector((state: any) => state.cart);
@@ -21,6 +16,7 @@ const Cart = () => {
   const totalQuantity = total.reduce((acc, cur) => (acc += cur.quantity), 0);
   const totalProductPrice = total.reduce((acc, cur) => (acc += cur.price), 0);
   const totalPrice = totalProductPrice;
+  
   useEffect(() => {}, [total]);
 
   return (
