@@ -4,7 +4,7 @@ const discountPrice = (productPrice: number, productDiscount: number) => {
 };
 
 // 할인 전 가격 계산 
-const priceBeforeDiscount = (price, discountRate) => {
+const priceBeforeDiscount = (price:number, discountRate:number) => {
   return price * 100 / (100 - discountRate)
 };
 

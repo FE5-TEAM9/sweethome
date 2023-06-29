@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { priceBeforeDiscount, convertPrice } from "~/utils/convert";
 import styles from "~/styles/Shop/ProductItem.module.scss";
 
-const ProductItem = ({ product }) => {
+
+const ProductItem = ({ product }: any) => {
   return (
     <Link to={product.id}>
       <li className={styles.productContainer}>

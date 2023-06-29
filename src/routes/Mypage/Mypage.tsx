@@ -1,15 +1,16 @@
-import styles from '~/styles/Mypage/Mypage.module.scss'
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logIn } from '~/api/requests'
 import SubNav from '~/components/common/SubNav';
 import MyInfo from "~/routes/Mypage/MyInfo"
 import AccountList from "~/routes/Mypage/MyBankAccount"
 import Transactions from '~/routes/Mypage/MyOrder';
-import { useSelector } from 'react-redux';
+import styles from '~/styles/Mypage/Mypage.module.scss'
+
 
 const MyPage = () => {
-  const user = useSelector(state => state.user)
+  const user = useSelector((state:any) => state.user)
   const navigate = useNavigate();
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState(false);
@@ -39,13 +40,12 @@ const MyPage = () => {
     try {
       const res = await logIn(body);
       if (res) {
-        console.log('비밀번호 재확인 성공', res)
         setPasswordConfirm(true);
       } else {
         alert('비밀번호가 일치하지 않습니다.')
       }
-    } catch (error) {
-      console.log('비밀번호 재확인 실패')
+    } catch (error: any) {
+      alert(error.message)
     }
     
   };

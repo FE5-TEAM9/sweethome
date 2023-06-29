@@ -21,8 +21,6 @@ const Login = () => {
 
     try {
       const res = await logIn(body);
-      console.log("로그인 정보", res);
-      console.log("나와랏", res.user.email)
       if (res) {
         if (res.user.email === import.meta.env.VITE_ADMIN_ACCOUNT) {
           navigate("/admin");
@@ -37,8 +35,8 @@ const Login = () => {
         dispatch({ type: "LOGOUT", state: false });
         alert("로그인 실패하였습니다.")
       }
-    } catch (err) {
-      console.log("로그인 오류", err);
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 

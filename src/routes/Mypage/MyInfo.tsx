@@ -3,23 +3,20 @@ import { useForm } from 'react-hook-form'
 import { editInfo } from '~/api/requests'
 import { useSelector } from 'react-redux'
 
-interface RequestBody {
-  displayName?: string
-  profileImgBase64?: string
-  oldPassword?: string
-  newPassword?: string
+interface Password {
+  oldPassword: string,
+  newPassword: string
 }
 
 const MyInfo = () => {
-  const user = useSelector(state => state.user)
-  console.log(user)
+  const user = useSelector((state: any) => state.user)
 
   const { 
     register, 
     handleSubmit,
     formState: { errors, isSubmitting},
     reset 
-  } = useForm({ 
+  } = useForm<Password>({ 
       mode: 'onChange',
     });
 
@@ -34,8 +31,9 @@ const MyInfo = () => {
       }
     }
 
-    const ChangePWHandeler = async({ oldPassword, newPassword }) => {
-      if (oldPassword <= 8 || newPassword <= 8) return alert('비밀번호는 8자이상 입력해주세요.')
+    
+    const ChangePWHandler = async({ oldPassword, newPassword }: Password) => {
+      if (oldPassword.length <= 8 || newPassword.length <= 8) return alert('비밀번호는 8자이상 입력해주세요.')
       const body = {
         oldPassword,
         newPassword
@@ -43,21 +41,20 @@ const MyInfo = () => {
       try {       
           const res = await editInfo(body)
           if (res) {
-            console.log('개인정보수정', res)
             alert('비밀번호가 변경되었습니다.')
             reset();
           } else {
             alert('비밀번호를 다시 입력해 주세요.')
             reset();
           }
-      } catch (error) {
-        console.log('개인정보수정 오류', error)
+      } catch (error: any) {
+        alert(error.message);
       }
     } 
 
   return (
     <section className={styles.info}>
-      <form onSubmit={handleSubmit(ChangePWHandeler)}>
+      <form onSubmit={handleSubmit(ChangePWHandler)}>
         <div className={styles.title}>
           <h2>개인 정보 수정</h2>
         </div>
@@ -123,7 +120,7 @@ const MyInfo = () => {
           type='submit'
           className={styles.btn}
           disabled={isSubmitting}
-          >
+        >
           변경
         </button>
       </form>
@@ -131,4 +128,4 @@ const MyInfo = () => {
   )
 }
 
-export default MyInfo
+export default MyInfo;

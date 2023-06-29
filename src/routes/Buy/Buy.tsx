@@ -24,7 +24,6 @@ const Buy = () => {
   const getAccountData = async () => {
     try {
       const res = await getAccountList();
-      console.log(res);
       setAccountList(res);
     } catch (err) {
       alert("계좌정보 실패하였습니다.");
@@ -38,8 +37,6 @@ const Buy = () => {
   };
   const location = useLocation();
   const order = [...location.state];
-
-  console.log("화긴스", order);
 
   const totalQuantity = order.reduce((acc, cur) => (acc += cur.quantity), 0);
   const totalPrice = order.reduce(

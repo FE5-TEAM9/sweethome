@@ -162,11 +162,14 @@ const AdminProduct = () => {
   const deleteProductHandler = async (id: any) => {
     try {
       const res = await deleteProduct(id);
-      console.log(res);
-      const updateProduct = allProducts.filter((product) => product.id !== id);
-      setAllProducts(updateProduct);
+      if (res) {
+        const updateProduct = allProducts.filter((product) => product.id !== id);
+        setAllProducts(updateProduct);
+      } else {
+        alert("상품 삭제 실패하였습니다.")
+      }
     } catch (error) {
-      console.log("상품 삭제", error);
+        alert("상품 삭제 실패하였습니다.")
     }
   };
 

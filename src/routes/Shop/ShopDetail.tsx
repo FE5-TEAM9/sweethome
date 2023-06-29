@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/Shop/ShopDetail.module.scss";
 
+
 const ShopDetail = () => {
   interface GetProductValue {
     id: string;
@@ -13,8 +14,8 @@ const ShopDetail = () => {
     price: number;
     description: string;
     tags: string[];
-    thumbnail: string | null;
-    photo: string | null;
+    thumbnail: string;
+    photo: string;
     isSoldOut: boolean;
     reservations: Reservation[];
     discountRate: number;
@@ -22,41 +23,43 @@ const ShopDetail = () => {
 
   interface Reservation {
     start: string;
-    end: string; // 예약 종료 시간
-    isCanceled: boolean; // 예약 취소 여부
-    isExpired: boolean; // 예약 만료 여부
+    end: string;
+    isCanceled: boolean;
+    isExpired: boolean;
   }
 
-  const { id } = useParams();
+ type Params = {
+    id: string |undefined
+  }
+  
+  const { id } = useParams<Params>();
   const navigate = useNavigate();
-
-  const globalCart = useSelector(state => state.cart);
+  const globalCart = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
 
-  const [product, setProduct] = useState<GetProductValue>({});
+  const [product, setProduct] = useState<any>({});
   const [count, setCount] = useState(1);
-
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getProductHandler(id);
   }, [count]);
+
   // 단일 상품 조회
-  const getProductHandler = async (id: string) => {
+  const getProductHandler = async (id: any) => {
     setIsLoading(true);
     try {
       const res = await getProduct(id);
-      console.log("단일 상품 조회", res);
       res["quantity"] = count;
       setProduct(res);
-    } catch (error) {
-      console.log("단일 상품 조회 실패", error);
+    } catch (error: any) {
+      alert(error.message)
     }
     setIsLoading(false);
   };
 
   // 상품 수량 계산
-  const productCountHandler = (type: String) => {
+  const productCountHandler = (type: string) => {
     if (type === "plus") {
       setCount(count + 1);
     } else {
@@ -67,7 +70,7 @@ const ShopDetail = () => {
 
   // 장바구니 중복 처리
   const cartDuplicationHandler = (id: string, quantity: number) => {
-    const found = globalCart.filter(el => el.id === id)[0];
+    const found = globalCart.filter((el: any) => el.id === id)[0];
     const idx = globalCart.indexOf(found);
     const cartItem = {
       id: product.id,
@@ -111,7 +114,7 @@ const ShopDetail = () => {
       discountRate: product.discountRate,
       isChecked: false
     };
-    const found = globalCart.find(el => el.id === cartItem.id);
+    const found = globalCart.find((el: any) => el.id === cartItem.id);
     if (found) {
       cartDuplicationHandler(cartItem.id, found.quantity + count);
     } else {

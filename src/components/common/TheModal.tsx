@@ -107,10 +107,9 @@ const TheModal = ({
       const res = await editProduct(body, id);
       setAllProducts([...allProducts, res]);
       setWatch(!watch);
-      console.log("상품제품 수정", res);
       setModalOpen(false);
-    } catch (error) {
-      console.log("상품 수정 실패", error);
+    } catch (error: any) {
+      alert(error.message);
     }
     setIsLoading(false);
   };
