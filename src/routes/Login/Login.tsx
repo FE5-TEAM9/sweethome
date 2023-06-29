@@ -9,7 +9,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.info);
   const navigate = useNavigate();
 
   const loginHandler = async (e: any) => {
@@ -25,7 +24,7 @@ const Login = () => {
       console.log("로그인 정보", res);
       console.log("나와랏", res.user.email)
       if (res) {
-        if (res.user.email === "admin@sweethome.com") {
+        if (res.user.email === import.meta.env.VITE_ADMIN_ACCOUNT) {
           navigate("/admin");
           dispatch({ type: "RETURN", account: res });
           dispatch({ type: "LOGOUT", state: true });
@@ -38,15 +37,6 @@ const Login = () => {
         dispatch({ type: "LOGOUT", state: false });
         alert("로그인 실패하였습니다.")
       }
-      // switch (res) {
-      //   case false:
-      //     dispatch({ type: "LOGOUT", state: false });
-      //     break;
-      //   default:
-      //     dispatch({ type: "LOGOUT", state: true });
-      //     break;
-      // }
-     
     } catch (err) {
       console.log("로그인 오류", err);
     }

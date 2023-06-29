@@ -1,8 +1,8 @@
 // Common Header
 const headers = {
   "content-type": "application/json",
-  apikey: "KDT5_nREmPe9B",
-  username: "KDT5_Team9"
+  apikey: import.meta.env.VITE_API_KEY,
+  username: import.meta.env.VITE_USER_NAME
 };
 
 // Common Interface
@@ -23,7 +23,7 @@ interface SignUpBody extends User {
 
 const signUp = async (body: SignUpBody) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup",
+    `${import.meta.env.VITE_API_BASE}/auth/signup`,
     {
       method: "POST",
       headers,
@@ -38,7 +38,7 @@ const signUp = async (body: SignUpBody) => {
 // Log-In 로그인
 const logIn = async (body: User) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login",
+    `${import.meta.env.VITE_API_BASE}/auth/login`,
     {
       method: "POST",
       headers,
@@ -57,7 +57,7 @@ const logIn = async (body: User) => {
 // Log-Out 로그아웃
 const logOut = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout",
+    `${import.meta.env.VITE_API_BASE}/auth/logout`,
     {
       method: "POST",
       headers: {
@@ -74,7 +74,7 @@ const logOut = async () => {
 // 로그인 인증
 const authenticate = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me",
+    `${import.meta.env.VITE_API_BASE}/auth/me`,
     {
       method: "POST",
       headers: {
@@ -93,7 +93,7 @@ const authenticate = async () => {
 // Users 사용자 목록
 const users = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/users",
+    `${import.meta.env.VITE_API_BASE}/auth/users`,
     {
       method: "GET",
       headers: {
@@ -120,7 +120,7 @@ interface AddProductBody {
 
 const addProduct = async (body: AddProductBody) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products",
+    `${import.meta.env.VITE_API_BASE}/products`,
     {
       method: "POST",
       headers: {
@@ -140,7 +140,7 @@ const addProduct = async (body: AddProductBody) => {
 // Get-All-Products 전체 상품 조회
 const getAllProducts = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products",
+    `${import.meta.env.VITE_API_BASE}/products`,
     {
       method: "GET",
       headers: {
@@ -158,7 +158,7 @@ const getAllProducts = async () => {
 // Get-Product 단일 상품 조회
 const getProduct = async (id: string) => {
   const res = await fetch(
-    `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${id}`,
+    `${import.meta.env.VITE_API_BASE}/products/${id}`,
     {
       method: "GET",
       headers
@@ -183,7 +183,7 @@ interface EditProductBody {
 
 const editProduct = async (body: EditProductBody, id: string) => {
   const res = await fetch(
-    `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${id}`,
+    `${import.meta.env.VITE_API_BASE}/products/${id}`,
     {
       method: "PUT",
       headers: {
@@ -226,7 +226,7 @@ interface EditInfoBody {
 
 const editInfo = async (body: EditInfoBody) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user",
+    `${import.meta.env.VITE_API_BASE}/auth/user`,
     {
       method: "PUT",
       headers: {
@@ -246,7 +246,7 @@ const editInfo = async (body: EditInfoBody) => {
 // 선택 가능한 은행 목록 조회
 const getBankList = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks",
+    `${import.meta.env.VITE_API_BASE}/account/banks`,
     {
       method: "GET",
       headers: {
@@ -263,7 +263,7 @@ const getBankList = async () => {
 // 계좌 목록 및 잔액 조회
 const getAccountList = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
+    `${import.meta.env.VITE_API_BASE}/account`,
     {
       method: "GET",
       headers: {
@@ -287,7 +287,7 @@ interface linkAccountBody {
 
 const linkAccount = async (body: linkAccountBody) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/account",
+    `${import.meta.env.VITE_API_BASE}/account`,
     {
       method: "POST",
       headers: {
@@ -313,7 +313,7 @@ interface DeleteAccountBody {
 const deleteAccount = async (body: DeleteAccountBody) => {
   try {
     await fetch(
-      `https://asia-northeast3-heropy-api.cloudfunctions.net/api/account `,
+      `${import.meta.env.VITE_API_BASE}/account`,
       {
         method: "DELETE",
         headers: {
@@ -332,7 +332,7 @@ const deleteAccount = async (body: DeleteAccountBody) => {
 const buyProduct = async (body) => {
   try {
     const res = await fetch(
-      'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy',
+      `${import.meta.env.VITE_API_BASE}/products/buy`,
       {
         method: 'POST',
         headers: {
@@ -354,7 +354,7 @@ const buyProduct = async (body) => {
 // 상품 거래 취소
 const cancelTransaction = async (body: TransactionsBody) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel",
+    `${import.meta.env.VITE_API_BASE}/products/cancel`,
     {
       method: "POST",
       headers: {
@@ -374,7 +374,7 @@ const cancelTransaction = async (body: TransactionsBody) => {
 // 상품 거래 확정
 const confirmedTransaction = async (body: TransactionsBody) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok",
+    `${import.meta.env.VITE_API_BASE}/products/ok`,
     {
       method: "POST",
       headers: {
@@ -395,7 +395,7 @@ const confirmedTransaction = async (body: TransactionsBody) => {
 // 전체 거래 내역 (사용자)
 const getAllTransactions = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details",
+    `${import.meta.env.VITE_API_BASE}/products/transactions/details`,
     {
       method: "GET",
       headers: {
@@ -412,7 +412,7 @@ const getAllTransactions = async () => {
 // 단일 거래 내역 (사용자)
 const getTransaction = async (body: TransactionsBody) => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/detail",
+    `${import.meta.env.VITE_API_BASE}/products/transactions/detail`,
     {
       method: "POST",
       headers: {
@@ -430,7 +430,7 @@ const getTransaction = async (body: TransactionsBody) => {
 // 전체 거래 내역 (관리자)
 const adminAllTransactions = async () => {
   const res = await fetch(
-    "https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all",
+    `${import.meta.env.VITE_API_BASE}/products/transactions/all`,
     {
       method: "GET",
       headers: {
@@ -452,7 +452,7 @@ interface adminTransactionsBody {
 
 const adminTransactions = async (id: string, body: adminTransactionsBody) => {
   const res = await fetch(
-    `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/${id}`,
+    `${import.meta.env.VITE_API_BASE}/products/transactions/${id}`,
     {
       method: "PUT",
       headers: {
