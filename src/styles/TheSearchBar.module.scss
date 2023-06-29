@@ -1,33 +1,42 @@
+@import "./common/colors.scss";
+@import "./common/fonts.scss";
+
 .searchContainer {
-  position:relative;
-  z-index:999;
-  &:hover {
-    border: solid #d9d9d9;
-  }
+  position: absolute;
+  top: 0;
+  right: 20px;
+  z-index: 9;
+  font-family: "Pretendard";
+
   .search {
-    margin: 2%;
     display: flex;
     position: relative;
-    background: white;
-    gap:5px;
-    //   &:hover {
-    //     border:solid gray;
-    //   }
+    gap: 5px;
+
     .searchBar {
-      border:solid black;
+      border: 1px solid $base-color-gray;
       width: 180px;
-      height: 50px;
-      border: none;
+      height: 28px;
       outline: none;
-      font-size: 1.1rem;
-      padding: 5px;
+      font-size: .8rem;
+      padding: 4px;
+      margin-right: 8px;
     }
   }
   .searchForm {
-    width: 150px;
-    background-color: #f6f6f6;
-    z-index: 999;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 180px;
+    min-height: 32px;
+    border: 1px solie $base-color-gray;
+    background-color: $base-color-lightgray;
+    // z-index: 9;
+    padding: 4px;
     margin-right:10px;
+    font-size: 14px;
+    .none {
+      display: none;
+    }
   }
+  
 }

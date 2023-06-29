@@ -27,8 +27,8 @@ const TheSearchBar = ({ search, onChange }) => {
 
   return (
     <>
+      {isLoading ? <Loading /> : null}
       <div className={styles.searchContainer}>
-        {isLoading ? <Loading /> : null}
         <form className={styles.search}>
           <input
             type="text"
@@ -39,7 +39,8 @@ const TheSearchBar = ({ search, onChange }) => {
             onChange={onChange}
           />
         </form>
-        <div className={styles.searchForm}>
+        {}
+        <div className={`${styles.searchForm} ${styles.none}`}>
           {allProducts.map((product, index) =>
             search === "" ? (
               <div key={index}></div>

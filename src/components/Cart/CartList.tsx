@@ -40,7 +40,7 @@ const CartList = () => {
   }, []);
   
   console.log("selectedcart", selectedCart);
-
+  console.log("카트", myCart);
   return (
     <div className={styles.cartList}>
       <ul className={styles.container}>
@@ -88,10 +88,8 @@ const CartList = () => {
               {item.discountRate !== 0
                 ? convertPrice(item.price * item.quantity)
                 : convertPrice(
-                    priceBeforeDiscount(item.price, item.discount) *
-                      item.quantity
-                  )}
-              원
+                    priceBeforeDiscount(item.price, item.discount) * item.quantity)
+              }원
             </div>
             <div className={styles.deleteBtn}>
               <TfiClose onClick={() => deleteCartItemHandler(i, item)} />

@@ -72,7 +72,7 @@ const ShopDetail = () => {
     const cartItem = {
       id: product.id,
       title: product.title,
-      price: priceBeforeDiscount(product.price, product.discountRate),
+      price: product.price,
       discountPrice: product.price,
       quantity: quantity,
       description: product.description,
@@ -99,7 +99,7 @@ const ShopDetail = () => {
     const cartItem = {
       id: product.id,
       title: product.title,
-      price: priceBeforeDiscount(product.price, product.discountRate),
+      price: product.price,
       discountPrice: product.price,
       quantity: count,
       description: product.description,
@@ -119,7 +119,6 @@ const ShopDetail = () => {
     }
     confirm("장바구니를 확인하시겠습니까?");
   };
-
   const buyNowHandler = () => {
     navigate("/buy", { state: [product] });
   };

@@ -9,20 +9,7 @@
   justify-content: center;
   align-items: center;
 
-  // .notice {
-  //   display: flex;
-  //   gap: 85px;
-  //   border: solid 1px;
-  //   border-color: #745959;
-  //   width: 100vw;
-  //   height: 76px;
-  //   margin: 25px 0;
-  //   align-items: center;
-  //   position: absolute;
-  //   bottom: 0;
-  //   .title {
-  //     font-weight: bold;
-  //     margin-left: 80px;
-  //   }
-  // }
+  .container {
+    min-height: calc(100vh - (100px + 150px));
+  }
 }

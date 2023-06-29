@@ -4,8 +4,7 @@ import {
   Pagination,
   Scrollbar,
   A11y,
-  EffectCube,
-  Autoplay
+  Autoplay,EffectFade
 } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import main1 from "/public/assets/Home/main1.jpeg";
@@ -21,13 +20,15 @@ export const Slider = ({}) => {
         "--swiper-navigation-color": "#41D3BD"
       }}
       className={styles.slider}
-      modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube, Autoplay]}
+      modules={[Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay]}
       spaceBetween={1288}
       slidesPerView={1}
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      autoplay={{ delay: 2500 }}>
+      autoplay={{ delay: 3000 }}
+      effect={"fade"}
+      >
       <SwiperSlide className={styles.slides}>
         <img
           className={styles.images}

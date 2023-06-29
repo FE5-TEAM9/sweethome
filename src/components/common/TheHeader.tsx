@@ -22,6 +22,8 @@ const TheHeader = () => {
     }
   };
   const [search, setSearch] = useState();
+  const [searchIsClicked, setSearchIsClicked] = useState(false);
+
   return (
     <header>
       <div className={styles.container}>
@@ -82,11 +84,17 @@ const TheHeader = () => {
               <FaShoppingBag className={styles.shoppingbag} />
             </NavLink>
             <div className={styles.search}>
-              <TheSearchBar
-                search={search}
-                onChange={(e: any) => setSearch(e.target.value)}
+              {searchIsClicked && (
+                <TheSearchBar
+                  className={styles.searchBar}
+                  search={search}
+                  onChange={(e: any) => setSearch(e.target.value)}
+                />
+              )}
+              <AiOutlineSearch
+                className={styles.searchIcon}
+                onClick={() => setSearchIsClicked(!searchIsClicked)}
               />
-              <AiOutlineSearch className={styles.searchIcon} />
             </div>
           </div>
         </div>

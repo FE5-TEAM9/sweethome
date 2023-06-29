@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { signUp } from "~/api/requests";
 import styles from "~/styles/Signup/SignUp.module.scss";
 
@@ -9,6 +10,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isAgree, setIsAgree] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -49,6 +51,11 @@ const SignUp = () => {
       setIsLoading(true);
       isAgree && (await signUp(body));
       setIsLoading(false);
+      if (confirm("회원가입 성공!\n로그인 페이지로 이동하시겠습니까?")) {
+        navigate('/login')
+      } else {
+        navigate('/')
+      }
     } catch (error) {
       console.log("SignUp Error", error);
     }
