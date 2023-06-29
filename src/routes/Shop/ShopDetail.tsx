@@ -3,6 +3,7 @@ import { priceBeforeDiscount, convertPrice } from "~/utils/convert";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Loading from "~/components/common/Loading";
 import styles from "~/styles/Shop/ShopDetail.module.scss";
 
 const ShopDetail = () => {
@@ -20,7 +21,7 @@ const ShopDetail = () => {
   }
 
   interface Reservation {
-    start: string; // 예약 시작 시간
+    start: string; 
     end: string; // 예약 종료 시간
     isCanceled: boolean; // 예약 취소 여부
     isExpired: boolean; // 예약 만료 여부
@@ -36,12 +37,15 @@ const ShopDetail = () => {
   const [count, setCount] = useState(1);
   const [cart, setCart] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     getProductHandler(id);
   }, []);
 
   // 단일 상품 조회
   const getProductHandler = async (id: string) => {
+    setIsLoading(true);
     try {
       const res = await getProduct(id);
       console.log("단일 상품 조회", res);
@@ -49,6 +53,7 @@ const ShopDetail = () => {
     } catch (error) {
       console.log("단일 상품 조회 실패", error);
     }
+    setIsLoading(false);
   };
 
   // 상품 수량 계산
@@ -116,9 +121,15 @@ const ShopDetail = () => {
     confirm("장바구니를 확인하시겠습니까?");
   };
   console.log("globalCart", globalCart);
+  
+  const buyNowHandler = () => {
+    console.log('buynow', product)
+    navigate('/buy',{state:1})
+  }
 
   return (
     <>
+      {isLoading ? <Loading /> : null}
       <section className={styles.product}>
         <div className={styles.productImg}>
           <img
@@ -152,7 +163,7 @@ const ShopDetail = () => {
                 className={styles.plusBtn}
                 onClick={() => productCountHandler("minus")}
               />
-              <span>{count}</span>
+              <span className={styles.count}>{count}</span>
               <input
                 type="button"
                 value="+"
@@ -176,14 +187,13 @@ const ShopDetail = () => {
               type="button"
               value="BUY NOW"
               className={`${styles.btn} ${styles.buy}`}
-              // onClick={() => { navigate('/cart')} }
+              onClick={() => buyNowHandler() }
             />
             <input
               type="button"
               value="CART"
               className={`${styles.btn} ${styles.cart}`}
               onClick={() => cartHandler()}
-              // onClick={() => { navigate('/cart')} }
             />
           </div>
         </div>

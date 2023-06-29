@@ -61,15 +61,24 @@
       margin-bottom: 20px;
 
       .countBox {
-        margin-bottom: 20px;
-
-        .plusBtn {
-          width: 30px;
-          height: 30px;
+        display: flex;
+        margin-bottom: 30px;
+        .count {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 40px;
+          height: 40px;
+          border: 1px solid $base-color-gray;
+          font-size: 18px;
+          font-weight: 600;
         }
+        .plusBtn,
         .minusBtn {
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
+          background-color: $base-color-lightgray;
+          border: 1px solid $base-color-gray;
         }
       }
       .countPrice {

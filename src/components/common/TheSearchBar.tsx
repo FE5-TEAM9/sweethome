@@ -51,7 +51,7 @@ const TheSearchBar = ({ search, onChange }) => {
                 key={index}
                 onClick={() => {
                   navigate(`/shop/${product.id}`, { replace: true });
-                  navigate(0);
+                  // navigate(0);
                 }}>
                 {product.title}
               </div>

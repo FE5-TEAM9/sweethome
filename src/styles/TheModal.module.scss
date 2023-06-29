@@ -1,19 +1,84 @@
+@import "./common/colors.scss";
+@import "./common/fonts.scss";
+
 .modal {
-  width: 300px;
-  height: 200px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  z-index: 999;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 500px;
+    min-height: 500px;
+    border-radius: 10px;
+    background-color: $base-color-white;
 
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 8px;
-  .close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    .title{
+      margin-bottom: 30px;
+      
+      h2 {
+        font-family: $font-main;
+        font-size: $font-main-size;
+        font-weight: bold;
+      }
+    }
+
+    .contents {
+      gap: 10px;
+
+      label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        input {
+          width: 200px;
+          text-align: center;
+        }
+      }
+
+      .editBtn {
+        width: 100px;
+        height: 26px;
+        border-radius: 10px;
+        border-style: none;
+        margin-top: 20px;
+        cursor: pointer;
+        background-color: $point-color-pink;
+        font-family: "Pretendard";
+        &:hover {
+          opacity: .8;
+        }
+      }
+    }
+
+    .closeBtn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+
+      svg {
+        path {
+          &:hover {
+            color: $point-color-red;
+          }
+        }
+      }
+    }
   }
+
+  
 }
