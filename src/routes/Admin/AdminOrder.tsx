@@ -1,11 +1,11 @@
-import { adminAllTransactions, adminTransactions } from "~/api/requests"
-import styles from "~/styles/admin/AdminOrder.module.scss"
 import { useEffect, useState } from "react"
-import Loading from "~/components/common/Loading"
+import { adminAllTransactions, adminTransactions } from "~/api/requests"
 import { convertDate, sortDate, convertPrice } from "~/utils/convert"
+import Loading from "~/components/common/Loading"
+import styles from "~/styles/admin/AdminOrder.module.scss"
 
 const AdminOrder = () => {
-  const [allList, setAllList] = useState([]);
+  const [allList, setAllList] = useState<any[]>([]);
   const [isCanceled, setIsCanceled] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,40 +14,59 @@ const AdminOrder = () => {
     getAllTransactions();
   },[])
   
-  // 전체 내역
+  // 전체 거래 내역 조회
   const getAllTransactions = async () => {
     try {
       const res = await adminAllTransactions();
-      setAllList(res.sort((a, b) => sortDate(b.timePaid) - sortDate(a.timePaid)));
-      console.log('관리자 거래 내역 성공', res);
-    } catch (error) {
-      console.log("관리자 거래 내역 확인 실패", error)
+      setAllList(res.sort((a: any, b: any) => sortDate(b.timePaid) - sortDate(a.timePaid)));
+    } catch (error: any) {
+      alert(error.message);
     }
   }
-  
-  console.log('sort거래내역',allList)
-  // 거래 완료/취소
-  const adminTransactionsHandler = async (e: React.MouseEvent<HTMLInputElement>, detailId) => {
+
+  // 거래 완료 및 취소
+  const adminTransactionsHandler = async (e: React.MouseEvent<HTMLInputElement>, detailId: string) => {
     e.preventDefault();
     setIsLoading(true);
-
     const id = e.currentTarget.id;
     try {
       if (id === 'canceled') {
-        const res = await adminTransactions(detailId, { isCanceled: !isCanceled });
-        setIsCanceled(!isCanceled)
-        console.log('구매취소 성공', res);
+        await adminTransactions(detailId, { isCanceled: !isCanceled });
+        setIsCanceled(!isCanceled);
       } else {
-        const res = await adminTransactions(detailId, { done: !isDone });
-        setIsDone(!isDone)
-        console.log('구매확정 성공', res);
+        await adminTransactions(detailId, { done: !isDone });
+        setIsDone(!isDone);
       }
-
-    } catch (error) {
-      console.log("거래 완료/취소 실패", error);
+    } catch (error: any) {
+      alert(error.message);
     }
     setIsLoading(false);
-      
+  }
+
+  interface TransactionDetail {
+    detailId: string
+    user: {
+      email: string
+      displayName: string
+      profileImg: string | null
+    }
+    account: {
+      bankName: string
+      bankCode: string
+      accountNumber: string
+    }
+    product: {
+      productId: string
+      title: string
+      price: number
+      description: string
+      tags: string[]
+      thumbnail: string | null
+      discountRate: number
+    }
+    timePaid: string
+    isCanceled: boolean
+    done: boolean
   }
   
   return (
@@ -75,7 +94,7 @@ const AdminOrder = () => {
 
           <div className={styles.content}>
             <ul className={styles.allList}>
-              {allList.map((list, i) => (
+              {allList.map((list: TransactionDetail, i) => (
                 <li
                   className={styles.list}              
                   key={list.detailId}>

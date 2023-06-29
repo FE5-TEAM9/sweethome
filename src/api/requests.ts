@@ -66,9 +66,12 @@ const logOut = async () => {
       }
     }
   );
-  const json = await res.json();
-  console.log("로그아웃 API", json);
-  window.localStorage.clear();
+  if (res.status === 200) {
+    await res.json();
+    alert("로그아웃되었습니다!")
+    window.localStorage.clear();
+  } else return false;
+
 };
 
 // 로그인 인증
@@ -85,7 +88,6 @@ const authenticate = async () => {
   );
   if (res.status === 200) {
     const json = await res.json();
-    console.log("로그인 인증 API", json);
     return json;
   } else return false;
 };
@@ -132,9 +134,11 @@ const addProduct = async (body: AddProductBody) => {
       body: JSON.stringify(body)
     }
   );
-  const data = await res.json();
-  console.log(data);
-  return data;
+  if (res.status === 200) {
+    const data = await res.json();
+    return data;
+  } else return false;
+
 };
 
 // Get-All-Products 전체 상품 조회
@@ -311,7 +315,6 @@ interface DeleteAccountBody {
 }
 
 const deleteAccount = async (body: DeleteAccountBody) => {
-  try {
     await fetch(
       `${import.meta.env.VITE_API_BASE}/account`,
       {
@@ -323,13 +326,19 @@ const deleteAccount = async (body: DeleteAccountBody) => {
         body: JSON.stringify(body)
       }
     );
-  } catch (error) {
-    console.log("상품 삭제 error", error);
-  }
 };
 
 // 상품 거래 신청 (구매)
-const buyProduct = async (body) => {
+
+interface BuyProductBody {
+  productId: string // 거래할 제품 ID (필수!)
+  accountId: string // 결제할 사용자 계좌 ID (필수!)
+  reservation?: { // 예약 정보(예약 시스템을 사용하는 경우만 필요)
+    start: string // 예약 시작 시간(ISO)
+    end: string // 예약 종료 시간(ISO)
+  }
+}
+const buyProduct = async (body: BuyProductBody) => {
   try {
     const res = await fetch(
       `${import.meta.env.VITE_API_BASE}/products/buy`,

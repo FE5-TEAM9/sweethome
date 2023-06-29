@@ -3,31 +3,58 @@ import { useState } from 'react';
 import { linkAccount } from '~/api/requests'
 import Loading from '~/components/common/Loading';
 
-const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setShowModal }) => {
+interface AccountModalProps {
+  bankList: Bank[];
+  watch: boolean;
+  setWatch: React.Dispatch<React.SetStateAction<boolean>>
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+
+}
+
+interface Bank { // 선택 가능한 은행 정보
+  name: string // 은행 이름
+  code: string // 은행 코드
+  digits: number[] // 은행 계좌 자릿수
+  disabled: boolean // 사용자가 추가한 계좌 여부
+}
+
+interface InputState {
+  input0: string;
+  input1: string;
+  input2: string;
+  input3: string;
+  phone0: string;
+  phone1: string;
+  phone2: string;
+}
+
+const AccountModal = ({ 
+  bankList, 
+  watch, 
+  setWatch, 
+  showModal, 
+  setShowModal 
+}: AccountModalProps) => {
   const [bankCode, setBankCode] = useState('')
   const [isAgree, setIsAgree] = useState(false)
   const [bankIDX, setBankIDX] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
-  const [accuontInput, setAccuontInput] = useState({
+  const [accountInput, setAccountInput] = useState<InputState>({
     input0: '',
     input1: '',
     input2: '',
     input3: '',
-    sumAccountNum: function() {
-      return this.input0 + this.input1 + this.input2 + this.input3;
-    },
     phone0: '',
     phone1: '',
-    phone2: '',
-    sumPhoneNum: function() {
-      return this.phone0 + this.phone1 + this.phone2;
-    }
+    phone2: ''
   })
 
+  // Input onChange Handler
   const accountOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
-    setAccuontInput({
-      ...accuontInput,
+    setAccountInput({
+      ...accountInput,
       [name]: value
     })
 }
@@ -38,8 +65,8 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
     setIsLoading(true);
     const body = {
       bankCode,
-      accountNumber: accuontInput.sumAccountNum(),
-      phoneNumber: accuontInput.sumPhoneNum(),
+      accountNumber: accountInput.input0 + accountInput.input1 + accountInput.input2+ accountInput.input3,
+      phoneNumber: accountInput.phone0+ accountInput.phone1 + accountInput.phone2,
       signature: isAgree,
     }
     const res = await linkAccount(body);
@@ -126,7 +153,7 @@ const AccountModal = ({ bankList, onFormCancel, watch, setWatch, showModal, setS
           <div className={styles.btnWrap}>
             <button 
               className={styles.btn}
-              onClick={onFormCancel}
+              onClick={()=>setShowModal(false)}
             >취소</button>
             <button 
               type='button'

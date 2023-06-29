@@ -8,12 +8,13 @@ import TheSearchBar from "~/components/common/TheSearchBar";
 import { useState } from "react";
 
 const TheHeader = () => {
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const [searchIsClicked, setSearchIsClicked] = useState(false);
 
   const logout = useSelector((state: any) => state.logout);
   const dispatch = useDispatch();
 
+  // 로그아웃
   const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch({ type: "LOGOUT", state: false });
@@ -90,7 +91,7 @@ const TheHeader = () => {
                 <TheSearchBar
                   className={styles.searchBar}
                   search={search}
-                  onChange={(e: any) => setSearch(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} 
                 />
               )}
               <AiOutlineSearch

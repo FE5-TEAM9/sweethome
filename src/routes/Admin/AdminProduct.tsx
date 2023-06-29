@@ -1,20 +1,14 @@
-import { useState, useEffect, useMemo } from "react";
-import {
-  addProduct,
-  getAllProducts,
-  deleteProduct,
-} from "~/api/requests";
-import { priceBeforeDiscount } from "~/utils/convert";
+import { useState, useEffect } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import { BsPencilSquare } from "react-icons/bs";
-import styles from "~/styles/Admin/AdminProduct.module.scss";
-import TheModal from "~/components/common/TheModal";
+import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
 import { SELECT_TAGS } from "~/constants";
+import TheModal from "~/components/common/TheModal";
 import Select from "~/components/common/Select";
 import Loading from "~/components/common/Loading";
+import styles from "~/styles/Admin/AdminProduct.module.scss";
 
-const AdminProduct = () => {
-  type AllProduct = Product[]; // 관리하는 모든 제품의 목록
+type AllProduct = Product[];
 
   interface Product {
     id: string;
@@ -22,26 +16,23 @@ const AdminProduct = () => {
     price: number;
     description: string;
     tags: string[];
-    thumbnail: string | null;
+    thumbnail: string;
     isSoldOut: boolean;
     discountRate: number;
   }
-  interface PhotoConvert {
-    productThumb: string | undefined;
-    productPhoto: string | undefined;
-  }
 
+const AdminProduct = () => {
   const [allProducts, setAllProducts] = useState<AllProduct>([]);
-  const [productThumb, setProductThumb] = useState<PhotoConvert | null>(null);
-  const [productPhoto, setProductPhoto] = useState<PhotoConvert | null>(null);
+  const [productThumb, setProductThumb] = useState<string>("");
+  const [productPhoto, setProductPhoto] = useState<string>("");
   const [productId, setProductId] = useState("");
   const [product, setProduct] = useState({
-    title: '',
-    price: '',
-    description: '',
-    tags: '',
-    discountRate: '',
-  })
+    title: "",
+    price: "",
+    description: "",
+    tags: "",
+    discountRate: "",
+  });
 
   const [isLoading, setIsLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -49,9 +40,10 @@ const AdminProduct = () => {
   const [watch, setWatch] = useState(false);
   const [productIDX, setProductIDX] = useState(0);
 
+  // 상품 수정 버튼 클릭 시 모달창 오픈
   const showModal = (id: string) => {
     setModalOpen(true);
-    setProductId(id)
+    setProductId(id);
   };
 
   useEffect(() => {
@@ -67,31 +59,45 @@ const AdminProduct = () => {
     "품절여부",
   ];
 
-  // 상품 목록 조회
+  // 전체 상품 목록 조회
   const getAllProductsHandler = async () => {
     setIsLoading(true);
     try {
       const res = await getAllProducts();
-      console.log(res);
       setAllProducts(res);
     } catch (error) {
-      console.log("상품 출력", error);
+      alert("상품 출력 실패!");
     }
     setIsLoading(false);
   };
 
-  const onInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // 상품 수정 input 핸들러
+  const onInputChangeHandler = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const { value, name } = e.target;
     setProduct({
       ...product,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   // 상품 등록
   const addProductHandler = async () => {
-    
-    const body = {
+    interface AddProductBody {
+      title: string;
+      price: number;
+      description: string;
+      tags?: string;
+      thumbnailBase64?: string;
+      photoBase64?: string;
+      discountRate?: number;
+      isSoldOut?: boolean;
+    }
+
+    const body: AddProductBody = {
       title: product.title,
       price: Number(product.price),
       description: product.description,
@@ -105,41 +111,52 @@ const AdminProduct = () => {
     try {
       setIsLoading(true);
       await addProduct(body);
-      setWatch(!watch)
+      setWatch(!watch);
+      alert("상품 등록 성공!");
+      setProduct({
+        title: "",
+        price: "",
+        description: "",
+        tags: "",
+        discountRate: "",
+      });
+      setProductThumb("");
+      setProductPhoto("");
+
     } catch (error) {
-      console.log("addProduct error", error);
+      alert("상품 등록 실패!");
     }
     setIsLoading(false);
   };
 
   // 썸네일 base64 인코딩
-  const thumbBase64Handler = (e: any) => {
-    const file = e.target.files[0];
+  const thumbBase64Handler = (e: React.ChangeEvent) => {
+    const target: any = e.target as HTMLInputElement
+    const file = target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setProductThumb(reader.result || null); // 파일의 컨텐츠
+        setProductThumb(reader.result as string);
         resolve();
       };
     });
   };
 
   // 상세사진 base64 인코딩
-  const photoBase64Handler = (e: any) => {
-    const file = e.target.files[0];
+  const photoBase64Handler = (e: React.ChangeEvent) => {
+    const target:any = e.target as HTMLInputElement
+    const file = target.files[0]
     const reader = new FileReader();
     reader.readAsDataURL(file);
-
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setProductPhoto(reader.result || null); // 파일의 컨텐츠
+        setProductPhoto(reader.result as string);
         resolve();
       };
     });
   };
-
 
   // 상품 삭제
   const deleteProductHandler = async (id: any) => {
@@ -206,7 +223,7 @@ const AdminProduct = () => {
                     name="tags"
                     options={SELECT_TAGS}
                     value={product.tags}
-                    onChange={onInputChangeHandler}
+                    onChange={(e) => onInputChangeHandler(e)}
                   />
                 </label>
               </div>
@@ -250,7 +267,7 @@ const AdminProduct = () => {
                   <input
                     type="checkbox"
                     className={styles.input}
-                    onChange={()=> setIsChecked(!isChecked)}
+                    onChange={() => setIsChecked(!isChecked)}
                   />
                 </label>
               </div>
@@ -286,7 +303,7 @@ const AdminProduct = () => {
                         <td>{product.title}</td>
                         <td>{product.price}</td>
                         <td>{product.discountRate}</td>
-                        <td>{product.isSoldOut? '품절':''}</td>
+                        <td>{product.isSoldOut ? "품절" : ""}</td>
                         <div className={styles.icon}>
                           <BsPencilSquare
                             className={styles.modifyBtn}

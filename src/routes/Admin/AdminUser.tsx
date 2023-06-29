@@ -3,25 +3,26 @@ import { users } from "~/api/requests";
 import styles from "~/styles/Admin/AdminUser.module.scss";
 
 const AdminUser = () => {
+  interface User {  
+    email: string
+    displayName: string
+    profileImg: string
+  }
+  
   const [allUsers, setAllUsers] = useState([]);
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [userProfile, setUserProfile] = useState("");
-
   const tableHead = ["NO", "이름", "이메일"];
 
   useEffect(() => {
     getUsers();
   }, []);
-
+  
+  // 사용자 목록 조회
   const getUsers = async () => {
     try {
       const res = await users();
-      console.log(res);
       setAllUsers(res);
     } catch (error) {
-      console.log("사용자 관리", error);
+      alert("사용자 목록 조회 실패!")
     }
   };
 
@@ -42,7 +43,7 @@ const AdminUser = () => {
                 </tr>
               </thead>
               <tbody>
-                {allUsers.map((user, i) => (
+                {allUsers.map((user: User, i) => (
                   <tr key={i + 1}>
                     <td>{i + 1}</td>
                     <td>{user.displayName}</td>
