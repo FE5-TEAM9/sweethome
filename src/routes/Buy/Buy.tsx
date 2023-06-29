@@ -7,12 +7,19 @@ import { buyProduct, getAccountList } from "~/api/requests";
 import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Buy/Buy.module.scss";
 
+interface Bank { 
+  id: string;
+  bankName: string;
+  bankCode: string;
+  accountNumber: string;
+  balance: number;
+}
 const Buy = () => {
   const user = useSelector((state: any) => state.user);
   const [accountChecked, setAccountChecked] = useState(true);
   const [bankChecked, setBankChecked] = useState(false);
   const [accountId, setAccountId] = useState("");
-  const [accountList, setAccountList] = useState([]);
+  const [accountList, setAccountList] = useState<Bank[]>([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state: any) => state.cart);
@@ -24,7 +31,7 @@ const Buy = () => {
   const getAccountData = async () => {
     try {
       const res = await getAccountList();
-      setAccountList(res);
+      setAccountList(res.accounts);
     } catch (err) {
       alert("계좌정보 실패하였습니다.");
     }
@@ -56,8 +63,8 @@ const Buy = () => {
 
   const orderApplyHandler = async (
     e: React.MouseEvent<HTMLInputElement>,
-    order,
-    accountId
+    order:any[],
+    accountId:string,
   ) => {
     e.preventDefault();
     try {
@@ -217,7 +224,7 @@ const Buy = () => {
               </div>
               {accountChecked ? (
                 <div className={styles.account}>
-                  {accountList.accounts?.map(account => (
+                  {accountList.map(account => (
                     <div
                       key={account.id}
                       className={styles.account_info}

@@ -19,7 +19,7 @@ const Shop = () => {
 
   const [allProducts, setAllProducts] = useState<AllProduct>([]);
   const [originalProducts, setOriginalProducts] = useState<AllProduct>([]);
-  const [click, setClick] = useState(false);
+  const [click, ] = useState(false);
 
   useEffect(() => {
     spreadAllProducts();

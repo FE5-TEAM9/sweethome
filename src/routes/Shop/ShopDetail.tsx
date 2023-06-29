@@ -8,26 +8,6 @@ import styles from "~/styles/Shop/ShopDetail.module.scss";
 
 
 const ShopDetail = () => {
-  interface GetProductValue {
-    id: string;
-    title: string;
-    price: number;
-    description: string;
-    tags: string[];
-    thumbnail: string;
-    photo: string;
-    isSoldOut: boolean;
-    reservations: Reservation[];
-    discountRate: number;
-  }
-
-  interface Reservation {
-    start: string;
-    end: string;
-    isCanceled: boolean;
-    isExpired: boolean;
-  }
-
  type Params = {
     id: string |undefined
   }

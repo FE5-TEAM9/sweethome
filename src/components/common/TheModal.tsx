@@ -38,7 +38,7 @@ const TheModal = ({
   productIDX,
 }: PropsType) => {
   const [isChecked, setIsChecked] = useState(false);
-  const [productThumb, setProductThumb] = useState<string>('');
+  const [productThumb] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [editInfo, setEditInfo] = useState({
     title: allProducts[productIDX].title,

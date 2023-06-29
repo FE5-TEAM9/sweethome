@@ -15,7 +15,7 @@ const MyPage = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState(false);
 
-  const subNav: string[]  = ["주문 내역 관리", "계좌 정보 관리", "개인 정보 관리"  ];
+  const subNav: string[]  = ["주문 내역 관리", "계좌 정보 관리", "개인 정보 관리"];
   const [category, setCategory] = useState('');
 
   useEffect(() => {
