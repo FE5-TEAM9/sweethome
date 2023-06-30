@@ -171,6 +171,7 @@ const ShopDetail = () => {
                         count
                     )}
                 원
+                // 나중에 지우자
               </span>
             </div>
           </div>
