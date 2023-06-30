@@ -108,7 +108,12 @@ const ShopDetail = () => {
   };
 
   const buyNowHandler = () => {
+    if (!localStorage.getItem('token')) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    } else {
     navigate("/buy", { state: [product] });
+    }
   };
 
   return (
