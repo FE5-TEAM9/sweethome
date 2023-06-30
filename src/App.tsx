@@ -6,22 +6,22 @@ import { authenticate } from '~/api/requests'
 import { useDispatch } from "react-redux"
 
 
-export default function Layout() {
-const location = useLocation();
-const dispatch = useDispatch()
+export default function App() {
+  const location = useLocation();
+  const dispatch = useDispatch()
 
-  useEffect(()=> {
-    authenticateHandler();
-  }, [location])
+    useEffect(()=> {
+      authenticateHandler();
+    }, [location])
 
-  const authenticateHandler = useCallback(async () => {
-    try {
-      const res = await authenticate()
-      dispatch({ type: "RETURN_USER", payload: res })
-    } catch (err) {
-      console.log("로그인 인증 실패하였습니다.")
-    }
-  }, [location])
+    const authenticateHandler = useCallback(async () => {
+      try {
+        const res = await authenticate()
+        dispatch({ type: "RETURN_USER", payload: res })
+      } catch (err) {
+        console.log("로그인 인증 실패하였습니다.")
+      }
+    }, [location])
 
   return (
     <>
