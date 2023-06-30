@@ -93,17 +93,24 @@ const ShopDetail = () => {
       discountRate: product.discountRate,
       isChecked: false
     };
+
     const found = globalCart.find((el: any) => el.id === cartItem.id);
+
     if (found) {
       cartDuplicationHandler(cartItem.id, found.quantity + count);
     } else {
       dispatch({ type: "RETURN_CART", items: [...globalCart, cartItem] });
     }
-    confirm("장바구니를 확인하시겠습니까?");
+    
+    if (confirm("장바구니를 확인하시겠습니까?")) {
+      navigate("/cart")
+    } else return;
   };
+
   const buyNowHandler = () => {
     navigate("/buy", { state: [product] });
   };
+
   return (
     <>
       {isLoading ? <Loading /> : null}

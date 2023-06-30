@@ -96,7 +96,7 @@ const AccountModal = ({
                   setBankCode(bank.code);
                }}
               >
-              <img src={`/public/assets/bank/bank${bank.code}.svg`} />
+              <img src={`${process.env.PUBLIC_URL}/assets/bank/bank${bank.code}.svg`} />
               <p >{bank.name}</p>
             </li>
             )
