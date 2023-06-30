@@ -1,7 +1,7 @@
-import styles from '~/styles/Mypage/AccountModal.module.scss';
 import { useState } from 'react';
-import { linkAccount } from '~/api/requests'
+import { linkAccount } from '~/api/requests';
 import Loading from '~/components/common/Loading';
+import styles from '~/styles/Mypage/AccountModal.module.scss';
 
 interface AccountModalProps {
   bankList: Bank[];

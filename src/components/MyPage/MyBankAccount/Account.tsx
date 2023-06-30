@@ -1,7 +1,7 @@
-import styles from '~/styles/Mypage/Account.module.scss'
 import { SlClose } from 'react-icons/sl'
 import { deleteAccount } from '~/api/requests'
 import { convertPrice } from '~/utils/convert'
+import styles from '~/styles/Mypage/Account.module.scss'
 
 interface AccountProps {
   item: Bank;
