@@ -33,7 +33,7 @@ const MyInfo = () => {
 
     
     const ChangePWHandler = async({ oldPassword, newPassword }: Password) => {
-      if (oldPassword.length <= 8 || newPassword.length <= 8) return alert('비밀번호는 8자이상 입력해주세요.')
+      if (oldPassword.length < 8 || newPassword.length < 8) return alert('비밀번호는 8자이상 입력해주세요.')
       const body = {
         oldPassword,
         newPassword

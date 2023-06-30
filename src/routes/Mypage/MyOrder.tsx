@@ -53,11 +53,15 @@ const MyOrder = () => {
   const allTransactions = async () => {
     setIsLoading(true);
     const allRes = await getAllTransactions();
-    setAllList(
-      allRes
-        .filter((res: TransactionDetail) => !res.isCanceled)
-        .sort((a: TransactionDetail, b: TransactionDetail) => sortDate(b.timePaid) - sortDate(a.timePaid))
-    );
+    if (allRes) {
+      setAllList(
+        allRes
+          .filter((res: TransactionDetail) => !res.isCanceled)
+          .sort((a: TransactionDetail, b: TransactionDetail) => sortDate(b.timePaid) - sortDate(a.timePaid))
+      );
+    } else {
+      alert("주문 내역이 없습니다.")
+    }
     setIsLoading(false);
   };
 

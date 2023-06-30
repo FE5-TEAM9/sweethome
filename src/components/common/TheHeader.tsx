@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { logOut } from "~/api/requests";
@@ -13,6 +13,7 @@ const TheHeader = () => {
 
   const logout = useSelector((state: any) => state.logout);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // 로그아웃
   const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -21,6 +22,8 @@ const TheHeader = () => {
     dispatch({ type: "RETURN", account: {} });
     try {
       await logOut();
+      alert("로그아웃 완료되었습니다.")
+      navigate("/")
     } catch (error: any) {
       alert(error.message);
     }
