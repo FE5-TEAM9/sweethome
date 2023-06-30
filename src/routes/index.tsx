@@ -10,6 +10,7 @@ import Login from "~/routes/Login/Login";
 import SignUp from "~/routes/SignUp/SignUp";
 import Admin from "~/routes/Admin/Admin";
 import Buy from "~/routes/Buy/Buy";
+import NotFound from "~/routes/NotFound/NotFount";
 
 export default createBrowserRouter([
   {
@@ -57,5 +58,9 @@ export default createBrowserRouter([
         element: <Buy />
       }
     ]
+  },
+  {
+    path: "*",
+    element: <NotFound />
   }
 ]);

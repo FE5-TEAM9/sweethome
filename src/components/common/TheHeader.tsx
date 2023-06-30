@@ -50,13 +50,6 @@ const TheHeader = () => {
                 SHOP
               </NavLink>
             </li>
-            <li className={styles.menu}>
-              <NavLink
-                to="/board"
-                className={({ isActive }) => (isActive ? styles.active : "")}>
-                BOARD
-              </NavLink>
-            </li>
           </ul>
         </div>
         <div className={styles.subNav}>

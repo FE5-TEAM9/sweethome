@@ -8,6 +8,15 @@ import styles from "~/styles/Cart/Cart.module.scss";
 
 const Cart = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      alert('로그인을 해주세요! 🏠');
+      navigate('/login');
+    }
+  },[])
+
+
   const select = useSelector((state: any) => state.selectedCart);
   const cart = useSelector((state: any) => state.cart);
 
@@ -21,6 +30,7 @@ const Cart = () => {
 
   return (
     <>
+    {localStorage.getItem('token') ?
       <section className={styles.cart}>
         <div className={styles.container}>
           <div className={styles.title}>
@@ -76,6 +86,8 @@ const Cart = () => {
           </div>
         </div>
       </section>
+      : <div></div>
+      }
     </>
   );
 };

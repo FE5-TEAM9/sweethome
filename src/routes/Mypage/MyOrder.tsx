@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   cancelTransaction,
   confirmedTransaction,
@@ -51,18 +52,13 @@ const MyOrder = () => {
   // 전체 거래 내역
   const allTransactions = async () => {
     setIsLoading(true);
-    try {
-      const allRes = await getAllTransactions();
-      setAllList(
-        allRes
-          .filter((res: TransactionDetail) => !res.isCanceled)
-          .sort((a: TransactionDetail, b: TransactionDetail) => sortDate(b.timePaid) - sortDate(a.timePaid))
-      );
-    } catch (error) {
-      alert("전체 거래 내역 조회 실패!")
-    } finally {
-      setIsLoading(false);
-    }
+    const allRes = await getAllTransactions();
+    setAllList(
+      allRes
+        .filter((res: TransactionDetail) => !res.isCanceled)
+        .sort((a: TransactionDetail, b: TransactionDetail) => sortDate(b.timePaid) - sortDate(a.timePaid))
+    );
+    setIsLoading(false);
   };
 
   // 구매 취소
