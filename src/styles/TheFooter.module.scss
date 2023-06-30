@@ -29,6 +29,7 @@ footer {
 
     ul {
       display: flex;
+      flex-shrink: 0;
       justify-content: space-evenly;
       gap: 60px;
 

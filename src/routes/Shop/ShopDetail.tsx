@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/Shop/ShopDetail.module.scss";
 
-
 const ShopDetail = () => {
  type Params = {
     id: string |undefined
@@ -14,8 +13,8 @@ const ShopDetail = () => {
   
   const { id } = useParams<Params>();
   const navigate = useNavigate();
-  const globalCart = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
+  const globalCart = useSelector((state: any) => state.cart);
 
   const [product, setProduct] = useState<any>({});
   const [count, setCount] = useState(1);
@@ -23,7 +22,7 @@ const ShopDetail = () => {
 
   useEffect(() => {
     getProductHandler(id);
-  }, [count]);
+  }, []);
 
   // 단일 상품 조회
   const getProductHandler = async (id: any) => {
@@ -143,7 +142,11 @@ const ShopDetail = () => {
                 className={styles.plusBtn}
                 onClick={() => productCountHandler("minus")}
               />
-              <span className={styles.count}>{count}</span>
+              <input
+                className={styles.count}
+                name="count"
+                value={count}
+              />
               <input
                 type="button"
                 value="+"
