@@ -12,6 +12,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  bottom: 0;
   width: 100vw;
   height: 150px;
   background-color: $base-color-lightgray;
@@ -23,6 +25,7 @@ footer {
     align-items: center;
     width: 90%;
     max-width: 1440px;
+    margin-top: 20px;
 
     ul {
       display: flex;
