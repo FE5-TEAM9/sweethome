@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/Shop/ShopDetail.module.scss";
 
-
 const ShopDetail = () => {
  type Params = {
     id: string |undefined
@@ -14,8 +13,8 @@ const ShopDetail = () => {
   
   const { id } = useParams<Params>();
   const navigate = useNavigate();
-  const globalCart = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
+  const globalCart = useSelector((state: any) => state.cart);
 
   const [product, setProduct] = useState<any>({});
   const [count, setCount] = useState(1);
@@ -23,7 +22,7 @@ const ShopDetail = () => {
 
   useEffect(() => {
     getProductHandler(id);
-  }, [count]);
+  }, []);
 
   // 단일 상품 조회
   const getProductHandler = async (id: any) => {
@@ -94,17 +93,24 @@ const ShopDetail = () => {
       discountRate: product.discountRate,
       isChecked: false
     };
+
     const found = globalCart.find((el: any) => el.id === cartItem.id);
+
     if (found) {
       cartDuplicationHandler(cartItem.id, found.quantity + count);
     } else {
       dispatch({ type: "RETURN_CART", items: [...globalCart, cartItem] });
     }
-    confirm("장바구니를 확인하시겠습니까?");
+    
+    if (confirm("장바구니를 확인하시겠습니까?")) {
+      navigate("/cart")
+    } else return;
   };
+
   const buyNowHandler = () => {
     navigate("/buy", { state: [product] });
   };
+
   return (
     <>
       {isLoading ? <Loading /> : null}
@@ -143,7 +149,11 @@ const ShopDetail = () => {
                 className={styles.plusBtn}
                 onClick={() => productCountHandler("minus")}
               />
-              <span className={styles.count}>{count}</span>
+              <input
+                className={styles.count}
+                name="count"
+                value={count}
+              />
               <input
                 type="button"
                 value="+"
