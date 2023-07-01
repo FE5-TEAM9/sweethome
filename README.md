@@ -104,26 +104,31 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 <br />
 
 ## 프로젝트 상세 기능
-### Header
-- 카테고리 (Navbar)
-- 제품 검색 기능
+
+### Layout
+- React-Router-Dom의 outlet 중첩 라우팅을 활용한 레이아웃 구성
+- Redux를 사용한 전역 상태 관리
+- 재사용성을 높이기 위한 세부 Componentㄴs 구
+### Head
+- 카테고리 (Navbar) : useNavigate, NavLink를 활용한 페이지 라우터 관리
+- 제품 검색 기능 : 
 
 ### 메인 페이지 (Home)
-- 이미지 슬라이더
+- 이미지 슬라이더 : React-slider를 활용한 메인 페이지 이미지 슬라이더 구현
 
 ### 상품 페이지 (Shop)
-- 상품 목록 페이지
-- 상품 상세 페이지
-- 장바구니 담기 기능
-- 결제 페이지
+- 상품 목록 페이지 : productItem 컴포넌트로 재사용성을 높이고 MouseEvent와 useState를 활용한 카테고리 필터 구현
+- 상품 상세 페이지 :
+- 장바구니 담기 기능 : Redux, useDispatch, useSelector, useNavigate, useParams를 활용한 장바구니 상태 관리 구현
+- 결제 페이지 : 
 
 ### 장바구니 페이지 (Cart)
-- 장바구니 목록 조회
+- 장바구니 목록 조회 : Redux, useSelector, useNavigate
 - 선택 상품 구매
 - 전체 상품 구매
-
+  
 ### 결제 페이지 (Buy)
-- 결제 기능
+- 결제 기능 : 
 
 ### 마이페이지 (Mypage)
 - 주문 내역 조회
@@ -139,7 +144,7 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 ### 관리자 페이지 (Admin)
 - 전체 사용자 목록 조회
 - 상품 관리
-  - 전체 상품 목록 조회
+  - 전체 상품 목록 조회 : 이런식으로 쭈르르르그극
   - 상품 등록
   - 상품 삭제
   - 상품 정보 수정
@@ -149,9 +154,10 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
   - 거래 확정
   
 ### 인증 & 인가
-- 회원가입
-- 로그인
+- 회원가입 : :React-Hook-Form를 이용해 비제어 컴포넌트로 동작 / 유효성 검사 기능 구현
+- 로그인 : useState를 == 이용해 로그이
 - 로그인 인증
+  - useEffect 사용해서 
 - 로그아웃
 
 <br />
