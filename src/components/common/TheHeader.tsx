@@ -33,13 +33,13 @@ const TheHeader = () => {
     <header>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <NavLink to="/">SWEET HOME</NavLink>
+          <NavLink to="/sweethome">SWEET HOME</NavLink>
         </div>
         <div className={styles.navbar}>
           <ul>
             <li className={styles.menu}>
               <NavLink
-                to="/about"
+                to="/sweethome/about"
                 className={({ isActive }) =>
                   isActive ? styles.active : `menu`
                 }>
@@ -48,7 +48,7 @@ const TheHeader = () => {
             </li>
             <li className={styles.menu}>
               <NavLink
-                to="/shop"
+                to="/sweethome/shop"
                 className={({ isActive }) => (isActive ? styles.active : "")}>
                 SHOP
               </NavLink>
@@ -66,19 +66,19 @@ const TheHeader = () => {
             ) : (
               <div>
                 <span className={styles.userLogin}>
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/sweethome/login">Login</NavLink>
                 </span>
                 <span className={styles.userSignUp}>
-                  <NavLink to="/signup">Sign-Up</NavLink>
+                  <NavLink to="/sweethome/signup">Sign-Up</NavLink>
                 </span>
               </div>
             )}
           </div>
           <div className={styles.icons}>
-            <NavLink to="/mypage">
+            <NavLink to="/sweethome/mypage">
               <FaUserAlt className={styles.mypage} />
             </NavLink>
-            <NavLink to="/cart">
+            <NavLink to="/sweethome/cart">
               <FaShoppingBag className={styles.shoppingbag} />
             </NavLink>
             <div className={styles.search}>

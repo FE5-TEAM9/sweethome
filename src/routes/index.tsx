@@ -14,47 +14,47 @@ import NotFound from "~/routes/NotFound/NotFount";
 
 export default createBrowserRouter([
   {
-    path: "/",
+    path: "/sweethome",
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "/sweethome",
         element: <Home />
       },
       {
-        path: "/about",
+        path: "/sweethome/about",
         element: <About />
       },
       {
-        path: "/shop",
+        path: "/sweethome/shop",
         element: <Shop />
       },
       {
-        path: "/shop/:id",
+        path: "/sweethome/shop/:id",
         element: <ShopDetail />
       },
       {
-        path: "/mypage",
+        path: "/sweethome/mypage",
         element: <Mypage />
       },
       {
-        path: "/cart",
+        path: "/sweethome/cart",
         element: <Cart />
       },
       {
-        path: "/login",
+        path: "/sweethome/login",
         element: <Login />
       },
       {
-        path: "/signup",
+        path: "/sweethome/signup",
         element: <SignUp />
       },
       {
-        path: "/admin",
+        path: "/sweethome/admin",
         element: <Admin />
       },
       {
-        path: "/buy",
+        path: "/sweethome/buy",
         element: <Buy />
       }
     ]
