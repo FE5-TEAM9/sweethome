@@ -120,7 +120,8 @@ const Buy = () => {
               {order.map((item, i: number) => (
                 <li
                   className={styles.cartItem}
-                  key={i}>
+                  key={i}
+                >
                   <Link to={`/sweethome/shop/${item.id}`}>
                     <div className={styles.itemImg}>
                       <img
