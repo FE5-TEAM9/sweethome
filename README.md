@@ -21,7 +21,7 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 
 | **[김준희](https://github.com/dev-junehee)** | **[송홍빈](https://github.com/hbsongk)** | **[조은상](https://github.com/ChoEun-Sang)** | **[박근우](https://github.com/SpeedGear)** | **[백동은](https://github.com/debeck6)** |
 | :--------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
-|<a href="https://github.com/dev-junehee"><img src="https://avatars.githubusercontent.com/u/116873887?v=4" width=180px alt="김준희" /> | <a href="https://github.com/hbsongk"><img src="https://avatars.githubusercontent.com/u/68498323?v=4" width=180px alt="송홍빈" /> | <a href="https://github.com/ChoEun-Sang"><img src="https://avatars.githubusercontent.com/u/128155681?v=4" width=180px alt="조은상" /> | <a href="https://github.com/SpeedGear"><img src="https://avatars.githubusercontent.com/u/128351787?v=4" width=180px alt="박근우" /> | <a href="https://github.com/debeck6"><img src="https://avatars.githubusercontent.com/u/128360222?v=4" width=180px alt="백동은" /> |
+|<a href="https://github.com/dev-junehee"><img src="https://avatars.githubusercontent.com/u/116873887?v=4" width=150px alt="김준희" /> | <a href="https://github.com/hbsongk"><img src="https://avatars.githubusercontent.com/u/68498323?v=4" width=150px alt="송홍빈" /> | <a href="https://github.com/ChoEun-Sang"><img src="https://avatars.githubusercontent.com/u/128155681?v=4" width=150px alt="조은상" /> | <a href="https://github.com/SpeedGear"><img src="https://avatars.githubusercontent.com/u/128351787?v=4" width=150px alt="박근우" /> | <a href="https://github.com/debeck6"><img src="https://avatars.githubusercontent.com/u/128360222?v=4" width=150px alt="백동은" /> |
 |회원가입<br>About 페이지<br>상품 페이지<br>장바구니 페이지<br>결제 페이지<br>관리자 페이지<br>Footer|로그인/로그아웃<br>검색 기능<br>메인 페이지<br>상품 페이지<br>장바구니 페이지<br>결제 페이지<br>Header|회원가입<br>로그인 인증<br>마이페이지<br>상품 페이지<br>장바구니 페이지<br>결제 페이지<br>관리자 페이지|디자인 참여|디자인 참여|
 
 <br />
@@ -64,12 +64,43 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 ### 전체 화면 구성
 | **메인 페이지** | **About 페이지** |
 | :--------------------------------------------: | :--------------------------------------------: | 
-| <img src="public/assets/README/01_main.png" width=360px alt="main" /> | <img src="public/assets/README/02_about.png" width=360px alt="about" /> |
+| <img src="public/assets/README/01_main.png" width=360px alt="메인" /> | <img src="public/assets/README/02_about.png" width=360px alt="어바웃" /> |
 
 | **상품 목록 페이지** | **상품 상세 페이지** |
 | :--------------------------------------------: | :--------------------------------------------: | 
-| <img src="public/assets/README/03_shop.png" width=360px alt="shop" /> | <img src="public/assets/README/04_shopdetail.png" width=360px alt="shop deail" /> |
+| <img src="public/assets/README/03_shop.png" width=360px alt="상품 목록" /> | <img src="public/assets/README/04_shopdetail.png" width=360px alt="상품 상세" /> |
 
+| **장바구니 페이지** | **결제 페이지** |
+| :--------------------------------------------: | :--------------------------------------------: | 
+| <img src="public/assets/README/05_cart.png" width=360px alt="장바구니" /> | <img src="public/assets/README/06_buy.png" width=360px alt="결제" />
+
+| **마이 페이지 (주문 내역 관리)** | **마이 페이지 (주문 내역 상세)** |
+| :--------------------------------------------: | :--------------------------------------------: |
+| <img src="public/assets/README/07_mypage_order.png" width=360px alt="마이페이지 주문 내역" /> | <img src="public/assets/README/08_mypage_orderdetail.png" width=360px alt="마이페이지 주문 상세" />
+
+| **마이 페이지 (계좌 관리)** | **마이 페이지 (계좌 등록 모달)** |
+| :--------------------------------------------: | :--------------------------------------------: | 
+| <img src="public/assets/README/09_mypage_account.png" width=360px alt="마이페이지 계좌 관리" /> | <img src="public/assets/README/10_mypage_account_modal.png" width=360px alt="마이페이지 계좌 등록 모달" />
+
+| **마이 페이지 (계좌 확인/삭제)** | **마이 페이지 (비밀번호 재확인)** |
+| :--------------------------------------------: | :--------------------------------------------: | 
+| <img src="public/assets/README/11_mypage_accountlist.png" width=360px alt="마이페이지 계좌 확인/삭제" /> | <img src="public/assets/README/12_mypage_info.png" width=360px alt="마이페이지 비밀번호 재확인" />
+
+| **마이 페이지 (개인정보 수정)** | **관리자 페이지 (사용자 관리)** |
+| :--------------------------------------------: | :--------------------------------------------: | 
+| <img src="public/assets/README/13_mypage_infochange.png" width=360px alt="마이페이지 개인정보 수정" /> | <img src="public/assets/README/14_admin_user.png" width=360px alt="b관리자페이지 사용자 관리uy" />
+
+| **관리자 페이지 (상품 관리)** | **관리자 페이지 (주문 내역 관리)** |
+| :--------------------------------------------: | :--------------------------------------------: | 
+| <img src="public/assets/README/15_admin_product.png" width=360px alt="관리자 페이지 상품 관리" /> | <img src="public/assets/README/16_admin_orderlist.png" width=360px alt="관리자 페이지 주문 내역 관리" />
+
+| **회원가입 페이지** | **로그인 페이지** |
+| :--------------------------------------------: | :--------------------------------------------: | 
+| <img src="public/assets/README/0_signup.png" width=360px alt="회원가입" /> | <img src="public/assets/README/0_login.png" width=360px alt="로그인" />
+
+| **검색창** | **로딩 스피너** |
+| :--------------------------------------------: | :--------------------------------------------: | 
+| <img src="public/assets/README/0_search.png" width=360px alt="검색창" /> | <img src="public/assets/README/0_loading.png" width=360px alt="로딩" />
 
 <br />
 
@@ -152,25 +183,3 @@ $ npm install
 ```bash
 $ npm run dev
 ```
-
-<br />
-
-## 프로젝트 회고
-
-### 배운 점
-
-- React를 활용하며 컴포넌트 분리와 props로 데이터를 주고받을 수 있게 되었습니다.
-- Fetch를 통한 API 호출과 응답에 대해 배울 수 있었습니다.
-- useState, useCallback 등 React Hooks를 통한 컴포넌트 상태 관리에 이전보다 익숙해졌습니다.
-- 기존에 활용하지 못했던 JavaScript 메소드를 활용할 수 있게 되었습니다. 특히 `.map()` 메소드 활용 빈도수가 늘었습니다.
-
-<br />
-
-### 아쉬운 점
-
-- 아직은 API 호출 응답에 대해 미숙한 상태입니다. 보이지 않는 데이터를 핸들링하는 부분을 공부해야할 것 같습니다.
-- TodoItem 타이틀 수정 후 변경된 데이터로 재출력하지 못했습니다. 콘솔에서만 확인 가능한 상태로 getTodo를 제대로 활용하지 못한 것으로 파악됩니다.
-- 체크 박스를 누르면 한 번에 완료 상태로 변경되지 않습니다. (콘솔에서는 `done: true` 로 변경이 되지만 화면에서는 다른 버튼을 한 번 눌러야 변경됩니다.)
-- 환경 변수를 활용하지 못해 중요 정보 노출을 막지 못했습니다.
-
-<br />
