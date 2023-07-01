@@ -56,6 +56,15 @@
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a>
 </p>
 
+### Cowork Tools
+<p>
+<img src="https://img.shields.io/badge/Slack-4A154B?style=flat&logo=Slack&logoColor=white" />
+<img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white" />
+<img src="https://img.shields.io/badge/Google Sheets-34A853?style=flat&logo=Google Sheets&logoColor=white" />
+<img src="https://img.shields.io/badge/Google Meet-00897B?style=flat&logo=Google Meet&logoColor=white" />
+<img src="https://img.shields.io/badge/Zoom-2D8CFF?style=flat&logo=Zoom&logoColor=white" />
+</p>
+
 <br />
 
 ### 전체 화면 구성
