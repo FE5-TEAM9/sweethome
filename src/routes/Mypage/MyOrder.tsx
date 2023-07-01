@@ -144,7 +144,7 @@ const MyOrder = () => {
               <div>상품 가격</div>
               <div>주문 일자</div>
               <div>구매 확정</div>
-              <div></div>
+              <div>비고</div>
             </div>
           </div>
 

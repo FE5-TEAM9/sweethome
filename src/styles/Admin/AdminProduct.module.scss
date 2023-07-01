@@ -31,17 +31,11 @@
       }
 
       form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
         .productTitle,
         .productPrice,
         .productDescription,
         .productTag,
         .productDiscount {
-
           .label {
             p {
               font-family: "Pretendard-Regular";
@@ -65,6 +59,10 @@
               appearance: none;
             }
           }
+        }
+
+        .productTag {
+          margin-bottom: 20px;
         }
 
         .productThumbnail,
@@ -136,7 +134,7 @@
               tr {
                 th {
                   padding: 10px 20px 10px;
-                  border: 1px solid red;
+                  border: 1px solid $base-color-gray;
                   font-weight: 500;
                 }
               }
@@ -147,7 +145,7 @@
                 text-align: center;
 
                 td {
-                  border: 1px solid red;
+                  border: 1px solid $base-color-gray;
                 }
 
                 .icon {
