@@ -16,7 +16,6 @@
     font-size: 18px;
   }
 
-
   .productPhotoBox {
     width: 285px;
     height: 280px;
@@ -27,6 +26,7 @@
       height: 280px;
     }
   }
+
   .productInfo {
     text-align: center;
     margin-bottom: 6px;
@@ -36,11 +36,13 @@
       font-size: 20px;
       font-weight: 500;
     }
+
     p {
       margin-top: 5px;
       font-size: 14px;
     }
   }
+
   .productPriceBox {
     display: flex;
     justify-content: center;
@@ -51,12 +53,11 @@
       font-weight: 400;
       color: $point-color-red;
     }
+
     .priceThrough {
       text-decoration: line-through;
       font-size: 14px;
       color: gray;
     }
   }
- 
-
 }

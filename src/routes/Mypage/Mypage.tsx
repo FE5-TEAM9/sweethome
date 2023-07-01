@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logIn } from '~/api/requests'
+import { logIn } from '~/api/requests';
 import SubNav from '~/components/common/SubNav';
-import MyInfo from "~/routes/Mypage/MyInfo"
-import AccountList from "~/routes/Mypage/MyBankAccount"
+import MyInfo from "~/routes/Mypage/MyInfo";
+import AccountList from "~/routes/Mypage/MyBankAccount";
 import Transactions from '~/routes/Mypage/MyOrder';
-import styles from '~/styles/Mypage/Mypage.module.scss'
+import styles from '~/styles/Mypage/Mypage.module.scss';
 
 
 const MyPage = () => {

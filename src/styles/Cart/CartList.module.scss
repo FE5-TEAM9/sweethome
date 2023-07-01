@@ -2,10 +2,8 @@
 @import "../common/fonts.scss";
 
 .cartList {
-
   .container {
     width: 100%;
-    
 
     .cartItem {
       display: grid;
@@ -22,22 +20,26 @@
       .checkbox {
 
       }
+
       .itemImg {
         img {
           width: 100px;
           height: auto;
         }
       }
+
       .itemTitle {
         span {
 
         }
       }
+
       .itemQuantity {
         span {
 
         }
       }
+
       .itemPrice {
         display: flex;
         flex-direction: column;
@@ -45,10 +47,12 @@
         .discountPrice {
           
         }
+
         .originalPrice {
           text-decoration: line-through;
         }
       }
+
       .totalPrice {
             
       }
@@ -71,7 +75,4 @@
       }
     }
   }
-
-
-
 }

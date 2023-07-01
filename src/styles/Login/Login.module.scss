@@ -8,6 +8,7 @@
   font-size: $font-login-size;
   font-weight: $font-login-weight;
 }
+
 .login {
   position: relative;
   width: 100vw;
@@ -21,6 +22,7 @@
     .form {
       height: 300px;
       margin: 25px;
+
       h2 {
         position: relative;
         margin: 0 auto;
@@ -30,12 +32,14 @@
         width: fit-content;
         top: 30px;
       }
+
       form {
         display: block;
         position: relative;
         width: fit-content;
         margin: 0 auto;
         top: 100px;
+
         .id,
         .pwd {
           width: fit-content;
@@ -47,15 +51,18 @@
             border: none;
           }
         }
+
         .id {
           display: flex;
           gap: 39px;
         }
+
         .pwd {
           display: flex;
           gap: 30px;
         }
       }
+
       .find {
         position: relative;
         width: fit-content;
@@ -63,6 +70,7 @@
         top: 100px;
         display: flex;
         gap: 20px;
+
         p {
           font-size: 12px;
           color: $base-color-gray;
@@ -70,11 +78,13 @@
         }
       }
     }
+
     .signup {
       position: relative;
       top: 120px;
       width: fit-content;
       margin: 0 auto;
+
       p {
         display: block;
         width: fit-content;
@@ -83,6 +93,7 @@
         line-height: 1.5;
       }
     }
+
     button {
       width: 430px;
       height: 50px;

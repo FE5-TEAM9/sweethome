@@ -1,9 +1,9 @@
 /******************************************************************* 
 // 위치 : src/styles/common/fonts.scss
-// 설명 : 각 요소에 적용될 공통 폰트 SCSS를 한곳에 모아서 관리함
+// 설명 : 각 요소에 적용될 공통 폰트 SCSS를 한곳에 모아서 관리합니.
 ********************************************************************/
 
-/// ******* 폰트 리스트 (Font List) ******* ///
+/******* 폰트 리스트 (Font List) *******/
 // Pretendard
 @font-face {
   font-family: "Pretendard-Regular";
@@ -20,7 +20,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&display=swap");
 
 
-/// ******* 변수 리스트 (Variables) ******* ///
+/******* 변수 리스트 (Variables) *******/
 // Logo (대표 로고 관련 폰트/사이즈)
 $font-logo: "Poiret One";
 $font-logo-size: 30px;

@@ -1,8 +1,6 @@
 @import '../common/colors.scss';
 @import '../common/fonts.scss';
 
-// 공통
-
 .title {
   display: flex;
   justify-content: center;
@@ -10,6 +8,7 @@
   font-size: 24px;
   font-weight: 700;
 }
+
 .btn {
   width: 430px;
   height: 50px;
@@ -18,7 +17,6 @@
   cursor: pointer;
 }
 
-// 개인 정보 수정
 .info {
   margin: 50px 0;
   height: 50%;
@@ -35,14 +33,17 @@
     padding: 5px 0;
     border-bottom: 1px solid $base-color-gray;
     font-size: 14px;
+
     p {
       flex-shrink: 0;
       width: 100px;
     }
+
     span {
       color: $point-color-red;
       font-size: 10px;
     }
+
     .input {
       width: 180px;
       height: 23px;
@@ -50,7 +51,6 @@
       border: none;
       outline: none;
       font-size: 14px;
-
       &::placeholder {
         color: $font-color;
       }
@@ -62,5 +62,4 @@
     background-color: $base-color-gray;
     color: $base-color-black;
   }
-
 }

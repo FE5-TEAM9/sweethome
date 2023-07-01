@@ -1,5 +1,5 @@
-import { TfiClose } from "react-icons/tfi"
-import { convertDate, convertPrice } from '~/utils/convert'
+import { TfiClose } from "react-icons/tfi";
+import { convertDate, convertPrice } from '~/utils/convert';
 import styles from "~/styles/Mypage/MyOrderDetails.module.scss";
 
 interface DetailsProps {

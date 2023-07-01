@@ -11,12 +11,12 @@
   font-family: "Pretendard";
   color: $font-color;
 
-h4 {
-  font-size: 22px;
-  font-weight: 600;
-  margin: 0 0 10px 10px;
+  h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px 10px;
 
-}
+  }
 
   .container {
     min-width: 1000px;
@@ -53,7 +53,6 @@ h4 {
     .buyList {
       .container {
         width: 100%;
-        }
 
         .cartItem {
           display: grid;
@@ -68,31 +67,37 @@ h4 {
           text-align: center;
 
           .checkbox {
+
           }
+
           .itemImg {
             img {
               width: 100px;
               height: auto;
             }
           }
+
           .itemTitle {
             span {
+
             }
           }
+
           .itemQuantity {
             span {
+
             }
           }
+
           .itemPrice {
             display: flex;
             flex-direction: column;
 
-            .discountPrice {
-            }
             .originalPrice {
               text-decoration: line-through;
             }
           }
+
           .totalPrice {
 
           }
@@ -177,6 +182,7 @@ h4 {
 
     .credit {
       margin-bottom: 30px;
+
       .credit_container {
         padding: 30px 70px;
         border: 1px solid $base-color-gray;
@@ -194,7 +200,6 @@ h4 {
         }
 
         .account {
-          
           .account_info {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -211,6 +216,7 @@ h4 {
             }
           }
         }
+        
         .bank {
           display: flex;
           justify-content: center;
@@ -238,12 +244,13 @@ h4 {
 
         .plus,
         .equal {
+          margin: 0 8px 0;
+
           svg {
             path {
               color: $point-color-mint;
             }
           }
-          margin: 0 8px 0;
         }        
       }
     }
@@ -262,4 +269,4 @@ h4 {
     }
 
   }
-
+}

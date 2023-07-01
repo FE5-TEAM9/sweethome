@@ -1,3 +1,8 @@
+/******************************************************************* 
+// 위치 : src/utils/convert.ts
+// 설명 : 프로젝트 전반에 걸쳐 자주 사용되는 함수를 한 곳에 모아서 관리합니다.
+********************************************************************/
+
 // 할인 가격 계산
 const discountPrice = (productPrice: number, productDiscount: number) => {
   return productPrice * ((100 - productDiscount) / 100);
@@ -31,5 +36,4 @@ const sortDate = (dateBody: string) => {
   return times;
 }
   
-
 export { priceBeforeDiscount, discountPrice, convertPrice, convertDate, sortDate };
