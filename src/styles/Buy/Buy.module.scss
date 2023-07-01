@@ -221,11 +221,12 @@
             border-radius: 10px;
             margin-bottom: 10px;
             box-sizing: border-box;
+            cursor: pointer;
             &:hover {
               background-color: $base-color-lightgray;
             }
-            &:focus {
-              border: 2px solid $point-color-mint;
+            &:active {
+              border: 1.5px solid $point-color-mint;
             }
           }
 
@@ -251,25 +252,21 @@
     .payment_details {
       .details_container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         border: 1px solid $base-color-gray;
         border-radius: 10px;
         padding: 30px;
-        font-size: 24px;
-        font-weight: 600;
         gap: 6px;
 
-        .plus,
-        .equal {
-          margin: 0 8px 0;
-
-          svg {
-            path {
-              color: $point-color-mint;
-            }
-          }
-        }        
+        span {
+          font-size: 24px;
+          font-weight: 600;
+        }
+        p {
+          margin: 5px 0;
+        }
       }
     }
   }
