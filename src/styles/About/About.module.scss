@@ -15,8 +15,9 @@
     gap: 120px;
 
     .aboutImg {
-      min-width: 550px;
+      min-width: 300px;
       max-width: 30vw;
+      max-height: calc(width / 3 * 4);
       overflow: hidden;
 
       img {

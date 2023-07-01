@@ -3,119 +3,151 @@
 
 .product {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
+  align-items: center;
   width: 100vw;
   min-height: calc(100vh - (100px + 150px));
   margin: 50px 0 50px;
   font-family: "Pretendard";
 
-  .productImg {
-    margin-right: 100px;
+  .infoContainer {
+    display: flex;
+    justify-content: center;
 
-    img {
-      width: 600px;
+    .productImg {
+      margin-right: 100px;
+      width: 500px;
+      height: 500px;
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: center;
+      }
+    }
+
+    .productInfo {
+      color: $font-color;
+  
+      .productText {
+        .tags {
+          margin-bottom: 30px;
+          font-family: "Markazi Text", serif;
+          font-size: 18px;
+        }
+  
+        .title {
+          margin-bottom: 14px;
+          font-size: 24px;
+          font-weight: 600;
+        }
+  
+        .discountPrice {
+          margin-bottom: 6px;
+          font-size: 22px;
+          font-weight: 400;
+        }
+  
+        .price {
+          margin-bottom: 18px;
+  
+          .originalPrice {
+            margin-right: 6px;
+            font-size: 18px;
+            text-decoration: line-through;
+          }
+  
+          .discountRate {
+            font-size: 20px;
+            color: $point-color-red;
+          }
+        }
+  
+        .description {
+          margin-bottom: 20px;
+        }
+      }
+  
+      .productCount {
+        margin-bottom: 20px;
+  
+        .countBox {
+          display: flex;
+          margin-bottom: 30px;
+  
+          .count {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            border: 1px solid $base-color-gray;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+          }
+  
+          .plusBtn,
+          .minusBtn {
+            width: 40px;
+            height: 40px;
+            background-color: $base-color-lightgray;
+            border: 1px solid $base-color-gray;
+          }
+        }
+  
+        .countPrice {
+          p {
+            margin-bottom: 6px;
+          }
+  
+          span {
+            font-size: 24px;
+          }
+        }
+      }
+  
+      .buttons {
+        .btn {
+          width: 200px;
+          height: 50px;
+          border-radius: 10px;
+          border-style: none;
+          cursor: pointer;
+        }
+  
+        .buy {
+          margin-right: 8px;
+          background-color: $point-color-pink;
+          color: $base-color-black;
+        }
+        .cart {
+          background-color: $base-color-gray;
+          color: $base-color-black;
+        }
+      }
     }
   }
 
-  .productInfo {
-    color: $font-color;
+  .detailContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 0;
 
-    .productText {
-      .tags {
-        margin-bottom: 30px;
-        font-family: "Markazi Text", serif;
-        font-size: 18px;
-      }
-
-      .title {
-        margin-bottom: 14px;
+    .detailTitle {
+      span {
         font-size: 24px;
         font-weight: 600;
       }
+    }
 
-      .discountPrice {
-        margin-bottom: 6px;
-        font-size: 22px;
-        font-weight: 400;
-      }
-
-      .price {
-        margin-bottom: 18px;
-
-        .originalPrice {
-          margin-right: 6px;
-          font-size: 18px;
-          text-decoration: line-through;
-        }
-
-        .discountRate {
-          font-size: 20px;
-          color: $point-color-red;
-        }
-      }
-
-      .description {
-        margin-bottom: 20px;
+    .detailDescription {
+      p {
+        margin: 40px 0 50px;
       }
     }
 
-    .productCount {
-      margin-bottom: 20px;
-
-      .countBox {
-        display: flex;
-        margin-bottom: 30px;
-
-        .count {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 40px;
-          border: 1px solid $base-color-gray;
-          font-size: 18px;
-          font-weight: 600;
-          text-align: center;
-        }
-
-        .plusBtn,
-        .minusBtn {
-          width: 40px;
-          height: 40px;
-          background-color: $base-color-lightgray;
-          border: 1px solid $base-color-gray;
-        }
-      }
-
-      .countPrice {
-        p {
-          margin-bottom: 6px;
-        }
-
-        span {
-          font-size: 24px;
-        }
-      }
-    }
-
-    .buttons {
-      .btn {
-        width: 200px;
-        height: 50px;
-        border-radius: 10px;
-        border-style: none;
-        cursor: pointer;
-      }
-
-      .buy {
-        margin-right: 8px;
-        background-color: $point-color-pink;
-        color: $base-color-black;
-      }
-      .cart {
-        background-color: $base-color-gray;
-        color: $base-color-black;
-      }
-    }
   }
 }

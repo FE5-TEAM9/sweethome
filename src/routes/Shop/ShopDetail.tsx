@@ -7,10 +7,10 @@ import Loading from "~/components/common/Loading";
 import styles from "~/styles/Shop/ShopDetail.module.scss";
 
 const ShopDetail = () => {
- type Params = {
-    id: string |undefined
-  }
-  
+  type Params = {
+    id: string | undefined;
+  };
+
   const { id } = useParams<Params>();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const ShopDetail = () => {
       res["quantity"] = count;
       setProduct(res);
     } catch (error: any) {
-      alert(error.message)
+      alert(error.message);
     }
     setIsLoading(false);
   };
@@ -101,18 +101,18 @@ const ShopDetail = () => {
     } else {
       dispatch({ type: "RETURN_CART", items: [...globalCart, cartItem] });
     }
-    
+
     if (confirm("장바구니를 확인하시겠습니까?")) {
-      navigate("/sweethome/cart")
+      navigate("/sweethome/cart");
     } else return;
   };
 
   const buyNowHandler = () => {
-    if (!localStorage.getItem('token')) {
+    if (!localStorage.getItem("token")) {
       alert("로그인이 필요합니다.");
       navigate("/sweethome/login");
     } else {
-    navigate("/sweethome/buy", { state: [product] });
+      navigate("/sweethome/buy", { state: [product] });
     }
   };
 
@@ -120,80 +120,96 @@ const ShopDetail = () => {
     <>
       {isLoading ? <Loading /> : null}
       <section className={styles.product}>
-        <div className={styles.productImg}>
-          <img
-            src={product.photo}
-            alt={product.title}
-          />
-        </div>
-        <div className={styles.productInfo}>
-          <div className={styles.productText}>
-            <p className={styles.tags}>{product.tags}</p>
-            <h2 className={styles.title}>{product.title}</h2>
-            <p className={styles.discountPrice}>
-              {convertPrice(product.price)}원
-            </p>
-            <div className={styles.price}>
-              <span className={styles.originalPrice}>
-                {convertPrice(
-                  priceBeforeDiscount(product.price, product.discountRate)
-                )}
-                원
-              </span>
-              <span className={styles.discountRate}>
-                {product.discountRate ? `${product.discountRate}%` : ""}
-              </span>
-            </div>
-            <p className={styles.description}>{product.description}</p>
-          </div>
-          <div className={styles.productCount}>
-            <div className={styles.countBox}>
-              <input
-                type="button"
-                value="-"
-                className={styles.plusBtn}
-                onClick={() => productCountHandler("minus")}
-              />
-              <input
-                className={styles.count}
-                name="count"
-                value={count}
-              />
-              <input
-                type="button"
-                value="+"
-                className={styles.minusBtn}
-                onClick={() => productCountHandler("plus")}
-              />
-            </div>
-            <div className={styles.countPrice}>
-              <p>총 금액</p>
-              <span>
-                {product.discountRate !== 0
-                  ? convertPrice(product.price * count)
-                  : convertPrice(
-                      priceBeforeDiscount(product.price, product.discountRate) *
-                        count
-                    )}
-                원
-              </span>
-            </div>
-          </div>
-          <div className={styles.buttons}>
-            <input
-              type="button"
-              value="BUY NOW"
-              className={`${styles.btn} ${styles.buy}`}
-              onClick={() => buyNowHandler()}
-            />
-            <input
-              type="button"
-              value="CART"
-              className={`${styles.btn} ${styles.cart}`}
-              onClick={() => cartHandler()}
+        <div className={styles.infoContainer}>
+          <div className={styles.productImg}>
+            <img
+              src={product.thumbnail}
+              alt={product.title}
             />
           </div>
+          <div className={styles.productInfo}>
+            <div className={styles.productText}>
+              <p className={styles.tags}>{product.tags}</p>
+              <h2 className={styles.title}>{product.title}</h2>
+              <p className={styles.discountPrice}>
+                {convertPrice(product.price)}원
+              </p>
+              <div className={styles.price}>
+                <span className={styles.originalPrice}>
+                  {convertPrice(
+                    priceBeforeDiscount(product.price, product.discountRate)
+                  )}
+                  원
+                </span>
+                <span className={styles.discountRate}>
+                  {product.discountRate ? `${product.discountRate}%` : ""}
+                </span>
+              </div>
+            </div>
+            <div className={styles.productCount}>
+              <div className={styles.countBox}>
+                <input
+                  type="button"
+                  value="-"
+                  className={styles.plusBtn}
+                  onClick={() => productCountHandler("minus")}
+                />
+                <input
+                  className={styles.count}
+                  name="count"
+                  value={count}
+                />
+                <input
+                  type="button"
+                  value="+"
+                  className={styles.minusBtn}
+                  onClick={() => productCountHandler("plus")}
+                />
+              </div>
+              <div className={styles.countPrice}>
+                <p>총 금액</p>
+                <span>
+                  {product.discountRate !== 0
+                    ? convertPrice(product.price * count)
+                    : convertPrice(
+                        priceBeforeDiscount(
+                          product.price,
+                          product.discountRate
+                        ) * count
+                      )}
+                  원
+                </span>
+              </div>
+            </div>
+            <div className={styles.buttons}>
+              <input
+                type="button"
+                value="BUY NOW"
+                className={`${styles.btn} ${styles.buy}`}
+                onClick={() => buyNowHandler()}
+              />
+              <input
+                type="button"
+                value="CART"
+                className={`${styles.btn} ${styles.cart}`}
+                onClick={() => cartHandler()}
+              />
+            </div>
+          </div>
         </div>
+
+        <div className={styles.detailContainer}>
+          <div className={styles.detailTitle}>
+            <span>상품 상세 정보</span>
+          </div>
+          <div className={styles.detailDescription}>
+            <p>{product.description}</p>
+          </div>
+          <div>
+            <img src={product.photo} alt="" />
+          </div>
+        </div>
+        
       </section>
     </>
   );

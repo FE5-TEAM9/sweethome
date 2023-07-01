@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { authenticate } from '~/api/requests';
 import TheHeader from '~/components/common/TheHeader';
 import TheFooter from '~/components/common/TheFooter';
+import '~/App.scss';
 
-export default function App() {
+const App = () => {
   const location = useLocation();
   const dispatch = useDispatch()
 
@@ -25,8 +26,12 @@ export default function App() {
   return (
     <>
       <TheHeader/>
-      <Outlet />
+      <div className="allSections">
+        <Outlet />
+      </div>
       <TheFooter />
     </>
   )
-}
+};
+
+export default App;

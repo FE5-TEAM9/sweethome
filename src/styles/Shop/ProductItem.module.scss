@@ -33,11 +33,11 @@
     
     .productName {
       display: block;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 500;
     }
 
-    p {
+    strong {
       margin-top: 5px;
       font-size: 14px;
     }
@@ -53,7 +53,7 @@
       font-weight: 400;
       color: $point-color-red;
     }
-
+    
     .priceThrough {
       text-decoration: line-through;
       font-size: 14px;

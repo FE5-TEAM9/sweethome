@@ -1,13 +1,6 @@
 @import '../common/colors.scss';
 @import '../common/fonts.scss';
 
-.title {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 100px;
-  font-size: 24px;
-  font-weight: 700;
-}
 
 .btn {
   width: 430px;
@@ -21,6 +14,7 @@
 
 .mypage {
   min-height: calc(100vh - (100px + 150px));
+  
 }
 
 // 개인 정보 수정 - PW 확인창
@@ -28,9 +22,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - (100px + 150px));
+  margin: 50px 0;
   
   .wrapper {
+    .title {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+
+      h2 {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+
     .form {
       margin: 60px 0;
       display: flex;

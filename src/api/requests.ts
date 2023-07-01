@@ -27,8 +27,10 @@ const signUp = async (body: SignUpBody) => {
     headers,
     body: JSON.stringify(body),
   });
-  const data = await res.json();
-  return data;
+  if (res.status === 200) {
+    const data = await res.json();
+    return data;
+  } else return false;
 };
 
 // Log-In 로그인

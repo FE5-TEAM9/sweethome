@@ -24,7 +24,7 @@ const Admin = () => {
 
   return (
     <>
-      {localStorage.getItem('token') && user.email === `${import.meta.env.VITE_ACCOUNT_ACCOUNT}` ?
+      {localStorage.getItem('token') && user.email === `${import.meta.env.VITE_ADMIN_ACCOUNT}` ?
         <div>
           <SubNav subNav={subNav} setCategory={setCategory} />
           <div className={styles.container}>

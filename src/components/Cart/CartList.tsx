@@ -23,6 +23,7 @@ const CartList = () => {
     });
     return cart;
   };
+
   const checkedCartItemHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     item: any
@@ -51,10 +52,12 @@ const CartList = () => {
               className={styles.checkbox}
               onChange={e => checkedCartItemHandler(e, item)}
             />
-            <Link to={`/sweethome/shop/${item.id}`}>
+            <Link
+              to={`/sweethome/shop/${item.id}`}
+            >
               <div className={styles.itemImg}>
                 <img
-                  src={item.photo}
+                  src={item.thumbnail}
                   alt={item.title}
                 />
               </div>
