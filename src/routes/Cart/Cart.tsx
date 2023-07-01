@@ -12,7 +12,7 @@ const Cart = () => {
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       alert('로그인을 해주세요! 🏠');
-      navigate('/login');
+      navigate('/sweethome/login');
     }
   },[])
 
@@ -75,13 +75,13 @@ const Cart = () => {
               type="button"
               value="선택 상품 주문"
               className={`${styles.btn} ${styles.btn_selected}`}
-              onClick={() => navigate("/buy", { state: select })}
+              onClick={() => navigate("/sweethome/buy", { state: select })}
             />
             <input
               type="button"
               value="전체 상품 주문"
               className={`${styles.btn} ${styles.btn_selectedAll}`}
-              onClick={() => navigate("/buy", { state: cart })}
+              onClick={() => navigate("/sweethome/buy", { state: cart })}
             />
           </div>
         </div>

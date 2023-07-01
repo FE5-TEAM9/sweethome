@@ -51,7 +51,7 @@ const CartList = () => {
               className={styles.checkbox}
               onChange={e => checkedCartItemHandler(e, item)}
             />
-            <Link to={`/shop/${item.id}`}>
+            <Link to={`/sweethome/shop/${item.id}`}>
               <div className={styles.itemImg}>
                 <img
                   src={item.photo}

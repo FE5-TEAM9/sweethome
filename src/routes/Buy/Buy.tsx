@@ -77,7 +77,7 @@ const Buy = () => {
         await buyProduct(body);
       });
       if (confirm("결제가 완료되었습니다.\n주문 내역을 확인하시겠습니까?")) {
-        navigate("/mypage");
+        navigate("/sweethome/mypage");
       } else {
         return;
       }
@@ -121,7 +121,7 @@ const Buy = () => {
                 <li
                   className={styles.cartItem}
                   key={i}>
-                  <Link to={`/shop/${item.id}`}>
+                  <Link to={`/sweethome/shop/${item.id}`}>
                     <div className={styles.itemImg}>
                       <img
                         src={item.photo}
