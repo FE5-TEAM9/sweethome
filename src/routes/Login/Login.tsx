@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { logIn } from "~/api/requests";
 import styles from "~/styles/Login/Login.module.scss";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");

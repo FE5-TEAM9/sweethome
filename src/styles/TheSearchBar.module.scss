@@ -23,6 +23,7 @@
       margin-right: 8px;
     }
   }
+
   .searchForm {
     display: flex;
     align-items: center;
@@ -30,10 +31,10 @@
     min-height: 32px;
     border: 1px solie $base-color-gray;
     background-color: $base-color-lightgray;
-    // z-index: 9;
     padding: 4px;
     margin-right: 10px;
     font-size: 14px;
+    
     .none {
       display: none;
     }

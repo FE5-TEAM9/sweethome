@@ -1,7 +1,7 @@
 import about from '/public/assets/about/about.jpeg';
 import styles from '~/styles/About/About.module.scss';
 
-const About: React.FC = () => {
+const About = () => {
   return (
     <div className={styles.about}>
       <div className={styles.container}>

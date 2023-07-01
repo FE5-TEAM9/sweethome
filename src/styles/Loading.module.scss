@@ -34,12 +34,15 @@
       top: 48px;
       animation: walking 2s linear infinite alternate;
       animation-direction: normal;
+
       svg {
         width: 50px;
         height: 50px;
+
         path {
           color: $point-color-mint;
         }
+
         circle {
           color: $point-color-mint;
         }
@@ -50,6 +53,7 @@
       svg {
         width: 100px;
         height: 100px;
+        
         path {
           color: $point-color-mint;
         }

@@ -5,7 +5,6 @@
   display: flex;
   justify-content: center;
   position: relative;
-  // left: -100px;
   width: 100vw;
   min-height: calc(100vh - (100px + 150px));
   margin: 50px 0 50px;
@@ -20,8 +19,6 @@
   }
 
   .productInfo {
-    // display: flex;
-    // align-items: center;
     color: $font-color;
 
     .productText {
@@ -30,16 +27,19 @@
         font-family: "Markazi Text", serif;
         font-size: 18px;
       }
+
       .title {
         margin-bottom: 14px;
         font-size: 24px;
         font-weight: 600;
       }
+
       .discountPrice {
         margin-bottom: 6px;
         font-size: 22px;
         font-weight: 400;
       }
+
       .price {
         margin-bottom: 18px;
 
@@ -48,15 +48,16 @@
           font-size: 18px;
           text-decoration: line-through;
         }
+
         .discountRate {
           font-size: 20px;
           color: $point-color-red;
         }
       }
+
       .description {
         margin-bottom: 20px;
       }
-
     }
 
     .productCount {
@@ -65,6 +66,7 @@
       .countBox {
         display: flex;
         margin-bottom: 30px;
+
         .count {
           display: flex;
           justify-content: center;
@@ -75,6 +77,7 @@
           font-weight: 600;
           text-align: center;
         }
+
         .plusBtn,
         .minusBtn {
           width: 40px;
@@ -83,10 +86,12 @@
           border: 1px solid $base-color-gray;
         }
       }
+
       .countPrice {
         p {
           margin-bottom: 6px;
         }
+
         span {
           font-size: 24px;
         }
@@ -112,6 +117,5 @@
         color: $base-color-black;
       }
     }
-    
   }
 }

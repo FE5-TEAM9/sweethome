@@ -16,32 +16,29 @@
   cursor: pointer;
 }
 
-// 계좌 관리
 .accountList {
   margin: 50px 0;
   height: 50%;
   display: flex;
   justify-content: center;
 
-
-.noAccount {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  padding: 20px 0;
-  
-  .textWrap {
-    p {
-      text-align: center;
-      color: $point-color-red;
-      margin-bottom: 5px;
+  .noAccount {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 20px 0;
+    
+    .textWrap {
+      p {
+        text-align: center;
+        color: $point-color-red;
+        margin-bottom: 5px;
+      }
     }
   }
 
-}
-.btn {
-  background-color: $base-color-black;
-  color: $base-color-white;
-}
-
+  .btn {
+    background-color: $base-color-black;
+    color: $base-color-white;
+  }
 }

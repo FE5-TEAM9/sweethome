@@ -8,14 +8,13 @@
   justify-content: center;
   align-items: center;
 
-
-    .title {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 40px;
-      font-size: 24px;
-      font-weight: 700;
-    }
+  .title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+    font-weight: 700;
+  }
   
   .input {
     width: 420px;
@@ -30,23 +29,24 @@
     border-left: none;
     border-right: none;
     border-top: none;
-
     &::placeholder {
       color: $font-color;
     }
   }
+
   .agree {
     margin: 20px 0;
     width: 400px;
     height: 100%;
-    
     font-size: 12px;
+
     .checkBox {
       display: flex;
       gap: 10px;
       font-size: 14px;
       margin-bottom: 10px;
     }
+
     .agreeContainer {
       display: flex;
       justify-content: center;
@@ -56,11 +56,11 @@
       background-color: $base-color-gray;
 
       .agreeText{   
-      width: 90%;
+        width: 90%;
       }
     }
-
   }
+  
   .btn {
     width: 430px;
     height: 50px;
