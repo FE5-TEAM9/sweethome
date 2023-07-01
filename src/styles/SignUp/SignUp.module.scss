@@ -16,23 +16,33 @@
     font-weight: 700;
   }
   
-  .input {
-    width: 420px;
-    height: 28px;
-    border: 1px solid #d5d5d5;
-    color: $font-color;
-    font-size: 14px;
-    outline: none;
-    background: none;
-    margin-bottom: 20px;
-    border-bottom: $base-color-gray 1px solid;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    &::placeholder {
+  .label {
+    position: relative;
+    .input {
+      width: 420px;
+      height: 28px;
+      border: 1px solid #d5d5d5;
       color: $font-color;
+      font-size: 14px;
+      outline: none;
+      background: none;
+      margin-bottom: 20px;
+      border-bottom: $base-color-gray 1px solid;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      &::placeholder {
+        color: $font-color;
+      }
+    }
+    span {
+      font-size: 12px;
+      color: $point-color-red;
+      position: absolute;
+      right: 0;
     }
   }
+
 
   .agree {
     margin: 20px 0;

@@ -1,30 +1,58 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "~/api/requests";
 import styles from "~/styles/Signup/SignUp.module.scss";
 
+interface SignUpBody {
+  email: string 
+  password: string 
+  displayName: string 
+  profileImgBase64?: string 
+  pwConfirm?: string
+}
+
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [isAgree, setIsAgree] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm<SignUpBody>({
+    mode: 'onChange'
+  });
 
-  const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const emailValidation = {
+    required: "이메일은 필수 입력입니다.",
+    pattern: {
+      value: /\S+@\S+\.\S+/,
+      message: "이메일 형식에 맞지 않습니다.",
+    }
   };
 
-  const onDisplayNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDisplayName(e.target.value);
+  const nameValidation = {
+    required: "이름은 필수 입력입니다.",
+    minLength: {
+      value: 3,
+      message: "이름은 3자이상입니다.",
+    }
   };
-  const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const passwordValidation = {
+    required: "비밀번호는 필수 입력입니다.",
+    pattern: {
+      value: /^[A-za-z0-9]*$/ ,
+      message: '영문와 숫자만 가능합니다.' ,
+  } ,
+    minLength: {
+      value: 8,
+      message: "비밀번호는 8 ~ 16자입니다."
+    }
   };
-  const onConfirmHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(e.target.value);
-  };
+
 
   const onAgreeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
@@ -32,25 +60,20 @@ const SignUp = () => {
     }
   };
 
-  const onSubmitHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      return alert("비밀번호가 일치하지 않습니다.");
-    }
+  const onSubmitHandler = async ({email, displayName, password}: SignUpBody) => {
+    setIsLoading(true);
+
     if (!isAgree) {
       return alert("이용약관 및 개인정보수집에 동의해 주세요!");
     }
-
     let body = {
-      email: email,
-      displayName: displayName,
-      password: password
+      email,
+      displayName,
+      password
     };
-
     try {
-      setIsLoading(true);
-      isAgree && (await signUp(body));
-      setIsLoading(false);
+      isAgree && await signUp(body) 
+      reset();
       if (confirm("회원가입 성공!\n로그인 페이지로 이동하시겠습니까?")) {
         navigate('/sweethome/login')
       } else {
@@ -59,69 +82,69 @@ const SignUp = () => {
     } catch (error) {
       console.log("SignUp Error", error);
     }
+    setIsLoading(false);
   };
 
   return (
     <>
       <section className={styles.container}>
-          <form>
+          <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div className={styles.title}>
               <h2>회원가입</h2>
             </div>
               <div className={styles.infoList}>
-                <label
-                  htmlFor="email"
-                  className={styles.label}>
+                <label className={styles.label}>
                   <input
-                    value={email}
-                    onChange={onEmailHandler}
                     type="text"
-                    id="email"
                     className={styles.input}
                     placeholder="이메일"
+                    {...register("email", emailValidation)}
                   />
+                  {errors?.email && (<span>{errors.email.message}</span>)}
                 </label>
               </div>
               <div className={styles.infoList}>
-                <label
-                  htmlFor="displayName"
-                  className={styles.label}>
+                <label className={styles.label}>
                   <input
-                    value={displayName}
-                    onChange={onDisplayNameHandler}
                     type="text"
-                    id="displayName"
                     className={styles.input}
                     placeholder="이름"
+                    maxLength={20}
+                    {...register("displayName", nameValidation)}
                   />
+                {errors?.displayName && (<span>{errors.displayName.message}</span>)}
                 </label>
               </div>
               <div className={styles.infoList}>
-                <label
-                  htmlFor="password"
-                  className={styles.label}>
+                <label className={styles.label}>
                   <input
-                    value={password}
-                    onChange={onPasswordHandler}
                     type="password"
-                    id="password"
                     className={styles.input}
                     placeholder="비밀번호"
+                    maxLength={16}
+                    {...register("password", passwordValidation)}
                   />
+              {errors?.password && (<span>{errors.password.message}</span>)}
                 </label>
               </div>
               <div className={styles.infoList}>
-                <label
-                  htmlFor="password-check"
-                  className={styles.label}>
+                <label className={styles.label}>
                   <input
-                    value={confirmPassword}
-                    onChange={onConfirmHandler}
                     type="password"
-                    id="password-check"
                     className={styles.input}
                     placeholder="비밀번호 확인"
+                    maxLength={16}
+                    {...register("pwConfirm", {
+                      required: "비밀번호는 필수 입력입니다.",
+                      validate: {
+                        value: (val: string | undefined) => {
+                          if(watch("password") !== val)
+                        return "비밀번호가 일치하지 않습니다." 
+                        }
+                      },
+                    })}
                   />
+                {errors?.pwConfirm && (<span>{errors.pwConfirm.message}</span>)}
                 </label>
               </div>
               <div className={styles.agree}>
@@ -150,9 +173,8 @@ const SignUp = () => {
                 </div>
               </div>
               <button
-                onClick={onSubmitHandler}
                 className={styles.btn}
-                disabled={isLoading ? true : false}>
+                disabled={isSubmitting}>
                 회원가입
               </button>
             </form>
