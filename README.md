@@ -12,8 +12,7 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 
 > **패스트캠퍼스 프론트엔드 개발 부트캠프 5기**<br />
 > **개발 기간** : 2023. 05. 30 ~ 2023.07.01<br />
-> **배포 주소** : [DEMO](https://fe5-team9.github.io/sweethome)<br />
-> **GitHub** : https://github.com/FE5-TEAM9/sweethome
+> **배포 주소** : [DEMO](https://fe5-team9.github.io/sweethome)
 
 <br />
 
