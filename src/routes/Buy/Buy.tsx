@@ -226,16 +226,19 @@ const Buy = () => {
               </div>
               {accountChecked ? (
                 <div className={styles.account}>
-                  {accountList.map(account => (
-                    <div
-                      key={account.id}
-                      className={styles.account_info}
-                      onClick={() => setAccountId(account.id)}>
-                      <div>{account.bankName}</div>
-                      <div>{account.accountNumber}</div>
-                      <div>잔액: {convertPrice(account.balance)}원</div>
-                    </div>
-                  ))}
+                  {accountList.length ?
+                    (accountList.map(account => (
+                      <div
+                        key={account.id}
+                        className={styles.account_info}
+                        onClick={() => setAccountId(account.id)}>
+                        <div>{account.bankName}</div>
+                        <div>{account.accountNumber}</div>
+                        <div>잔액: {convertPrice(account.balance)}원</div>
+                      </div>
+                    )))
+                    : (<div className={styles.noAccount}>계좌를 먼저 등록해주세요.</div>)
+                  }
                 </div>
               ) : (
                 <div className={styles.bank}>
