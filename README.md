@@ -10,7 +10,10 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 
 ## 프로젝트 소개
 
-> **패스트캠퍼스 프론트엔드 개발 부트캠프 5기**<br /> > **개발 기간** : 2023. 05. 30 ~ 2023.07.01<br /> > **배포 주소** : [DEMO](https://fe5-team9.github.io/sweethome)<br /> > **GitHub** : https://github.com/FE5-TEAM9/sweethome
+> **패스트캠퍼스 프론트엔드 개발 부트캠프 5기**<br />
+> **개발 기간** : 2023. 05. 30 ~ 2023.07.01<br />
+> **배포 주소** : [DEMO](https://fe5-team9.github.io/sweethome)<br />
+> **GitHub** : https://github.com/FE5-TEAM9/sweethome
 
 <br />
 
@@ -18,7 +21,7 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 
 | **[김준희](https://github.com/dev-junehee)** | **[송홍빈](https://github.com/hbsongk)** | **[조은상](https://github.com/ChoEun-Sang)** | **[박근우](https://github.com/SpeedGear)** | **[백동은](https://github.com/debeck6)** |
 | :--------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
-|<a href="https://github.com/dev-junehee"><img src="https://avatars.githubusercontent.com/u/116873887?v=4" width=90px alt="김준희" /> | <a href="https://github.com/hbsongk"><img src="https://avatars.githubusercontent.com/u/68498323?v=4" width=90px alt="송홍빈" /> | <a href="https://github.com/ChoEun-Sang"><img src="https://avatars.githubusercontent.com/u/128155681?v=4" width=90px alt="조은상" /> | <a href="https://github.com/SpeedGear"><img src="https://avatars.githubusercontent.com/u/128351787?v=4" width=90px alt="박근우" /> | <a href="https://github.com/debeck6"><img src="https://avatars.githubusercontent.com/u/128360222?v=4" width=90px alt="백동은" /> |
+|<a href="https://github.com/dev-junehee"><img src="https://avatars.githubusercontent.com/u/116873887?v=4" width=180px alt="김준희" /> | <a href="https://github.com/hbsongk"><img src="https://avatars.githubusercontent.com/u/68498323?v=4" width=180px alt="송홍빈" /> | <a href="https://github.com/ChoEun-Sang"><img src="https://avatars.githubusercontent.com/u/128155681?v=4" width=180px alt="조은상" /> | <a href="https://github.com/SpeedGear"><img src="https://avatars.githubusercontent.com/u/128351787?v=4" width=180px alt="박근우" /> | <a href="https://github.com/debeck6"><img src="https://avatars.githubusercontent.com/u/128360222?v=4" width=180px alt="백동은" /> |
 |회원가입<br>About 페이지<br>상품 페이지<br>장바구니 페이지<br>결제 페이지<br>관리자 페이지<br>Footer|로그인/로그아웃<br>검색 기능<br>메인 페이지<br>상품 페이지<br>장바구니 페이지<br>결제 페이지<br>Header|회원가입<br>로그인 인증<br>마이페이지<br>상품 페이지<br>장바구니 페이지<br>결제 페이지<br>관리자 페이지|디자인 참여|디자인 참여|
 
 <br />
@@ -61,11 +64,11 @@ React, TypeScript, Rest API를 활용한 라이프 스타일 홈 데코·인테�
 ### 전체 화면 구성
 | **메인 페이지** | **About 페이지** |
 | :--------------------------------------------: | :--------------------------------------------: | 
-| <img src="public/assets/README/01_main.png" width=200px alt="main" /> | <img src="public/assets/README/02_about.png" width=200px alt="about" /> |
+| <img src="public/assets/README/01_main.png" width=360px alt="main" /> | <img src="public/assets/README/02_about.png" width=360px alt="about" /> |
 
 | **상품 목록 페이지** | **상품 상세 페이지** |
 | :--------------------------------------------: | :--------------------------------------------: | 
-| <img src="public/assets/README/03_shop.png" width=200px alt="shop" /> | <img src="public/assets/README/04_shopdetail.png" width=200px alt="shop deail" /> |
+| <img src="public/assets/README/03_shop.png" width=360px alt="shop" /> | <img src="public/assets/README/04_shopdetail.png" width=360px alt="shop deail" /> |
 
 
 <br />
