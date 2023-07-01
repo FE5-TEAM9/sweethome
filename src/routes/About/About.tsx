@@ -3,7 +3,7 @@ import styles from '~/styles/About/About.module.scss';
 
 const About = () => {
   return (
-    <div className={styles.about}>
+    <section className={styles.about}>
       <div className={styles.container}>
         <div className={styles.aboutImg}>
           <img src={about} alt="" />
@@ -19,7 +19,7 @@ const About = () => {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
