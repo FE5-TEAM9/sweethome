@@ -52,9 +52,9 @@ const SignUp = () => {
       isAgree && (await signUp(body));
       setIsLoading(false);
       if (confirm("회원가입 성공!\n로그인 페이지로 이동하시겠습니까?")) {
-        navigate('/login')
+        navigate('/sweethome/login')
       } else {
-        navigate('/')
+        navigate('/sweethome')
       }
     } catch (error) {
       console.log("SignUp Error", error);

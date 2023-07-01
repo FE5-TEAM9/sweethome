@@ -27,6 +27,7 @@ interface Product {
   isSoldOut: boolean
   discountRate: number
 }
+
 const TheModal = ({
   setModalOpen,
   title,

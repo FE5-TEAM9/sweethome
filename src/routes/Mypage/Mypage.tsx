@@ -21,7 +21,7 @@ const MyPage = () => {
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       alert('로그인을 해주세요! 🏠');
-      navigate('/login');
+      navigate('/sweethome/login');
     }
   },[])
 

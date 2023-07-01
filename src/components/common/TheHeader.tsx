@@ -23,7 +23,7 @@ const TheHeader = () => {
     try {
       await logOut();
       alert("로그아웃 완료되었습니다.")
-      navigate("/")
+      navigate("/sweethome")
     } catch (error: any) {
       alert(error.message);
     }
