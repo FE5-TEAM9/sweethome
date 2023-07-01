@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "~/api/requests";
 import styles from "~/styles/Signup/SignUp.module.scss";
+import Loading from "~/components/common/Loading";
 
 interface SignUpBody {
   email: string 
@@ -87,6 +88,7 @@ const SignUp = () => {
 
   return (
     <>
+      {isLoading ? <Loading /> : null}
       <section className={styles.container}>
           <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div className={styles.title}>
