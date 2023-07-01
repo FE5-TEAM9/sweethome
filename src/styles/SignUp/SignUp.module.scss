@@ -2,11 +2,10 @@
 @import '../common/fonts.scss';
 
 .container {
-  width: 100vw;
-  height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 50px 0;
 
   .title {
     display: flex;
@@ -19,7 +18,7 @@
   .label {
     position: relative;
     .input {
-      width: 420px;
+      width: 430px;
       height: 28px;
       border: 1px solid #d5d5d5;
       color: $font-color;
@@ -45,7 +44,7 @@
 
 
   .agree {
-    margin: 20px 0;
+    margin: 40px 0;
     width: 400px;
     height: 100%;
     font-size: 12px;
@@ -64,7 +63,7 @@
       padding: 20px;
       border-radius: 10px;
       background-color: $base-color-gray;
-
+      box-sizing: border-box;
       .agreeText{   
         width: 90%;
       }
