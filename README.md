@@ -67,6 +67,34 @@
 
 <br />
 
+## 프로젝트 테스트
+
+### clone project
+
+```bash
+$ git clone git@github.com:FE5-TEAM9/sweethome.git
+```
+
+### go to project
+
+```bash
+$ cd sweethome
+```
+
+### install npm
+
+```bash
+$ npm install
+```
+
+### start project
+
+```bash
+$ npm run dev
+```
+
+<br />
+
 ### 전체 화면 구성
 | **메인 페이지** | **About 페이지** |
 | :--------------------------------------------: | :--------------------------------------------: | 
@@ -168,28 +196,23 @@
 
 <br />
 
-## 프로젝트 테스트
+## 프로젝트 회고
 
-### clone project
-
-```bash
-$ git clone git@github.com:FE5-TEAM9/sweethome.git
-```
-
-### go to project
-
-```bash
-$ cd sweethome
-```
-
-### install npm
-
-```bash
-$ npm install
-```
-
-### start project
-
-```bash
-$ npm run dev
-```
+### 김준희
+- 배운 점
+  - 개인 활동에 익숙했으나 함께 만드는 협업의 재미를 깨달았습니다.
+  - REST API 활용하여 다양한 기능들을 많이 구현할 수 있었습니다.
+- 아쉬운 점
+  - TypeScript와 Redux에 미숙하여 더욱 공부할 필요성을 느꼈습니다.
+### 송홍빈
+- 배운 점
+- 아쉬운 점
+### 조은상
+- 배운 점
+  - 이번 팀 프로젝트 통해 이슈 작성 및 브랜치, PR 등 GitHub 사용에 익숙해짐
+  - REST API 활용하여 다양한 기능들을 많이 구현할 수 있었음
+  - 전보다 에러핸들링을 디테일하게 시도한 점
+  - React-Hook-Form 를 통해 코드 단순화 및 유효성 검사 적용
+  - 리덕스 상태관리 라이브러리 처음 경험해봄
+- 아쉬운 점
+  - 어플리케이션 성능 최적화하지 못한 점
