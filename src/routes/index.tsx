@@ -60,7 +60,7 @@ export default createBrowserRouter([
     ]
   },
   {
-    path: "*",
+    path: "/sweethome/*",
     element: <NotFound />
   }
 ]);
