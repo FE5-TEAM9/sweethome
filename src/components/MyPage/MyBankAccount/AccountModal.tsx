@@ -43,6 +43,7 @@ const AccountModal = ({
   showModal, 
   setShowModal 
 }: AccountModalProps) => {
+
   const [bankCode, setBankCode] = useState('')
   const [isAgree, setIsAgree] = useState(false)
   const [bankIDX, setBankIDX] = useState(0)
@@ -165,19 +166,6 @@ const AccountModal = ({
               <img src={bank7} />
               <p >NH농협은행</p>
             </li>
-          {/* {bankList.map((bank, idx) => (
-            <li 
-              key={bank.code}              
-              onClick={()=>{
-                  setBankIDX(idx);
-                  setBankCode(bank.code);
-               }}
-              >
-              <img src={`/assets/bank/bank${bank.code}.svg`} />
-              <p >{bank.name}</p>
-            </li>
-            )
-          )} */}
           </ul>
           { bankCode ? null : <p className={styles.guide}>은행을 선택해 주세요.</p>}
          <div className={styles.infoWrap}>
