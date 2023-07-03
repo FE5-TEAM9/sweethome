@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllProducts } from "~/api/requests";
-import Loading from "~/components/common/Loading";
 import styles from "~/styles/TheSearchBar.module.scss";
 
 const TheSearchBar = ({ search, onChange }: any) => {
   const [allProducts, setAllProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   // 전체 상품 조회
   const getAllProductsHandler = async () => {
-    setIsLoading(true);
     try {
       const res = await getAllProducts();
       setAllProducts(res);
     } catch (error: any) {
       alert(error.message);
     }
-    setIsLoading(false);
   };
 
   const navigate = useNavigate();
@@ -39,7 +35,6 @@ const TheSearchBar = ({ search, onChange }: any) => {
 
   return (
     <>
-      {isLoading ? <Loading /> : null}
       <div className={styles.searchContainer}>
         <form className={styles.search}>
           <input
