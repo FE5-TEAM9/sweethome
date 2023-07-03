@@ -22,12 +22,13 @@ const TheHeader = () => {
     dispatch({ type: "RETURN", account: {} });
     try {
       await logOut();
-      alert("로그아웃 완료되었습니다.")
-      navigate("/sweethome")
+      alert("로그아웃 완료되었습니다.");
+      navigate("/sweethome");
     } catch (error: any) {
       alert(error.message);
     }
   };
+  const onChangeHandler = () => {};
 
   return (
     <header>
@@ -86,7 +87,7 @@ const TheHeader = () => {
                 <TheSearchBar
                   className={styles.searchBar}
                   search={search}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} 
+                  onChange={(element: any) => setSearch(element)}
                 />
               )}
               <AiOutlineSearch

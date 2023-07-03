@@ -4,6 +4,8 @@ import { getAllProducts } from "~/api/requests";
 import styles from "~/styles/TheSearchBar.module.scss";
 
 const TheSearchBar = ({ search, onChange }: any) => {
+  const navigate = useNavigate();
+
   const [allProducts, setAllProducts] = useState([]);
 
   // 전체 상품 조회
@@ -16,8 +18,6 @@ const TheSearchBar = ({ search, onChange }: any) => {
     }
   };
 
-  const navigate = useNavigate();
-  
   useEffect(() => {
     getAllProductsHandler();
   }, []);
@@ -33,22 +33,44 @@ const TheSearchBar = ({ search, onChange }: any) => {
     discountRate: number;
   }
 
+  const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (search.trim() === "") {
+      onChange = "";
+      return;
+    }
+    allProducts.map((product: Product) => {
+      if (
+        product.title
+          .replace(" ", "")
+          .toLocaleLowerCase()
+          .includes(search?.toLocaleLowerCase().replace(" ", ""))
+      ) {
+        navigate(`/sweethome/shop/${product.id}`);
+        // navigate(0);
+        onChange("");
+      } else {
+        return;
+      }
+    });
+  };
   return (
     <>
       <div className={styles.searchContainer}>
-        <form className={styles.search}>
+        <form
+          className={styles.search}
+          onSubmit={handleSearch}>
           <input
             type="text"
             placeholder="제품을 검색해보세요."
             className={styles.searchBar}
             name="searchText"
-            value={search || ""}
-            onChange={onChange}
+            defaultValue={search || ""}
+            onChange={e => onChange(e.target.value)}
           />
         </form>
-        {}
         <div className={`${styles.searchForm} ${styles.none}`}>
-          {allProducts.map((product:Product, index:number) =>
+          {allProducts.map((product: Product, index: number) =>
             search === "" ? (
               <div key={index}></div>
             ) : product.title
@@ -58,7 +80,9 @@ const TheSearchBar = ({ search, onChange }: any) => {
               <div
                 key={index}
                 onClick={() => {
-                  navigate(`/sweethome/shop/${product.id}`, { replace: true });
+                  navigate(`/sweethome/shop/${product.id}`);
+                  // navigate(0);
+                  onChange("");
                 }}>
                 {product.title}
               </div>
