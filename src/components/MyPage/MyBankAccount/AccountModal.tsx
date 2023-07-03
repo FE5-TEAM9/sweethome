@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { linkAccount } from '~/api/requests';
 import Loading from '~/components/common/Loading';
+import bank1 from '/assets/bank/bank004.svg'
+import bank2 from '/assets/bank/bank088.svg'
+import bank3 from '/assets/bank/bank020.svg'
+import bank4 from '/assets/bank/bank081.svg'
+import bank5 from '/assets/bank/bank089.svg'
+import bank6 from '/assets/bank/bank090.svg'
+import bank7 from '/assets/bank/bank011.svg'
 import styles from '~/styles/Mypage/AccountModal.module.scss';
 
 interface AccountModalProps {
@@ -88,7 +95,77 @@ const AccountModal = ({
           <h4>계좌 연결</h4>
         </div>
           <ul className={styles.paymentContainer}>
-          {bankList.map((bank, idx) => (
+          <li 
+              key='4'             
+              onClick={()=>{
+                  setBankIDX(0);
+                  setBankCode('004');
+               }}
+              >
+              <img src={bank1} />
+              <p >국민은행</p>
+            </li>
+            <li 
+              key='4'             
+              onClick={()=>{
+                  setBankIDX(1);
+                  setBankCode('088');
+               }}
+              >
+              <img src={bank2} />
+              <p >신한은행</p>
+            </li>
+            <li 
+              key='4'             
+              onClick={()=>{
+                  setBankIDX(2);
+                  setBankCode('020');
+               }}
+              >
+              <img src={bank3} />
+              <p >우리은행</p>
+            </li>
+            <li 
+              key='4'             
+              onClick={()=>{
+                  setBankIDX(3);
+                  setBankCode('081');
+               }}
+              >
+              <img src={bank4} />
+              <p >하나은행</p>
+            </li>
+            <li 
+              key='4'             
+              onClick={()=>{
+                  setBankIDX(4);
+                  setBankCode('089');
+               }}
+              >
+              <img src={bank5} />
+              <p >케이뱅크</p>
+            </li>
+            <li 
+              key='4'             
+              onClick={()=>{
+                  setBankIDX(5);
+                  setBankCode('090');
+               }}
+              >
+              <img src={bank6} />
+              <p >카카오뱅크</p>
+            </li>
+            <li 
+              key='4'             
+              onClick={()=>{
+                  setBankIDX(6);
+                  setBankCode('011');
+               }}
+              >
+              <img src={bank7} />
+              <p >NH농협은행</p>
+            </li>
+          {/* {bankList.map((bank, idx) => (
             <li 
               key={bank.code}              
               onClick={()=>{
@@ -100,7 +177,7 @@ const AccountModal = ({
               <p >{bank.name}</p>
             </li>
             )
-          )}
+          )} */}
           </ul>
           { bankCode ? null : <p className={styles.guide}>은행을 선택해 주세요.</p>}
          <div className={styles.infoWrap}>
