@@ -60,7 +60,7 @@ const MyOrderDetails = ({ setShowDetails, orderDetails }: DetailsProps) => {
             <div className={styles.item_details}>
               <strong>{orderDetails.product.title}</strong>
               <p>상품금액 ₩{convertPrice(orderDetails.product.price)}</p>
-              <p>상품확정 {orderDetails.done}</p>
+              <p>{orderDetails.done ? "구매 확정 완료" : "구매 미확정"}</p>
             </div>
             <div className={styles.payment_details}>
               <h4>결제 상세</h4>
