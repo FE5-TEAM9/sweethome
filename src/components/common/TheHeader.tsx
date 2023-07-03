@@ -28,7 +28,6 @@ const TheHeader = () => {
       alert(error.message);
     }
   };
-  const onChangeHandler = () => {};
 
   return (
     <header>
