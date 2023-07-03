@@ -42,7 +42,7 @@ const MyOrderDetails = ({ setShowDetails, orderDetails }: DetailsProps) => {
         <div className={styles.details}>
           <div className={styles.photo}>
             <img
-              src={orderDetails.product.photo}
+              src={orderDetails.product.thumbnail}
               alt={orderDetails.product.title}
             />
           </div>
