@@ -41,7 +41,11 @@ const Admin = () => {
           </div>
         </div>
         </div>
-      : <div>관리자 페이지입니다. 관리자 계정으로 로그인 해주세요.</div>
+      : (
+        <div className={styles.adminAccept}>
+          <p>⚙️ 관리자 페이지입니다. ⚙️<br />관리자 계정으로 로그인 해주세요!</p>
+        </div>
+      )
       }
     </>
   )
