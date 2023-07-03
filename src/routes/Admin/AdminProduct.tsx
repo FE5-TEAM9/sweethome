@@ -3,6 +3,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { BsPencilSquare } from "react-icons/bs";
 import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
 import { SELECT_TAGS } from "~/constants";
+import { convertPrice } from "~/utils/convert";
 import TheModal from "~/components/common/TheModal";
 import Select from "~/components/common/Select";
 import Loading from "~/components/common/Loading";
@@ -60,15 +61,6 @@ const AdminProduct = () => {
   useEffect(() => {
     getAllProductsHandler();
   }, [watch]);
-
-  const tableHead = [
-    "NO",
-    "상품태그",
-    "상품이름",
-    "상품가격",
-    "할인율",
-    "품절여부"
-  ];
 
   // 전체 상품 목록 조회
   const getAllProductsHandler = async () => {
@@ -291,7 +283,57 @@ const AdminProduct = () => {
               <div
                 className={styles.wrapper}
                 key="index">
-                <table>
+                <div className={styles.list_nav}>
+                  <div className={styles.list_nav_container}>
+                    <div>NO.</div>
+                    <div>상품 태그</div>
+                    <div>상품 이름</div>
+                    <div>상품 가격</div>
+                    <div>할인율</div>
+                    <div>품절 여부</div>
+                    <div>수정/삭제</div>
+                  </div>
+                </div>
+                <div className={styles.list}>
+                  <ul className={styles.list_container}>
+                    {allProducts.map((product, i) => (
+                      <li key={product.id}>
+                        <div>{i + 1}</div>
+                        <div>{product.tags}</div>
+                        <div>{product.title}</div>
+                        <div>{convertPrice(product.price)}</div>
+                        <div>{product.discountRate}</div>
+                        <div>{product.isSoldOut ? "⭕️" : "❎"}</div>
+                        <div className={styles.icon}>
+                          <BsPencilSquare
+                            className={styles.modifyBtn}
+                            onClick={() => {
+                              showModal(product.id);
+                              setProductIDX(i);
+                            }}
+                          />
+                          <TiDeleteOutline
+                            className={styles.deleteBtn}
+                            onClick={() => deleteProductHandler(product.id)}
+                          />
+                          {modalOpen && (
+                            <TheModal
+                              setModalOpen={setModalOpen}
+                              title={`상품 정보 수정`}
+                              allProducts={allProducts}
+                              setAllProducts={setAllProducts}
+                              productId={productId}
+                              productIDX={productIDX}
+                              watch={watch}
+                              setWatch={setWatch}
+                            />
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* <table>
                   <thead>
                     <tr>
                       {tableHead.map(item => (
@@ -336,7 +378,7 @@ const AdminProduct = () => {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </table> */}
               </div>
             </div>
           </div>

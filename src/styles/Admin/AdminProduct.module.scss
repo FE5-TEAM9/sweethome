@@ -111,7 +111,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 1000px;
+      min-height: 1000px;
 
       .title{
         margin: 50px 0 50px;
@@ -125,46 +125,54 @@
 
       .allProduct {
         .wrapper {
-          table {
-            text-align: center;
-            
-            thead {
+          font-size: 14px;
+
+          .list_nav {
+            margin-bottom: 10px;
+      
+            .list_nav_container {
+              display: grid;
+              justify-content: center;
+              align-items: center;
+              grid-template-columns: .5fr 1fr 2fr repeat(4, 1fr); 
+              min-width: 900px;
+              height: 50px;
+              background-color: $base-color-lightgray;
+              border-radius: 10px;
               font-family: "Pretendard";
-
-              tr {
-                th {
-                  padding: 10px 20px 10px;
-                  border: 1px solid $base-color-gray;
-                  font-weight: 500;
-                }
-              }
+              font-weight: 600;
+              text-align: center;
             }
-
-            tbody {
-              tr {
+          }
+            
+          .list {
+            .list_container {
+              li {
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                grid-template-columns: .5fr 1fr 2fr repeat(4, 1fr); 
+                height: 60px;
+                border: 1px solid $base-color-gray;
+                border-radius: 10px;
+                margin-bottom: 10px;
                 text-align: center;
-
-                td {
-                  border: 1px solid $base-color-gray;
-                }
-
-                .icon {
-                  .modifyBtn {
-                    font-size: 24px;
-                    margin-right: 10px;
-                  }
-
-                  .deleteBtn {
-                    font-size: 24px;
-                  }
-                }
                 
+                .icon {
+                  display: flex;
+                  justify-content: center;
+                  gap: 12px;
+                  
+                  svg {
+                    width: 18px;
+                    height: 18px;
+                  }
+                }
               }
             }
           }
         }
       }
-
     }
   }
 }
