@@ -11,8 +11,9 @@
 .cart {
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - (100px + 150px));
-  margin: 0 auto;
+  // min-height: calc(100vh - (100px + 150px));
+  min-height: 550px;
+  margin: 0 auto 50px;
   font-family: "Pretendard";
   color: $font-color;
 
@@ -94,11 +95,11 @@
         }
       }
     }
-
     .buttons {
       display: flex;
       justify-content: center;
       gap: 10px;
+      margin-top: 30px;
 
       .btn {
         width: 200px;

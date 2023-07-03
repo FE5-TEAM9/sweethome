@@ -4,7 +4,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
 import { SELECT_TAGS } from "~/constants";
 import { convertPrice } from "~/utils/convert";
-import TheModal from "~/components/common/TheModal";
+import EditProductModal from "~/components/Admin/EditProductModal";
 import Select from "~/components/common/Select";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/Admin/AdminProduct.module.scss";
@@ -317,7 +317,7 @@ const AdminProduct = () => {
                             onClick={() => deleteProductHandler(product.id)}
                           />
                           {modalOpen && (
-                            <TheModal
+                            <EditProductModal
                               setModalOpen={setModalOpen}
                               title={`상품 정보 수정`}
                               allProducts={allProducts}

@@ -69,20 +69,21 @@ const Cart = () => {
               <strong>합계</strong>
               <span>₩{convertPrice(totalPrice)}</span>
             </div>
-          </div>
-          <div className={styles.buttons}>
-            <input
-              type="button"
-              value="선택 상품 주문"
-              className={`${styles.btn} ${styles.btn_selected}`}
-              onClick={() => navigate("/sweethome/buy", { state: select })}
-            />
-            <input
-              type="button"
-              value="전체 상품 주문"
-              className={`${styles.btn} ${styles.btn_selectedAll}`}
-              onClick={() => navigate("/sweethome/buy", { state: cart })}
-            />
+
+            <div className={styles.buttons}>
+              <input
+                type="button"
+                value="선택 상품 주문"
+                className={`${styles.btn} ${styles.btn_selected}`}
+                onClick={() => navigate("/sweethome/buy", { state: select })}
+              />
+              <input
+                type="button"
+                value="전체 상품 주문"
+                className={`${styles.btn} ${styles.btn_selectedAll}`}
+                onClick={() => navigate("/sweethome/buy", { state: cart })}
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@ import { editProduct } from "~/api/requests";
 import { SELECT_TAGS } from "~/constants";
 import Loading from "~/components/common/Loading";
 import Select from "~/components/common/Select";
-import styles from "~/styles/TheModal.module.scss";
+import styles from "~/styles/Admin/EditProductModal.module.scss";
 
 interface PropsType {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,7 +28,7 @@ interface Product {
   discountRate: number
 }
 
-const TheModal = ({
+const EditProductModal = ({
   setModalOpen,
   title,
   allProducts,
@@ -197,4 +197,4 @@ const TheModal = ({
   );
 };
 
-export default TheModal;
+export default EditProductModal;
