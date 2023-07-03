@@ -206,10 +206,12 @@ const ShopDetail = () => {
             <p>{product.description}</p>
           </div>
           <div>
-            <img src={product.photo} alt="" />
+            <img
+              src={product.photo}
+              alt=""
+            />
           </div>
         </div>
-        
       </section>
     </>
   );
