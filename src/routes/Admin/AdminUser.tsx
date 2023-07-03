@@ -10,7 +10,6 @@ const AdminUser = () => {
   }
   
   const [allUsers, setAllUsers] = useState([]);
-  const tableHead = ["NO", "이름", "이메일"];
 
   useEffect(() => {
     getUsers();
@@ -34,24 +33,24 @@ const AdminUser = () => {
             <h2>사용자 관리</h2>
           </div>
           <div className={styles.wrapper}>
-            <table>
-              <thead>
-                <tr>
-                  {tableHead.map(item => (
-                    <th key={item}>{item}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
+            <div className={styles.list_nav}>
+              <div className={styles.list_nav_container}>
+                <div>NO.</div>
+                <div>이름</div>
+                <div>이메일</div>
+              </div>
+            </div>
+            <div className={styles.list}>
+              <ul className={styles.list_container}>
                 {allUsers.map((user: User, i) => (
-                  <tr key={i + 1}>
-                    <td>{i + 1}</td>
-                    <td>{user.displayName}</td>
-                    <td>{user.email}</td>
-                  </tr>
+                  <li key={i}>
+                    <div>{i + 1}</div>
+                    <div>{user.displayName}</div>
+                    <div>{user.email}</div>
+                  </li>
                 ))}
-              </tbody>
-            </table>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
