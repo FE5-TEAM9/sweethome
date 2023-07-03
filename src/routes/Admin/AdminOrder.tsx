@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { adminAllTransactions, adminTransactions } from "~/api/requests"
-import { convertDate, sortDate, convertPrice } from "~/utils/convert"
-import Loading from "~/components/common/Loading"
-import styles from "~/styles/admin/AdminOrder.module.scss"
+import { useEffect, useState } from "react";
+import { adminAllTransactions, adminTransactions } from "~/api/requests";
+import { convertDate, sortDate, convertPrice } from "~/utils/convert";
+import Loading from "~/components/common/Loading";
+import styles from "~/styles/admin/AdminOrder.module.scss";
 
 const AdminOrder = () => {
   const [allList, setAllList] = useState<any[]>([]);
@@ -16,18 +16,19 @@ const AdminOrder = () => {
   
   // 전체 거래 내역 조회
   const getAllTransactions = async () => {
+    setIsLoading(true);
     try {
       const res = await adminAllTransactions();
       setAllList(res.sort((a: any, b: any) => sortDate(b.timePaid) - sortDate(a.timePaid)));
     } catch (error: any) {
       alert(error.message);
     }
+    setIsLoading(false);
   }
 
   // 거래 완료 및 취소
   const adminTransactionsHandler = async (e: React.MouseEvent<HTMLInputElement>, detailId: string) => {
     e.preventDefault();
-    setIsLoading(true);
     const id = e.currentTarget.id;
     try {
       if (id === 'canceled') {
@@ -40,7 +41,6 @@ const AdminOrder = () => {
     } catch (error: any) {
       alert(error.message);
     }
-    setIsLoading(false);
   }
 
   interface TransactionDetail {

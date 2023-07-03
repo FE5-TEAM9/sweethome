@@ -1,13 +1,13 @@
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import { buyProduct, getAccountList } from "~/api/requests";
 import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Buy/Buy.module.scss";
 
-interface Bank { 
+interface Bank {
   id: string;
   bankName: string;
   bankCode: string;
@@ -17,13 +17,16 @@ interface Bank {
 
 const Buy = () => {
   const user = useSelector((state: any) => state.user);
+  const cart = useSelector((state: any) => state.cart);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [accountChecked, setAccountChecked] = useState(true);
   const [bankChecked, setBankChecked] = useState(false);
   const [accountId, setAccountId] = useState("");
+  const [bankName, setBankName] = useState("")
   const [accountList, setAccountList] = useState<Bank[]>([]);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const cart = useSelector((state: any) => state.cart);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     getAccountData();
@@ -64,8 +67,8 @@ const Buy = () => {
 
   const orderApplyHandler = async (
     e: React.MouseEvent<HTMLInputElement>,
-    order:any[],
-    accountId:string,
+    order: any[],
+    accountId: string
   ) => {
     e.preventDefault();
     try {
@@ -77,7 +80,7 @@ const Buy = () => {
         await buyProduct(body);
       });
       if (confirm("결제가 완료되었습니다.\n주문 내역을 확인하시겠습니까?")) {
-        navigate("/mypage");
+        navigate("/sweethome/mypage");
       } else {
         return;
       }
@@ -121,10 +124,10 @@ const Buy = () => {
                 <li
                   className={styles.cartItem}
                   key={i}>
-                  <Link to={`/shop/${item.id}`}>
+                  <Link to={`/sweethome/shop/${item.id}`}>
                     <div className={styles.itemImg}>
                       <img
-                        src={item.photo}
+                        src={item.thumbnail}
                         alt={item.title}
                       />
                     </div>
@@ -225,16 +228,30 @@ const Buy = () => {
               </div>
               {accountChecked ? (
                 <div className={styles.account}>
-                  {accountList.map(account => (
-                    <div
-                      key={account.id}
-                      className={styles.account_info}
-                      onClick={() => setAccountId(account.id)}>
-                      <div>{account.bankName}</div>
-                      <div>{account.accountNumber}</div>
-                      <div>잔액: {convertPrice(account.balance)}원</div>
+                  {accountList.length ? (
+                    accountList.map(account => (
+                      <div
+                        key={account.id}
+                        className={
+                          isActive
+                            ? `${styles.account_info} active`
+                            : `${styles.account_info}`
+                        }
+                        onClick={() => {
+                          setAccountId(account.id); 
+                          setBankName(account.bankName);
+                          setIsActive(true)
+                          }}>
+                        <div>{account.bankName}</div>
+                        <div>{account.accountNumber}</div>
+                        <div>잔액: {convertPrice(account.balance)}원</div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className={styles.noAccount}>
+                      계좌를 먼저 등록해주세요.
                     </div>
-                  ))}
+                  )}
                 </div>
               ) : (
                 <div className={styles.bank}>
@@ -249,7 +266,8 @@ const Buy = () => {
           <div className={styles.payment_details}>
             <h4>최종 결제 금액</h4>
             <div className={styles.details_container}>
-              <p>₩{convertPrice(totalPrice)}</p>
+              <span>₩{convertPrice(totalPrice)}</span>
+              {bankName ? (<p>{bankName}에서 총 {convertPrice(totalPrice)}원 결제 예정입니다.</p>) : null}
             </div>
           </div>
         </div>

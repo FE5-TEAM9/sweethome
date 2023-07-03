@@ -1,0 +1,61 @@
+@import '../common/colors.scss';
+@import '../common/fonts.scss';
+
+.notfound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Pretendard";
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .textbox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: $point-color-mint;
+      margin-bottom: 40px;
+
+      svg {
+        width: 100px;
+        height: 100px;
+
+        path {
+          color: $point-color-mint;
+        }
+      }
+
+      strong {
+        font-size: 80px;
+        color: $point-color-mint;
+        margin: 20px 0;
+      }
+      
+      p {
+        font-size: 60px;
+        text-align: center;
+        color: $point-color-mint;color: $point-color-mint;
+      }
+    }
+
+    .btn {
+      input {
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        border: 1px solid $base-color-gray;
+        outline: none;
+        font-size: 20px;
+        background-color: $base-color-lightgray;
+      }
+    }
+  }
+}

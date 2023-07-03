@@ -1,14 +1,14 @@
-import { Outlet, useLocation } from 'react-router-dom'
-import TheHeader from '~/components/common/TheHeader'
-import TheFooter from '~/components/common/TheFooter'
-import { useCallback, useEffect } from 'react'
-import { authenticate } from '~/api/requests'
-import { useDispatch } from "react-redux"
+import { useCallback, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { authenticate } from '~/api/requests';
+import TheHeader from '~/components/common/TheHeader';
+import TheFooter from '~/components/common/TheFooter';
+import '~/App.scss';
 
-
-export default function Layout() {
-const location = useLocation();
-const dispatch = useDispatch()
+const App = () => {
+  const location = useLocation();
+  const dispatch = useDispatch()
 
   useEffect(()=> {
     authenticateHandler();
@@ -26,8 +26,12 @@ const dispatch = useDispatch()
   return (
     <>
       <TheHeader/>
-      <Outlet />
+      <div className="allSections">
+        <Outlet />
+      </div>
       <TheFooter />
     </>
   )
-}
+};
+
+export default App;

@@ -1,7 +1,7 @@
-import styles from '~/styles/Mypage/MyInfo.module.scss'
-import { useForm } from 'react-hook-form'
-import { editInfo } from '~/api/requests'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { editInfo } from '~/api/requests';
+import styles from '~/styles/Mypage/MyInfo.module.scss';
 
 interface Password {
   oldPassword: string,
@@ -33,7 +33,7 @@ const MyInfo = () => {
 
     
     const ChangePWHandler = async({ oldPassword, newPassword }: Password) => {
-      if (oldPassword.length <= 8 || newPassword.length <= 8) return alert('비밀번호는 8자이상 입력해주세요.')
+      if (oldPassword.length < 8 || newPassword.length < 8) return alert('비밀번호는 8자이상 입력해주세요.')
       const body = {
         oldPassword,
         newPassword

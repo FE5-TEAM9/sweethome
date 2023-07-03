@@ -1,6 +1,5 @@
-import styles from '~/styles/Mypage/AccountModal.module.scss';
 import { useState } from 'react';
-import { linkAccount } from '~/api/requests'
+import { linkAccount } from '~/api/requests';
 import Loading from '~/components/common/Loading';
 import bank1 from '/assets/bank/bank004.svg'
 import bank2 from '/assets/bank/bank088.svg'
@@ -9,6 +8,7 @@ import bank4 from '/assets/bank/bank081.svg'
 import bank5 from '/assets/bank/bank089.svg'
 import bank6 from '/assets/bank/bank090.svg'
 import bank7 from '/assets/bank/bank011.svg'
+import styles from '~/styles/Mypage/AccountModal.module.scss';
 
 interface AccountModalProps {
   bankList: Bank[];
@@ -173,7 +173,7 @@ const AccountModal = ({
                   setBankCode(bank.code);
                }}
               >
-              <img src={`/public/assets/bank/bank${bank.code}.svg`} />
+              <img src={`/assets/bank/bank${bank.code}.svg`} />
               <p >{bank.name}</p>
             </li>
             )

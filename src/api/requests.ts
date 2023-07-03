@@ -27,8 +27,10 @@ const signUp = async (body: SignUpBody) => {
     headers,
     body: JSON.stringify(body),
   });
-  const data = await res.json();
-  return data;
+  if (res.status === 200) {
+    const data = await res.json();
+    return data;
+  } else return false;
 };
 
 // Log-In 로그인
@@ -57,7 +59,6 @@ const logOut = async () => {
   });
   if (res.status === 200) {
     await res.json();
-    alert("로그아웃되었습니다!");
     window.localStorage.clear();
   } else return false;
 };
@@ -348,8 +349,10 @@ const getAllTransactions = async () => {
       },
     }
   );
-  const data = await res.json();
-  return data;
+  if (res.status === 200) {
+    const data = await res.json();
+    return data;
+  } else return false;
 };
 
 // 단일 거래 내역 (사용자)

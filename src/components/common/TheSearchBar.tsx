@@ -21,6 +21,7 @@ const TheSearchBar = ({ search, onChange }: any) => {
   };
 
   const navigate = useNavigate();
+  
   useEffect(() => {
     getAllProductsHandler();
   }, []);
@@ -62,7 +63,7 @@ const TheSearchBar = ({ search, onChange }: any) => {
               <div
                 key={index}
                 onClick={() => {
-                  navigate(`/shop/${product.id}`, { replace: true });
+                  navigate(`/sweethome/shop/${product.id}`, { replace: true });
                 }}>
                 {product.title}
               </div>

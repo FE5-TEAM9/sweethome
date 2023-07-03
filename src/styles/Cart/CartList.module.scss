@@ -2,10 +2,9 @@
 @import "../common/fonts.scss";
 
 .cartList {
-
   .container {
     width: 100%;
-    
+    font-family: "Pretendard";
 
     .cartItem {
       display: grid;
@@ -19,25 +18,35 @@
       border-radius: 10px;
       text-align: center;
 
-      .checkbox {
-
-      }
-      .itemImg {
-        img {
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .itemImg {
           width: 100px;
-          height: auto;
+          height: 100px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
       }
+
       .itemTitle {
         span {
 
         }
       }
+
       .itemQuantity {
         span {
 
         }
       }
+
       .itemPrice {
         display: flex;
         flex-direction: column;
@@ -45,10 +54,12 @@
         .discountPrice {
           
         }
+
         .originalPrice {
           text-decoration: line-through;
         }
       }
+
       .totalPrice {
             
       }
@@ -71,7 +82,4 @@
       }
     }
   }
-
-
-
 }

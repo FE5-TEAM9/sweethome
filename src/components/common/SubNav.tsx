@@ -4,6 +4,7 @@ interface SubNavProps {
   subNav: string[]
   setCategory: React.Dispatch<React.SetStateAction<string>>
 }
+
 const SubNav = ({ subNav, setCategory }: SubNavProps) => {
 
   return (

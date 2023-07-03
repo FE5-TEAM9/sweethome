@@ -1,5 +1,5 @@
 import { GiHouse } from 'react-icons/gi';
-import { LuCar } from 'react-icons/lu'
+import { LuCar } from 'react-icons/lu';
 import styles from '~/styles/Loading.module.scss';
 
 const Loading = () => {

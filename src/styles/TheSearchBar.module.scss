@@ -19,21 +19,25 @@
       height: 28px;
       outline: none;
       font-size: 0.8rem;
-      padding: 4px;
+      padding: 4px 4px 4px 6px;
+      box-sizing: border-box;
       margin-right: 8px;
     }
   }
+
   .searchForm {
     display: flex;
     align-items: center;
     width: 180px;
     min-height: 32px;
-    border: 1px solie $base-color-gray;
+    border: 1px solid $base-color-gray;
+    border-top: none;
     background-color: $base-color-lightgray;
-    // z-index: 9;
-    padding: 4px;
+    padding: 4px 4px 4px 6px;
+    box-sizing: border-box;
     margin-right: 10px;
     font-size: 14px;
+    
     .none {
       display: none;
     }

@@ -10,16 +10,27 @@ import styles from "~/styles/Admin/AdminProduct.module.scss";
 
 type AllProduct = Product[];
 
-  interface Product {
-    id: string;
-    title: string;
-    price: number;
-    description: string;
-    tags: string[];
-    thumbnail: string;
-    isSoldOut: boolean;
-    discountRate: number;
-  }
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  description: string;
+  tags: string[];
+  thumbnail: string;
+  isSoldOut: boolean;
+  discountRate: number;
+}
+
+interface AddProductBody {
+  title: string;
+  price: number;
+  description: string;
+  tags?: string;
+  thumbnailBase64?: string;
+  photoBase64?: string;
+  discountRate?: number;
+  isSoldOut?: boolean;
+}
 
 const AdminProduct = () => {
   const [allProducts, setAllProducts] = useState<AllProduct>([]);
@@ -31,7 +42,7 @@ const AdminProduct = () => {
     price: "",
     description: "",
     tags: "",
-    discountRate: "",
+    discountRate: ""
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +67,7 @@ const AdminProduct = () => {
     "상품이름",
     "상품가격",
     "할인율",
-    "품절여부",
+    "품절여부"
   ];
 
   // 전체 상품 목록 조회
@@ -80,23 +91,12 @@ const AdminProduct = () => {
     const { value, name } = e.target;
     setProduct({
       ...product,
-      [name]: value,
+      [name]: value
     });
   };
 
   // 상품 등록
   const addProductHandler = async () => {
-    interface AddProductBody {
-      title: string;
-      price: number;
-      description: string;
-      tags?: string;
-      thumbnailBase64?: string;
-      photoBase64?: string;
-      discountRate?: number;
-      isSoldOut?: boolean;
-    }
-
     const body: AddProductBody = {
       title: product.title,
       price: Number(product.price),
@@ -105,7 +105,7 @@ const AdminProduct = () => {
       thumbnailBase64: productThumb,
       photoBase64: productPhoto,
       discountRate: Number(product.discountRate),
-      isSoldOut: isChecked,
+      isSoldOut: isChecked
     };
 
     try {
@@ -118,11 +118,10 @@ const AdminProduct = () => {
         price: "",
         description: "",
         tags: "",
-        discountRate: "",
+        discountRate: ""
       });
       setProductThumb("");
       setProductPhoto("");
-
     } catch (error) {
       alert("상품 등록 실패!");
     }
@@ -131,12 +130,12 @@ const AdminProduct = () => {
 
   // 썸네일 base64 인코딩
   const thumbBase64Handler = (e: React.ChangeEvent) => {
-    const target: any = e.target as HTMLInputElement
+    const target: any = e.target as HTMLInputElement;
     const file = target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
-    return new Promise<void>((resolve) => {
+    return new Promise<void>(resolve => {
       reader.onload = () => {
         setProductThumb(reader.result as string);
         resolve();
@@ -146,11 +145,11 @@ const AdminProduct = () => {
 
   // 상세사진 base64 인코딩
   const photoBase64Handler = (e: React.ChangeEvent) => {
-    const target:any = e.target as HTMLInputElement
-    const file = target.files[0]
+    const target: any = e.target as HTMLInputElement;
+    const file = target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    return new Promise<void>((resolve) => {
+    return new Promise<void>(resolve => {
       reader.onload = () => {
         setProductPhoto(reader.result as string);
         resolve();
@@ -163,13 +162,13 @@ const AdminProduct = () => {
     try {
       const res = await deleteProduct(id);
       if (res) {
-        const updateProduct = allProducts.filter((product) => product.id !== id);
+        const updateProduct = allProducts.filter(product => product.id !== id);
         setAllProducts(updateProduct);
       } else {
-        alert("상품 삭제 실패하였습니다.")
+        alert("상품 삭제 실패하였습니다.");
       }
     } catch (error) {
-        alert("상품 삭제 실패하였습니다.")
+      alert("상품 삭제 실패하였습니다.");
     }
   };
 
@@ -226,7 +225,7 @@ const AdminProduct = () => {
                     name="tags"
                     options={SELECT_TAGS}
                     value={product.tags}
-                    onChange={(e) => onInputChangeHandler(e)}
+                    onChange={e => onInputChangeHandler(e)}
                   />
                 </label>
               </div>
@@ -236,7 +235,7 @@ const AdminProduct = () => {
                   <input
                     type="file"
                     className={styles.input}
-                    onChange={(e) => thumbBase64Handler(e)}
+                    onChange={e => thumbBase64Handler(e)}
                     accept="image/*"
                   />
                 </label>
@@ -247,7 +246,7 @@ const AdminProduct = () => {
                   <input
                     type="file"
                     className={styles.input}
-                    onChange={(e) => photoBase64Handler(e)}
+                    onChange={e => photoBase64Handler(e)}
                     accept="image/*"
                   />
                 </label>
@@ -289,11 +288,13 @@ const AdminProduct = () => {
               <p>모든 상품 조회</p>
             </div>
             <div className={styles.allProduct}>
-              <div className={styles.wrapper} key="index">
+              <div
+                className={styles.wrapper}
+                key="index">
                 <table>
                   <thead>
                     <tr>
-                      {tableHead.map((item) => (
+                      {tableHead.map(item => (
                         <th key={item}>{item}</th>
                       ))}
                     </tr>

@@ -51,18 +51,17 @@ const MyOrder = () => {
   // 전체 거래 내역
   const allTransactions = async () => {
     setIsLoading(true);
-    try {
-      const allRes = await getAllTransactions();
+    const allRes = await getAllTransactions();
+    if (allRes) {
       setAllList(
         allRes
           .filter((res: TransactionDetail) => !res.isCanceled)
           .sort((a: TransactionDetail, b: TransactionDetail) => sortDate(b.timePaid) - sortDate(a.timePaid))
       );
-    } catch (error) {
-      alert("전체 거래 내역 조회 실패!")
-    } finally {
-      setIsLoading(false);
+    } else {
+      alert("주문 내역이 없습니다.")
     }
+    setIsLoading(false);
   };
 
   // 구매 취소
@@ -145,7 +144,7 @@ const MyOrder = () => {
               <div>상품 가격</div>
               <div>주문 일자</div>
               <div>구매 확정</div>
-              <div></div>
+              <div>비고</div>
             </div>
           </div>
 

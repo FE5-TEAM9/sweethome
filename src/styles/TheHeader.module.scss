@@ -5,12 +5,12 @@
   margin: 0;
   padding: 0;
 }
+
 a {
   text-decoration: none;
 }
 
 header {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,13 +79,14 @@ header {
         .userLogin {
           cursor: pointer;
         }
+
         .userLogout {
           cursor: pointer;
           margin-left: 40px;
         }
+
         .userSignUp {
           margin-left: 20px;
-
           &::before {
             content: "|";
             margin-right: 20px;
@@ -106,21 +107,18 @@ header {
         }
         
         .search {
-          // width: 300px;
-          // height: 30px;
           display: flex;
           justify-content: center;
           align-items: center;
 
           .searchIcon {
-            // margin-left: 15px;
-            font-size: 20px;
             cursor: pointer;
+            width: 20px;
+            height: 24px;
+            transform: scale(1.3);
           }
         }
       }
     }
   }
-
-  
 }

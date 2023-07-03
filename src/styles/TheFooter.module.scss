@@ -12,6 +12,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  // position: fixed;
+  // bottom: 0;
   width: 100vw;
   height: 150px;
   background-color: $base-color-lightgray;
@@ -23,15 +25,16 @@ footer {
     align-items: center;
     width: 90%;
     max-width: 1440px;
+    margin-top: 20px;
 
     ul {
       display: flex;
+      flex-shrink: 0;
       justify-content: space-evenly;
       gap: 60px;
 
       .logo {
         width: 200px;
-        // margin-right: 100px;
 
         h1 {
           font-family: $font-logo;
@@ -42,8 +45,6 @@ footer {
       .company,
       .bank,
       .customer {
-        // margin-right: 100px;
-
         div {
           display: flex;
           flex-direction: column;

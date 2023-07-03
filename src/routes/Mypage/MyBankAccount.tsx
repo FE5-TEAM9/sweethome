@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
-import styles from '~/styles/Mypage/MyBankAccount.module.scss'
-import Account from '~/components/MyPage/MyBankAccount/Account'
-import AccountModal from '~/components/MyPage/MyBankAccount/AccountModal'
-import { getBankList, getAccountList } from '~/api/requests'
-import { useDispatch } from 'react-redux'
-import Loading from '~/components/common/Loading'
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getBankList, getAccountList } from '~/api/requests';
+import Account from '~/components/MyPage/MyBankAccount/Account';
+import AccountModal from '~/components/MyPage/MyBankAccount/AccountModal';
+import Loading from '~/components/common/Loading';
+import styles from '~/styles/Mypage/MyBankAccount.module.scss';
+
+interface Bank { 
+  id: string;
+  bankName: string;
+  bankCode: string;
+  accountNumber: string;
+  balance: number;
+}
 
 const MyBankAccount = () => {
-  interface Bank { 
-    id: string;
-    bankName: string;
-    bankCode: string;
-    accountNumber: string;
-    balance: number;
-  }
-  
   const [showModal, setShowModal] = useState(false)
   const [bankList, setBankList] = useState([])
   const [accountList, setAccountList] = useState<Bank[]>([])
