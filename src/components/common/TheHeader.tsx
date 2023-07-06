@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -6,14 +6,15 @@ import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { logOut } from "~/api/requests";
 import TheSearchBar from "~/components/common/TheSearchBar";
 import styles from "~/styles/TheHeader.module.scss";
+import { useLocation } from "react-router-dom";
 
 const TheHeader = () => {
   const [search, setSearch] = useState("");
   const [searchIsClicked, setSearchIsClicked] = useState(false);
-
   const logout = useSelector((state: any) => state.logout);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // 로그아웃
   const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -28,7 +29,9 @@ const TheHeader = () => {
       alert(error.message);
     }
   };
-
+  useEffect(() => {
+    setSearchIsClicked(false);
+  }, [location.pathname]);
   return (
     <header>
       <div className={styles.container}>
@@ -41,7 +44,7 @@ const TheHeader = () => {
               <NavLink
                 to="/sweethome/about"
                 className={({ isActive }) =>
-                  isActive ? styles.active : `menu`
+                  isActive ? styles.active : "menu"
                 }>
                 ABOUT
               </NavLink>

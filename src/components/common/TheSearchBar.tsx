@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getAllProducts } from "~/api/requests";
 import styles from "~/styles/TheSearchBar.module.scss";
 
 const TheSearchBar = ({ search, onChange }: any) => {
-  const navigate = useNavigate();
-
   const [allProducts, setAllProducts] = useState([]);
-
   // 전체 상품 조회
   const getAllProductsHandler = async () => {
     try {
@@ -46,9 +42,7 @@ const TheSearchBar = ({ search, onChange }: any) => {
           .toLocaleLowerCase()
           .includes(search?.toLocaleLowerCase().replace(" ", ""))
       ) {
-        navigate(`/sweethome/shop/${product.id}`);
-        // navigate(0);
-        onChange("");
+        window.location.href = `/sweethome/shop/${product.id}`;
       } else {
         return;
       }
@@ -77,15 +71,7 @@ const TheSearchBar = ({ search, onChange }: any) => {
                 .replace(" ", "")
                 .toLocaleLowerCase()
                 .includes(search?.toLocaleLowerCase().replace(" ", "")) ? (
-              <div
-                key={index}
-                onClick={() => {
-                  navigate(`/sweethome/shop/${product.id}`);
-                  // navigate(0);
-                  onChange("");
-                }}>
-                {product.title}
-              </div>
+              <a href={`/sweethome/shop/${product.id}`}>{product.title}</a>
             ) : (
               <div key={index}></div>
             )
