@@ -181,7 +181,7 @@ const AdminProduct = () => {
                     type="text"
                     className={styles.input}
                     name="title"
-                    value={product.title}
+                    defaultValue={product.title}
                     onChange={onInputChangeHandler}
                   />
                 </label>
@@ -193,7 +193,7 @@ const AdminProduct = () => {
                     type="number"
                     className={styles.input}
                     name="price"
-                    value={product.price}
+                    defaultValue={product.price}
                     onChange={onInputChangeHandler}
                   />
                 </label>
@@ -205,7 +205,7 @@ const AdminProduct = () => {
                     type="text"
                     className={styles.input}
                     name="description"
-                    value={product.description}
+                    defaultValue={product.description}
                     onChange={onInputChangeHandler}
                   />
                 </label>
@@ -250,7 +250,7 @@ const AdminProduct = () => {
                     type="number"
                     className={styles.input}
                     name="discountRate"
-                    value={product.discountRate}
+                    defaultValue={product.discountRate}
                     onChange={onInputChangeHandler}
                   />
                 </label>
@@ -267,7 +267,7 @@ const AdminProduct = () => {
               </div>
               <input
                 type="button"
-                value="상품 등록"
+                defaultValue="상품 등록"
                 className={styles.btn}
                 onClick={addProductHandler}
                 disabled={isLoading ? true : false}

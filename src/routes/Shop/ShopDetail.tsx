@@ -150,18 +150,18 @@ const ShopDetail = () => {
               <div className={styles.countBox}>
                 <input
                   type="button"
-                  value="-"
+                  defaultValue="-"
                   className={styles.plusBtn}
                   onClick={() => productCountHandler("minus")}
                 />
                 <input
                   className={styles.count}
                   name="count"
-                  value={count}
+                  defaultValue={count}
                 />
                 <input
                   type="button"
-                  value="+"
+                  defaultValue="+"
                   className={styles.minusBtn}
                   onClick={() => productCountHandler("plus")}
                 />
