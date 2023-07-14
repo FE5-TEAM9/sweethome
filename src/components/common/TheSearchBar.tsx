@@ -48,6 +48,9 @@ const TheSearchBar = ({ search, onChange }: any) => {
       }
     });
   };
+  const handleRedirection = (id: string) => {
+    location.href = `/sweethome/shop/${id}`;
+  };
   return (
     <>
       <div className={styles.searchContainer}>
@@ -71,10 +74,12 @@ const TheSearchBar = ({ search, onChange }: any) => {
                 .replace(" ", "")
                 .toLocaleLowerCase()
                 .includes(search?.toLocaleLowerCase().replace(" ", "")) ? (
-              <a href={`/sweethome/shop/${product.id}`}>{product.title}</a>
-            ) : (
-              <div key={index}></div>
-            )
+              <div
+                className={styles.searchKeyword}
+                onClick={() => handleRedirection(product.id)}>
+                {product.title}
+              </div>
+            ) : null
           )}
         </div>
       </div>
