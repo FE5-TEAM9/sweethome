@@ -1,32 +1,31 @@
-import { useState, useEffect } from 'react';
-import { getAllProducts } from '~/api/requests';
-import ProductItem from '~/components/Shop/ProductItem';
-import styles from '~/styles/Shop/Shop.module.scss';
+import { useState, useEffect } from "react";
+import { getAllProducts } from "~/api/requests";
+import ProductItem from "~/components/Shop/ProductItem";
+import styles from "~/styles/Shop/Shop.module.scss";
 
 const Shop = () => {
-  type AllProduct = GetProduct[]
+  type AllProduct = GetProduct[];
 
   interface GetProduct {
-    id: string
-    title: string
-    price: number
-    description: string
-    tags: string
-    thumbnail: string | null
-    isSoldOut: boolean
-    discountRate: number
+    id: string;
+    title: string;
+    price: number;
+    description: string;
+    tags: string;
+    thumbnail: string | null;
+    isSoldOut: boolean;
+    discountRate: number;
   }
 
   const [allProducts, setAllProducts] = useState<AllProduct>([]);
   const [originalProducts, setOriginalProducts] = useState<AllProduct>([]);
-  const [click, ] = useState(false);
+  const [click] = useState(false);
 
   useEffect(() => {
     spreadAllProducts();
-  }, [])
+  }, []);
 
-  useEffect(() => {
-  }, [allProducts])
+  useEffect(() => {}, [allProducts]);
 
   const spreadAllProducts = async () => {
     try {
@@ -34,25 +33,31 @@ const Shop = () => {
       setAllProducts(res);
       setOriginalProducts(res);
     } catch (error: any) {
-      alert(error.message)
+      alert(error.message);
     }
-  }
+  };
 
   // 상품 카테고리
-  const categorys = [ "ALL", "FURNITURE", "KITCHEN", "BEDROOM" ];
+  const categorys = ["ALL", "FURNITURE", "KITCHEN", "BEDROOM"];
 
   // 상품 카테고리별 필터 기능
   const categoryHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     if ((e.target as HTMLButtonElement).value === "ALL") {
-      setAllProducts(originalProducts)
+      setAllProducts(originalProducts);
     } else if ((e.target as HTMLButtonElement).value === "FURNITURE") {
-      setAllProducts(originalProducts.filter(product => product.tags === "FURNITURE"))
+      setAllProducts(
+        originalProducts.filter(product => product.tags === "FURNITURE")
+      );
     } else if ((e.target as HTMLButtonElement).value === "KITCHEN") {
-      setAllProducts(originalProducts.filter(product => product.tags === "KITCHEN"))
+      setAllProducts(
+        originalProducts.filter(product => product.tags === "KITCHEN")
+      );
     } else if ((e.target as HTMLButtonElement).value === "BEDROOM") {
-      setAllProducts(originalProducts.filter(product => product.tags === "BEDROOM"))
+      setAllProducts(
+        originalProducts.filter(product => product.tags === "BEDROOM")
+      );
     }
-  }
+  };
 
   return (
     <>
@@ -60,12 +65,13 @@ const Shop = () => {
         <div className={styles.menuWrap}>
           <ul className={styles.menu}>
             <li>
-              {categorys.map(category => (
+              {categorys.map((category, index) => (
                 <input
-                  type='button'
-                  value={category}
+                  key={index}
+                  type="button"
+                  defaultValue={category}
                   onClick={categoryHandler}
-                  className={click ? styles.active : ''}
+                  className={click ? styles.active : ""}
                 />
               ))}
             </li>
@@ -73,14 +79,14 @@ const Shop = () => {
         </div>
         <div className={styles.productListWrap}>
           <ul className={styles.productList}>
-            {allProducts.map((product: GetProduct)=> (
+            {allProducts.map((product: GetProduct) => (
               <ProductItem product={product} />
             ))}
           </ul>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;

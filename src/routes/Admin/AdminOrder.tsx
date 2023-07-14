@@ -130,7 +130,7 @@ const AdminOrder = () => {
                       : 
                       <input
                         type="button"
-                        value="구매취소"
+                        defaultValue="구매취소"
                         className={styles.cancelBtn}
                         id="canceled"
                         onClick={(e)=>adminTransactionsHandler(e, list.detailId)}
@@ -141,7 +141,7 @@ const AdminOrder = () => {
                       : 
                       <input
                         type="button"
-                        value="구매확정"
+                        defaultValue="구매확정"
                         className={styles.confirmBtn}
                         id="done"
                         onClick={(e)=>adminTransactionsHandler(e, list.detailId)}
