@@ -5,6 +5,29 @@ import { TfiClose } from "react-icons/tfi";
 import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Cart/CartList.module.scss";
 
+interface Reservation {
+  start: string; // 예약 시작 시간
+  end: string; // 예약 종료 시간
+  isCanceled: boolean; // 예약 취소 여부
+  isExpired: boolean; // 예약 만료 여부
+}
+
+interface MyCartItem {
+  id: string;
+  title: string;
+  price: number;
+  discountPrice?: number;
+  quantity?: number;
+  description?: string;
+  tags?: string;
+  thumbnail?: string;
+  photo?: string;
+  isSoldOut?: boolean;
+  reservations?: Reservation[];
+  discountRate?: number;
+  isChecked?: boolean;
+}
+
 const CartList = () => {
   const cart = useSelector((state: any) => state.cart);
   const selectedCart = useSelector((state: any) => state.selectedCart);
@@ -24,9 +47,10 @@ const CartList = () => {
     return cart;
   };
 
+  // 선택 상품 추가, 삭제 핸들러
   const checkedCartItemHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
-    item: any
+    item: MyCartItem
   ) => {
     e.target.checked
       ? dispatch({ type: "CHECKED_SELECTED_CART", items: item })
@@ -52,9 +76,7 @@ const CartList = () => {
               className={styles.checkbox}
               onChange={e => checkedCartItemHandler(e, item)}
             />
-            <Link
-              to={`/sweethome/shop/${item.id}`}
-            >
+            <Link to={`/sweethome/shop/${item.id}`}>
               <div className={styles.itemImg}>
                 <img
                   src={item.thumbnail}
@@ -89,8 +111,10 @@ const CartList = () => {
               {item.discountRate !== 0
                 ? convertPrice(item.price * item.quantity)
                 : convertPrice(
-                    priceBeforeDiscount(item.price, item.discount) * item.quantity)
-              }원
+                    priceBeforeDiscount(item.price, item.discount) *
+                      item.quantity
+                  )}
+              원
             </div>
             <div className={styles.deleteBtn}>
               <TfiClose onClick={() => deleteCartItemHandler(i, item)} />
