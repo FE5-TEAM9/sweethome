@@ -66,6 +66,7 @@ const ShopDetail = () => {
       discountRate: product.discountRate,
       isChecked: false
     };
+    // 기존 장바구니 상품 위치 그대로 사용하기 위한 작업
     dispatch({
       type: "RETURN_CART",
       items: [
