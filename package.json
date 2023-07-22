@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build && node main.tsx",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && echo '/* /index.html 200' | cat > dist/_redirects",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
