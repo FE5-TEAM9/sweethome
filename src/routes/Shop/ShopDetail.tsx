@@ -1,16 +1,13 @@
-import { getProduct } from "~/api/requests";
+import { getProduct } from "~/api/products";
 import { priceBeforeDiscount, convertPrice } from "~/utils/convert";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/Shop/ShopDetail.module.scss";
+import { Params } from "~/types";
 
 const ShopDetail = () => {
-  type Params = {
-    id: string | undefined;
-  };
-
   const { id } = useParams<Params>();
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -1,29 +1,20 @@
-interface SelectProps {
-  name: string;
-  options: { name: string, value: string }[];
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  value: any;
-}
+import { SelectProps } from "~/types";
 
-const Select = ({
-  options,
-  onChange,
-  value,
-  name
-}: SelectProps) => {
+const Select = ({ options, onChange, value, name }: SelectProps) => {
   return (
-    <select 
+    <select
       value={value}
       name={name}
-      onChange={onChange}
-    >
+      onChange={onChange}>
       {options.map(option => (
-      <option key={option.value} value={option.value}>
-        {option.name}
-      </option>
+        <option
+          key={option.value}
+          value={option.value}>
+          {option.name}
+        </option>
       ))}
     </select>
-  )
-}
+  );
+};
 
 export default Select;

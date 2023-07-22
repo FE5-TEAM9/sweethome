@@ -3,17 +3,11 @@ import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaEquals, FaPlus } from "react-icons/fa";
-import { buyProduct, getAccountList } from "~/api/requests";
+import { buyProduct } from "~/api/products";
+import { getAccountList } from "~/api/user";
+import { Bank, orderApplyBody } from "~/types";
 import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Buy/Buy.module.scss";
-
-interface Bank {
-  id: string;
-  bankName: string;
-  bankCode: string;
-  accountNumber: string;
-  balance: number;
-}
 
 const Buy = () => {
   const user = useSelector((state: any) => state.user);
@@ -24,7 +18,7 @@ const Buy = () => {
   const [accountChecked, setAccountChecked] = useState(true);
   const [bankChecked, setBankChecked] = useState(false);
   const [accountId, setAccountId] = useState("");
-  const [bankName, setBankName] = useState("")
+  const [bankName, setBankName] = useState("");
   const [accountList, setAccountList] = useState<Bank[]>([]);
   const [isActive, setIsActive] = useState(false);
 
@@ -56,15 +50,6 @@ const Buy = () => {
   );
 
   // 상품 거래 신청 핸들러
-  interface orderApplyBody {
-    productId: string;
-    accountId: string;
-    reservation?: {
-      start: string;
-      end: string;
-    };
-  }
-
   const orderApplyHandler = async (
     e: React.MouseEvent<HTMLInputElement>,
     order: any[],
@@ -106,7 +91,6 @@ const Buy = () => {
           <div className={styles.title}>
             <h2>주문서 작성 / 결제</h2>
           </div>
-
           <div className={styles.list_nav}>
             <h4>주문상세내역</h4>
             <div className={styles.list_nav_container}>
@@ -238,10 +222,10 @@ const Buy = () => {
                             : `${styles.account_info}`
                         }
                         onClick={() => {
-                          setAccountId(account.id); 
+                          setAccountId(account.id);
                           setBankName(account.bankName);
-                          setIsActive(true)
-                          }}>
+                          setIsActive(true);
+                        }}>
                         <div>{account.bankName}</div>
                         <div>{account.accountNumber}</div>
                         <div>잔액: {convertPrice(account.balance)}원</div>
@@ -267,7 +251,12 @@ const Buy = () => {
             <h4>최종 결제 금액</h4>
             <div className={styles.details_container}>
               <span>₩{convertPrice(totalPrice)}</span>
-              {bankName ? (<p>{bankName}에서 총 {convertPrice(totalPrice)}원 결제 예정입니다.</p>) : null}
+              {bankName ? (
+                <p>
+                  {bankName}에서 총 {convertPrice(totalPrice)}원 결제
+                  예정입니다.
+                </p>
+              ) : null}
             </div>
           </div>
         </div>

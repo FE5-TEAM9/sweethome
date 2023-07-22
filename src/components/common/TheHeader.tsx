@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { logOut } from "~/api/user";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
-import { logOut } from "~/api/requests";
 import TheSearchBar from "~/components/common/TheSearchBar";
 import styles from "~/styles/TheHeader.module.scss";
-import { useLocation } from "react-router-dom";
 
 const TheHeader = () => {
   const [search, setSearch] = useState("");

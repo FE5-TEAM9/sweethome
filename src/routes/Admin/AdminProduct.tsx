@@ -1,37 +1,14 @@
 import { useState, useEffect } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import { BsPencilSquare } from "react-icons/bs";
-import { addProduct, getAllProducts, deleteProduct } from "~/api/requests";
+import { addProduct, getAllProducts, deleteProduct } from "~/api/products";
 import { SELECT_TAGS } from "~/constants";
 import { convertPrice } from "~/utils/convert";
 import EditProductModal from "~/components/Admin/EditProductModal";
 import Select from "~/components/common/Select";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/Admin/AdminProduct.module.scss";
-
-type AllProduct = Product[];
-
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  tags: string[];
-  thumbnail: string;
-  isSoldOut: boolean;
-  discountRate: number;
-}
-
-interface AddProductBody {
-  title: string;
-  price: number;
-  description: string;
-  tags?: string;
-  thumbnailBase64?: string;
-  photoBase64?: string;
-  discountRate?: number;
-  isSoldOut?: boolean;
-}
+import { AllProduct, AddProductBody } from "~/types";
 
 const AdminProduct = () => {
   const [allProducts, setAllProducts] = useState<AllProduct>([]);
@@ -333,52 +310,6 @@ const AdminProduct = () => {
                     ))}
                   </ul>
                 </div>
-                {/* <table>
-                  <thead>
-                    <tr>
-                      {tableHead.map(item => (
-                        <th key={item}>{item}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allProducts.map((product, i) => (
-                      <tr key={product.id}>
-                        <td>{i + 1}</td>
-                        <td>{product.tags}</td>
-                        <td>{product.title}</td>
-                        <td>{product.price}</td>
-                        <td>{product.discountRate}</td>
-                        <td>{product.isSoldOut ? "품절" : ""}</td>
-                        <div className={styles.icon}>
-                          <BsPencilSquare
-                            className={styles.modifyBtn}
-                            onClick={() => {
-                              showModal(product.id);
-                              setProductIDX(i);
-                            }}
-                          />
-                          <TiDeleteOutline
-                            className={styles.deleteBtn}
-                            onClick={() => deleteProductHandler(product.id)}
-                          />
-                          {modalOpen && (
-                            <TheModal
-                              setModalOpen={setModalOpen}
-                              title={`상품 정보 수정`}
-                              allProducts={allProducts}
-                              setAllProducts={setAllProducts}
-                              productId={productId}
-                              productIDX={productIDX}
-                              watch={watch}
-                              setWatch={setWatch}
-                            />
-                          )}
-                        </div>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table> */}
               </div>
             </div>
           </div>

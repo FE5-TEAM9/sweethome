@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "~/api/requests";
+import { getAllProducts } from "~/api/products";
+import { Product } from "~/types";
 import styles from "~/styles/TheSearchBar.module.scss";
 
 const TheSearchBar = ({ search, onChange }: any) => {
   const [allProducts, setAllProducts] = useState([]);
+
   // 전체 상품 조회
   const getAllProductsHandler = async () => {
     try {
@@ -17,17 +19,6 @@ const TheSearchBar = ({ search, onChange }: any) => {
   useEffect(() => {
     getAllProductsHandler();
   }, []);
-
-  interface Product {
-    id: string;
-    title: string;
-    price: number;
-    description: string;
-    tags: string[];
-    thumbnail: string | null;
-    isSoldOut: boolean;
-    discountRate: number;
-  }
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -1,37 +1,45 @@
 import { useEffect, useState } from "react";
-import { adminAllTransactions, adminTransactions } from "~/api/requests";
+import { adminAllTransactions, adminTransactions } from "~/api/admin";
 import { convertDate, sortDate, convertPrice } from "~/utils/convert";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/admin/AdminOrder.module.scss";
+import { TransactionDetail } from "~/types";
 
 const AdminOrder = () => {
   const [allList, setAllList] = useState<any[]>([]);
   const [isCanceled, setIsCanceled] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     getAllTransactions();
-  },[])
-  
+  }, []);
+
   // 전체 거래 내역 조회
   const getAllTransactions = async () => {
     setIsLoading(true);
     try {
       const res = await adminAllTransactions();
-      setAllList(res.sort((a: any, b: any) => sortDate(b.timePaid) - sortDate(a.timePaid)));
+      setAllList(
+        res.sort(
+          (a: any, b: any) => sortDate(b.timePaid) - sortDate(a.timePaid)
+        )
+      );
     } catch (error: any) {
       alert(error.message);
     }
     setIsLoading(false);
-  }
+  };
 
   // 거래 완료 및 취소
-  const adminTransactionsHandler = async (e: React.MouseEvent<HTMLInputElement>, detailId: string) => {
+  const adminTransactionsHandler = async (
+    e: React.MouseEvent<HTMLInputElement>,
+    detailId: string
+  ) => {
     e.preventDefault();
     const id = e.currentTarget.id;
     try {
-      if (id === 'canceled') {
+      if (id === "canceled") {
         await adminTransactions(detailId, { isCanceled: !isCanceled });
         setIsCanceled(!isCanceled);
       } else {
@@ -41,34 +49,8 @@ const AdminOrder = () => {
     } catch (error: any) {
       alert(error.message);
     }
-  }
+  };
 
-  interface TransactionDetail {
-    detailId: string
-    user: {
-      email: string
-      displayName: string
-      profileImg: string | null
-    }
-    account: {
-      bankName: string
-      bankCode: string
-      accountNumber: string
-    }
-    product: {
-      productId: string
-      title: string
-      price: number
-      description: string
-      tags: string[]
-      thumbnail: string | null
-      discountRate: number
-    }
-    timePaid: string
-    isCanceled: boolean
-    done: boolean
-  }
-  
   return (
     <>
       {isLoading ? <Loading /> : null}
@@ -96,12 +78,10 @@ const AdminOrder = () => {
             <ul className={styles.allList}>
               {allList.map((list: TransactionDetail, i) => (
                 <li
-                  className={styles.list}              
+                  className={styles.list}
                   key={list.detailId}>
                   <p className={styles.num}>{i + 1}</p>
-                  <div className={styles.id}>
-                    {list.detailId.slice(0, 8)}
-                  </div>
+                  <div className={styles.id}>{list.detailId.slice(0, 8)}</div>
                   <div className={styles.user}>
                     <p>{list.user.displayName}</p>
                     <p>{list.user.email}</p>
@@ -121,32 +101,33 @@ const AdminOrder = () => {
                   <div className={styles.isCanceled}>
                     <p>{list.isCanceled ? "✅" : "❌"}</p>
                   </div>
-                  <div className={styles.isDone}>
-                    {list.done ? "✅" : "❌"}
-                  </div>
+                  <div className={styles.isDone}>{list.done ? "✅" : "❌"}</div>
                   <div className={styles.listBtn}>
-                    {(list.isCanceled || list.done)
-                      ? "🏠"
-                      : 
+                    {list.isCanceled || list.done ? (
+                      "🏠"
+                    ) : (
                       <input
                         type="button"
                         defaultValue="구매취소"
                         className={styles.cancelBtn}
                         id="canceled"
-                        onClick={(e)=>adminTransactionsHandler(e, list.detailId)}
+                        onClick={e =>
+                          adminTransactionsHandler(e, list.detailId)
+                        }
                       />
-                    }
-                    {(list.done || list.isCanceled)
-                      ? null
-                      : 
+                    )}
+                    {list.done || list.isCanceled ? null : (
                       <input
                         type="button"
                         defaultValue="구매확정"
                         className={styles.confirmBtn}
                         id="done"
-                        onClick={(e)=>adminTransactionsHandler(e, list.detailId)}
-                        disabled={list.done ? true : false}/>
-                    }
+                        onClick={e =>
+                          adminTransactionsHandler(e, list.detailId)
+                        }
+                        disabled={list.done ? true : false}
+                      />
+                    )}
                   </div>
                 </li>
               ))}
@@ -155,7 +136,7 @@ const AdminOrder = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default AdminOrder;

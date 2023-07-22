@@ -1,39 +1,15 @@
 import { TfiClose } from "react-icons/tfi";
-import { convertDate, convertPrice } from '~/utils/convert';
+import { convertDate, convertPrice } from "~/utils/convert";
+import { DetailsProps } from "~/types";
 import styles from "~/styles/Mypage/MyOrderDetails.module.scss";
-
-interface DetailsProps {
-  setShowDetails: React.Dispatch<React.SetStateAction<boolean>>
-  orderDetails: TransactionDetail
-}
-interface TransactionDetail {
-  detailId: string
-  product: {
-    productId: string
-    title: string
-    price: number
-    description: string
-    tags: string[]
-    thumbnail: string
-    discountRate: number
-    photo: string
-  }
-  timePaid: string
-  done: boolean
-  account: {
-    bankName: string
-    accountNumber: string
-  }
-}
 
 const MyOrderDetails = ({ setShowDetails, orderDetails }: DetailsProps) => {
   return (
     <section className={styles.myOrderDetails}>
       <div className={styles.container}>
-        <div 
+        <div
           className={styles.closeBtn}
-          onClick={() => setShowDetails(false)} 
-        >
+          onClick={() => setShowDetails(false)}>
           <TfiClose />
         </div>
         <div className={styles.title}>
@@ -49,13 +25,9 @@ const MyOrderDetails = ({ setShowDetails, orderDetails }: DetailsProps) => {
           <div className={styles.order_content}>
             <div className={styles.order_number}>
               <strong>주문번호</strong>
-              <p>
-                {orderDetails.product.productId}
-              </p>
+              <p>{orderDetails.product.productId}</p>
               <strong>주문날짜</strong>
-              <p>
-                {convertDate(orderDetails.timePaid)}
-              </p>
+              <p>{convertDate(orderDetails.timePaid)}</p>
             </div>
             <div className={styles.item_details}>
               <strong>{orderDetails.product.title}</strong>

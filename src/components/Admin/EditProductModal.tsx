@@ -1,33 +1,13 @@
 import { useState } from "react";
 import { TfiClose } from "react-icons/tfi";
-import { editProduct } from "~/api/requests";
+import { editProduct } from "~/api/products";
+import { EditProductModalProps } from "~/types";
 import { SELECT_TAGS } from "~/constants";
 import Loading from "~/components/common/Loading";
 import Select from "~/components/common/Select";
 import styles from "~/styles/Admin/EditProductModal.module.scss";
 
-interface PropsType {
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  title: string;
-  allProducts: Product[];
-  setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>
-  productId: string;
-  watch: boolean;
-  setWatch: React.Dispatch<React.SetStateAction<boolean>>
-  productIDX: number;
-}
-
-interface Product { 
-  id: string 
-  title: string 
-  price: number 
-  description: string 
-  tags: string[]
-  thumbnail: string
-  isSoldOut: boolean
-  discountRate: number
-}
-
+// 상품 수정 모달
 const EditProductModal = ({
   setModalOpen,
   title,
@@ -36,10 +16,10 @@ const EditProductModal = ({
   productId,
   watch,
   setWatch,
-  productIDX,
-}: PropsType) => {
+  productIDX
+}: EditProductModalProps) => {
   const [isChecked, setIsChecked] = useState(false);
-  const [productThumb] = useState<string>('');
+  const [productThumb] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [editInfo, setEditInfo] = useState({
     title: allProducts[productIDX].title,
@@ -47,27 +27,12 @@ const EditProductModal = ({
     description: allProducts[productIDX].description,
     tags: allProducts[productIDX].tags,
     thumbnail: productThumb,
-    discountRate: allProducts[productIDX].discountRate,
+    discountRate: allProducts[productIDX].discountRate
   });
 
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  // 썸네일 base64 인코딩
-  // const thumbBase64Handler = (e: React.ChangeEvent) => {
-  //   const target: any = e.target as HTMLInputElement;
-  //   const file = target.files[0];
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-
-  //   return new Promise<void>((resolve) => {
-  //     reader.onload = () => {
-  //       setProductThumb(reader.result as string);
-  //       resolve();
-  //     };
-  //   });
-  // };
 
   const onChangeHandler = (
     e:
@@ -77,7 +42,7 @@ const EditProductModal = ({
     const { value, name } = e.target;
     setEditInfo({
       ...editInfo,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -101,7 +66,7 @@ const EditProductModal = ({
       tags: editInfo.tags,
       thumbnail: productThumb,
       isSoldOut: isChecked,
-      discountRate: editInfo.discountRate,
+      discountRate: editInfo.discountRate
     };
 
     try {
@@ -185,10 +150,12 @@ const EditProductModal = ({
               type="button"
               value="수정"
               className={styles.editBtn}
-              onClick={(e) => editProductHandler(e, productId)}
+              onClick={e => editProductHandler(e, productId)}
             />
           </div>
-          <div className={styles.closeBtn} onClick={closeModal}>
+          <div
+            className={styles.closeBtn}
+            onClick={closeModal}>
             <TfiClose />
           </div>
         </div>
