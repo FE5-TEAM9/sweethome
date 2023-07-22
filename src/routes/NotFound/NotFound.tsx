@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { RiEmotionUnhappyLine } from "react-icons/ri";
+import { RiEmotionUnhappyLine } from "react-icons/ri"
 import styles from "~/styles/NotFound/NotFound.module.scss";
 
-const NotFound = () => {
+const NotFount = () => {
   return (
     <>
       <section className={styles.notfound}>
@@ -14,16 +14,13 @@ const NotFound = () => {
           </div>
           <div className={styles.btn}>
             <NavLink to="/sweethome">
-              <input
-                type="button"
-                value="Go To Home...🏠"
-              />
+              <input type="button" value="Go To Home...🏠" />
             </NavLink>
           </div>
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFount;

@@ -2,31 +2,9 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { TfiClose } from "react-icons/tfi";
+import { MyCartItem } from "~/types";
 import { convertPrice, priceBeforeDiscount } from "~/utils/convert";
 import styles from "~/styles/Cart/CartList.module.scss";
-
-interface Reservation {
-  start: string; // 예약 시작 시간
-  end: string; // 예약 종료 시간
-  isCanceled: boolean; // 예약 취소 여부
-  isExpired: boolean; // 예약 만료 여부
-}
-
-interface MyCartItem {
-  id: string;
-  title: string;
-  price: number;
-  discountPrice?: number;
-  quantity?: number;
-  description?: string;
-  tags?: string;
-  thumbnail?: string;
-  photo?: string;
-  isSoldOut?: boolean;
-  reservations?: Reservation[];
-  discountRate?: number;
-  isChecked?: boolean;
-}
 
 const CartList = () => {
   const cart = useSelector((state: any) => state.cart);

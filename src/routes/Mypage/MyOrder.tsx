@@ -3,39 +3,13 @@ import {
   cancelTransaction,
   confirmedTransaction,
   getAllTransactions,
-  getTransaction,
-} from "~/api/requests";
+  getTransaction
+} from "~/api/products";
 import { convertPrice, convertDate, sortDate } from "~/utils/convert";
-import MyOrderDetails from "~/routes/Mypage/MyOrderDetails";
+import MyOrderDetails from "~/routes/MyPage/MyOrderDetails";
 import Loading from "~/components/common/Loading";
-import styles from "~/styles/Mypage/MyOrder.module.scss";
-
-type AllTransactions = TransactionDetail[]
-
-interface TransactionDetail {
-  detailId: string
-  product: {
-    productId: string
-    title: string
-    price: number
-    description: string
-    tags: string[]
-    thumbnail: string
-    discountRate: number
-  }
-  reservation: Reservation | null
-  timePaid: string
-  isCanceled: boolean
-  done: boolean
-}
-
-interface Reservation {
-  start: string
-  end: string
-  isCanceled: boolean
-  isExpired: boolean
-}
-
+import styles from "~/styles/MyPage/MyOrder.module.scss";
+import { AllTransactions, AllTransactionDetail } from "~/types";
 
 const MyOrder = () => {
   const [allList, setAllList] = useState<AllTransactions>([]);
@@ -55,11 +29,14 @@ const MyOrder = () => {
     if (allRes) {
       setAllList(
         allRes
-          .filter((res: TransactionDetail) => !res.isCanceled)
-          .sort((a: TransactionDetail, b: TransactionDetail) => sortDate(b.timePaid) - sortDate(a.timePaid))
+          .filter((res: AllTransactionDetail) => !res.isCanceled)
+          .sort(
+            (a: AllTransactionDetail, b: AllTransactionDetail) =>
+              sortDate(b.timePaid) - sortDate(a.timePaid)
+          )
       );
     } else {
-      alert("주문 내역이 없습니다.")
+      alert("주문 내역이 없습니다.");
     }
     setIsLoading(false);
   };
@@ -75,7 +52,7 @@ const MyOrder = () => {
       const body = { detailId: id };
       const res = await cancelTransaction(body);
       if (res) {
-        setWatch(!watch)
+        setWatch(!watch);
         alert("구매 취소되었습니다.");
       } else {
         alert("구매 확정된 상품을 취소할 수 없습니다.");
@@ -97,8 +74,8 @@ const MyOrder = () => {
       const body = { detailId: Id };
       const res = await confirmedTransaction(body);
       if (res) {
-        setWatch(!watch)
-        alert("구매 확정 완료!")
+        setWatch(!watch);
+        alert("구매 확정 완료!");
       }
     } catch (error: any) {
       alert(error.message);
@@ -117,7 +94,7 @@ const MyOrder = () => {
       setOrderDetails(res);
       setShowDetails(true);
     } catch (error: any) {
-      alert(error.message)
+      alert(error.message);
     }
   };
 
@@ -151,7 +128,9 @@ const MyOrder = () => {
           <div className={styles.content}>
             <ul className={styles.allList}>
               {allList.map((list: any, i) => (
-                <li className={styles.list} key={list.datailId}>
+                <li
+                  className={styles.list}
+                  key={list.datailId}>
                   <span>{i + 1}</span>
                   <div className={styles.listImg}>
                     <img
@@ -164,38 +143,33 @@ const MyOrder = () => {
                   <span>{convertDate(list.timePaid)}</span>
                   <span>{list.done ? "✅" : "❌"}</span>
                   <div className={styles.listBtn}>
-                    {list.done
-                      ? null
-                      : 
+                    {list.done ? null : (
                       <input
                         type="button"
                         value="구매취소"
                         className={styles.cancelBtn}
-                        onClick={(e) => {
+                        onClick={e => {
                           cancelHandler(e, list.detailId);
                         }}
                       />
-                    }
-                    {list.done 
-                      ? null
-                      : 
+                    )}
+                    {list.done ? null : (
                       <input
                         type="button"
                         value="구매확정"
                         className={styles.confirmBtn}
-                        onClick={(e) => confirmHandler(e, list.detailId)}
+                        onClick={e => confirmHandler(e, list.detailId)}
                         disabled={list.done ? true : false}
                       />
-                    }
+                    )}
                     <input
                       type="button"
                       value="상세정보"
                       className={styles.confirmBtn}
-                      onClick={(e) => {
+                      onClick={e => {
                         showDetailsHandler(e, list.detailId);
                       }}
                     />
-                    
                   </div>
                 </li>
               ))}

@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
-import { users } from "~/api/requests";
+import { users } from "~/api/admin";
 import Loading from "~/components/common/Loading";
 import styles from "~/styles/Admin/AdminUser.module.scss";
-
-interface User {  
-  email: string
-  displayName: string
-  profileImg: string
-}
+import { User } from "~/types";
 
 const AdminUser = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -16,7 +11,7 @@ const AdminUser = () => {
   useEffect(() => {
     getUsers();
   }, []);
-  
+
   // 사용자 목록 조회
   const getUsers = async () => {
     setIsLoading(true);
@@ -24,7 +19,7 @@ const AdminUser = () => {
       const res = await users();
       setAllUsers(res);
     } catch (error) {
-      alert("사용자 목록 조회 실패!")
+      alert("사용자 목록 조회 실패!");
     }
     setIsLoading(false);
   };

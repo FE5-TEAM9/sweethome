@@ -4,13 +4,13 @@ import Home from "~/routes/Home/Home";
 import About from "~/routes/About/About";
 import Shop from "~/routes/Shop/Shop";
 import ShopDetail from "~/routes/Shop/ShopDetail";
-import Mypage from "~/routes/Mypage/Mypage";
+import MyPage from "~/routes/MyPage/MyPage";
 import Cart from "~/routes/Cart/Cart";
 import Login from "~/routes/Login/Login";
 import SignUp from "~/routes/SignUp/SignUp";
 import Admin from "~/routes/Admin/Admin";
 import Buy from "~/routes/Buy/Buy";
-import NotFound from "~/routes/NotFound/NotFount";
+import NotFound from "~/routes/NotFound/NotFound";
 
 export default createBrowserRouter([
   {
@@ -35,7 +35,7 @@ export default createBrowserRouter([
       },
       {
         path: "/sweethome/mypage",
-        element: <Mypage />
+        element: <MyPage />
       },
       {
         path: "/sweethome/cart",

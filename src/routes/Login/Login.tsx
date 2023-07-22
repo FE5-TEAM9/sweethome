@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logIn } from "~/api/requests";
+import { logIn } from "~/api/user";
 import styles from "~/styles/Login/Login.module.scss";
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,13 +26,13 @@ const Login = () => {
           dispatch({ type: "RETURN", account: res });
           dispatch({ type: "LOGOUT", state: true });
         } else {
-          navigate("/sweethome")
+          navigate("/sweethome");
           dispatch({ type: "RETURN", account: res });
           dispatch({ type: "LOGOUT", state: true });
         }
       } else {
         dispatch({ type: "LOGOUT", state: false });
-        alert("로그인 실패하였습니다.")
+        alert("로그인 실패하였습니다.");
       }
     } catch (error: any) {
       alert(error.message);
@@ -66,8 +65,7 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className={styles.btn__login}
-              >
+                className={styles.btn__login}>
                 로그인
               </button>
             </form>
@@ -81,7 +79,9 @@ const Login = () => {
             <p>아직 회원이 아니신가요?</p>
             <p>회원 가입을 하시면 다양하고 특별한 혜택을 누리세요</p>
             <Link to="/sweethome/signup">
-              <button type="button" className={styles.btn__signup}>
+              <button
+                type="button"
+                className={styles.btn__signup}>
                 회원가입
               </button>
             </Link>

@@ -1,24 +1,12 @@
 import { useState, useEffect } from "react";
-import { getAllProducts } from "~/api/requests";
+import { getAllProducts } from "~/api/products";
 import ProductItem from "~/components/Shop/ProductItem";
 import styles from "~/styles/Shop/Shop.module.scss";
+import { ShopAllProduct, GetProduct } from "~/types";
 
 const Shop = () => {
-  type AllProduct = GetProduct[];
-
-  interface GetProduct {
-    id: string;
-    title: string;
-    price: number;
-    description: string;
-    tags: string;
-    thumbnail: string | null;
-    isSoldOut: boolean;
-    discountRate: number;
-  }
-
-  const [allProducts, setAllProducts] = useState<AllProduct>([]);
-  const [originalProducts, setOriginalProducts] = useState<AllProduct>([]);
+  const [allProducts, setAllProducts] = useState<ShopAllProduct>([]);
+  const [originalProducts, setOriginalProducts] = useState<ShopAllProduct>([]);
   const [click] = useState(false);
 
   useEffect(() => {
