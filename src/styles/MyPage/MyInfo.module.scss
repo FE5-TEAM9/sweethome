@@ -1,0 +1,65 @@
+@import '../common/colors.scss';
+@import '../common/fonts.scss';
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.btn {
+  width: 430px;
+  height: 50px;
+  border-radius: 10px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.info {
+  margin: 50px 0;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    display: flex;
+    align-items: center;
+    width: 420px;
+    height: 28px;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid $base-color-gray;
+    font-size: 14px;
+
+    p {
+      flex-shrink: 0;
+      width: 100px;
+    }
+
+    span {
+      color: $point-color-red;
+      font-size: 10px;
+    }
+
+    .input {
+      width: 180px;
+      height: 23px;
+      margin: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      &::placeholder {
+        color: $font-color;
+      }
+
+    }
+  }
+
+  .btn {
+    background-color: $base-color-gray;
+    color: $base-color-black;
+  }
+}
