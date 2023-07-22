@@ -1,4 +1,12 @@
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build]
+  publish = "public"
+  command = "gatsby build"
+  
+[build.environment]
+  YARN_VERSION = "1.3.2"
+  YARN_FLAGS = "--no-ignore-optional"
