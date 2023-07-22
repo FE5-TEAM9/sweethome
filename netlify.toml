@@ -1,4 +1,4 @@
-[[headers]]
-  for = "/api/*"
-    [headers.values]
-    Access-Control-Allow-Origin = "https://benevolent-pony-3bca0a.netlify.app/"
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
