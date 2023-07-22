@@ -7,6 +7,8 @@
     "start": "npm run build && node main.tsx",
     "dev": "vite",
     "build": "tsc && vite build",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
