@@ -11,9 +11,9 @@ const TheHeader = () => {
   const [search, setSearch] = useState("");
   const [searchIsClicked, setSearchIsClicked] = useState(false);
   const logout = useSelector((state: any) => state.logout);
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   // 로그아웃
   const logOutHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
