@@ -1,5 +1,5 @@
-@import '../common/colors.scss';
-@import '../common/fonts.scss';
+@import "../common/colors.scss";
+@import "../common/fonts.scss";
 
 .title {
   display: flex;
@@ -51,11 +51,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
         cursor: pointer;
 
         &:hover {
-         transform: scale(1.1);
+          transform: scale(1.1);
         }
 
         img {
@@ -104,8 +104,8 @@
       label {
         border: none;
       }
-      
-      p{
+
+      p {
         font-size: 14px;
       }
     }
