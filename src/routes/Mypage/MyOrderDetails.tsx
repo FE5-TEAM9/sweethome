@@ -1,7 +1,7 @@
 import { TfiClose } from "react-icons/tfi";
 import { convertDate, convertPrice } from "~/utils/convert";
 import { DetailsProps } from "~/types";
-import styles from "~/styles/Mypage/MyOrderDetails.module.scss";
+import styles from "~/styles/MyPage/MyOrderDetails.module.scss";
 
 const MyOrderDetails = ({ setShowDetails, orderDetails }: DetailsProps) => {
   return (

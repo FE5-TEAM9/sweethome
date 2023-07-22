@@ -9,7 +9,7 @@ import bank4 from "/assets/bank/bank081.svg";
 import bank5 from "/assets/bank/bank089.svg";
 import bank6 from "/assets/bank/bank090.svg";
 import bank7 from "/assets/bank/bank011.svg";
-import styles from "~/styles/Mypage/AccountModal.module.scss";
+import styles from "~/styles/MyPage/AccountModal.module.scss";
 
 const AccountModal = ({
   bankList,
